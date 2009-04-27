@@ -47,5 +47,15 @@ namespace Spitfire
         {
             throw new System.NotImplementedException();
         }
+
+        public void accelerate()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void decelerate()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
