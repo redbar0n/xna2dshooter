@@ -21,9 +21,14 @@ namespace Spitfire
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Background background;
+        Player player;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
             Content.RootDirectory = "Content";
         }
 
@@ -36,6 +41,8 @@ namespace Spitfire
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            background = new Background();
+            player = new Player(graphics);
 
             base.Initialize();
         }
@@ -50,6 +57,9 @@ namespace Spitfire
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            background.LoadContent(this.Content, "Sprites/mountainFlat", 2);
+            player.NormalFlight = new Animation(this.Content.Load<Texture2D>("Sprites/Spitfireresized"), 1, false);
+            // load and add all animations
         }
 
         /// <summary>
@@ -68,11 +78,12 @@ namespace Spitfire
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
 
             // TODO: Add your update logic here
+            player.Update();
+            background.Velocity = player.Velocity;
+            background.Update(gameTime);
+
 
             base.Update(gameTime);
         }
@@ -86,6 +97,11 @@ namespace Spitfire
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            spriteBatch.Begin();
+            background.Draw(spriteBatch);
+            player.Draw(gameTime, spriteBatch);
+            spriteBatch.End();
+
 
             base.Draw(gameTime);
         }
