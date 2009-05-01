@@ -17,7 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Spitfireresized.xnb</Output>
-      <Time>2009-05-01T00:25:23.2054059+10:00</Time>
+      <Time>2009-05-01T22:04:45.879952+10:00</Time>
     </Item>
     <Item>
       <Source>Sprites\tank map.PNG</Source>
@@ -45,6 +45,24 @@
       <Options>None</Options>
       <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\HUD\Pericles.xnb</Output>
       <Time>2009-05-01T08:36:46.9450016+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\zeppelin2sized.PNG</Source>
+      <Name>Sprites\zeppelin2sized</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\zeppelin2sized.xnb</Output>
+      <Time>2009-05-01T21:50:09.5899088+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\zeppelin2sizedExplode.png</Source>
+      <Name>Sprites\zeppelin2sizedExplode</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\zeppelin2sizedExplode.xnb</Output>
+      <Time>2009-05-01T21:55:42.8691408+10:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

@@ -13,6 +13,7 @@ namespace Spitfire
     /// </summary>
     /// <remarks>
     /// future: Level class to hold Background and Ground class
+    /// future: upgrade background class to how it was done in project AdvancedScrollingA2DBackground
     /// </remarks>
     public class Background
     {
@@ -23,12 +24,27 @@ namespace Spitfire
         /// </summary>
         private Vector2 direction; // future: might be removed when using plane velocity.
 
+        /// <summary>
+        /// Indicates progress in the level.
+        /// </summary>
+        /// <remarks>
+        /// The added width of the background frames as they loop.
+        /// </remarks>
+        public float LevelProgress
+        {
+            get { return levelProgress; }
+            set { levelProgress = value; }
+        }
+        private float levelProgress = 0; 
+
         public Vector2 Velocity
         {
             get { return velocity; }
             set { velocity = value; }
         }
         private Vector2 velocity;
+
+
 
         /// <summary>
         /// How much background should be scaled. Redundant if background texture images are scaled.
@@ -60,6 +76,9 @@ namespace Spitfire
 
         public void Update(GameTime gameTime)
         {
+            if (backgrounds.Count == 0)
+                throw new NotSupportedException("No background loaded.");
+
             Object[] bg = backgrounds.ToArray(); // background arraylist as an array
             Sprite lastBackground = (Sprite) bg[bg.Length - 1];
             for (int i = 0; i < bg.Length; i++)
@@ -77,11 +96,12 @@ namespace Spitfire
                         frame.Position = new Vector2(prevFrame.Position.X + prevFrame.Size.Width,
                                                                 prevFrame.Position.Y);
                     }
+
+                    levelProgress += frame.Size.Width;
                 }
 
-                // TODO: Background only goes very slowly up or down!
+                // TODO: Background only goes very slowly up or down! because of ElapsedGameTime
                 //Console.WriteLine("1: " + frame.Position);
-                //frame.Velocity not really used/needed here
                 frame.Position += direction * velocity; //* (float)gameTime.ElapsedGameTime.TotalSeconds;
                 //Console.WriteLine("2: "+ frame.Position);
 			}

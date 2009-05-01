@@ -24,7 +24,8 @@ namespace Spitfire
         Background background;
         Player player;
         HUD hud;
-        Level level;
+
+        Enemy zeppelin;
 
         public Game1()
         {
@@ -43,10 +44,10 @@ namespace Spitfire
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            background = new Background();
+            background = new Background(); //to set levelProgress
             player = new Player(graphics);
             hud = new HUD(player);
-            level = new Level(background);
+            zeppelin = new Enemy(Enemy.Type.ShotDown, new Vector2(1000, 200), new Vector2(-1, 0), 1000, 200); 
 
             base.Initialize();
         }
@@ -64,6 +65,7 @@ namespace Spitfire
             background.LoadContent(this.Content, "Sprites/mountainFlat", 2);
             player.NormalFlight = new Animation(this.Content.Load<Texture2D>("Sprites/Spitfireresized"), 1, true);
             hud.LoadContent(this.Content);
+            zeppelin.LoadContent("zeppelin2sized", this.Content);
 
             // load and add all animations
         }
@@ -89,7 +91,7 @@ namespace Spitfire
             player.Update();
             background.Velocity = player.Velocity;
             background.Update(gameTime);
-            
+            zeppelin.Update();
 
             base.Update(gameTime);
         }
@@ -106,6 +108,7 @@ namespace Spitfire
             spriteBatch.Begin();
             background.Draw(spriteBatch);
             player.Draw(gameTime, spriteBatch);
+            zeppelin.Draw(spriteBatch);
             hud.Draw(spriteBatch, this.Window.ClientBounds.Width);
             spriteBatch.End();
 

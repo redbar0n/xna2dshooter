@@ -29,7 +29,7 @@ namespace Spitfire
         private float pi = (float)Math.PI;
         private Vector2 initialVelocity = new Vector2(15f, 15f);
         private const float maxRotation = 0.78f; // how much the plane can rotate either up/down
-        private float rotateDistance = 0.02f;
+        private float rotateDistance = 0.1f; //0.02f;
         private float accelerant = 2.0f; // future: change to using dv/dt
         private float accelerationConstant = 2f;
 
@@ -153,14 +153,14 @@ namespace Spitfire
 
         private void RotateUp()
         {
-            Rotation -= (float) 1/120 * pi;
+            Rotation -= (float) 1 / 80 * pi;
             if (Rotation < -pi / 2)
                 Rotation = -pi / 2;
         }
 
         private void RotateDown()
         {
-            Rotation += (float) 1 / 120 * pi;
+            Rotation += (float) 1 / 80 * pi;
             if (Rotation > pi / 2)
                 Rotation = pi / 2;
         }
@@ -299,7 +299,7 @@ namespace Spitfire
                 TurnAround();
         }
 
-
+/* XVelocityReset and YVelocityReset
         /// <summary>
         /// Reset xbase.Velocity after getting input.
         /// </summary>
@@ -339,6 +339,7 @@ namespace Spitfire
                 base.Velocity = new Vector2(0f, base.Velocity.Y);
             }
         }
+*/
 
         /// <summary>
         /// Reset acceleration after getting input.

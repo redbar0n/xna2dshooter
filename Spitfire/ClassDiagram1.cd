@@ -3,7 +3,7 @@
   <Class Name="Spitfire.Game1">
     <Position X="0.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQgEEiAAAAAAwAAAAAAAAAAAAEAAAgBAAAAAAAAIAQ=</HashCode>
+      <HashCode>AAQgEEiAAAAAAwAAAAAAAAAAAAAAAAgBAAAAAAAAIAQ=</HashCode>
       <FileName>Game1.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -18,14 +18,14 @@
     <Position X="6.75" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ASQAEAAgIAAgAgIiIJAQAATACAgUAQAAAAAAgADGAAA=</HashCode>
-      <FileName>Player.cs</FileName>
+      <FileName>Gameplay\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Spitfire.Bomb">
     <Position X="8.5" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Bomb.cs</FileName>
+      <FileName>Gameplay\Bomb.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Spitfire.Enemy">
@@ -33,20 +33,20 @@
     <NestedTypes>
       <Enum Name="Spitfire.Enemy.Type" Collapsed="true">
         <TypeIdentifier>
-          <NewMemberFileName>Enemy.cs</NewMemberFileName>
+          <NewMemberFileName>Gameplay\Enemy.cs</NewMemberFileName>
         </TypeIdentifier>
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAAQAAAAAAAAAgAAAAACgAiAABAFAAAAAAAAgQAAAAQ=</HashCode>
-      <FileName>Enemy.cs</FileName>
+      <FileName>Gameplay\Enemy.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Spitfire.Bullet">
     <Position X="5" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Bullet.cs</FileName>
+      <FileName>Gameplay\Bullet.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Spitfire.Animation">
@@ -56,56 +56,56 @@
     </Compartments>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAARBACAEAgAAAAIAIAAAACA=</HashCode>
-      <FileName>Animation.cs</FileName>
+      <FileName>Helper\Animation.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Spitfire.Sprite" Collapsed="true">
     <Position X="8.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgoAgAILAIAACAAAAAgAAAAYAAAAEAAA=</HashCode>
-      <FileName>Sprite.cs</FileName>
+      <FileName>Gameplay\Sprite.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Spitfire.Level">
     <Position X="1" Y="7" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AASAAAAAAAABAwAgAAAAAAAAAAAAAAABAAAAIQAAAAQ=</HashCode>
-      <FileName>Level.cs</FileName>
+      <HashCode>AASAAAAAAAABAwAAAAAAAAAAAAAAAAABAAAAAQAAAAQ=</HashCode>
+      <FileName>Gameplay\Level.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Spitfire.HUD">
     <Position X="4.5" Y="5.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAgAAACAIAgAAAAAAAAABAQAAAAAQAAQ=</HashCode>
-      <FileName>HUD.cs</FileName>
+      <FileName>Gameplay\HUD.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Spitfire.MainMenu">
     <Position X="8.5" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>MainMenu.cs</FileName>
+      <FileName>Screens\MainMenu.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Spitfire.HelpScreen">
     <Position X="8.5" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>HelpScreen.cs</FileName>
+      <FileName>Screens\HelpScreen.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Spitfire.Background">
     <Position X="2.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAIgAAAQAAAAACAAAAAAAAAAQAAAAEAAQ=</HashCode>
-      <FileName>Background.cs</FileName>
+      <HashCode>CAQAAAAAAAAAIgAAAQAAAAACAAAAAAAAAAQAIAAEAAQ=</HashCode>
+      <FileName>Gameplay\Background.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Spitfire.Ground">
     <Position X="4" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Ground.cs</FileName>
+      <FileName>Gameplay\Ground.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Tahoma" Size="8.25" />

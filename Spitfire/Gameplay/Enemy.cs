@@ -36,12 +36,11 @@ namespace Spitfire
         /// <param name="scale">Scale size of sprite up or down.</param>
         /// <param name="maxHP">The starting hp of unit.</param>
         /// <param name="crashDamage">The damage the unit will do if crash or explode into other unit.</param>
-        public Enemy(Type type, Vector2 position, Vector2 velocity, float scale, int startHP, int explodeDamage)
+        public Enemy(Type type, Vector2 position, Vector2 velocity, int startHP, int explodeDamage)
         {
             this.type = type;
             base.Position = position;
             base.Velocity = velocity;
-            base.Scale = scale;
             maxHP = startHP;
             currentHP = startHP;
             this.explodeDamage = explodeDamage;
@@ -55,9 +54,11 @@ namespace Spitfire
         public void LoadContent(String spriteSet, ContentManager content)
         {
             // Load animations.
-            spriteSet = "Sprites/" + spriteSet + "/";
+            spriteSet = "Sprites/" + spriteSet;
             base.Texture = content.Load<Texture2D>(spriteSet);
+            
             explodeAni = new Animation(content.Load<Texture2D>(spriteSet + "Explode"), 0.1f, false);
+
         }
 
         public void TakeDamage(int damage)
@@ -84,6 +85,11 @@ namespace Spitfire
         public void Explode()
         {
             animate.PlayAnimation(explodeAni);
+        }
+
+        public void Update()
+        {
+            base.Position += base.Velocity;
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)

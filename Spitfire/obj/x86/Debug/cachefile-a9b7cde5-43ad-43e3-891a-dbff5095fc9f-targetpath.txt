@@ -3,3 +3,5 @@ Content\Sprites\Spitfireresized.xnb
 Content\Sprites\tank map.xnb
 Content\HUD\healthBar.xnb
 Content\HUD\Pericles.xnb
+Content\Sprites\zeppelin2sized.xnb
+Content\Sprites\zeppelin2sizedExplode.xnb
