@@ -8,7 +8,7 @@ namespace Spitfire
     /// <summary>
     /// Checks if pixels in two different sprites overlap
     /// </summary>
-    public class CollisionDetection
+    struct CollisionDetection
     {
         public static bool Collision(Sprite a, Sprite b)
         {

@@ -15,6 +15,18 @@ namespace Spitfire
         private int enemies;
         private int field;
 
+        new public Vector2 Position
+        {
+            get { return position; }
+            set
+            {
+                if (value.X > Position.X)
+                    levelProgress += (value.X - Position.X);
+                position = value;
+            }
+        }
+        float levelProgress = 0;
+
         public Level(string position, string starVelocity)
         {
             throw new System.NotImplementedException();

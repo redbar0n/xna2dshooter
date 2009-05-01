@@ -38,7 +38,7 @@ namespace Spitfire
         public Background()
         {
             backgrounds = new ArrayList();
-            direction = new Vector2(-1, 0);
+            direction = new Vector2(-1, -1);
         }
 
         // future: Optimize background loading to remove slight lag. Load smaller backgrounds.
@@ -79,17 +79,21 @@ namespace Spitfire
                     }
                 }
 
-                // TODO: Background doesn't go up or down even though velocity changes in Y direction.
-                frame.Position += direction * velocity * (float)gameTime.ElapsedGameTime.TotalSeconds;
+                // TODO: Background only goes very slowly up or down!
+                //Console.WriteLine("1: " + frame.Position);
+                //frame.Velocity not really used/needed here
+                frame.Position += direction * velocity; //* (float)gameTime.ElapsedGameTime.TotalSeconds;
+                //Console.WriteLine("2: "+ frame.Position);
 			}
         }
 
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Sprite background in backgrounds)
+            foreach (Sprite frame in backgrounds)
             {
-                background.Draw(spriteBatch);
+                frame.Draw(spriteBatch);
+                //Console.WriteLine("3: " + frame.Position);
             }
         }
     }
