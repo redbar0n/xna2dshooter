@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -15,6 +16,33 @@ namespace Spitfire
         //private int dodgeTime;
         //private int maxHP;
 
+
+        public ArrayList _shots;
+        private Texture2D bulletSprite;
+        public Texture2D bulletTexture
+        {
+            get { return bulletSprite; }
+            set { bulletSprite = value; }
+        }
+
+        /// <summary>
+        /// Used to determine whether space key was pressed on last update
+        /// </summary>
+        Boolean _spaceKeyWasPressed;
+        /// <summary>
+        /// Used to determine whether the d key was pressed on last update
+        /// </summary>
+        Boolean _dKeyWasPressed;
+
+
+        public ArrayList bombs;
+        private Texture2D bombSprite;
+        public Texture2D bombTexture
+        {
+            get { return bombSprite; }
+            set { bombSprite = value; }
+        }
+
         /// <summary>
         /// The players current hit points.
         /// </summary>
@@ -27,10 +55,10 @@ namespace Spitfire
 
         //private Vector2 maxVelocity;
         private float pi = (float)Math.PI;
-        private Vector2 initialVelocity = new Vector2(15f, 15f);
+        private Vector2 initialVelocity = new Vector2(8f, 8f);
         private const float maxRotation = 0.78f; // how much the plane can rotate either up/down
-        private float rotateDistance = 0.1f; //0.02f;
-        private float accelerant = 2.0f; // future: change to using dv/dt
+        private float rotateDistance = 0.02f;
+        private float accelerant = 1.0f; // future: change to using dv/dt
         private float accelerationConstant = 2f;
 
         // TODO: rewrite. are isAccelerating and isDecelerating needed?
@@ -72,6 +100,9 @@ namespace Spitfire
             determineVelocity();
             currentHP = 100;
             //faceDirection = FaceDirection.Right;
+            _shots = new ArrayList();
+            bombs = new ArrayList();
+            bombCount = 3;
         }
 
         public void GetInput()
@@ -90,7 +121,7 @@ namespace Spitfire
                     SlowDown();
                 }
             }
-            
+
             if (keyboardState.IsKeyDown(Keys.Right))
             {
                 if (faceDirection == FaceDirection.Right)
@@ -102,18 +133,45 @@ namespace Spitfire
                     SlowDown();
                 }
             }
-            
+
             if (keyboardState.IsKeyDown(Keys.Up))
             {
                 //FlyUp();
                 RotateUp();
             }
-            
-            if (keyboardState.IsKeyDown(Keys.Down))
+
+            else if (keyboardState.IsKeyDown(Keys.Down))
             {
                 //FlyDown(); // QUESTION: plane will actually fly up here
                 RotateDown();
             }
+            else
+            {
+                AutoAdjustRotation();
+            }
+
+            if (keyboardState.IsKeyDown(Keys.Space) && !_spaceKeyWasPressed)
+            {
+                Shoot();
+                _spaceKeyWasPressed = true;
+            }
+            else if (!keyboardState.IsKeyDown(Keys.Space))
+            {
+                _spaceKeyWasPressed = false;
+            }
+
+            ///Drop bomb ///
+            if (keyboardState.IsKeyDown(Keys.D) && !_dKeyWasPressed)
+            {
+                dropBomb();
+                _dKeyWasPressed = true;
+            }
+            else if (!keyboardState.IsKeyDown(Keys.D))
+            {
+                _dKeyWasPressed = false;
+            }
+
+
 
             //XVelocityReset();
             //YVelocityReset();
@@ -131,16 +189,46 @@ namespace Spitfire
             determineVelocity();
 
             animate.PlayAnimation(normalFlight);
+
+            foreach (Bullet _shot1 in _shots.ToArray())
+            {
+                //_shot1.Position.X > 1280 || _shot1.Position.X < 0
+                if (_shot1.HasExceededDistance())
+                {
+                    _shots.Remove(_shot1);
+                }
+                else
+                {
+                    _shot1.Update(this.Velocity);
+                }
+            }
+
+            foreach (Bomb bombN in bombs.ToArray())
+            {
+                if (bombN.Position.Y > 3000f)
+                {
+
+                    bombs.Remove(bombN);
+                }
+                else
+                    bombN.Update(this.Velocity);
+            }
         }
 
-        
+
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             // draw in direction enemy is facing
             SpriteEffects flip = base.faceDirection > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             animate.Draw(gameTime, spriteBatch, Position, Rotation, flip);
+
+            foreach (Bullet _shot1 in _shots.ToArray())
+                _shot1.Draw(spriteBatch);
+
+            foreach (Bomb bombX in bombs.ToArray())
+                bombX.Draw(spriteBatch);
         }
-        
+
 
         public void TakeDamage(int damage)
         {
@@ -153,97 +241,118 @@ namespace Spitfire
 
         private void RotateUp()
         {
-            Rotation -= (float) 1 / 80 * pi;
+            Rotation -= (float)1 / 120 * pi;
             if (Rotation < -pi / 2)
                 Rotation = -pi / 2;
         }
 
         private void RotateDown()
         {
-            Rotation += (float) 1 / 80 * pi;
+            Rotation += (float)1 / 120 * pi;
             if (Rotation > pi / 2)
                 Rotation = pi / 2;
         }
 
         private void determineVelocity()
         {
-            float yPercent = Rotation / (pi/2);
+            float yPercent = Rotation / (pi / 2);
             float xPercent = 1 - Math.Abs(yPercent);
 
             if (Rotation > 0)
             {
-                accelerant += accelerationConstant * yPercent;
-                Velocity = new Vector2(initialVelocity.X * xPercent * accelerant, initialVelocity.Y * yPercent * accelerant);
+                //accelerant += accelerationConstant * yPercent;
+                Accelerate(yPercent);
+                //Velocity = new Vector2(initialVelocity.X * xPercent * accelerant, initialVelocity.Y * yPercent * accelerant);
             }
-            else
+            else if (Rotation < 0)
             {
-                Velocity = new Vector2(initialVelocity.X * xPercent, initialVelocity.Y * yPercent);
+                Decelerate(yPercent);
+                //Velocity = new Vector2(initialVelocity.X * xPercent, initialVelocity.Y * yPercent);
+            }
+            Velocity = new Vector2(initialVelocity.X * xPercent * accelerant,
+                initialVelocity.Y * yPercent * accelerant);
+        }
+
+        private void AutoAdjustRotation()
+        {
+
+            if (Rotation > 0)
+            {
+                RotateUp();
+                if (Rotation < 0)
+                    Rotation = 0f;
+            }
+            else if (Rotation < 0)
+            {
+                RotateDown();
+                if (Rotation > 0)
+                    Rotation = 0f;
             }
         }
 
-/*
-        private void FlyUp()
-        {
-
-            // plane faces right and greater than - 70 degrees approx
-            if ((Rotation > -1.2f) && (faceDirection == FaceDirection.Right))
-            {
-                Rotation -= rotateDistance;//* accelerant;
-
-                base.Velocity += new Vector2(0f, 0.1f);
-                if (Rotation < -maxRotation)
+        /*
+                private void FlyUp()
                 {
-                    base.Velocity += new Vector2(0.15f, 0f);
-                }
-                else if (Rotation > maxRotation)
-                {
-                    base.Velocity -= new Vector2(0.15f, 0f);
-                }
-            }
 
-            //plane faces left and greater than - 70 degrees approx
-            if ((Rotation < 1.2f) && (faceDirection == FaceDirection.Left))
-            {
-                base.Velocity += new Vector2(0f, 0.1f);
-                
-                // future: use math clamp instead
-                Rotation += rotateDistance;//* accelerant;
-                if (Rotation > maxRotation)
-                {
-                    base.Velocity -= new Vector2(0.15f, 0f);
-                }
-
-            }
-        }
-
-        private void FlyDown()
-        {
-            if ((Rotation < 1.2f) && (faceDirection == FaceDirection.Right))
-            {
-                {
-                    Rotation += rotateDistance ;//* accelerant;
-                    base.Velocity -= new Vector2(0f, 0.1f);
-                    if (Rotation <= -maxRotation)
+                    // plane faces right and greater than - 70 degrees approx
+                    if ((Rotation > -1.2f) && (faceDirection == FaceDirection.Right))
                     {
-                        base.Velocity -= new Vector2(0.15f, 0f);
-                    }
-                    else if (Rotation >= maxRotation) {
-                        base.Velocity += new Vector2(0.15f, 0f);
-                    }
-                }
-            }
-            if ((Rotation > -1.2f) && (faceDirection == FaceDirection.Left))
-            {
-                Rotation -= rotateDistance;//* accelerant;
-                base.Velocity -= new Vector2(0f, 0.1f);
-                if (Rotation > maxRotation)
-                {
-                    base.Velocity += new Vector2(0.15f, 0f);
-                }
-            }
+                        Rotation -= rotateDistance;//* accelerant;
 
-        }
-*/
+                        base.Velocity += new Vector2(0f, 0.1f);
+                        if (Rotation < -maxRotation)
+                        {
+                            base.Velocity += new Vector2(0.15f, 0f);
+                        }
+                        else if (Rotation > maxRotation)
+                        {
+                            base.Velocity -= new Vector2(0.15f, 0f);
+                        }
+                    }
+
+                    //plane faces left and greater than - 70 degrees approx
+                    if ((Rotation < 1.2f) && (faceDirection == FaceDirection.Left))
+                    {
+                        base.Velocity += new Vector2(0f, 0.1f);
+                
+                        // future: use math clamp instead
+                        Rotation += rotateDistance;//* accelerant;
+                        if (Rotation > maxRotation)
+                        {
+                            base.Velocity -= new Vector2(0.15f, 0f);
+                        }
+
+                    }
+                }
+
+                private void FlyDown()
+                {
+                    if ((Rotation < 1.2f) && (faceDirection == FaceDirection.Right))
+                    {
+                        {
+                            Rotation += rotateDistance ;//* accelerant;
+                            base.Velocity -= new Vector2(0f, 0.1f);
+                            if (Rotation <= -maxRotation)
+                            {
+                                base.Velocity -= new Vector2(0.15f, 0f);
+                            }
+                            else if (Rotation >= maxRotation) {
+                                base.Velocity += new Vector2(0.15f, 0f);
+                            }
+                        }
+                    }
+                    if ((Rotation > -1.2f) && (faceDirection == FaceDirection.Left))
+                    {
+                        Rotation -= rotateDistance;//* accelerant;
+                        base.Velocity -= new Vector2(0f, 0.1f);
+                        if (Rotation > maxRotation)
+                        {
+                            base.Velocity += new Vector2(0.15f, 0f);
+                        }
+                    }
+
+                }
+        */
         /*
         public float GetX_Speed()
         {
@@ -254,7 +363,7 @@ namespace Spitfire
         {
             return base.Velocity.Y * accelerant;
         }
-        */ 
+        */
 
 
         /// <summary>
@@ -299,7 +408,7 @@ namespace Spitfire
                 TurnAround();
         }
 
-/* XVelocityReset and YVelocityReset
+
         /// <summary>
         /// Reset xbase.Velocity after getting input.
         /// </summary>
@@ -339,7 +448,6 @@ namespace Spitfire
                 base.Velocity = new Vector2(0f, base.Velocity.Y);
             }
         }
-*/
 
         /// <summary>
         /// Reset acceleration after getting input.
@@ -431,7 +539,25 @@ namespace Spitfire
             {
                 isAccelerating = true;
                 this.accelerant += accelerationConstant;
-            } 
+            }
+        }
+
+
+        public void Accelerate(float yPercent)
+        {
+            if (accelerant < 2.0f)
+                accelerant += accelerationConstant * yPercent;
+            if (accelerant > 2.0f)
+                accelerant = 2.0f;
+        }
+
+        public void Decelerate(float yPercent)
+        {
+            if (accelerant > 1.0f)
+                accelerant -= accelerationConstant * yPercent;
+            else if (accelerant < 1.0f)
+                accelerant = 1.0f;
+
         }
 
         public void Decelerate()
@@ -444,6 +570,25 @@ namespace Spitfire
                 {
                     this.accelerant = 0f;
                 }
+            }
+        }
+
+        public void Shoot()
+        {
+            Bullet shot = new Bullet(this.Rotation, this.Position);
+            shot.Texture = bulletSprite;
+            _shots.Add(shot);
+
+        }
+
+        public void dropBomb()
+        {
+            if (bombCount > 0)
+            {
+                Bomb bombX = new Bomb(this.Rotation, this.Position, this.Velocity);
+                bombX.Texture = bombSprite;
+                bombs.Add(bombX);
+                bombCount--;
             }
         }
     }

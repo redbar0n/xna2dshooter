@@ -64,6 +64,24 @@
       <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\zeppelin2sizedExplode.xnb</Output>
       <Time>2009-05-01T21:55:42.8691408+10:00</Time>
     </Item>
+    <Item>
+      <Source>Sprites\shots.png</Source>
+      <Name>Sprites\shots</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\shots.xnb</Output>
+      <Time>2009-05-03T19:17:37.8835472+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\herobomb.png</Source>
+      <Name>Sprites\herobomb</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\herobomb.xnb</Output>
+      <Time>2009-05-03T19:17:48.7091136+10:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

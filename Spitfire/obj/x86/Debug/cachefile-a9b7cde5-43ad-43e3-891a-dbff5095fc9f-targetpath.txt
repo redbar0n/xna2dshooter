@@ -5,3 +5,5 @@ Content\HUD\healthBar.xnb
 Content\HUD\Pericles.xnb
 Content\Sprites\zeppelin2sized.xnb
 Content\Sprites\zeppelin2sizedExplode.xnb
+Content\Sprites\shots.xnb
+Content\Sprites\herobomb.xnb

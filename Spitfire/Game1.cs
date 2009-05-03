@@ -44,7 +44,7 @@ namespace Spitfire
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            background = new Background(); //to set levelProgress
+            background = new Background();
             player = new Player(graphics);
             hud = new HUD(player);
             zeppelin = new Enemy(Enemy.Type.ShotDown, new Vector2(1000, 200), new Vector2(-1, 0), 1000, 200); 
@@ -64,6 +64,8 @@ namespace Spitfire
             // TODO: use this.Content to load your game content here
             background.LoadContent(this.Content, "Sprites/mountainFlat", 2);
             player.NormalFlight = new Animation(this.Content.Load<Texture2D>("Sprites/Spitfireresized"), 1, true);
+            player.bulletTexture = Content.Load<Texture2D>("Sprites/shots");
+            player.bombTexture = Content.Load<Texture2D>("Sprites/herobomb");
             hud.LoadContent(this.Content);
             zeppelin.LoadContent("zeppelin2sized", this.Content);
 
