@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\mountainFlat1.xnb</Output>
-      <Time>2009-04-30T22:26:50.8283099+10:00</Time>
+      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\XNA Game\Spitfire\bin\x86\Debug\Content\Sprites\mountainFlat1.xnb</Output>
+      <Time>2009-05-04T11:24:56+10:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Spitfireresized.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Spitfireresized.xnb</Output>
-      <Time>2009-05-01T22:04:45.879952+10:00</Time>
+      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\XNA Game\Spitfire\bin\x86\Debug\Content\Sprites\Spitfireresized.xnb</Output>
+      <Time>2009-05-04T11:24:56+10:00</Time>
     </Item>
     <Item>
       <Source>Sprites\tank map.PNG</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\tank map.xnb</Output>
-      <Time>2009-05-01T00:29:46.9446443+10:00</Time>
+      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\XNA Game\Spitfire\bin\x86\Debug\Content\Sprites\tank map.xnb</Output>
+      <Time>2009-05-04T11:24:56+10:00</Time>
     </Item>
     <Item>
       <Source>HUD\healthBar.png</Source>
@@ -34,17 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\HUD\healthBar.xnb</Output>
-      <Time>2009-05-01T08:36:25.4440848+10:00</Time>
-    </Item>
-    <Item>
-      <Source>HUD\Pericles.spritefont</Source>
-      <Name>HUD\Pericles</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\HUD\Pericles.xnb</Output>
-      <Time>2009-05-01T08:36:46.9450016+10:00</Time>
+      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\XNA Game\Spitfire\bin\x86\Debug\Content\HUD\healthBar.xnb</Output>
+      <Time>2009-05-04T11:24:52+10:00</Time>
     </Item>
     <Item>
       <Source>Sprites\zeppelin2sized.PNG</Source>
@@ -52,8 +43,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\zeppelin2sized.xnb</Output>
-      <Time>2009-05-01T21:50:09.5899088+10:00</Time>
+      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\XNA Game\Spitfire\bin\x86\Debug\Content\Sprites\zeppelin2sized.xnb</Output>
+      <Time>2009-05-04T11:24:56+10:00</Time>
     </Item>
     <Item>
       <Source>Sprites\zeppelin2sizedExplode.png</Source>
@@ -61,17 +52,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\zeppelin2sizedExplode.xnb</Output>
-      <Time>2009-05-01T21:55:42.8691408+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\shots.png</Source>
-      <Name>Sprites\shots</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\shots.xnb</Output>
-      <Time>2009-05-03T19:17:37.8835472+10:00</Time>
+      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\XNA Game\Spitfire\bin\x86\Debug\Content\Sprites\zeppelin2sizedExplode.xnb</Output>
+      <Time>2009-05-04T11:24:56+10:00</Time>
     </Item>
     <Item>
       <Source>Sprites\herobomb.png</Source>
@@ -79,43 +61,70 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\herobomb.xnb</Output>
-      <Time>2009-05-03T19:17:48.7091136+10:00</Time>
+      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\XNA Game\Spitfire\bin\x86\Debug\Content\Sprites\herobomb.xnb</Output>
+      <Time>2009-05-02T13:19:07.5625+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\shots.png</Source>
+      <Name>Sprites\shots</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\XNA Game\Spitfire\bin\x86\Debug\Content\Sprites\shots.xnb</Output>
+      <Time>2009-05-02T10:06:34.75+10:00</Time>
+    </Item>
+    <Item>
+      <Source>HUD\Pericles.spritefont</Source>
+      <Name>HUD\Pericles</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\XNA Game\Spitfire\bin\x86\Debug\Content\HUD\Pericles.xnb</Output>
+      <Time>2009-05-04T11:24:52+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\skyfinal.png</Source>
+      <Name>Sprites\skyfinal1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\XNA Game\Spitfire\bin\x86\Debug\Content\Sprites\skyfinal1.xnb</Output>
+      <Time>2009-05-04T16:50:16.765625+10:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\Content\</RootDirectory>
-      <LoggerRootDirectory>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\Content\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\XNA Game\Spitfire\Content\</RootDirectory>
+      <LoggerRootDirectory>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\XNA Game\Spitfire\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\XNA Game\Spitfire\Content\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\XNA Game\Spitfire\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
-        <Value>2008-10-11T11:42:32+10:00</Value>
+        <Value>2008-10-10T17:42:32+10:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
-        <Value>2008-10-11T11:43:28+10:00</Value>
+        <Value>2008-10-10T17:43:28+10:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
-        <Value>2008-10-11T11:43:18+10:00</Value>
+        <Value>2008-10-10T17:43:18+10:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
-        <Value>2008-10-11T11:48:18+10:00</Value>
+        <Value>2008-10-10T17:48:18+10:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
-        <Value>2008-10-11T11:48:50+10:00</Value>
+        <Value>2008-10-10T17:48:50+10:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\WINDOWS\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\3.0.0.0__6d5c3888ef60e27d\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2009-02-13T09:36:42.0926288+10:00</Value>
+        <Value>2009-03-14T11:06:22.515625+10:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

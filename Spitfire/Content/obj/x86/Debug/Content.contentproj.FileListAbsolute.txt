@@ -1,1 +1,2 @@
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\Content\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\XNA Game\Spitfire\Content\obj\x86\Debug\ResolveAssemblyReference.cache

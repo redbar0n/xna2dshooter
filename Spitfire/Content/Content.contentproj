@@ -77,6 +77,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Sprites\herobomb.png">
+      <Name>herobomb</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\shots.png">
+      <Name>shots</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="Sprites\zeppelin2sizedExplode.png">
       <Name>zeppelin2sizedExplode</Name>
       <Importer>TextureImporter</Importer>
@@ -84,15 +94,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\shots.png">
-      <Name>shots</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Sprites\herobomb.png">
-      <Name>herobomb</Name>
+    <Compile Include="Sprites\skyfinal.png">
+      <Name>skyfinal1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
