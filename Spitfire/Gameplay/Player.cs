@@ -59,7 +59,7 @@ namespace Spitfire
         private const float maxRotation = 0.78f; // how much the plane can rotate either up/down
         private float rotateDistance = 0.02f;
         private float accelerant = 1.0f; // future: change to using dv/dt
-        private float accelerationConstant = 2f;
+        private float accelerationConstant = 0.25f;
 
         // TODO: rewrite. are isAccelerating and isDecelerating needed?
         private bool isAccelerating = false;
@@ -122,6 +122,9 @@ namespace Spitfire
                 }
             }
 
+            if (keyboardState.IsKeyDown(Keys.A))
+                Console.WriteLine(this.accelerant);
+
             if (keyboardState.IsKeyDown(Keys.Right))
             {
                 if (faceDirection == FaceDirection.Right)
@@ -175,7 +178,7 @@ namespace Spitfire
 
             //XVelocityReset();
             //YVelocityReset();
-            AccelerationReset();
+            //AccelerationReset();
             isAccelerating = false;
             isDecelerating = false;
         }
@@ -255,7 +258,7 @@ namespace Spitfire
 
         private void determineVelocity()
         {
-            float yPercent = Rotation / (pi / 2);
+            float yPercent = Rotation / (pi / 2);            
             float xPercent = 1 - Math.Abs(yPercent);
 
             if (Rotation > 0)
@@ -266,8 +269,8 @@ namespace Spitfire
             }
             else if (Rotation < 0)
             {
-                Decelerate(yPercent);
-                //Velocity = new Vector2(initialVelocity.X * xPercent, initialVelocity.Y * yPercent);
+                Decelerate(Math.Abs(yPercent));
+                
             }
             Velocity = new Vector2(initialVelocity.X * xPercent * accelerant,
                 initialVelocity.Y * yPercent * accelerant);
@@ -545,16 +548,16 @@ namespace Spitfire
 
         public void Accelerate(float yPercent)
         {
-            if (accelerant < 2.0f)
+            if (accelerant < 3.0f)
                 accelerant += accelerationConstant * yPercent;
-            if (accelerant > 2.0f)
-                accelerant = 2.0f;
+            if (accelerant > 3.0f)
+                accelerant = 3.0f;
         }
 
         public void Decelerate(float yPercent)
         {
             if (accelerant > 1.0f)
-                accelerant -= accelerationConstant * yPercent;
+                accelerant -= (accelerationConstant * yPercent/4);
             else if (accelerant < 1.0f)
                 accelerant = 1.0f;
 
@@ -575,6 +578,8 @@ namespace Spitfire
 
         public void Shoot()
         {
+            
+            //Bullet shot = new Bullet(this.Rotation, this.animate.Origin);
             Bullet shot = new Bullet(this.Rotation, this.Position);
             shot.Texture = bulletSprite;
             _shots.Add(shot);

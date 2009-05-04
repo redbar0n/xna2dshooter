@@ -92,6 +92,11 @@ namespace Spitfire
             base.Position += base.Velocity;
         }
 
+        public void Update(Vector2 playersVelocity)
+        {
+            base.Position += (base.Velocity - playersVelocity);
+        }
+
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             // draw in direction enemy is facing

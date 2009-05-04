@@ -11,7 +11,7 @@ namespace Spitfire
     {
 
         private float distanceTravelled;
-        private float maxBulletDistance = 1200f; // max distance bullet travels before disappearing
+        private float maxBulletDistance = 4000f; // max distance bullet travels before disappearing
         private int damage = 10;// default
         public int bulletDamage
         {
@@ -21,14 +21,15 @@ namespace Spitfire
 
 
         private float pi = (float)Math.PI;
-        private Vector2 initialVelocity = new Vector2(20f, 20f);
+        private Vector2 initialVelocity = new Vector2(30f, 30f);
 
 
         public Bullet(float shootersRotation, Vector2 initialPosition)
         {
             base.Rotation = shootersRotation;
             determineVelocity();
-            base.Position = initialPosition + new Vector2(20f, -8f);
+            //base.Position = initialPosition;// +new Vector2(20f, -8f);
+            base.Position = determinePosition(initialPosition);
             distanceTravelled = 0f;
         }
 
@@ -47,6 +48,20 @@ namespace Spitfire
                 Velocity = new Vector2(initialVelocity.X * xPercent, initialVelocity.Y * yPercent);
             }
         }
+
+        private Vector2 determinePosition(Vector2 initialPosition)
+        {
+            float yPercent = Rotation / (pi / 2);
+            float xPercent = 1 - Math.Abs(yPercent);
+            float planeHalfLength = 20f;
+            return new Vector2(initialPosition.X += (planeHalfLength * xPercent +3f),
+                initialPosition.Y += (planeHalfLength * yPercent));
+
+        }
+
+
+
+
 
         public void Update(Vector2 playerVelocity)
         {
