@@ -22,8 +22,10 @@ namespace Spitfire
         SpriteBatch spriteBatch;
 
         Background background;
+        Background sky;
         Player player;
         HUD hud;
+        Vector2 playersVelocity;
 
         Enemy zeppelin;
 
@@ -45,6 +47,7 @@ namespace Spitfire
         {
             // TODO: Add your initialization logic here
             background = new Background();
+            sky = new Background();
             player = new Player(graphics);
             hud = new HUD(player);
             zeppelin = new Enemy(Enemy.Type.ShotDown, new Vector2(1000, 200), new Vector2(-1, 0), 1000, 200); 
@@ -63,6 +66,7 @@ namespace Spitfire
 
             // TODO: use this.Content to load your game content here
             background.LoadContent(this.Content, "Sprites/mountainFlat", 2);
+            sky.LoadContent(this.Content, "Sprites/skyfinal", 2);
             player.NormalFlight = new Animation(this.Content.Load<Texture2D>("Sprites/Spitfireresized"), 1, true);
             player.bulletTexture = Content.Load<Texture2D>("Sprites/shots");
             player.bombTexture = Content.Load<Texture2D>("Sprites/herobomb");
@@ -91,9 +95,13 @@ namespace Spitfire
 
             // TODO: Add your update logic here
             player.Update();
-            background.Velocity = player.Velocity;
+            playersVelocity = player.Velocity;
+
+            background.Velocity = playersVelocity; //player.Velocity;
             background.Update(gameTime);
-            zeppelin.Update();
+            sky.Velocity = playersVelocity/2;
+            sky.Update(gameTime);
+            zeppelin.Update(playersVelocity);
 
             base.Update(gameTime);
         }
@@ -108,6 +116,7 @@ namespace Spitfire
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
+            sky.Draw(spriteBatch);
             background.Draw(spriteBatch);
             player.Draw(gameTime, spriteBatch);
             zeppelin.Draw(spriteBatch);
