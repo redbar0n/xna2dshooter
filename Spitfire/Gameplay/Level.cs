@@ -56,8 +56,6 @@ namespace Spitfire
         }
         private Vector2 velocity;
 
-        // TODO: ENEMIES
-
         /// <summary>
         /// Will make sure enemies are added only once after each LevelProgress change.
         /// </summary>
@@ -142,10 +140,10 @@ namespace Spitfire
                     LevelProgress++;
 
                     addEnemies = true;
-                    Console.WriteLine(levelProgress);
+                    //Console.WriteLine(levelProgress);
                 }
 
-                // TODO: Background only goes very slowly up or down! because of ElapsedGameTime
+                // ElapsedGameTime causes background to go very slowly up or down. Is it necessary?
                 frame.Position += -1 * velocity; //* (float)gameTime.ElapsedGameTime.TotalSeconds;
 			}
 
@@ -162,7 +160,7 @@ namespace Spitfire
                 enemies.Add(zeppelin);
                 addEnemies = false;
             }
-            else if (LevelProgress == 2 && addEnemies)
+            /*else if (LevelProgress == 2 && addEnemies)
             {
                 Enemy zeppelin = new Enemy(this, Enemy.Type.Exploding, "zeppelin2sized");
                 zeppelin.Position = new Vector2(1410, 300);
@@ -171,6 +169,7 @@ namespace Spitfire
                 enemies.Add(zeppelin);
                 addEnemies = false;
             }
+            */
 
             // update enemy sprite speed relative to player speed
             foreach (Enemy enemy in enemies.ToArray()) //ToArray important to avoid iterating-remove-error

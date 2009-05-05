@@ -62,10 +62,24 @@ namespace Spitfire
         Level level;
 
         //private Curve path; // in case it is a flying enemy
-        private Animation normalAni;  // TODO: PRIORITY make enemy use its own sprite texture and not normalAni
+        private Animation normalAni;
         private Animation explodeAni;
         private AnimationPlayer animate;
 
+        public override Texture2D Texture
+        {
+            get
+            {
+                if (normalAni == null)
+                {
+                    return base.Texture;
+                }
+                else
+                {
+                    return normalAni.Texture;
+                }
+            }
+        }
 
         /// <summary>
         /// Tells if the explode animation is finished.
@@ -112,11 +126,14 @@ namespace Spitfire
         /// </summary>
         public void LoadContent(String spriteSet)
         {
-            // Load texture and animation(s).
+            // Load animation(s).
             spriteSet = "Sprites/Enemies/" + spriteSet;
 
-            Texture = Level.Content.Load<Texture2D>(spriteSet);
+            normalAni = new Animation(Level.Content.Load<Texture2D>(spriteSet), 1f, false);
             explodeAni = new Animation(Level.Content.Load<Texture2D>(spriteSet + "Explode"), 1f, false);
+
+
+            Size = new Rectangle(0, 0, (int)(normalAni.FrameWidth * Scale), (int)(normalAni.FrameHeight * Scale));
 
             animate.PlayAnimation(normalAni);
         }
@@ -146,14 +163,17 @@ namespace Spitfire
         {
             exploding = true;
             animate.PlayAnimation(explodeAni);
+            Velocity = Vector2.Zero;
         }
 
         public void Update()
         {
             base.Position += base.Velocity;
 
-            if (exploding && animate.FrameIndex == (animate.Animation.FrameCount - 1))
+            if (exploding && animate.Animation.IsFinished)
+            {
                 hasExploded = true;
+            }
 
         }
 
@@ -167,7 +187,7 @@ namespace Spitfire
             // draw in direction enemy is facing
             SpriteEffects flip = base.faceDirection > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
-            animate.Draw(gameTime, spriteBatch, Position, base.Rotation, flip);
+            animate.Draw(gameTime, spriteBatch, base.Position, base.Rotation, flip);
         }
     }
 }

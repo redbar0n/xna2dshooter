@@ -3,7 +3,7 @@
   <Class Name="Spitfire.Game1">
     <Position X="0.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQgEEiAAAAAAwAAAAAAAAAAAAEAAAgBAAAAAAAAAAQ=</HashCode>
+      <HashCode>AAQgEEiAAAAAAwAAAAAAAAAAAAEAAAgBAgAAAAAAAAQ=</HashCode>
       <FileName>Game1.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -17,7 +17,7 @@
   <Class Name="Spitfire.Player" Collapsed="true">
     <Position X="6.75" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AyQAFAAgAAAghwIiIJAARATACAgFAQAAAAAEggTGAAA=</HashCode>
+      <HashCode>AyQAlAAgAIAghgIiIJAARATACAgFAQAAAAAEggTGAAA=</HashCode>
       <FileName>Gameplay\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -30,37 +30,34 @@
   </Class>
   <Class Name="Spitfire.Enemy" Collapsed="true">
     <Position X="10.25" Y="3" Width="1.5" />
-    <NestedTypes>
-      <Enum Name="Spitfire.Enemy.Type" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>Gameplay\Enemy.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAQQAAAAEAAAAgAAAAAAgAigAAEFAAABAAAAgQAAAAQ=</HashCode>
+      <HashCode>AIQQAAAAEAAAAgAAAAAAgAigEIEFAACBAAAAgQAAEAQ=</HashCode>
       <FileName>Gameplay\Enemy.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Spitfire.Bullet" Collapsed="true">
     <Position X="5" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAEAAAAAAggAIAAAAAAACAiAAAAAAAAAAAAAAABAA=</HashCode>
+      <HashCode>AAQAEAAAAAAggAIAAAAAAACAiAEAAAAAAAAAAAAABAA=</HashCode>
       <FileName>Gameplay\Bullet.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Spitfire.Animation">
-    <Position X="2.25" Y="0.5" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Fields" Collapsed="true" />
-    </Compartments>
+    <Position X="2.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAARBACAEAgAAAAIAIAAAACA=</HashCode>
-      <FileName>Helper\Animation.cs</FileName>
+      <FileName>Helpers\Animation.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Spitfire.Sprite" Collapsed="true">
+  <Class Name="Spitfire.Sprite">
     <Position X="8.25" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Spitfire.Sprite.FaceDirection" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Gameplay\Sprite.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAgoAgAILAIAACAAAAAgAAAAYAAAAEAAA=</HashCode>
       <FileName>Gameplay\Sprite.cs</FileName>
@@ -69,7 +66,7 @@
   <Class Name="Spitfire.HUD" Collapsed="true">
     <Position X="4.5" Y="5.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAgAAACAIAgAAAAAAAAABAQAAAAAQAAQ=</HashCode>
+      <HashCode>AAAAAAAAAAAAAggAACAIAgAAAAAAAAABAQAAAAAQAAQ=</HashCode>
       <FileName>Gameplay\HUD.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -90,7 +87,7 @@
   <Class Name="Spitfire.Level">
     <Position X="2.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAQCAAAAAgAAAgAAAQAAAAACAAAAAAABAAQAIAAEAAQ=</HashCode>
+      <HashCode>CAQCIAAAAgAAAgAAAQAAAAACAAEAAAABAAQAIBAEAAQ=</HashCode>
       <FileName>Gameplay\Level.cs</FileName>
     </TypeIdentifier>
   </Class>

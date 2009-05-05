@@ -12,20 +12,23 @@ namespace Spitfire
 
         private float distanceTravelled;
         private float maxBulletDistance = 4000f; // max distance bullet travels before disappearing
-        private int damage = 10;// default
+        
+        /*
         public int bulletDamage
         {
             get { return damage; }
             set { damage = value; }
         }
-
-
+        private int damage = 10;// default
+        */
+         
         private float pi = (float)Math.PI;
         private Vector2 initialVelocity = new Vector2(30f, 30f);
 
 
-        public Bullet(float shootersRotation, Vector2 initialPosition)
+        public Bullet(float shootersRotation, Vector2 initialPosition, FaceDirection direction)
         {
+            this.faceDirection = direction;
             base.Rotation = shootersRotation;
             determineVelocity();
             //base.Position = initialPosition;// +new Vector2(20f, -8f);
@@ -41,11 +44,11 @@ namespace Spitfire
             if (Rotation > 0)
             {
                 //accelerant += accelerationConstant * yPercent;
-                Velocity = new Vector2(initialVelocity.X * xPercent, initialVelocity.Y * yPercent);
+                Velocity = new Vector2(initialVelocity.X * xPercent, initialVelocity.Y * yPercent) * (float)faceDirection;
             }
             else
             {
-                Velocity = new Vector2(initialVelocity.X * xPercent, initialVelocity.Y * yPercent);
+                Velocity = new Vector2(initialVelocity.X * xPercent, initialVelocity.Y * yPercent) * (float)faceDirection;
             }
         }
 
@@ -53,8 +56,10 @@ namespace Spitfire
         {
             float yPercent = Rotation / (pi / 2);
             float xPercent = 1 - Math.Abs(yPercent);
-            float planeHalfLength = 20f;
-            return new Vector2(initialPosition.X += (planeHalfLength * xPercent +3f),
+            float planeHalfLength = 0f;
+            if (faceDirection == FaceDirection.Left)
+                planeHalfLength = -10;
+            return new Vector2(initialPosition.X += (planeHalfLength * xPercent + 3f * (float)faceDirection),
                 initialPosition.Y += (planeHalfLength * yPercent));
 
         }

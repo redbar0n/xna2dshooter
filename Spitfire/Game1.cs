@@ -25,6 +25,8 @@ namespace Spitfire
         Player player;
         HUD hud;
         Vector2 playersVelocity;
+        private bool pause = false;
+        Boolean enterKeyWasPressed = false;
 
         public Game1()
         {
@@ -42,7 +44,6 @@ namespace Spitfire
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
             level = new Level();
             player = new Player(graphics);
             hud = new HUD(player);
@@ -59,7 +60,6 @@ namespace Spitfire
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
             level.LoadContent(this.Content, "Sprites/Backgrounds/mountainFlat", 2);
             player.NormalFlight = new Animation(this.Content.Load<Texture2D>("Sprites/Player/Spitfireresized"), 1, true);
             player.bulletTexture = Content.Load<Texture2D>("Sprites/Player/shots");
@@ -75,7 +75,7 @@ namespace Spitfire
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            // Unload any non ContentManager content here
         }
 
         /// <summary>
@@ -85,30 +85,43 @@ namespace Spitfire
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-
-            // TODO: Add your update logic here
-            player.Update();
-            playersVelocity = player.Velocity;
-            level.Velocity = player.Velocity;
-            level.Update(gameTime); // includes updating enemies
-
-            // Collision detection
-
-            foreach (Bullet bullet in player.Bullets)
+            KeyboardState keyboardState = Keyboard.GetState();
+            if (keyboardState.IsKeyDown(Keys.Enter) && !enterKeyWasPressed)
             {
-                foreach (Enemy enemy in level.Enemies)
-                {
-                    if (CollisionDetection.Collision(bullet, enemy))
-                    {
-                        Console.WriteLine("exploding");
-                        player.Bullets.Remove(bullet);
-                        enemy.Explode(); // will pass the exploding down to animateExplosion, which will pass it up to level which finally removes enemy
-                        hud.Score += enemy.WorthScore;
-                    }
-                }
+                Pause();
+                enterKeyWasPressed = true;
+            }
+            else if (!keyboardState.IsKeyDown(Keys.Enter))
+            {
+                enterKeyWasPressed = false;
             }
 
 
+            if (!pause)
+            {
+
+                player.Update();
+                playersVelocity = player.Velocity;
+                level.Velocity = player.Velocity;
+                level.Update(gameTime); // includes updating enemies
+
+                // Collision detection
+
+                foreach (Bullet bullet in player.Bullets.ToArray())
+                {
+                    foreach (Enemy enemy in level.Enemies.ToArray())
+                    {
+                        if (CollisionDetection.Collision(bullet, enemy))
+                        {
+                            Console.WriteLine("collision");
+                            player.Bullets.Remove(bullet);
+                            hud.Score += enemy.WorthScore;
+                            enemy.Explode(); // will pass the exploding down to animateExplosion, which will pass it up to level which finally removes enemy
+                        }
+                    }
+                }
+
+            }
 
             base.Update(gameTime);
         }
@@ -121,7 +134,6 @@ namespace Spitfire
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
             spriteBatch.Begin();
             level.Draw(gameTime, spriteBatch);
 
@@ -137,7 +149,10 @@ namespace Spitfire
 
         public void Pause()
         {
-            throw new System.NotImplementedException();
+            if (pause)
+                pause = false;
+            else
+                pause = true;
         }
 
         public void HandleInput()

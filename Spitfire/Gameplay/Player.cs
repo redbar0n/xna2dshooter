@@ -11,7 +11,7 @@ namespace Spitfire
     public class Player : Sprite
     {
         //private bool isDodging;
-        //private bool isSwooping;
+        private bool isSwooping;
         //private bool isTurning = false; // Determines if you are in the middle of a turn
         //private int dodgeTime;
         //private int maxHP;
@@ -71,6 +71,8 @@ namespace Spitfire
         //private float rotateDistance = 0.02f;
         private float accelerant = 1.0f; // future: change to using dv/dt
         private float accelerationConstant = 0.25f;
+        private static float maxAccelerant = 2.7f;
+        private float decelerationConstant = 0.25f;
 
         // TODO: rewrite. are isAccelerating and isDecelerating needed?
         private bool isAccelerating = false;
@@ -113,7 +115,7 @@ namespace Spitfire
             faceDirection = FaceDirection.Right;
             bullets = new ArrayList();
             bombs = new ArrayList();
-            bombCount = 10;
+            bombCount = 50;
             animate = new AnimationPlayer();
         }
 
@@ -126,11 +128,12 @@ namespace Spitfire
             {
                 if (faceDirection == FaceDirection.Left)
                 {
-                    Accelerate();
+
                 }
                 else
                 {
-                    SlowDown();
+                    TurnAround();
+                    //SlowDown();
                 }
             }
 
@@ -141,27 +144,33 @@ namespace Spitfire
             {
                 if (faceDirection == FaceDirection.Right)
                 {
-                    Accelerate();
+
                 }
                 else
                 {
-                    SlowDown();
+                    TurnAround();
                 }
             }
-
-            if (keyboardState.IsKeyDown(Keys.Up))
+            if (keyboardState.IsKeyDown(Keys.S))
+            {
+                swoop();
+            }
+            else if (keyboardState.IsKeyDown(Keys.Up))
             {
                 //FlyUp();
+                isSwooping = false;
                 RotateUp();
             }
 
             else if (keyboardState.IsKeyDown(Keys.Down))
             {
                 //FlyDown(); // QUESTION: plane will actually fly up here
+                isSwooping = false;
                 RotateDown();
             }
             else
             {
+                isSwooping = false;
                 AutoAdjustRotation();
             }
 
@@ -256,16 +265,35 @@ namespace Spitfire
 
         private void RotateUp()
         {
-            Rotation -= (float)1 / 120 * pi;
-            if (Rotation < -pi / 2)
-                Rotation = -pi / 2;
+            if (faceDirection == FaceDirection.Right)
+            {
+                Rotation -= (float)1 / 120 * pi;
+                if (Rotation < -pi / 2)
+                    Rotation = -pi / 2;
+            }
+            else
+            {
+                Rotation += (float)1 / 120 * pi;
+                if (Rotation > pi / 2)
+                    Rotation = pi / 2;
+
+            }
         }
 
         private void RotateDown()
         {
-            Rotation += (float)1 / 120 * pi;
-            if (Rotation > pi / 2)
-                Rotation = pi / 2;
+            if (faceDirection == FaceDirection.Right)
+            {
+                Rotation += (float)1 / 120 * pi;
+                if (Rotation > pi / 2)
+                    Rotation = pi / 2;
+            }
+            else
+            {
+                Rotation -= (float)1 / 120 * pi;
+                if (Rotation < -pi / 2)
+                    Rotation = -pi / 2;
+            }
         }
 
 
@@ -274,247 +302,111 @@ namespace Spitfire
         /// </summary>
         private void determineVelocity()
         {
-            float yPercent = Rotation / (pi / 2);            
+            float yPercent = Rotation / (pi / 2);
             float xPercent = 1 - Math.Abs(yPercent);
 
-            if (Rotation > 0)
+            if (faceDirection == FaceDirection.Right)
             {
-                //accelerant += accelerationConstant * yPercent;
-                Accelerate(yPercent);
-                //Velocity = new Vector2(initialVelocity.X * xPercent * accelerant, initialVelocity.Y * yPercent * accelerant);
+                if (Rotation > 0)
+                {
+                    //accelerant += accelerationConstant * yPercent;
+                    if (isSwooping)
+                        Accelerate(Math.Abs(yPercent));
+                    //Velocity = new Vector2(initialVelocity.X * xPercent * accelerant, initialVelocity.Y * yPercent * accelerant);
+                }
+                else if (Rotation < 0)
+                {
+                    Decelerate(Math.Abs(yPercent));
+
+                }
+
             }
-            else if (Rotation < 0)
+            else
             {
-                Decelerate(Math.Abs(yPercent));
-                
+                if (Rotation > 0)
+                {
+                    Decelerate(Math.Abs(yPercent));
+
+
+                }
+                else if (Rotation < 0)
+                {
+                    if (isSwooping)
+                        Accelerate(Math.Abs(yPercent));
+                }
             }
-            base.Velocity = new Vector2(initialVelocity.X * xPercent * accelerant,
-                initialVelocity.Y * yPercent * accelerant);
+            Velocity = new Vector2(initialVelocity.X * xPercent * accelerant * (float)faceDirection,
+                initialVelocity.Y * yPercent * accelerant * (float)faceDirection);
         }
 
         private void AutoAdjustRotation()
         {
 
-            if (Rotation > 0)
-            {
-                RotateUp();
-                if (Rotation < 0)
-                    Rotation = 0f;
-            }
-            else if (Rotation < 0)
-            {
-                RotateDown();
-                if (Rotation > 0)
-                    Rotation = 0f;
-            }
-        }
-
-        /*
-                private void FlyUp()
-                {
-
-                    // plane faces right and greater than - 70 degrees approx
-                    if ((Rotation > -1.2f) && (faceDirection == FaceDirection.Right))
-                    {
-                        Rotation -= rotateDistance;//* accelerant;
-
-                        base.Velocity += new Vector2(0f, 0.1f);
-                        if (Rotation < -maxRotation)
-                        {
-                            base.Velocity += new Vector2(0.15f, 0f);
-                        }
-                        else if (Rotation > maxRotation)
-                        {
-                            base.Velocity -= new Vector2(0.15f, 0f);
-                        }
-                    }
-
-                    //plane faces left and greater than - 70 degrees approx
-                    if ((Rotation < 1.2f) && (faceDirection == FaceDirection.Left))
-                    {
-                        base.Velocity += new Vector2(0f, 0.1f);
-                
-                        // future: use math clamp instead
-                        Rotation += rotateDistance;//* accelerant;
-                        if (Rotation > maxRotation)
-                        {
-                            base.Velocity -= new Vector2(0.15f, 0f);
-                        }
-
-                    }
-                }
-
-                private void FlyDown()
-                {
-                    if ((Rotation < 1.2f) && (faceDirection == FaceDirection.Right))
-                    {
-                        {
-                            Rotation += rotateDistance ;//* accelerant;
-                            base.Velocity -= new Vector2(0f, 0.1f);
-                            if (Rotation <= -maxRotation)
-                            {
-                                base.Velocity -= new Vector2(0.15f, 0f);
-                            }
-                            else if (Rotation >= maxRotation) {
-                                base.Velocity += new Vector2(0.15f, 0f);
-                            }
-                        }
-                    }
-                    if ((Rotation > -1.2f) && (faceDirection == FaceDirection.Left))
-                    {
-                        Rotation -= rotateDistance;//* accelerant;
-                        base.Velocity -= new Vector2(0f, 0.1f);
-                        if (Rotation > maxRotation)
-                        {
-                            base.Velocity += new Vector2(0.15f, 0f);
-                        }
-                    }
-
-                }
-        */
-        /*
-        public float GetX_Speed()
-        {
-            return base.Velocity.X * accelerant;
-        }
-
-        public float GetY_Speed()
-        {
-            return base.Velocity.Y * accelerant;
-        }
-        */
-
-
-        /// <summary>
-        /// Slows the plane down and centres its rotation. Once the base.Velocity reaches 0, the plane turns around.
-        /// </summary>
-        /// <remarks>
-        /// future: make other way of turning. plane shouldn't stop mid-air.
-        /// </remarks>
-        private void SlowDown()
-        {
             if (faceDirection == FaceDirection.Right)
             {
                 if (Rotation > 0)
                 {
-                    //FlyUp();
                     RotateUp();
+                    if (Rotation < 0)
+                        Rotation = 0f;
                 }
                 else if (Rotation < 0)
                 {
-                    //FlyDown();
                     RotateDown();
+                    if (Rotation > 0)
+                        Rotation = 0f;
                 }
             }
             else
-            { // facing left
-                if (Rotation < 0)
+            {
+                if (Rotation > 0)
                 {
-                    //FlyUp();
-                    RotateUp();
-                }
-                else if (Rotation > 0)
-                {
-                    //FlyDown();
                     RotateDown();
-
+                    if (Rotation < 0)
+                        Rotation = 0f;
                 }
-            }
-            Decelerate();
-            // To make sure that the plane's rotation is nearly at 0 before turning around
-            if ((Rotation < 0.05f) && (Rotation > -0.05f))
-                TurnAround();
-        }
-
-/*
-        /// <summary>
-        /// Reset xbase.Velocity after getting input.
-        /// </summary>
-        /// <remarks>
-        /// future: could xbase.VelocityReset and ybase.VelocityReset be avoided?
-        /// </remarks>
-        public void XVelocityReset()
-        {
-            if (faceDirection == FaceDirection.Right)
-            {
-                if ((Rotation > -maxRotation) && (Rotation < maxRotation))
+                else if (Rotation < 0)
                 {
-                    if (base.Velocity.X > -5f)
-                    {
-                        base.Velocity -= new Vector2(0.5f, 0f);
-                        if (base.Velocity.X < -5f) base.Velocity = new Vector2(-5f, base.Velocity.Y); // capped at -5
-                    }
+                    RotateUp();
+                    if (Rotation > 0)
+                        Rotation = 0f;
                 }
-            }
-            else if (faceDirection == FaceDirection.Left)
-            {
-                if ((Rotation > -maxRotation) && (Rotation < maxRotation))
-                {
-                    if (base.Velocity.X < 5f)
-                    {
-                        base.Velocity += new Vector2(0.5f, 0f);
-                        if (base.Velocity.X > 5f) base.Velocity = new Vector2(5f, base.Velocity.Y); // capped at 5
-                    }
-                }
-            }
-        }
-
-        public void YVelocityReset()
-        {
-            if ((Rotation > -rotateDistance) && (Rotation < rotateDistance))
-            {
-                base.Velocity = new Vector2(0f, base.Velocity.Y);
-            }
-        }
-*/
-        /// <summary>
-        /// Reset acceleration after getting input.
-        /// </summary>
-        /// <remarks>
-        /// future: could accelerationReset be avoided?
-        /// </remarks>
-        public void AccelerationReset()
-        {
-            if ((!isAccelerating) && (!isDecelerating))
-            {
-                if (accelerant > 1)
-                {
-                    accelerant -= accelerationConstant;
-                    if (accelerant < 1)
-                        accelerant = 1;
-                }
-
-                if (accelerant < 1)
-                {
-                    accelerant += accelerationConstant;
-                    if (accelerant > 1)
-                        accelerant = 1;
-                }
-
-            }
+            }      
         }
 
         /// <summary>
-        /// Turns plane around if x-speed is 0.
+        /// Slows the plane down and makes it turn around when the accelerant value < 1
+        /// Resets the accelerant when the plane turns around
         /// </summary>
         /// <remarks>
         /// future: should be removed, plane shouldn't stop mid-air. need other way of turning.
         /// </remarks>
-        public void TurnAround()
+        private void TurnAround()
         {
-            if (base.Velocity.X == 0)
+            this.accelerant -= decelerationConstant;
+            if (this.Rotation == 0 && faceDirection == FaceDirection.Right && accelerant < 1)
             {
-                if (faceDirection == FaceDirection.Right)
-                {
-                    faceDirection = FaceDirection.Left;
-                }
-                else
-                {
-                    faceDirection = FaceDirection.Right;
-                }
-
+                faceDirection = FaceDirection.Left;
+                accelerant = 1.0f;
             }
+            else if (this.Rotation == 0 && faceDirection == FaceDirection.Left && accelerant < 1)
+            {
+                faceDirection = FaceDirection.Right;
+                accelerant = 1.0f;
+            }
+
         }
+
+        private void swoop()
+        {
+            RotateDown();
+            RotateDown();
+            isSwooping = true;
+        }
+
+
+
+
 
         /* future: TurnRight and TurnLeft could be used as the new turn mechanic
         public void TurnRight()
@@ -563,16 +455,19 @@ namespace Spitfire
 
         public void Accelerate(float yPercent)
         {
-            if (accelerant < 3.0f)
+            if (accelerant < maxAccelerant)
+                //if (Rotation < 1.0f)
+                //    accelerant += accelerationBigConstant * yPercent;
+                //else
                 accelerant += accelerationConstant * yPercent;
-            if (accelerant > 3.0f)
-                accelerant = 3.0f;
+            if (accelerant > maxAccelerant)
+                accelerant = maxAccelerant;
         }
 
         public void Decelerate(float yPercent)
         {
             if (accelerant > 1.0f)
-                accelerant -= (accelerationConstant * yPercent/4);
+                accelerant -= (decelerationConstant * yPercent / 4);
             else if (accelerant < 1.0f)
                 accelerant = 1.0f;
 
@@ -593,7 +488,7 @@ namespace Spitfire
 
         public void Shoot()
         {
-            Bullet bullet = new Bullet(this.Rotation, this.Position);
+            Bullet bullet = new Bullet(this.Rotation, this.Position, this.faceDirection);
             bullet.Texture = bulletSprite;
             bullets.Add(bullet);
 
@@ -603,7 +498,7 @@ namespace Spitfire
         {
             if (bombCount > 0)
             {
-                Bomb bombX = new Bomb(this.Rotation, this.Position, this.Velocity);
+                Bomb bombX = new Bomb(this.Rotation, this.Position, this.Velocity, this.faceDirection);
                 bombX.Texture = bombSprite;
                 bombs.Add(bombX);
                 bombCount--;
