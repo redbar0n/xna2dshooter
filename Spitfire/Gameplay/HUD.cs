@@ -9,9 +9,21 @@ namespace Spitfire
 {
     public class HUD
     {
+        // future: make HUD a static class
         // future: optimise hud according to Platformer1. store central hud location in vector. apply shadow to fonts.
 
+
+
+        /// <summary>
+        /// The players current score.
+        /// </summary>
+        public int Score
+        {
+            get { return score; }
+            set { score = value; }
+        }
         private int score;      // future: score is stored here for now. may want to put in own class later, with highscore.
+        
         private Player player;
 
         private Texture2D healthBar;

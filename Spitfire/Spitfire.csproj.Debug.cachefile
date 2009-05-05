@@ -1,9 +1,9 @@
-Content\Sprites\mountainFlat1.xnb
-Content\Sprites\Spitfireresized.xnb
 Content\Sprites\tank map.xnb
 Content\HUD\healthBar.xnb
 Content\HUD\Pericles.xnb
-Content\Sprites\zeppelin2sized.xnb
-Content\Sprites\zeppelin2sizedExplode.xnb
-Content\Sprites\shots.xnb
-Content\Sprites\herobomb.xnb
+Content\Sprites\Backgrounds\mountainFlat1.xnb
+Content\Sprites\Player\Spitfireresized.xnb
+Content\Sprites\Enemies\zeppelin2sized.xnb
+Content\Sprites\Enemies\zeppelin2sizedExplode.xnb
+Content\Sprites\Player\shots.xnb
+Content\Sprites\Player\herobomb.xnb

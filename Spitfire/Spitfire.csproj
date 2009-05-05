@@ -83,17 +83,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helper\Animation.cs" />
-    <Compile Include="Helper\AnimationPlayer.cs" />
-    <Compile Include="Gameplay\Background.cs" />
+    <Compile Include="Helpers\Animation.cs" />
+    <Compile Include="Helpers\AnimationPlayer.cs" />
+    <Compile Include="Gameplay\Level.cs" />
     <Compile Include="Gameplay\Bomb.cs" />
     <Compile Include="Gameplay\Bullet.cs" />
-    <Compile Include="Helper\CollisionDetection.cs" />
+    <Compile Include="Helpers\CollisionDetection.cs" />
     <Compile Include="Gameplay\Enemy.cs" />
     <Compile Include="Gameplay\Ground.cs" />
     <Compile Include="Gameplay\HUD.cs" />
     <Compile Include="Screens\HelpScreen.cs" />
-    <Compile Include="Gameplay\Level.cs" />
     <Compile Include="Screens\MainMenu.cs" />
     <Compile Include="Gameplay\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

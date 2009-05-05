@@ -17,7 +17,17 @@ namespace Spitfire
         //private int maxHP;
 
 
-        public ArrayList _shots;
+
+        /// <summary>
+        /// Bullets that the player has fired.
+        /// </summary>
+        public ArrayList Bullets
+        {
+            get { return bullets; }
+            set { bullets = value; }
+        }
+        private ArrayList bullets;
+
         private Texture2D bulletSprite;
         public Texture2D bulletTexture
         {
@@ -28,11 +38,12 @@ namespace Spitfire
         /// <summary>
         /// Used to determine whether space key was pressed on last update
         /// </summary>
-        Boolean _spaceKeyWasPressed;
+        Boolean spaceKeyWasPressed;
+       
         /// <summary>
         /// Used to determine whether the d key was pressed on last update
         /// </summary>
-        Boolean _dKeyWasPressed;
+        Boolean dKeyWasPressed;
 
 
         public ArrayList bombs;
@@ -57,7 +68,7 @@ namespace Spitfire
         private float pi = (float)Math.PI;
         private Vector2 initialVelocity = new Vector2(8f, 8f);
         private const float maxRotation = 0.78f; // how much the plane can rotate either up/down
-        private float rotateDistance = 0.02f;
+        //private float rotateDistance = 0.02f;
         private float accelerant = 1.0f; // future: change to using dv/dt
         private float accelerationConstant = 0.25f;
 
@@ -99,10 +110,11 @@ namespace Spitfire
             base.Velocity = initialVelocity;
             determineVelocity();
             currentHP = 100;
-            //faceDirection = FaceDirection.Right;
-            _shots = new ArrayList();
+            faceDirection = FaceDirection.Right;
+            bullets = new ArrayList();
             bombs = new ArrayList();
-            bombCount = 3;
+            bombCount = 10;
+            animate = new AnimationPlayer();
         }
 
         public void GetInput()
@@ -153,25 +165,25 @@ namespace Spitfire
                 AutoAdjustRotation();
             }
 
-            if (keyboardState.IsKeyDown(Keys.Space) && !_spaceKeyWasPressed)
+            if (keyboardState.IsKeyDown(Keys.Space) && !spaceKeyWasPressed)
             {
                 Shoot();
-                _spaceKeyWasPressed = true;
+                spaceKeyWasPressed = true;
             }
             else if (!keyboardState.IsKeyDown(Keys.Space))
             {
-                _spaceKeyWasPressed = false;
+                spaceKeyWasPressed = false;
             }
 
             ///Drop bomb ///
-            if (keyboardState.IsKeyDown(Keys.D) && !_dKeyWasPressed)
+            if (keyboardState.IsKeyDown(Keys.D) && !dKeyWasPressed)
             {
                 dropBomb();
-                _dKeyWasPressed = true;
+                dKeyWasPressed = true;
             }
             else if (!keyboardState.IsKeyDown(Keys.D))
             {
-                _dKeyWasPressed = false;
+                dKeyWasPressed = false;
             }
 
 
@@ -193,16 +205,16 @@ namespace Spitfire
 
             animate.PlayAnimation(normalFlight);
 
-            foreach (Bullet _shot1 in _shots.ToArray())
+            foreach (Bullet bullet in bullets.ToArray())
             {
                 //_shot1.Position.X > 1280 || _shot1.Position.X < 0
-                if (_shot1.HasExceededDistance())
+                if (bullet.HasExceededDistance())
                 {
-                    _shots.Remove(_shot1);
+                    bullets.Remove(bullet);
                 }
                 else
                 {
-                    _shot1.Update(this.Velocity);
+                    bullet.Update(this.Velocity);
                 }
             }
 
@@ -221,12 +233,12 @@ namespace Spitfire
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            // draw in direction enemy is facing
-            SpriteEffects flip = base.faceDirection > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            // draw in direction player is facing
+            SpriteEffects flip = base.faceDirection < 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             animate.Draw(gameTime, spriteBatch, Position, Rotation, flip);
 
-            foreach (Bullet _shot1 in _shots.ToArray())
-                _shot1.Draw(spriteBatch);
+            foreach (Bullet bullet in bullets.ToArray())
+                bullet.Draw(spriteBatch);
 
             foreach (Bomb bombX in bombs.ToArray())
                 bombX.Draw(spriteBatch);
@@ -256,6 +268,10 @@ namespace Spitfire
                 Rotation = pi / 2;
         }
 
+
+        /// <summary>
+        /// Will determine velocity based on rotation. More velocity if flying down, less if up.
+        /// </summary>
         private void determineVelocity()
         {
             float yPercent = Rotation / (pi / 2);            
@@ -272,7 +288,7 @@ namespace Spitfire
                 Decelerate(Math.Abs(yPercent));
                 
             }
-            Velocity = new Vector2(initialVelocity.X * xPercent * accelerant,
+            base.Velocity = new Vector2(initialVelocity.X * xPercent * accelerant,
                 initialVelocity.Y * yPercent * accelerant);
         }
 
@@ -379,7 +395,6 @@ namespace Spitfire
         {
             if (faceDirection == FaceDirection.Right)
             {
-
                 if (Rotation > 0)
                 {
                     //FlyUp();
@@ -411,7 +426,7 @@ namespace Spitfire
                 TurnAround();
         }
 
-
+/*
         /// <summary>
         /// Reset xbase.Velocity after getting input.
         /// </summary>
@@ -451,7 +466,7 @@ namespace Spitfire
                 base.Velocity = new Vector2(0f, base.Velocity.Y);
             }
         }
-
+*/
         /// <summary>
         /// Reset acceleration after getting input.
         /// </summary>
@@ -578,11 +593,9 @@ namespace Spitfire
 
         public void Shoot()
         {
-            
-            //Bullet shot = new Bullet(this.Rotation, this.animate.Origin);
-            Bullet shot = new Bullet(this.Rotation, this.Position);
-            shot.Texture = bulletSprite;
-            _shots.Add(shot);
+            Bullet bullet = new Bullet(this.Rotation, this.Position);
+            bullet.Texture = bulletSprite;
+            bullets.Add(bullet);
 
         }
 

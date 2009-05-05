@@ -10,7 +10,7 @@ namespace Spitfire
     {
 
         public static Vector2 Origin = new Vector2(5f, 5f);
-        private bool isRight;
+        private bool isRight = false;
 
         public Bomb(float rotation, Vector2 bombersPosition, Vector2 bombersVelocity)
         {
@@ -18,7 +18,6 @@ namespace Spitfire
             base.Position = bombersPosition + new Vector2(0, 10);
             base.Velocity = new Vector2(bombersVelocity.X / 2, 5f);
             //base.faceDirection = bombersDirection;
-
         }
 
         public void Update(Vector2 playerVelocity)

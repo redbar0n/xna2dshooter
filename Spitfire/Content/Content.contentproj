@@ -35,14 +35,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\mountainFlat1.png">
+    <Compile Include="Sprites\Backgrounds\mountainFlat1.png">
       <Name>mountainFlat1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\Spitfireresized.png">
+    <Compile Include="Sprites\Player\Spitfireresized.png">
       <Name>Spitfireresized</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -70,32 +70,29 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\zeppelin2sized.PNG">
+    <Compile Include="Sprites\Enemies\zeppelin2sized.PNG">
       <Name>zeppelin2sized</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\herobomb.png">
-      <Name>herobomb</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Sprites\shots.png">
-      <Name>shots</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Sprites\zeppelin2sizedExplode.png">
+    <Compile Include="Sprites\Enemies\zeppelin2sizedExplode.png">
       <Name>zeppelin2sizedExplode</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\skyfinal.png">
-      <Name>skyfinal1</Name>
+    <Compile Include="Sprites\Player\shots.png">
+      <Name>shots</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Player\herobomb.png">
+      <Name>herobomb</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

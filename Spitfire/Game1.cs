@@ -21,13 +21,11 @@ namespace Spitfire
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Background background;
+        Level level;
         Background sky;
         Player player;
         HUD hud;
         Vector2 playersVelocity;
-
-        Enemy zeppelin;
 
         public Game1()
         {
@@ -46,11 +44,10 @@ namespace Spitfire
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            background = new Background();
+            level = new Level();
             sky = new Background();
             player = new Player(graphics);
             hud = new HUD(player);
-            zeppelin = new Enemy(Enemy.Type.ShotDown, new Vector2(1000, 200), new Vector2(-1, 0), 1000, 200); 
 
             base.Initialize();
         }
@@ -65,13 +62,12 @@ namespace Spitfire
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            background.LoadContent(this.Content, "Sprites/mountainFlat", 2);
+            level.LoadContent(this.Content, "Sprites/Backgrounds/mountainFlat", 2);
             sky.LoadContent(this.Content, "Sprites/skyfinal", 2);
-            player.NormalFlight = new Animation(this.Content.Load<Texture2D>("Sprites/Spitfireresized"), 1, true);
-            player.bulletTexture = Content.Load<Texture2D>("Sprites/shots");
-            player.bombTexture = Content.Load<Texture2D>("Sprites/herobomb");
+            player.NormalFlight = new Animation(this.Content.Load<Texture2D>("Sprites/Player/Spitfireresized"), 1, true);
+            player.bulletTexture = Content.Load<Texture2D>("Sprites/Player/shots");
+            player.bombTexture = Content.Load<Texture2D>("Sprites/Player/herobomb");
             hud.LoadContent(this.Content);
-            zeppelin.LoadContent("zeppelin2sized", this.Content);
 
             // load and add all animations
         }
@@ -96,12 +92,28 @@ namespace Spitfire
             // TODO: Add your update logic here
             player.Update();
             playersVelocity = player.Velocity;
-
-            background.Velocity = playersVelocity; //player.Velocity;
-            background.Update(gameTime);
+            level.Velocity = player.Velocity;
+            level.Update(gameTime); // includes updating enemies
             sky.Velocity = playersVelocity/2;
             sky.Update(gameTime);
-            zeppelin.Update(playersVelocity);
+
+            // Collision detection
+
+            foreach (Bullet bullet in player.Bullets)
+            {
+                foreach (Enemy enemy in level.Enemies)
+                {
+                    if (CollisionDetection.Collision(bullet, enemy))
+                    {
+                        Console.WriteLine("exploding");
+                        player.Bullets.Remove(bullet);
+                        enemy.Explode(); // will pass the exploding down to animateExplosion, which will pass it up to level which finally removes enemy
+                        hud.Score += enemy.WorthScore;
+                    }
+                }
+            }
+
+
 
             base.Update(gameTime);
         }
@@ -117,10 +129,12 @@ namespace Spitfire
             // TODO: Add your drawing code here
             spriteBatch.Begin();
             sky.Draw(spriteBatch);
-            background.Draw(spriteBatch);
+            level.Draw(gameTime, spriteBatch);
+
             player.Draw(gameTime, spriteBatch);
-            zeppelin.Draw(spriteBatch);
+
             hud.Draw(spriteBatch, this.Window.ClientBounds.Width);
+
             spriteBatch.End();
 
 
