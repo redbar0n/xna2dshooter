@@ -22,7 +22,6 @@ namespace Spitfire
         SpriteBatch spriteBatch;
 
         Level level;
-        Background sky;
         Player player;
         HUD hud;
         Vector2 playersVelocity;
@@ -45,7 +44,6 @@ namespace Spitfire
         {
             // TODO: Add your initialization logic here
             level = new Level();
-            sky = new Background();
             player = new Player(graphics);
             hud = new HUD(player);
 
@@ -63,7 +61,6 @@ namespace Spitfire
 
             // TODO: use this.Content to load your game content here
             level.LoadContent(this.Content, "Sprites/Backgrounds/mountainFlat", 2);
-            sky.LoadContent(this.Content, "Sprites/skyfinal", 2);
             player.NormalFlight = new Animation(this.Content.Load<Texture2D>("Sprites/Player/Spitfireresized"), 1, true);
             player.bulletTexture = Content.Load<Texture2D>("Sprites/Player/shots");
             player.bombTexture = Content.Load<Texture2D>("Sprites/Player/herobomb");
@@ -94,8 +91,6 @@ namespace Spitfire
             playersVelocity = player.Velocity;
             level.Velocity = player.Velocity;
             level.Update(gameTime); // includes updating enemies
-            sky.Velocity = playersVelocity/2;
-            sky.Update(gameTime);
 
             // Collision detection
 
@@ -128,7 +123,6 @@ namespace Spitfire
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            sky.Draw(spriteBatch);
             level.Draw(gameTime, spriteBatch);
 
             player.Draw(gameTime, spriteBatch);

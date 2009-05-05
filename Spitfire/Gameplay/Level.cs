@@ -30,6 +30,7 @@ namespace Spitfire
         }
         private ContentManager content;
 
+        private Sprite sky;
         private List<Sprite> backgrounds;
 
         /// <summary>
@@ -84,12 +85,17 @@ namespace Spitfire
         {
             backgrounds = new List<Sprite>();
             enemies = new List<Enemy>();
+            sky = new Sprite();
         }
 
         // future: Optimize background loading to remove slight lag. Load smaller backgrounds.
         public void LoadContent(ContentManager content, String backgroundName, int nrOfBackgrounds)
         {
             this.content = content;
+            
+            // Load sky
+            sky.Texture = this.content.Load<Texture2D>("Sprites/backgrounds/sky");
+            sky.Position = new Vector2(0, 0);
 
             // Load backgrounds
             float xPos = 0; // x-pos to insert background
@@ -185,6 +191,10 @@ namespace Spitfire
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
+
+            // Draw the sky
+            sky.Draw(spriteBatch);
+
             // Draw the background
             foreach (Sprite frame in backgrounds)
             {

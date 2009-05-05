@@ -118,8 +118,6 @@ namespace Spitfire
             Texture = Level.Content.Load<Texture2D>(spriteSet);
             explodeAni = new Animation(Level.Content.Load<Texture2D>(spriteSet + "Explode"), 1f, false);
 
-            Size = 
-
             animate.PlayAnimation(normalAni);
         }
 

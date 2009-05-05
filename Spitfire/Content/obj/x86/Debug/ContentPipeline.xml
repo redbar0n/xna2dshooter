@@ -82,6 +82,15 @@
       <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\herobomb.xnb</Output>
       <Time>2009-05-03T19:17:48.7091136+10:00</Time>
     </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\sky.png</Source>
+      <Name>Sprites\Backgrounds\sky</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\sky.xnb</Output>
+      <Time>2009-05-05T11:55:58.3875536+10:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
