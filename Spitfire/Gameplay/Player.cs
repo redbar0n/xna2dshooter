@@ -5,6 +5,8 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Spitfire
 {
@@ -114,6 +116,14 @@ namespace Spitfire
         private int bombCount;
         //private int bombCapacity;
 
+        /// player sounds
+        private SoundEffect burstSound;
+        private SoundEffect engineSound;
+        private SoundEffect bombSound;
+        private SoundEffect swoopSound;
+        //private SoundEffect playerExplosion;
+
+
         //private int burstTime;
         private AnimationPlayer animate;
 
@@ -163,7 +173,7 @@ namespace Spitfire
 
         // future: method to fly to end of screen when reached level end.
 
-        public Player(GraphicsDeviceManager graphics)
+        public Player(GraphicsDeviceManager graphics, ContentManager content)
         {
             base.Position = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2);
             base.Velocity = initialVelocity;
@@ -175,6 +185,11 @@ namespace Spitfire
             bulletDamage = 10;
             bombCount = 50;
             animate = new AnimationPlayer();
+            burstSound = content.Load<SoundEffect>("Sounds/Player/Browning, short burst 2, 278626_SOUNDDOGS__gu");
+            //bombSound = content.Load<SoundEffect>("Sounds/Player/");
+            //swoopSound = content.Load<SoundEffect>("Sounds/Player/");
+            engineSound = content.Load<SoundEffect>("Sounds/Player/005");
+            engineSound.Play(0.2f, 0.0f, 0.0f, true);
         }
 
         public void GetInput()
@@ -211,7 +226,7 @@ namespace Spitfire
             }
             if (keyboardState.IsKeyDown(Keys.S))
             {
-                swoop();
+                Swoop();
             }
             else if (keyboardState.IsKeyDown(Keys.Up))
             {
@@ -245,7 +260,7 @@ namespace Spitfire
             ///Drop bomb ///
             if (keyboardState.IsKeyDown(Keys.D) && !dKeyWasPressed)
             {
-                dropBomb();
+                DropBomb();
                 dKeyWasPressed = true;
             }
             else if (!keyboardState.IsKeyDown(Keys.D))
@@ -461,40 +476,14 @@ namespace Spitfire
 
         }
 
-        private void swoop()
+        private void Swoop()
         {
             RotateDown();
             RotateDown();
             isSwooping = true;
         }
 
-
-
-
-
-        /* future: TurnRight and TurnLeft could be used as the new turn mechanic
-        public void TurnRight()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void TurnLeft()
-        {
-            throw new System.NotImplementedException();
-        }
-        */
-
-        /* future: FireBullet(), DropBomb() and Dodge() implementation
-        public void FireBullet()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void DropBomb()
-        {
-            throw new System.NotImplementedException();
-        }
-
+        /*
         public void Dodge()
         {
             throw new System.NotImplementedException();
@@ -555,10 +544,10 @@ namespace Spitfire
             Bullet bullet = new Bullet(this.Rotation, this.Position, this.faceDirection);
             bullet.Texture = bulletSprite;
             bullets.Add(bullet);
-
+            burstSound.Play();
         }
 
-        public void dropBomb()
+        public void DropBomb()
         {
             if (bombCount > 0)
             {

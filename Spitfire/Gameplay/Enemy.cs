@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Spitfire
 {
@@ -117,6 +118,14 @@ namespace Spitfire
         }
         private Type type;
 
+        // Sounds
+
+        private SoundEffect hitSound;
+        private SoundEffect explodeSound;
+        private SoundEffect engineSound;
+        private SoundEffectInstance engineSoundInst;
+
+
         // future: add bullets
 
         /// <summary>
@@ -148,6 +157,32 @@ namespace Spitfire
             explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/expspritemap"), 1f, false);
 
             setAnimation(normalAni);
+
+            // Load sounds
+
+            if (spriteSet.Equals("Sprites/Enemies/mig"))
+            {
+                engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Lightfighter/002");
+                engineSoundInst = engineSound.Play(0.2f, 0.0f, 0.0f, true);
+            }
+            else if (spriteSet.Equals("Sprites/Enemies/heavyfighter"))
+            {
+                engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Heavyfighter/001");
+                engineSoundInst = engineSound.Play(0.3f, 0.0f, 0.0f, true);
+            }
+            else if (spriteSet.Equals("Sprites/Enemies/lighttankspritemapfinal") || spriteSet.Equals("Sprites/Enemies/finalheavytanksprite"))
+            {
+                engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Tank/304678_SOUNDDOGS_TA");
+                engineSoundInst = engineSound.Play(0.2f, 0.0f, 0.0f, true);
+            }
+            else if (spriteSet.Equals("Sprites/Enemies/zeppelin2sized"))
+            {
+                explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/zepplinexplspritemap"), 1f, false);
+            }
+
+            hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/BulletHit");
+            explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Explode");
+
         }
 
 
@@ -185,7 +220,8 @@ namespace Spitfire
                 {
                     Explode(); // will pass the exploding down to animateExplosion, which will pass it up to level which finally removes enemy
                 }
-            }    
+            }
+            hitSound.Play();
         }
 
         public void ShotDown()
@@ -198,6 +234,8 @@ namespace Spitfire
             exploding = true;
             setAnimation(explodeAni);
             Velocity = Vector2.Zero;
+            explodeSound.Play();
+            engineSoundInst.Stop();
         }
 
         public void Update()

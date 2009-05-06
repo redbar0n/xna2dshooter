@@ -13,3 +13,14 @@ Content\Sprites\Enemies\mig.xnb
 Content\Sprites\Enemies\expspritemap.xnb
 Content\Sprites\Enemies\heavyfighter.xnb
 Content\Sprites\Enemies\lighttankspritemapfinal.xnb
+Content\Sprites\Enemies\finalheavytanksprite.xnb
+Content\Sounds\Player\005.xnb
+Content\Sounds\Enemy\Lightfighter\002.xnb
+Content\Sounds\Enemy\Heavyfighter\001.xnb
+Content\Sounds\213663_SOUNDDOGS__ba.xnb
+Content\Sounds\213663_SOUNDDOGS__ba.wma
+Content\Sounds\Player\Browning, short burst 2, 278626_SOUNDDOGS__gu.xnb
+Content\Sounds\Enemy\Explode.xnb
+Content\Sounds\Enemy\BulletHit.xnb
+Content\Sounds\Enemy\Tank\304678_SOUNDDOGS_TA.xnb
+Content\Sprites\Enemies\zepplinexplspritemap.xnb

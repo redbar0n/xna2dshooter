@@ -45,7 +45,7 @@ namespace Spitfire
         protected override void Initialize()
         {
             level = new Level();
-            player = new Player(graphics);
+            player = new Player(graphics, this.Content);
             hud = new HUD(player);
 
             base.Initialize();
@@ -66,7 +66,10 @@ namespace Spitfire
             player.bombTexture = Content.Load<Texture2D>("Sprites/Player/herobomb");
             hud.LoadContent(this.Content);
 
-            // load and add all animations
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Play(Content.Load<Song>("Sounds/213663_SOUNDDOGS__ba"));
+
+            // load and add all animations?
         }
 
         /// <summary>

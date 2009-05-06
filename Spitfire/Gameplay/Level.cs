@@ -271,7 +271,7 @@ namespace Spitfire
             }
             else if (positionInLevel == 4 && addEnemies)
             {
-                Enemy htank = new Enemy(this, Enemy.Type.Exploding, "lighttankspritemapfinal", true);
+                Enemy htank = new Enemy(this, Enemy.Type.Exploding, "finalheavytanksprite", true);
                 htank.Position = new Vector2(1400, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank.Size.Height * 0.3));
                 // Y-calculation is to align it with the background
                 htank.Velocity = new Vector2(-1, 0);
@@ -280,8 +280,8 @@ namespace Spitfire
                 enemies.Add(htank);
 
 
-                Enemy htank2 = new Enemy(this, Enemy.Type.Exploding, "lighttankspritemapfinal", true);
-                htank2.Position = new Vector2(1500, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank.Size.Height * 0.3));
+                Enemy htank2 = new Enemy(this, Enemy.Type.Exploding, "finalheavytanksprite", true);
+                htank2.Position = new Vector2(1550, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank.Size.Height * 0.3));
                 // Y-calculation is to align it with the background
                 htank2.Velocity = new Vector2(-1, 0);
                 htank2.WorthScore = 100;
