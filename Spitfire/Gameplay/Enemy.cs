@@ -64,14 +64,20 @@ namespace Spitfire
         //private Curve path; // in case it is a flying enemy
         private Animation normalAni;
         private Animation explodeAni;
+        private Animation currentAni; // current animation
         private AnimationPlayer animate;
 
+
+        /// <summary>
+        /// Returns the animation texture if one is present (instead of default Sprite texture)
+        /// </summary>
         public override Texture2D Texture
         {
             get
             {
-                if (normalAni == null)
+                if (currentAni == null)
                 {
+
                     return base.Texture;
                 }
                 else
@@ -90,6 +96,15 @@ namespace Spitfire
             set { hasExploded = value; }
         }
         private bool hasExploded = false;
+
+        /// <summary>
+        /// Tells if the enemy is exploding. Used for updating the score from the Game class.
+        /// </summary>
+        public bool Exploding
+        {
+            get { return exploding; }
+            set { exploding = value; }
+        }
         private bool exploding = false;
         
         /// <summary>
@@ -132,10 +147,29 @@ namespace Spitfire
             normalAni = new Animation(Level.Content.Load<Texture2D>(spriteSet), 1f, false);
             explodeAni = new Animation(Level.Content.Load<Texture2D>(spriteSet + "Explode"), 1f, false);
 
+            setAnimation(normalAni);
+        }
 
-            Size = new Rectangle(0, 0, (int)(normalAni.FrameWidth * Scale), (int)(normalAni.FrameHeight * Scale));
 
-            animate.PlayAnimation(normalAni);
+        /// <summary>
+        /// Gets the bounding box positioned in world. Can also be used to get sprite width and height in world.
+        /// </summary>
+        public override Rectangle Size
+        {
+            get
+            {
+                return new Rectangle((int)Math.Round(Position.X - animate.Origin.X),
+                        (int)Math.Round(Position.Y - animate.Origin.Y),
+                        (int)(currentAni.FrameWidth * Scale),
+                        (int)(currentAni.FrameHeight * Scale));
+            }
+        }
+
+
+        private void setAnimation(Animation ani)
+        {
+            currentAni = ani;
+            animate.PlayAnimation(ani);
         }
 
         public void TakeDamage(int damage)
@@ -149,7 +183,7 @@ namespace Spitfire
                 }
                 else
                 {
-                    Explode();
+                    Explode(); // will pass the exploding down to animateExplosion, which will pass it up to level which finally removes enemy
                 }
             }    
         }
@@ -162,7 +196,7 @@ namespace Spitfire
         public void Explode()
         {
             exploding = true;
-            animate.PlayAnimation(explodeAni);
+            setAnimation(explodeAni);
             Velocity = Vector2.Zero;
         }
 

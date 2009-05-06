@@ -61,8 +61,8 @@ namespace Spitfire
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             level.LoadContent(this.Content, "Sprites/Backgrounds/mountainFlat", 2);
-            player.NormalFlight = new Animation(this.Content.Load<Texture2D>("Sprites/Player/Spitfireresized"), 1, true);
-            player.bulletTexture = Content.Load<Texture2D>("Sprites/Player/shots");
+            player.NormalAni = new Animation(this.Content.Load<Texture2D>("Sprites/Player/Spitfireresized"), 1, true);
+            player.bulletTexture = Content.Load<Texture2D>("Sprites/Player/heroammosize");
             player.bombTexture = Content.Load<Texture2D>("Sprites/Player/herobomb");
             hud.LoadContent(this.Content);
 
@@ -106,21 +106,28 @@ namespace Spitfire
                 level.Update(gameTime); // includes updating enemies
 
                 // Collision detection
-
-                foreach (Bullet bullet in player.Bullets.ToArray())
+                foreach (Enemy enemy in level.Enemies.ToArray())
                 {
-                    foreach (Enemy enemy in level.Enemies.ToArray())
+                    foreach (Bullet bullet in player.Bullets.ToArray())
                     {
-                        if (CollisionDetection.Collision(bullet, enemy))
+                        if (CollisionDetection.Collision(enemy, bullet))
                         {
-                            Console.WriteLine("collision");
-                            player.Bullets.Remove(bullet);
-                            hud.Score += enemy.WorthScore;
-                            enemy.Explode(); // will pass the exploding down to animateExplosion, which will pass it up to level which finally removes enemy
+                            if (!enemy.Exploding)
+                            {
+                                player.Bullets.Remove(bullet);
+                                enemy.TakeDamage(player.BulletDamage);
+                                if (enemy.Exploding)
+                                    hud.Score += enemy.WorthScore;
+                            }
                         }
                     }
-                }
 
+                    if (CollisionDetection.Collision(enemy, player) && !enemy.Exploding)
+                    {
+                        enemy.Explode();
+                        player.TakeDamage(20);
+                    }
+                }
             }
 
             base.Update(gameTime);

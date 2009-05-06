@@ -84,13 +84,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\Player\shots.png">
-      <Name>shots</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Sprites\Player\herobomb.png">
       <Name>herobomb</Name>
       <Importer>TextureImporter</Importer>
@@ -107,6 +100,13 @@
   <ItemGroup>
     <Compile Include="Sprites\Backgrounds\skyfinal.png">
       <Name>skyfinal</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Player\heroammosize.png">
+      <Name>heroammosize</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

@@ -27,34 +27,26 @@ namespace Spitfire
         /// </summary>
         public virtual Texture2D Texture
         {
-            get { 
-                return texture; }
-            set
-            {
-                texture = value;
-                size = new Rectangle(0, 0, (int) (texture.Width * Scale), (int) (texture.Height * Scale));
-            }
+            get { return texture; }
+            set { texture = value; }
         }
         private Texture2D texture;
 
         /// <summary>
         /// Bounding rectangle and in-game size of texture. Should be used to get height and width.
+        /// Bounds the texture in the game world.
         /// </summary>
-        public Rectangle Size
+        public virtual Rectangle Size
         {
-            get { return size; }
-            set { size = value; }
+            get {
+                return new Rectangle((int)Math.Round(Position.X), (int)Math.Round(Position.Y), (int)(texture.Width * scale), (int)(texture.Height * scale)); ;
+            }
         }
-        private Rectangle size;
 
         public float Scale
         {
             get { return scale; }
-            set
-            {
-                scale = value;
-                size = new Rectangle(0, 0, (int)(texture.Width * scale), (int)(texture.Height * scale));
-            }
+            set { scale = value; }
         }
         private float scale = 1.0f;
 
@@ -87,7 +79,7 @@ namespace Spitfire
             Rotation = 0.0f;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position, null, Color.White, rotation, Vector2.Zero, scale, SpriteEffects.None, 0);
         }

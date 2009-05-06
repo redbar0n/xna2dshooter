@@ -10,11 +10,12 @@ namespace Spitfire
 {
     public class Player : Sprite
     {
-        //private bool isDodging;
+
         private bool isSwooping;
         //private bool isTurning = false; // Determines if you are in the middle of a turn
+        
+        //private bool isDodging;
         //private int dodgeTime;
-        //private int maxHP;
 
 
 
@@ -28,6 +29,18 @@ namespace Spitfire
         }
         private ArrayList bullets;
 
+
+        /// <summary>
+        /// The amount of damage one bullet will do.
+        /// </summary>
+        public int BulletDamage
+        {
+            get { return bulletDamage; }
+            set { bulletDamage = value; }
+        }
+        private int bulletDamage;
+
+        // TODO: relocate to Bullet class
         private Texture2D bulletSprite;
         public Texture2D bulletTexture
         {
@@ -47,6 +60,18 @@ namespace Spitfire
 
 
         public ArrayList bombs;
+
+
+        /*
+        public int BombDamage
+        {
+            get { return bombDamage; }
+            set { bombDamage = value; }
+        }
+        private int bombDamage;
+        */
+
+        // TODO: relocate to Bombs class
         private Texture2D bombSprite;
         public Texture2D bombTexture
         {
@@ -89,20 +114,52 @@ namespace Spitfire
         private int bombCount;
         //private int bombCapacity;
 
-        //private int bombDamage;
-        //private int bulletDamage;
         //private int burstTime;
         private AnimationPlayer animate;
 
-        public Animation NormalFlight
+        public Animation NormalAni
         {
-            get { return normalFlight; }
+            get { return normalAni; }
             set
             {
-                normalFlight = value;
+                normalAni = value;
             }
         }
-        private Animation normalFlight;
+        private Animation normalAni;
+        private Animation currentAni;
+
+        /// <summary>
+        /// Gets the bounding box positioned in world. Can also be used to get sprite width and height in world.
+        /// </summary>
+        public override Rectangle Size
+        {
+            get
+            {
+                return new Rectangle((int)Math.Round(Position.X - animate.Origin.X),
+                        (int)Math.Round(Position.Y - animate.Origin.Y),
+                        (int)(currentAni.FrameWidth * Scale),
+                        (int)(currentAni.FrameHeight * Scale));
+            }
+        }
+       
+        /// <summary>
+        /// Returns the animation texture if one is present (instead of default Sprite texture)
+        /// </summary>
+        public override Texture2D Texture
+        {
+            get
+            {
+                if (currentAni == null)
+                {
+
+                    return base.Texture;
+                }
+                else
+                {
+                    return normalAni.Texture;
+                }
+            }
+        }
 
         // future: method to fly to end of screen when reached level end.
 
@@ -115,6 +172,7 @@ namespace Spitfire
             faceDirection = FaceDirection.Right;
             bullets = new ArrayList();
             bombs = new ArrayList();
+            bulletDamage = 10;
             bombCount = 50;
             animate = new AnimationPlayer();
         }
@@ -204,6 +262,12 @@ namespace Spitfire
             isDecelerating = false;
         }
 
+        private void setAnimation(Animation ani)
+        {
+            currentAni = ani;
+            animate.PlayAnimation(ani);
+        }
+
         public void Update()
         {
             // TODO: update player logic
@@ -212,7 +276,7 @@ namespace Spitfire
 
             determineVelocity();
 
-            animate.PlayAnimation(normalFlight);
+            setAnimation(normalAni);
 
             foreach (Bullet bullet in bullets.ToArray())
             {
