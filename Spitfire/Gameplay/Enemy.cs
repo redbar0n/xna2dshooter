@@ -127,25 +127,25 @@ namespace Spitfire
         /// <param name="scale">Scale size of sprite up or down.</param>
         /// <param name="maxHP">The starting hp of unit.</param>
         /// <param name="crashDamage">The damage the unit will do if crash or explode into other unit.</param>
-        public Enemy(Level level, Type type, String spriteSet)
+        public Enemy(Level level, Type type, String spriteSet, bool looping)
         {
             this.level = level;
             this.type = type;
             animate = new AnimationPlayer();
-            LoadContent(spriteSet);
+            LoadContent(spriteSet, looping);
         }
 
         /// <summary>
         /// Loads a particular enemy sprite sheet
         /// future: and sounds.
         /// </summary>
-        public void LoadContent(String spriteSet)
+        public void LoadContent(String spriteSet, bool looping)
         {
             // Load animation(s).
             spriteSet = "Sprites/Enemies/" + spriteSet;
 
-            normalAni = new Animation(Level.Content.Load<Texture2D>(spriteSet), 1f, false);
-            explodeAni = new Animation(Level.Content.Load<Texture2D>(spriteSet + "Explode"), 1f, false);
+            normalAni = new Animation(Level.Content.Load<Texture2D>(spriteSet), 1f, looping);
+            explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/expspritemap"), 1f, false);
 
             setAnimation(normalAni);
         }

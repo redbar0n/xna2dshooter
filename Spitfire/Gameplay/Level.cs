@@ -116,6 +116,9 @@ namespace Spitfire
             // TODO: Load music and sounds
         }
 
+        /// <summary>
+        /// TODO: resolve sky fram alignment bug
+        /// </summary>
         private void UpdateSky()
         {
             if (sky.Position.X < -sky.Size.Width)
@@ -220,33 +223,186 @@ namespace Spitfire
             // future: dynamically load/unload/save enemies depending on current background frame.
             if (positionInLevel == 1 && addEnemies)
             {
-                Enemy zeppelin = new Enemy(this, Enemy.Type.Exploding, "zeppelin2sized");
-                zeppelin.Position = new Vector2(1400, 300);
-                zeppelin.Velocity = new Vector2(2, 0);
-                zeppelin.WorthScore = 100;
-                zeppelin.StartHP = 10;
-                enemies.Add(zeppelin);
+                Enemy mig = new Enemy(this, Enemy.Type.Exploding, "mig", false);
+                mig.Position = new Vector2(1400, 100);
+                mig.Velocity = new Vector2(-4, 0);
+                mig.WorthScore = 100;
+                mig.StartHP = 10;
+                enemies.Add(mig);
+                addEnemies = false;
+
+                Enemy mig2 = new Enemy(this, Enemy.Type.Exploding, "mig", false);
+                mig2.Position = new Vector2(1450, 300);
+                mig2.Velocity = new Vector2(-4, 0);
+                mig2.WorthScore = 100;
+                mig2.StartHP = 10;
+                enemies.Add(mig2);
                 addEnemies = false;
             }
             else if (positionInLevel == 2 && addEnemies)
             {
-                Enemy zeppelin = new Enemy(this, Enemy.Type.Exploding, "zeppelin2sized");
-                zeppelin.Position = new Vector2(1410, 300);
-                zeppelin.Velocity = new Vector2(-2, -1);
-                zeppelin.StartHP = 20;
-                zeppelin.WorthScore = 150;
-                enemies.Add(zeppelin);
-
-
-                Enemy zeppelin2 = new Enemy(this, Enemy.Type.Exploding, "zeppelin2sized");
-                zeppelin2.Position = new Vector2(1410, 200);
-                zeppelin2.Velocity = new Vector2(-1, 1);
-                zeppelin2.StartHP = 40;
-                zeppelin2.WorthScore = 200;
-                enemies.Add(zeppelin2);
-
+                Enemy hfighter = new Enemy(this, Enemy.Type.Exploding, "heavyfighter", false);
+                hfighter.Position = new Vector2(1410, 250);
+                hfighter.Velocity = new Vector2(-2, 0);
+                hfighter.StartHP = 20;
+                hfighter.WorthScore = 150;
+                enemies.Add(hfighter);
                 addEnemies = false;
             }
+            else if (positionInLevel == 3 && addEnemies)
+            {
+                Enemy ltank = new Enemy(this, Enemy.Type.Exploding, "lighttankspritemapfinal", true);
+                ltank.Position = new Vector2(1400, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float) (ltank.Size.Height * 0.3));
+                // Y-calculation is to align it with the background
+                ltank.Velocity = new Vector2(-4, 0);
+                ltank.WorthScore = 100;
+                ltank.StartHP = 10;
+                enemies.Add(ltank);
+
+
+                Enemy ltank2 = new Enemy(this, Enemy.Type.Exploding, "lighttankspritemapfinal", true);
+                ltank2.Position = new Vector2(1500, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(ltank.Size.Height * 0.3));
+                // Y-calculation is to align it with the background
+                ltank2.Velocity = new Vector2(-2, 0);
+                ltank2.WorthScore = 100;
+                ltank2.StartHP = 10;
+                enemies.Add(ltank2);
+                addEnemies = false;
+            }
+            else if (positionInLevel == 4 && addEnemies)
+            {
+                Enemy htank = new Enemy(this, Enemy.Type.Exploding, "lighttankspritemapfinal", true);
+                htank.Position = new Vector2(1400, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank.Size.Height * 0.3));
+                // Y-calculation is to align it with the background
+                htank.Velocity = new Vector2(-1, 0);
+                htank.WorthScore = 100;
+                htank.StartHP = 50;
+                enemies.Add(htank);
+
+
+                Enemy htank2 = new Enemy(this, Enemy.Type.Exploding, "lighttankspritemapfinal", true);
+                htank2.Position = new Vector2(1500, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank.Size.Height * 0.3));
+                // Y-calculation is to align it with the background
+                htank2.Velocity = new Vector2(-1, 0);
+                htank2.WorthScore = 100;
+                htank2.StartHP = 50;
+                enemies.Add(htank2);
+                addEnemies = false;
+            }
+            else if (positionInLevel == 6 && addEnemies)
+            {
+                Enemy mig = new Enemy(this, Enemy.Type.Exploding, "mig", false);
+                mig.Position = new Vector2(1350, 100);
+                mig.Velocity = new Vector2(-1, 0);
+                mig.WorthScore = 100;
+                mig.StartHP = 10;
+                enemies.Add(mig);
+
+                Enemy mig2 = new Enemy(this, Enemy.Type.Exploding, "mig", false);
+                mig2.Position = new Vector2(1550, 100);
+                mig2.Velocity = new Vector2(-1, 0);
+                mig2.WorthScore = 100;
+                mig2.StartHP = 10;
+                enemies.Add(mig2);
+
+
+                Enemy zeppelin = new Enemy(this, Enemy.Type.Exploding, "zeppelin2sized", false);
+                zeppelin.Position = new Vector2(1450, 200);
+                zeppelin.Velocity = new Vector2(-1, 0);
+                zeppelin.WorthScore = 100;
+                zeppelin.StartHP = 100;
+                enemies.Add(zeppelin);
+                
+                Enemy mig3 = new Enemy(this, Enemy.Type.Exploding, "mig", false);
+                mig3.Position = new Vector2(1350, 300);
+                mig3.Velocity = new Vector2(-1, 0);
+                mig3.WorthScore = 100;
+                mig3.StartHP = 10;
+                enemies.Add(mig3);
+                
+                Enemy mig4 = new Enemy(this, Enemy.Type.Exploding, "mig", false);
+                mig4.Position = new Vector2(1550, 300);
+                mig4.Velocity = new Vector2(-1, 0);
+                mig4.WorthScore = 100;
+                mig4.StartHP = 10;
+                enemies.Add(mig4);
+                addEnemies = false;
+            }/*
+            else if (positionInLevel == 6 && addEnemies)
+            {
+                Enemy mig = new Enemy(this, Enemy.Type.Exploding, "mig", false);
+                mig.Position = new Vector2(1350, 100);
+                mig.Velocity = new Vector2(-1, 0);
+                mig.WorthScore = 100;
+                mig.StartHP = 10;
+                enemies.Add(mig);
+
+                Enemy mig2 = new Enemy(this, Enemy.Type.Exploding, "mig", false);
+                mig2.Position = new Vector2(1550, 100);
+                mig2.Velocity = new Vector2(-1, 0);
+                mig2.WorthScore = 100;
+                mig2.StartHP = 10;
+                enemies.Add(mig2);
+
+
+                Enemy mig3 = new Enemy(this, Enemy.Type.Exploding, "mig", false);
+                mig3.Position = new Vector2(1350, 300);
+                mig3.Velocity = new Vector2(-1, 0);
+                mig3.WorthScore = 100;
+                mig3.StartHP = 10;
+                enemies.Add(mig3);
+
+                Enemy mig4 = new Enemy(this, Enemy.Type.Exploding, "mig", false);
+                mig4.Position = new Vector2(1550, 300);
+                mig4.Velocity = new Vector2(-1, 0);
+                mig4.WorthScore = 100;
+                mig4.StartHP = 10;
+                enemies.Add(mig4);
+
+                Enemy mig5 = new Enemy(this, Enemy.Type.Exploding, "mig", false);
+                mig5.Position = new Vector2(1550, 300);
+                mig5.Velocity = new Vector2(-1, 0);
+                mig5.WorthScore = 100;
+                mig5.StartHP = 10;
+                enemies.Add(mig5);
+                // gg
+                Enemy mig4 = new Enemy(this, Enemy.Type.Exploding, "mig", false);
+                mig4.Position = new Vector2(1550, 300);
+                mig4.Velocity = new Vector2(-1, 0);
+                mig4.WorthScore = 100;
+                mig4.StartHP = 10;
+                enemies.Add(mig4);
+
+                Enemy mig4 = new Enemy(this, Enemy.Type.Exploding, "mig", false);
+                mig4.Position = new Vector2(1550, 300);
+                mig4.Velocity = new Vector2(-1, 0);
+                mig4.WorthScore = 100;
+                mig4.StartHP = 10;
+                enemies.Add(mig4);
+
+                Enemy mig4 = new Enemy(this, Enemy.Type.Exploding, "mig", false);
+                mig4.Position = new Vector2(1550, 300);
+                mig4.Velocity = new Vector2(-1, 0);
+                mig4.WorthScore = 100;
+                mig4.StartHP = 10;
+                enemies.Add(mig4);
+
+                Enemy mig4 = new Enemy(this, Enemy.Type.Exploding, "mig", false);
+                mig4.Position = new Vector2(1550, 300);
+                mig4.Velocity = new Vector2(-1, 0);
+                mig4.WorthScore = 100;
+                mig4.StartHP = 10;
+                enemies.Add(mig4);
+
+                Enemy mig4 = new Enemy(this, Enemy.Type.Exploding, "mig", false);
+                mig4.Position = new Vector2(1550, 300);
+                mig4.Velocity = new Vector2(-1, 0);
+                mig4.WorthScore = 100;
+                mig4.StartHP = 10;
+                enemies.Add(mig4);
+
+                addEnemies = false;
+            }*/
         }
 
         /// <summary>

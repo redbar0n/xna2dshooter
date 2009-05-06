@@ -15,3 +15,7 @@ C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfir
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\sky.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\skyfinal.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\heroammosize.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\mig.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\expspritemap.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\heavyfighter.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\lighttankspritemapfinal.xnb

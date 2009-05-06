@@ -53,7 +53,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zeppelin2sized.xnb</Output>
-      <Time>2009-05-04T23:01:42.229904+10:00</Time>
+      <Time>2009-05-06T19:26:08.1343312+10:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Enemies\zeppelin2sizedExplode.png</Source>
@@ -99,6 +99,42 @@
       <Options>None</Options>
       <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\heroammosize.xnb</Output>
       <Time>2009-05-05T20:52:48.0916656+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Enemies\mig.png</Source>
+      <Name>Sprites\Enemies\mig</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\mig.xnb</Output>
+      <Time>2009-05-06T18:15:41.276408+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Enemies\expspritemap.png</Source>
+      <Name>Sprites\Enemies\expspritemap</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\expspritemap.xnb</Output>
+      <Time>2009-05-06T18:04:20.0668768+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Enemies\heavyfighter.png</Source>
+      <Name>Sprites\Enemies\heavyfighter</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\heavyfighter.xnb</Output>
+      <Time>2009-05-06T18:47:20.4372672+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Enemies\lighttankspritemapfinal.png</Source>
+      <Name>Sprites\Enemies\lighttankspritemapfinal</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\lighttankspritemapfinal.xnb</Output>
+      <Time>2009-05-06T18:49:19.278152+10:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
