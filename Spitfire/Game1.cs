@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
+using System.Collections; //For Array List (may remove later)
 
 namespace Spitfire
 {
@@ -27,6 +28,7 @@ namespace Spitfire
         Vector2 playersVelocity;
         private bool pause = false;
         Boolean enterKeyWasPressed = false;
+        ArrayList explosions;   ///// STORAGE FOR BOMB EXPLOSIONS
 
         public Game1()
         {
@@ -47,7 +49,7 @@ namespace Spitfire
             level = new Level();
             player = new Player(graphics, this.Content);
             hud = new HUD(player);
-
+            explosions = new ArrayList();
             base.Initialize();
         }
 
@@ -108,6 +110,18 @@ namespace Spitfire
                 level.Velocity = player.Velocity;
                 level.Update(gameTime); // includes updating enemies
 
+                foreach (Explosion kaboom in explosions.ToArray())
+                {
+                    if (kaboom.returnActive() == false)
+                    {
+                        explosions.Remove(kaboom);
+
+                    }
+                    else
+                        kaboom.update(gameTime, playersVelocity);
+
+                }
+
                 // Collision detection
                 foreach (Enemy enemy in level.Enemies.ToArray())
                 {
@@ -125,12 +139,58 @@ namespace Spitfire
                         }
                     }
 
+                    foreach (Bomb bomb in player.bombs.ToArray())
+                    {
+                        if (CollisionDetection.Collision(enemy, bomb))
+                        {
+                            Explosion explosion = new Explosion(bomb.Position, gameTime);
+                            explosion.Texture = Content.Load<Texture2D>("Sprites/Enemies/zeppelin2sizedExplode");
+                            explosions.Add(explosion);
+                            player.bombs.Remove(bomb);
+                        }
+
+                    }
+
+                    foreach (Explosion kaboom in explosions.ToArray())
+                    {
+                        if (CollisionDetection.Collision(enemy, kaboom) && !enemy.Exploding)
+                        {
+                            enemy.TakeDamage(kaboom.getDamage());
+                            if (enemy.Exploding)
+                                hud.Score += enemy.WorthScore;
+                        }
+
+
+                    }
+
                     if (CollisionDetection.Collision(enemy, player) && !enemy.Exploding)
                     {
                         enemy.Explode();
                         player.TakeDamage(20);
                     }
+
+
                 }
+                if ((CollisionDetection.Collision(level.levelGround, player)) ||
+                    (CollisionDetection.Collision(level.levelGroundTwo, player)))
+                {
+                    player.TakeDamage(100);
+                    player.Die();
+                }
+
+                foreach (Bomb bomb in player.bombs.ToArray())
+                {
+                    if ((CollisionDetection.Collision(level.levelGround, bomb)) ||
+                        (CollisionDetection.Collision(level.levelGroundTwo, bomb)))
+                    {
+                        Explosion explosion = new Explosion(new Vector2(bomb.Position.X, bomb.Position.Y - 50f), gameTime);
+                        explosion.Texture = Content.Load<Texture2D>("Sprites/Enemies/zeppelin2sizedExplode");
+                        explosions.Add(explosion);
+                        player.bombs.Remove(bomb);
+                    }
+
+                }
+
             }
 
             base.Update(gameTime);
@@ -148,6 +208,9 @@ namespace Spitfire
             level.Draw(gameTime, spriteBatch);
 
             player.Draw(gameTime, spriteBatch);
+
+            foreach (Explosion explosion in explosions)
+                explosion.Draw(spriteBatch);
 
             hud.Draw(spriteBatch, this.Window.ClientBounds.Width);
 

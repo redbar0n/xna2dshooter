@@ -33,6 +33,8 @@ namespace Spitfire
         private Sprite skyTwo;
         private List<Sprite> backgrounds;
         private float backgroundBufferWidth = 0;
+        public Sprite levelGround; // The ground within the level. Made public for collision detection
+        public Sprite levelGroundTwo;
 
         /// <summary>
         /// Indicates position in the level. Updated when frames loop.
@@ -87,6 +89,8 @@ namespace Spitfire
             enemies = new List<Enemy>();
             sky = new Sprite();
             skyTwo = new Sprite();
+            levelGround = new Sprite();
+            levelGroundTwo = new Sprite();
         }
 
         // future: Optimize background loading to remove slight lag. Load smaller backgrounds.
@@ -112,6 +116,12 @@ namespace Spitfire
                 backgrounds.Add(frame);
                 backgroundBufferWidth += frame.Size.Width; // increase width of buffer
             }
+
+            // Load Ground
+            levelGround.Texture = this.content.Load<Texture2D>("Sprites/backgrounds/earth[1]");
+            levelGround.Position = new Vector2(0, 680f); // Not sure how to get height of a background frame
+            levelGroundTwo.Texture = levelGround.Texture;
+            levelGroundTwo.Position = new Vector2(levelGround.Position.X + levelGround.Size.Width, levelGround.Position.Y);
 
             // TODO: Load music and sounds
         }
@@ -211,6 +221,35 @@ namespace Spitfire
                 // ElapsedGameTime causes background to go very slowly up or down. Is it necessary?
                 frame.Position += -1 * velocity; //* (float)gameTime.ElapsedGameTime.TotalSeconds;
             }
+        }
+
+        /// <summary>
+        /// TODO: resolve sky fram alignment bug
+        /// </summary>
+        private void UpdateGround()
+        {
+            if (levelGround.Position.X < -levelGround.Size.Width)
+            {
+                levelGround.Position = new Vector2(levelGroundTwo.Position.X + levelGroundTwo.Size.Width, levelGroundTwo.Position.Y);
+            }
+            else if (levelGroundTwo.Position.X < -levelGroundTwo.Size.Width)
+            {
+                levelGroundTwo.Position = new Vector2(levelGround.Position.X + levelGround.Size.Width, levelGround.Position.Y);
+            }
+            else if (levelGround.Position.X > levelGround.Size.Width)
+            {
+                // can use sky.Size.Width in the check because only two sprites. otherwise would have needed a bufferwidth like with backgrounds
+                levelGround.Position = new Vector2(-levelGround.Size.Width + 8, levelGround.Position.Y); // 8 = magic constant to avoid mysterious gap between frames
+            }
+            else if (levelGroundTwo.Position.X > levelGroundTwo.Size.Width)
+            {
+                levelGroundTwo.Position = new Vector2(-levelGroundTwo.Size.Width + 8, levelGroundTwo.Position.Y);
+            }
+
+
+            // sky frames only scroll horizontally
+            levelGround.Position += new Vector2(-1 * velocity.X, -1 * velocity.Y);
+            levelGroundTwo.Position += new Vector2(-1 * velocity.X, -1 * velocity.Y);
         }
 
         /// <summary>
@@ -430,6 +469,8 @@ namespace Spitfire
 
             UpdateBackground();
 
+            UpdateGround();
+
             LoadNewEnemies();
 
             UpdateEnemies();
@@ -443,6 +484,9 @@ namespace Spitfire
             // Draw the sky
             sky.Draw(spriteBatch);
             skyTwo.Draw(spriteBatch);
+
+            levelGround.Draw(spriteBatch);
+            levelGroundTwo.Draw(spriteBatch);
 
             // Draw the background
             foreach (Sprite frame in backgrounds)

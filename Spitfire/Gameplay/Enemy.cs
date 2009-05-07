@@ -162,26 +162,32 @@ namespace Spitfire
 
             if (spriteSet.Equals("Sprites/Enemies/mig"))
             {
-                engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Lightfighter/002");
-                engineSoundInst = engineSound.Play(0.2f, 0.0f, 0.0f, true);
+                // NickSound
+                //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Lightfighter/002"); 
+                //engineSoundInst = engineSound.Play(0.2f, 0.0f, 0.0f, true);
             }
             else if (spriteSet.Equals("Sprites/Enemies/heavyfighter"))
             {
-                engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Heavyfighter/001");
-                engineSoundInst = engineSound.Play(0.3f, 0.0f, 0.0f, true);
+                // NickSound
+                //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Heavyfighter/001");
+                //engineSoundInst = engineSound.Play(0.3f, 0.0f, 0.0f, true);
             }
             else if (spriteSet.Equals("Sprites/Enemies/lighttankspritemapfinal") || spriteSet.Equals("Sprites/Enemies/finalheavytanksprite"))
             {
-                engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Tank/304678_SOUNDDOGS_TA");
-                engineSoundInst = engineSound.Play(0.2f, 0.0f, 0.0f, true);
+                // NickSound
+                //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Tank/304678_SOUNDDOGS_TA");
+                //engineSoundInst = engineSound.Play(0.2f, 0.0f, 0.0f, true);
             }
             else if (spriteSet.Equals("Sprites/Enemies/zeppelin2sized"))
             {
-                explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/zepplinexplspritemap"), 1f, false);
+                explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/zeppelin2sized"), 1f, false);
+                ///TODO This animation makes the program crash. I have replaced it with the above statement
+                //explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/zepplinexplspritemap"), 1f, false);
             }
 
-            hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/BulletHit");
-            explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Explode");
+            // NickSound
+            //hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/BulletHit");
+            //explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Explode");
 
         }
 
@@ -221,7 +227,8 @@ namespace Spitfire
                     Explode(); // will pass the exploding down to animateExplosion, which will pass it up to level which finally removes enemy
                 }
             }
-            hitSound.Play();
+            // NickSound
+            //hitSound.Play();
         }
 
         public void ShotDown()
@@ -234,8 +241,9 @@ namespace Spitfire
             exploding = true;
             setAnimation(explodeAni);
             Velocity = Vector2.Zero;
-            explodeSound.Play();
-            engineSoundInst.Stop();
+            // NickSound
+            //explodeSound.Play();
+            //engineSoundInst.Stop();
         }
 
         public void Update()

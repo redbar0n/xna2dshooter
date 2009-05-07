@@ -185,11 +185,12 @@ namespace Spitfire
             bulletDamage = 10;
             bombCount = 50;
             animate = new AnimationPlayer();
-            burstSound = content.Load<SoundEffect>("Sounds/Player/Browning, short burst 2, 278626_SOUNDDOGS__gu");
+            // NickSound
+            //burstSound = content.Load<SoundEffect>("Sounds/Player/Browning, short burst 2, 278626_SOUNDDOGS__gu");
             //bombSound = content.Load<SoundEffect>("Sounds/Player/");
             //swoopSound = content.Load<SoundEffect>("Sounds/Player/");
-            engineSound = content.Load<SoundEffect>("Sounds/Player/005");
-            engineSound.Play(0.2f, 0.0f, 0.0f, true);
+            //engineSound = content.Load<SoundEffect>("Sounds/Player/005");
+           // engineSound.Play(0.2f, 0.0f, 0.0f, true);
         }
 
         public void GetInput()
@@ -267,12 +268,8 @@ namespace Spitfire
             {
                 dKeyWasPressed = false;
             }
+            
 
-
-
-            //XVelocityReset();
-            //YVelocityReset();
-            //AccelerationReset();
             isAccelerating = false;
             isDecelerating = false;
         }
@@ -544,7 +541,8 @@ namespace Spitfire
             Bullet bullet = new Bullet(this.Rotation, this.Position, this.faceDirection);
             bullet.Texture = bulletSprite;
             bullets.Add(bullet);
-            burstSound.Play();
+            // NickSound
+            //burstSound.Play();
         }
 
         public void DropBomb()

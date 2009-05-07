@@ -30,3 +30,36 @@ C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfir
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Heavyfighter\001.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\213663_SOUNDDOGS__ba.wma
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zepplinexplspritemap.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\mountainFlat1.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sprites\Player\Spitfireresized.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sprites\tank map.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\HUD\healthBar.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zeppelin2sizedExplode.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sprites\Player\herobomb.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\sky.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\skyfinal.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sprites\Player\heroammosize.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\expspritemap.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\mig.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\heavyfighter.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\lighttankspritemapfinal.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zeppelin2sized.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\finalheavytanksprite.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zepplinexplspritemap.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\HUD\Pericles.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sounds\213663_SOUNDDOGS__ba.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sounds\Player\Browning, short burst 2, 278626_SOUNDDOGS__gu.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Tank\304678_SOUNDDOGS_TA.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Explode.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\BulletHit.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sounds\Player\005.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Lightfighter\002.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Heavyfighter\001.xnb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sounds\213663_SOUNDDOGS__ba.wma
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Spitfire.exe
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Spitfire.pdb
+J:\INB281\xna game\Spitfire\obj\x86\Debug\ResolveAssemblyReference.cache
+J:\INB281\xna game\Spitfire\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+J:\INB281\xna game\Spitfire\obj\x86\Debug\Spitfire.exe
+J:\INB281\xna game\Spitfire\obj\x86\Debug\Spitfire.pdb
+J:\INB281\xna game\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\earth[1].xnb
