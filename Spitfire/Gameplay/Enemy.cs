@@ -160,35 +160,43 @@ namespace Spitfire
 
             // Load sounds
 
+
             if (spriteSet.Equals("Sprites/Enemies/mig"))
             {
                 // NickSound
-                //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Lightfighter/002"); 
-                //engineSoundInst = engineSound.Play(0.2f, 0.0f, 0.0f, true);
+                engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Lightfighter/Engine1");
+                engineSoundInst = engineSound.Play(0.2f, 0.0f, 0.0f, true);
+                hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_soft");
+                explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_light1");
+
             }
             else if (spriteSet.Equals("Sprites/Enemies/heavyfighter"))
             {
                 // NickSound
-                //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Heavyfighter/001");
-                //engineSoundInst = engineSound.Play(0.3f, 0.0f, 0.0f, true);
+                engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Heavyfighter/Engine3");
+                engineSoundInst = engineSound.Play(0.2f, 0.0f, 0.0f, true);
+                hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_soft");
+                explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_light1");
+
             }
             else if (spriteSet.Equals("Sprites/Enemies/lighttankspritemapfinal") || spriteSet.Equals("Sprites/Enemies/finalheavytanksprite"))
             {
                 // NickSound
-                //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Tank/304678_SOUNDDOGS_TA");
-                //engineSoundInst = engineSound.Play(0.2f, 0.0f, 0.0f, true);
+                engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Tank/Tank");
+                hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
+                explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
+                engineSoundInst = engineSound.Play(0.2f, 0.0f, 0.0f, true);
             }
             else if (spriteSet.Equals("Sprites/Enemies/zeppelin2sized"))
             {
-                explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/zeppelin2sized"), 1f, false);
-                ///TODO This animation makes the program crash. I have replaced it with the above statement
-                //explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/zepplinexplspritemap"), 1f, false);
+               engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Zeppelin/Engine2");
+               engineSoundInst = engineSound.Play(0.2f, 0.0f, 0.0f, true);
+               hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
+               explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
+               explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/zeppelin2sized"), 1f, false);
+               ///TODO This animation makes the program crash. I have replaced it with the above statement
+               //explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/zepplinexplspritemap"), 1f, false);
             }
-
-            // NickSound
-            //hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/BulletHit");
-            //explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Explode");
-
         }
 
 
@@ -228,7 +236,7 @@ namespace Spitfire
                 }
             }
             // NickSound
-            //hitSound.Play();
+            hitSound.Play(0.4f); // magic number, put to top eventually
         }
 
         public void ShotDown()
@@ -242,8 +250,8 @@ namespace Spitfire
             setAnimation(explodeAni);
             Velocity = Vector2.Zero;
             // NickSound
-            //explodeSound.Play();
-            //engineSoundInst.Stop();
+            explodeSound.Play();
+            engineSoundInst.Stop();
         }
 
         public void Update()

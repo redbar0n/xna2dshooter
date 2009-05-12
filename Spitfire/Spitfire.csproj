@@ -93,13 +93,15 @@
     <Compile Include="Gameplay\Enemy.cs" />
     <Compile Include="Gameplay\Ground.cs" />
     <Compile Include="Gameplay\HUD.cs" />
-    <Compile Include="Screens\HelpScreen.cs" />
-    <Compile Include="Screens\MainMenu.cs" />
+    <Compile Include="Screens\GameOverScreen.cs" />
     <Compile Include="Gameplay\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Gameplay\Sprite.cs" />
+    <Compile Include="Screens\MainMenuScreen.cs" />
+    <Compile Include="Screens\PauseScreen.cs" />
+    <Compile Include="Screens\PlayScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

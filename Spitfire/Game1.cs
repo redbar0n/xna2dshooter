@@ -28,7 +28,7 @@ namespace Spitfire
         Vector2 playersVelocity;
         private bool pause = false;
         Boolean enterKeyWasPressed = false;
-        ArrayList explosions;   ///// STORAGE FOR BOMB EXPLOSIONS
+        ArrayList explosions;   // STORAGE FOR BOMB EXPLOSIONS
 
         public Game1()
         {
@@ -69,8 +69,8 @@ namespace Spitfire
             hud.LoadContent(this.Content);
 
             MediaPlayer.IsRepeating = true;
+            MediaPlayer.Volume = 0.4f; // magic constant
             MediaPlayer.Play(Content.Load<Song>("Sounds/213663_SOUNDDOGS__ba"));
-
             // load and add all animations?
         }
 
@@ -143,6 +143,8 @@ namespace Spitfire
                     {
                         if (CollisionDetection.Collision(enemy, bomb))
                         {
+                            bomb.BombSoundInst.Stop(true);
+                            bomb.PlayExplosionSound();
                             Explosion explosion = new Explosion(bomb.Position, gameTime);
                             explosion.Texture = Content.Load<Texture2D>("Sprites/Enemies/zeppelin2sizedExplode");
                             explosions.Add(explosion);
@@ -183,6 +185,8 @@ namespace Spitfire
                     if ((CollisionDetection.Collision(level.levelGround, bomb)) ||
                         (CollisionDetection.Collision(level.levelGroundTwo, bomb)))
                     {
+                        bomb.BombSoundInst.Stop(true);
+                        bomb.PlayExplosionSound();
                         Explosion explosion = new Explosion(new Vector2(bomb.Position.X, bomb.Position.Y - 50f), gameTime);
                         explosion.Texture = Content.Load<Texture2D>("Sprites/Enemies/zeppelin2sizedExplode");
                         explosions.Add(explosion);

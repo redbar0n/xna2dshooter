@@ -19,9 +19,7 @@ namespace Spitfire
     {
 
         //private int music;
-        //private int sounds
-
-
+        //private int sounds;
 
         public ContentManager Content
         {

@@ -117,10 +117,9 @@ namespace Spitfire
         //private int bombCapacity;
 
         /// player sounds
-        private SoundEffect burstSound;
+        private SoundEffect bulletSound;
         private SoundEffect engineSound;
-        private SoundEffect bombSound;
-        private SoundEffect swoopSound;
+
         //private SoundEffect playerExplosion;
 
 
@@ -186,11 +185,11 @@ namespace Spitfire
             bombCount = 50;
             animate = new AnimationPlayer();
             // NickSound
-            //burstSound = content.Load<SoundEffect>("Sounds/Player/Browning, short burst 2, 278626_SOUNDDOGS__gu");
-            //bombSound = content.Load<SoundEffect>("Sounds/Player/");
-            //swoopSound = content.Load<SoundEffect>("Sounds/Player/");
-            //engineSound = content.Load<SoundEffect>("Sounds/Player/005");
-           // engineSound.Play(0.2f, 0.0f, 0.0f, true);
+            bulletSound = content.Load<SoundEffect>("Sounds/Player/Single_shot1");
+            engineSound = content.Load<SoundEffect>("Sounds/Player/Engine1");
+            Bomb.BombSound = content.Load<SoundEffect>("Sounds/Player/whistle");
+            Bomb.ExplosionSound = content.Load<SoundEffect>("Sounds/explode_light2");
+            engineSound.Play(0.1f, 0.0f, 0.0f, true);
         }
 
         public void GetInput()
@@ -542,7 +541,7 @@ namespace Spitfire
             bullet.Texture = bulletSprite;
             bullets.Add(bullet);
             // NickSound
-            //burstSound.Play();
+            bulletSound.Play();
         }
 
         public void DropBomb()
@@ -551,6 +550,7 @@ namespace Spitfire
             {
                 Bomb bombX = new Bomb(this.Rotation, this.Position, this.Velocity, this.faceDirection);
                 bombX.Texture = bombSprite;
+                bombX.PlayDropSound();
                 bombs.Add(bombX);
                 bombCount--;
             }
