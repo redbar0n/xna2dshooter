@@ -22,7 +22,6 @@ namespace Spitfire
         private int damage = 10;// default
         */
          
-        private float pi = (float)Math.PI;
         private Vector2 initialVelocity = new Vector2(30f, 30f);
 
 
@@ -30,32 +29,24 @@ namespace Spitfire
         {
             this.faceDirection = direction;
             base.Rotation = shootersRotation;
-            determineVelocity();
-            //base.Position = initialPosition;// +new Vector2(20f, -8f);
+            determineVelocity();            
             base.Position = determinePosition(initialPosition);
             distanceTravelled = 0f;
         }
 
         private void determineVelocity()
-        {
-            float yPercent = Rotation / (pi / 2);
+        {            
+            float yPercent = (float)Math.Sin(Rotation);
             float xPercent = 1 - Math.Abs(yPercent);
+            determineFaceDirection();
+            Velocity = new Vector2(initialVelocity.X * xPercent * (float)faceDirection, initialVelocity.Y * yPercent);
 
-            if (Rotation > 0)
-            {
-                //accelerant += accelerationConstant * yPercent;
-                Velocity = new Vector2(initialVelocity.X * xPercent, initialVelocity.Y * yPercent) * (float)faceDirection;
-            }
-            else
-            {
-                Velocity = new Vector2(initialVelocity.X * xPercent, initialVelocity.Y * yPercent) * (float)faceDirection;
-            }
         }
 
         private Vector2 determinePosition(Vector2 initialPosition)
         {
-            float yPercent = Rotation / (pi / 2);
-            float xPercent = 1 - Math.Abs(yPercent);
+            float yPercent = (float)Math.Sin(Rotation);
+            float xPercent = 1 - Math.Abs(yPercent);            
             float planeHalfLength = 0f;
             if (faceDirection == FaceDirection.Left)
                 planeHalfLength = -10;
@@ -64,7 +55,13 @@ namespace Spitfire
 
         }
 
-
+        private void determineFaceDirection()
+        {
+            if (Math.Cos(Rotation) < 0f)
+                faceDirection = FaceDirection.Left;
+            else if (Math.Cos(Rotation) > 0f)
+                faceDirection = FaceDirection.Right;
+        } 
 
 
 
