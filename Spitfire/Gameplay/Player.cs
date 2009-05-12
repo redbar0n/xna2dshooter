@@ -98,7 +98,7 @@ namespace Spitfire
         //private float rotateDistance = 0.02f;
         private float accelerant = 1.0f; // future: change to using dv/dt
         private float accelerationConstant = 0.25f;
-        private static float maxAccelerant = 2.7f;
+        private static float maxAccelerant = 2.5f;
         private float decelerationConstant = 0.25f;
 
         // TODO: rewrite. are isAccelerating and isDecelerating needed?
@@ -124,6 +124,13 @@ namespace Spitfire
 
 
         //private int burstTime;
+        private int burstAmmount = 3; //Number of shots per burst
+        private int burstCount; // Countdown of the no shots remaining in a burst. Vale set in constructor
+        private int burstDelay = 7; // The Delay between each shot
+        private int burstDelayCount; // The countdown of the delay. decrements each up date
+        private bool isShooting = false;
+
+
         private AnimationPlayer animate;
 
         public Animation NormalAni
@@ -136,6 +143,7 @@ namespace Spitfire
         }
         private Animation normalAni;
         private Animation currentAni;
+        private bool flip; // A variable to determine is the plane is to be flipped or not.
 
         /// <summary>
         /// Gets the bounding box positioned in world. Can also be used to get sprite width and height in world.
@@ -184,12 +192,13 @@ namespace Spitfire
             bulletDamage = 10;
             bombCount = 50;
             animate = new AnimationPlayer();
+            burstCount = burstAmmount; //The default for burstAmmount is 3
             // NickSound
-            bulletSound = content.Load<SoundEffect>("Sounds/Player/Single_shot1");
-            engineSound = content.Load<SoundEffect>("Sounds/Player/Engine1");
-            Bomb.BombSound = content.Load<SoundEffect>("Sounds/Player/whistle");
-            Bomb.ExplosionSound = content.Load<SoundEffect>("Sounds/explode_light2");
-            engineSound.Play(0.1f, 0.0f, 0.0f, true);
+            //bulletSound = content.Load<SoundEffect>("Sounds/Player/Single_shot1");
+            //engineSound = content.Load<SoundEffect>("Sounds/Player/Engine1");
+            //Bomb.BombSound = content.Load<SoundEffect>("Sounds/Player/whistle");
+            //Bomb.ExplosionSound = content.Load<SoundEffect>("Sounds/explode_light2");
+            //engineSound.Play(0.1f, 0.0f, 0.0f, true);
         }
 
         public void GetInput()
@@ -197,49 +206,26 @@ namespace Spitfire
             KeyboardState keyboardState = Keyboard.GetState();
 
             // future: optimize the following if-sentences
-            if (keyboardState.IsKeyDown(Keys.Left))
-            {
-                if (faceDirection == FaceDirection.Left)
-                {
+            if (keyboardState.IsKeyDown(Keys.Left))            
+                setFlip(FaceDirection.Left);       
+            else if (keyboardState.IsKeyDown(Keys.Right))
+                setFlip(FaceDirection.Right);
 
-                }
-                else
-                {
-                    TurnAround();
-                    //SlowDown();
-                }
-            }
 
-            if (keyboardState.IsKeyDown(Keys.A))
-                Console.WriteLine(this.accelerant);
-
-            if (keyboardState.IsKeyDown(Keys.Right))
-            {
-                if (faceDirection == FaceDirection.Right)
-                {
-
-                }
-                else
-                {
-                    TurnAround();
-                }
-            }
             if (keyboardState.IsKeyDown(Keys.S))
             {
                 Swoop();
             }
             else if (keyboardState.IsKeyDown(Keys.Up))
             {
-                //FlyUp();
-                isSwooping = false;
-                RotateUp();
+                minusRotation(1f);
+                isSwooping = false;                
             }
-
             else if (keyboardState.IsKeyDown(Keys.Down))
             {
-                //FlyDown(); // QUESTION: plane will actually fly up here
+                plusRotation(1f);
                 isSwooping = false;
-                RotateDown();
+                
             }
             else
             {
@@ -249,8 +235,11 @@ namespace Spitfire
 
             if (keyboardState.IsKeyDown(Keys.Space) && !spaceKeyWasPressed)
             {
-                Shoot();
-                spaceKeyWasPressed = true;
+                if (!isShooting)
+                {
+                    setIsShooting();
+                    spaceKeyWasPressed = true;
+                }
             }
             else if (!keyboardState.IsKeyDown(Keys.Space))
             {
@@ -279,6 +268,19 @@ namespace Spitfire
             animate.PlayAnimation(ani);
         }
 
+        
+        /// <summary>
+        /// Flips the plane up/down. Opposite to its current position
+        /// </summary>
+        /// <param name="direction"></param>
+        public void setFlip(FaceDirection direction)
+        {
+            if (direction == FaceDirection.Right)
+                flip = false;
+            else if (direction == FaceDirection.Left)
+                flip = true;
+        }
+
         public void Update()
         {
             // TODO: update player logic
@@ -287,7 +289,30 @@ namespace Spitfire
 
             determineVelocity();
 
+            // Uncomment this code to make it that the player can move up and down the screen
+            //base.Position += new Vector2(0, Velocity.Y);
+            //base.Velocity = new Vector2(Velocity.X, 0f);
+
             setAnimation(normalAni);
+
+            if (isShooting)
+            {
+                if (burstDelayCount <= 0)
+                {
+                    Shoot();
+                    burstCount--;
+                    burstDelayCount = burstDelay;
+                }
+                else
+                    burstDelayCount--;
+
+                if (burstCount < 1)
+                {
+                    burstCount = burstAmmount;
+                    setIsShooting();
+                }
+
+            }
 
             foreach (Bullet bullet in bullets.ToArray())
             {
@@ -318,8 +343,8 @@ namespace Spitfire
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             // draw in direction player is facing
-            SpriteEffects flip = base.faceDirection < 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            animate.Draw(gameTime, spriteBatch, Position, Rotation, flip);
+            SpriteEffects flipSprite = flip == true ? SpriteEffects.FlipVertically : SpriteEffects.None;
+            animate.Draw(gameTime, spriteBatch, Position, Rotation, flipSprite);
 
             foreach (Bullet bullet in bullets.ToArray())
                 bullet.Draw(spriteBatch);
@@ -337,145 +362,114 @@ namespace Spitfire
                 Die();
             }
         }
-
-        private void RotateUp()
-        {
-            if (faceDirection == FaceDirection.Right)
-            {
-                Rotation -= (float)1 / 120 * pi;
-                if (Rotation < -pi / 2)
-                    Rotation = -pi / 2;
-            }
-            else
-            {
-                Rotation += (float)1 / 120 * pi;
-                if (Rotation > pi / 2)
-                    Rotation = pi / 2;
-
-            }
-        }
-
-        private void RotateDown()
-        {
-            if (faceDirection == FaceDirection.Right)
-            {
-                Rotation += (float)1 / 120 * pi;
-                if (Rotation > pi / 2)
-                    Rotation = pi / 2;
-            }
-            else
-            {
-                Rotation -= (float)1 / 120 * pi;
-                if (Rotation < -pi / 2)
-                    Rotation = -pi / 2;
-            }
-        }
-
-
+        
         /// <summary>
         /// Will determine velocity based on rotation. More velocity if flying down, less if up.
         /// </summary>
         private void determineVelocity()
         {
-            float yPercent = Rotation / (pi / 2);
+            float yPercent = (float)Math.Sin(Rotation);
             float xPercent = 1 - Math.Abs(yPercent);
+            determineFaceDirection();
 
-            if (faceDirection == FaceDirection.Right)
-            {
-                if (Rotation > 0)
-                {
-                    //accelerant += accelerationConstant * yPercent;
-                    if (isSwooping)
-                        Accelerate(Math.Abs(yPercent));
-                    //Velocity = new Vector2(initialVelocity.X * xPercent * accelerant, initialVelocity.Y * yPercent * accelerant);
-                }
-                else if (Rotation < 0)
-                {
-                    Decelerate(Math.Abs(yPercent));
-
-                }
-
+            if (isSwooping) {
+                Accelerate(Math.Abs(yPercent));
             }
-            else
-            {
-                if (Rotation > 0)
-                {
-                    Decelerate(Math.Abs(yPercent));
 
+            if (Math.Sin(Rotation) < 0)
+                Decelerate(Math.Abs(yPercent));            
 
-                }
-                else if (Rotation < 0)
-                {
-                    if (isSwooping)
-                        Accelerate(Math.Abs(yPercent));
-                }
-            }
             Velocity = new Vector2(initialVelocity.X * xPercent * accelerant * (float)faceDirection,
-                initialVelocity.Y * yPercent * accelerant * (float)faceDirection);
+                initialVelocity.Y * yPercent * accelerant);
         }
 
-        private void AutoAdjustRotation()
+        
+        /// <summary>
+        /// Determines the direction will fly based on the player's rotation
+        /// </summary>
+        private void determineFaceDirection()
         {
 
-            if (faceDirection == FaceDirection.Right)
+            if (Math.Cos(Rotation) > 0f)
+                faceDirection = FaceDirection.Right;
+            else if (Math.Cos(Rotation) < 0f)
+                faceDirection = FaceDirection.Left;
+        }  
+
+        /// <summary>
+        /// Adjusts the player's rotation when flying input controls are realeased
+        /// </summary>
+        private void AutoAdjustRotation()
+        {
+            if (faceDirection == FaceDirection.Left)
             {
-                if (Rotation > 0)
+                if (Math.Sin(Rotation) < 0f)
                 {
-                    RotateUp();
-                    if (Rotation < 0)
-                        Rotation = 0f;
+                    minusRotation(1f);
+                    if (Math.Sin(Rotation) > 0f)
+                        Rotation = pi;
                 }
-                else if (Rotation < 0)
+                else
                 {
-                    RotateDown();
-                    if (Rotation > 0)
-                        Rotation = 0f;
+                    plusRotation(1f);
+                    if (Math.Sin(Rotation) < 0f)
+                        Rotation = pi;
                 }
             }
-            else
-            {
-                if (Rotation > 0)
+            else if (faceDirection == FaceDirection.Right)
+                if (Math.Sin(Rotation) < 0f)
                 {
-                    RotateDown();
-                    if (Rotation < 0)
-                        Rotation = 0f;
+                    plusRotation(1f);
+                    if (Math.Sin(Rotation) > 0f)
+                        Rotation = 0;
                 }
-                else if (Rotation < 0)
+                else
                 {
-                    RotateUp();
-                    if (Rotation > 0)
-                        Rotation = 0f;
+                    minusRotation(1f);
+                    if (Math.Sin(Rotation) < 0f)
+                        Rotation = 0;
                 }
-            }      
+        }
+
+        
+        /// <summary>
+        /// Makes the plane rotate anti clockwires. 
+        /// </summary>
+        /// <param name="ammount"></Multiply the default rotation distance>
+        private void minusRotation(float ammount)
+        {
+
+            Rotation -= (float)1 / 120 * pi * ammount;
+
         }
 
         /// <summary>
-        /// Slows the plane down and makes it turn around when the accelerant value < 1
-        /// Resets the accelerant when the plane turns around
+        /// Makes the plane rotate clockwires.
         /// </summary>
-        /// <remarks>
-        /// future: should be removed, plane shouldn't stop mid-air. need other way of turning.
-        /// </remarks>
-        private void TurnAround()
+        /// <param name="ammount"></Multiply the default rotation distance>
+        private void plusRotation(float ammount)
         {
-            this.accelerant -= decelerationConstant;
-            if (this.Rotation == 0 && faceDirection == FaceDirection.Right && accelerant < 1)
-            {
-                faceDirection = FaceDirection.Left;
-                accelerant = 1.0f;
-            }
-            else if (this.Rotation == 0 && faceDirection == FaceDirection.Left && accelerant < 1)
-            {
-                faceDirection = FaceDirection.Right;
-                accelerant = 1.0f;
-            }
+
+            Rotation += (float)1 / 120 * pi * ammount;
 
         }
 
+
+
         private void Swoop()
         {
-            RotateDown();
-            RotateDown();
+            if (faceDirection == FaceDirection.Left)
+            {
+                minusRotation(1.5f);
+                if (Math.Cos(Rotation) > 0)
+                    Rotation = (0.5f * pi);
+            }
+            else
+            {
+                plusRotation(1.5f);
+                if (Math.Cos(Rotation) < 0)
+                    Rotation = (0.5f * pi);
+            }
             isSwooping = true;
         }
 
@@ -490,17 +484,7 @@ namespace Spitfire
         {
             Console.WriteLine("YOU DIED");
             //throw new System.NotImplementedException();
-        }
-
-        public void Accelerate()
-        {
-            if ((accelerant < 2.0f) && (!isDecelerating))
-            {
-                isAccelerating = true;
-                this.accelerant += accelerationConstant;
-            }
-        }
-
+        }               
 
         public void Accelerate(float yPercent)
         {
@@ -522,26 +506,30 @@ namespace Spitfire
 
         }
 
-        public void Decelerate()
-        {
-            if (!isAccelerating)
-            {
-                isDecelerating = true;
-                this.accelerant -= accelerationConstant;
-                if (this.accelerant < 0f)
-                {
-                    this.accelerant = 0f;
-                }
-            }
-        }
-
         public void Shoot()
         {
             Bullet bullet = new Bullet(this.Rotation, this.Position, this.faceDirection);
             bullet.Texture = bulletSprite;
             bullets.Add(bullet);
             // NickSound
-            bulletSound.Play();
+            //bulletSound.Play();
+        }
+
+        /// <summary>
+        /// Switches the player's isShooting value to false if true/ to true if true. 
+        /// When isShooting is true. The player will shoot a burst of bullets equal to the burstAmmount
+        /// </summary>
+        /// <remarks>
+        public void setIsShooting()
+        {
+            if (isShooting)
+            {
+                isShooting = false;
+            }
+            else
+            {
+                isShooting = true;
+            }
         }
 
         public void DropBomb()
