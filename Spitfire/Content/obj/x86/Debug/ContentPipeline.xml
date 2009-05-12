@@ -146,33 +146,6 @@
       <Time>2009-05-06T20:40:04.4634592+10:00</Time>
     </Item>
     <Item>
-      <Source>Sounds\Player\005.wav</Source>
-      <Name>Sounds\Player\005</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Player\005.xnb</Output>
-      <Time>2009-05-06T22:59:10.584592+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sounds\Enemy\Lightfighter\002.wav</Source>
-      <Name>Sounds\Enemy\Lightfighter\002</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Lightfighter\002.xnb</Output>
-      <Time>2009-05-06T23:20:19.7195184+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sounds\Enemy\Heavyfighter\001.wav</Source>
-      <Name>Sounds\Enemy\Heavyfighter\001</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Heavyfighter\001.xnb</Output>
-      <Time>2009-05-06T23:21:46.283992+10:00</Time>
-    </Item>
-    <Item>
       <Source>Sounds\213663_SOUNDDOGS__ba.mp3</Source>
       <Name>Sounds\213663_SOUNDDOGS__ba</Name>
       <Importer>Mp3Importer</Importer>
@@ -183,42 +156,6 @@
       <Time>2009-05-06T22:29:22.112896+10:00</Time>
     </Item>
     <Item>
-      <Source>Sounds\Player\Browning, short burst 2, 278626_SOUNDDOGS__gu.mp3</Source>
-      <Name>Sounds\Player\Browning, short burst 2, 278626_SOUNDDOGS__gu</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Player\Browning, short burst 2, 278626_SOUNDDOGS__gu.xnb</Output>
-      <Time>2009-05-06T22:56:41.6404208+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sounds\Enemy\438089_SOUNDDOGS_CA.mp3</Source>
-      <Name>Sounds\Enemy\Explode</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Explode.xnb</Output>
-      <Time>2009-05-06T23:15:35.2905296+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sounds\Enemy\494462_SOUNDDOGS_Ma.mp3</Source>
-      <Name>Sounds\Enemy\BulletHit</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\BulletHit.xnb</Output>
-      <Time>2009-05-06T23:17:13.4817216+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sounds\Enemy\Tank\304678_SOUNDDOGS_TA.mp3</Source>
-      <Name>Sounds\Enemy\Tank\304678_SOUNDDOGS_TA</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Tank\304678_SOUNDDOGS_TA.xnb</Output>
-      <Time>2009-05-06T23:03:26.051936+10:00</Time>
-    </Item>
-    <Item>
       <Source>Sounds\Player\whistle.wav</Source>
       <Name>Sounds\Player\whistle</Name>
       <Importer>WavImporter</Importer>
@@ -226,6 +163,222 @@
       <Options>None</Options>
       <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Player\whistle.xnb</Output>
       <Time>2009-05-07T20:45:45.6384032+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\earth[1].png</Source>
+      <Name>Sprites\Backgrounds\earth[1]</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\earth[1].xnb</Output>
+      <Time>2009-05-07T23:18:31.1177152+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Player\Single_shot1.mp3</Source>
+      <Name>Sounds\Player\Single_shot1</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Player\Single_shot1.xnb</Output>
+      <Time>2009-05-11T14:48:04.3061424+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Enemy\explode_large.mp3</Source>
+      <Name>Sounds\Enemy\explode_large</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\explode_large.xnb</Output>
+      <Time>2009-05-11T19:49:35.1161536+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Engine5.wav</Source>
+      <Name>Sounds\Engine5</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Engine5.xnb</Output>
+      <Time>2009-05-11T13:39:30.2604352+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Player\ricochet_soft.wav</Source>
+      <Name>Sounds\Player\ricochet_soft</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Player\ricochet_soft.xnb</Output>
+      <Time>2009-05-11T13:42:21.4866464+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Player\explode_light1.wav</Source>
+      <Name>Sounds\Player\explode_light1</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Player\explode_light1.xnb</Output>
+      <Time>2009-05-11T14:42:09.385792+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Player\Engine1.wav</Source>
+      <Name>Sounds\Player\Engine1</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Player\Engine1.xnb</Output>
+      <Time>2009-05-11T19:21:47.428136+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Enemy\Heavyfighter\Engine3.wav</Source>
+      <Name>Sounds\Enemy\Heavyfighter\Engine3</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Heavyfighter\Engine3.xnb</Output>
+      <Time>2009-05-11T19:30:07.9678768+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Enemy\Lightfighter\Engine1.wav</Source>
+      <Name>Sounds\Enemy\Lightfighter\Engine1</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Lightfighter\Engine1.xnb</Output>
+      <Time>2009-05-11T19:30:15.25836+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Enemy\Tank\Tank.wav</Source>
+      <Name>Sounds\Enemy\Tank\Tank</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Tank\Tank.xnb</Output>
+      <Time>2009-05-11T19:39:38.968936+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Enemy\ricochet_hard.wav</Source>
+      <Name>Sounds\Enemy\ricochet_hard</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\ricochet_hard.xnb</Output>
+      <Time>2009-05-11T19:43:19.4559808+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Enemy\ricochet_soft.wav</Source>
+      <Name>Sounds\Enemy\ricochet_soft</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\ricochet_soft.xnb</Output>
+      <Time>2009-05-11T19:43:27.3272992+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Enemy\Zeppelin\Engine2.wav</Source>
+      <Name>Sounds\Enemy\Zeppelin\Engine2</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Zeppelin\Engine2.xnb</Output>
+      <Time>2009-05-11T19:48:21.7506592+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Enemy\explode_light1.wav</Source>
+      <Name>Sounds\Enemy\explode_light1</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\explode_light1.xnb</Output>
+      <Time>2009-05-11T19:49:31.1604656+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\explode_light2.wav</Source>
+      <Name>Sounds\explode_light2</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\explode_light2.xnb</Output>
+      <Time>2009-05-11T21:26:30.5483344+10:00</Time>
+    </Item>
+    <Item>
+      <Source>blank.png</Source>
+      <Name>blank</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\blank.xnb</Output>
+      <Time>2009-05-12T23:49:22.8703872+10:00</Time>
+    </Item>
+    <Item>
+      <Source>gradient.png</Source>
+      <Name>gradient</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\gradient.xnb</Output>
+      <Time>2009-05-12T23:49:22.8804016+10:00</Time>
+    </Item>
+    <Item>
+      <Source>gamefont.spritefont</Source>
+      <Name>gamefont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\gamefont.xnb</Output>
+      <Time>2009-05-12T23:49:22.8703872+10:00</Time>
+    </Item>
+    <Item>
+      <Source>menufont.spritefont</Source>
+      <Name>menufont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\menufont.xnb</Output>
+      <Time>2009-05-12T23:49:22.840344+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Menus\gamemenu.png</Source>
+      <Name>Menus\gamemenu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\gamemenu.xnb</Output>
+      <Time>2009-05-13T00:55:15.373808+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Menus\story-screen1.png</Source>
+      <Name>Menus\story-screen1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\story-screen1.xnb</Output>
+      <Time>2009-05-13T01:33:44.8246352+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Menus\story-screen2.png</Source>
+      <Name>Menus\story-screen2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\story-screen2.xnb</Output>
+      <Time>2009-05-13T01:33:50.9834912+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Menus\story-screen3.png</Source>
+      <Name>Menus\story-screen3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\story-screen3.xnb</Output>
+      <Time>2009-05-13T01:33:50.9935056+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Menus\story-screen4.png</Source>
+      <Name>Menus\story-screen4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\story-screen4.xnb</Output>
+      <Time>2009-05-13T01:33:50.9834912+10:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

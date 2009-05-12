@@ -9,7 +9,7 @@ namespace Spitfire
         /// </summary>
         static void Main(string[] args)
         {
-            using (Game1 game = new Game1())
+            using (SpitfireGame game = new SpitfireGame())
             {
                 game.Run();
             }

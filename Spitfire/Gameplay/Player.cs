@@ -178,11 +178,14 @@ namespace Spitfire
             }
         }
 
+        ScreenManager screenManager;
+
         // future: method to fly to end of screen when reached level end.
 
-        public Player(GraphicsDeviceManager graphics, ContentManager content)
+        public Player(ScreenManager screenManager, ContentManager content)
         {
-            base.Position = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2);
+            this.screenManager = screenManager;
+            base.Position = new Vector2(this.screenManager.GraphicsDevice.Viewport.Width / 2, this.screenManager.GraphicsDevice.Viewport.Height / 2);
             base.Velocity = initialVelocity;
             determineVelocity();
             currentHP = 100;
@@ -193,12 +196,13 @@ namespace Spitfire
             bombCount = 50;
             animate = new AnimationPlayer();
             burstCount = burstAmmount; //The default for burstAmmount is 3
+
             // NickSound
-            //bulletSound = content.Load<SoundEffect>("Sounds/Player/Single_shot1");
-            //engineSound = content.Load<SoundEffect>("Sounds/Player/Engine1");
-            //Bomb.BombSound = content.Load<SoundEffect>("Sounds/Player/whistle");
-            //Bomb.ExplosionSound = content.Load<SoundEffect>("Sounds/explode_light2");
-            //engineSound.Play(0.1f, 0.0f, 0.0f, true);
+            bulletSound = content.Load<SoundEffect>("Sounds/Player/Single_shot1");
+            engineSound = content.Load<SoundEffect>("Sounds/Player/Engine1");
+            Bomb.BombSound = content.Load<SoundEffect>("Sounds/Player/whistle");
+            Bomb.ExplosionSound = content.Load<SoundEffect>("Sounds/explode_light2");
+            engineSound.Play(0.1f, 0.0f, 0.0f, true);
         }
 
         public void GetInput()
@@ -262,7 +266,7 @@ namespace Spitfire
             isDecelerating = false;
         }
 
-        private void setAnimation(Animation ani)
+        public void setAnimation(Animation ani)
         {
             currentAni = ani;
             animate.PlayAnimation(ani);
@@ -292,8 +296,6 @@ namespace Spitfire
             // Uncomment this code to make it that the player can move up and down the screen
             //base.Position += new Vector2(0, Velocity.Y);
             //base.Velocity = new Vector2(Velocity.X, 0f);
-
-            setAnimation(normalAni);
 
             if (isShooting)
             {
@@ -454,8 +456,6 @@ namespace Spitfire
 
         }
 
-
-
         private void Swoop()
         {
             if (faceDirection == FaceDirection.Left)
@@ -482,9 +482,23 @@ namespace Spitfire
 
         public void Die()
         {
-            Console.WriteLine("YOU DIED");
-            //throw new System.NotImplementedException();
-        }               
+            const string message = "GAME OVER";
+
+            MessageBoxScreen gameOverMessageBox = new MessageBoxScreen(message);
+
+            gameOverMessageBox.Accepted += GameOverMessageBoxAccepted;
+
+            this.screenManager.AddScreen(gameOverMessageBox, null);
+        }
+
+        /// <summary>
+        /// Event handler for when the user selects ok on the "are you sure
+        /// you want to exit" message box.
+        /// </summary>
+        void GameOverMessageBoxAccepted(object sender, PlayerIndexEventArgs e)
+        {
+            LoadingScreen.Load(screenManager, false, null, new BackgroundScreen("Menus/gamemenu"), new MainMenuScreen());
+        }
 
         public void Accelerate(float yPercent)
         {
@@ -512,7 +526,7 @@ namespace Spitfire
             bullet.Texture = bulletSprite;
             bullets.Add(bullet);
             // NickSound
-            //bulletSound.Play();
+            bulletSound.Play();
         }
 
         /// <summary>
