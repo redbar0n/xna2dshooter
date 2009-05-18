@@ -97,13 +97,9 @@ namespace Spitfire
         private const float maxRotation = 0.78f; // how much the plane can rotate either up/down
         //private float rotateDistance = 0.02f;
         private float accelerant = 1.0f; // future: change to using dv/dt
-        private float accelerationConstant = 0.25f;
-        private static float maxAccelerant = 2.5f;
+        private float accelerationConstant = 0.125f; //0.25f;
+        private static float maxAccelerant = 2.0f; //2.5f;
         private float decelerationConstant = 0.25f;
-
-        // TODO: rewrite. are isAccelerating and isDecelerating needed?
-        private bool isAccelerating = false;
-        private bool isDecelerating = false;
 
         /// <summary>
         /// The players current number of bombs.
@@ -144,6 +140,11 @@ namespace Spitfire
         private Animation normalAni;
         private Animation currentAni;
         private bool flip; // A variable to determine is the plane is to be flipped or not.
+        
+        /// <summary>
+        /// A variable to determine how the up/down keys rotate the plane in the getinput method
+        /// </summary>
+        private bool controlIsRight = true; 
 
         /// <summary>
         /// Gets the bounding box positioned in world. Can also be used to get sprite width and height in world.
@@ -198,11 +199,11 @@ namespace Spitfire
             burstCount = burstAmmount; //The default for burstAmmount is 3
 
             // NickSound
-            bulletSound = content.Load<SoundEffect>("Sounds/Player/Single_shot1");
-            engineSound = content.Load<SoundEffect>("Sounds/Player/Engine1");
-            Bomb.BombSound = content.Load<SoundEffect>("Sounds/Player/whistle");
-            Bomb.ExplosionSound = content.Load<SoundEffect>("Sounds/explode_light2");
-            engineSound.Play(0.1f, 0.0f, 0.0f, true);
+            //bulletSound = content.Load<SoundEffect>("Sounds/Player/Single_shot1");
+            //engineSound = content.Load<SoundEffect>("Sounds/Player/Engine1");
+            //Bomb.BombSound = content.Load<SoundEffect>("Sounds/Player/whistle");
+            //Bomb.ExplosionSound = content.Load<SoundEffect>("Sounds/explode_light2");
+            //engineSound.Play(0.1f, 0.0f, 0.0f, true);
         }
 
         public void GetInput()
@@ -210,31 +211,43 @@ namespace Spitfire
             KeyboardState keyboardState = Keyboard.GetState();
 
             // future: optimize the following if-sentences
-            if (keyboardState.IsKeyDown(Keys.Left))            
-                setFlip(FaceDirection.Left);       
-            else if (keyboardState.IsKeyDown(Keys.Right))
-                setFlip(FaceDirection.Right);
-
-
-            if (keyboardState.IsKeyDown(Keys.S))
+            if (keyboardState.IsKeyDown(Keys.Left))
             {
-                Swoop();
+                setFlip(FaceDirection.Left);
+                if (faceDirection == FaceDirection.Left)
+                    AutoAdjustRotation();
             }
-            else if (keyboardState.IsKeyDown(Keys.Up))
+            else if (keyboardState.IsKeyDown(Keys.Right))
             {
-                minusRotation(1f);
-                isSwooping = false;                
+                setFlip(FaceDirection.Right);
+                if (faceDirection == FaceDirection.Right)
+                    AutoAdjustRotation();
+            }
+
+            if (keyboardState.IsKeyDown(Keys.Up))
+            {
+                if (controlIsRight)
+                     minusRotation(1.5f);
+                else
+                    plusRotation(1.5f);
+                               
             }
             else if (keyboardState.IsKeyDown(Keys.Down))
             {
-                plusRotation(1f);
-                isSwooping = false;
+                if (controlIsRight)
+                    plusRotation(1.5f);
+                else                    
+                minusRotation(1.5f);
                 
             }
             else
             {
-                isSwooping = false;
-                AutoAdjustRotation();
+                // determine controlIsRight value
+                if (Math.Cos(Rotation) > 0)
+                    controlIsRight = true;
+                else if (Math.Cos(Rotation) < 0)
+                    controlIsRight = false;
+
             }
 
             if (keyboardState.IsKeyDown(Keys.Space) && !spaceKeyWasPressed)
@@ -261,9 +274,6 @@ namespace Spitfire
                 dKeyWasPressed = false;
             }
             
-
-            isAccelerating = false;
-            isDecelerating = false;
         }
 
         public void setAnimation(Animation ani)
@@ -345,7 +355,7 @@ namespace Spitfire
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             // draw in direction player is facing
-            SpriteEffects flipSprite = flip == true ? SpriteEffects.FlipVertically : SpriteEffects.None;
+            SpriteEffects flipSprite = flip == true ? SpriteEffects.FlipVertically : SpriteEffects.None;            
             animate.Draw(gameTime, spriteBatch, Position, Rotation, flipSprite);
 
             foreach (Bullet bullet in bullets.ToArray())
@@ -374,12 +384,24 @@ namespace Spitfire
             float xPercent = 1 - Math.Abs(yPercent);
             determineFaceDirection();
 
-            if (isSwooping) {
+            //if (isSwooping) {
+            //    Accelerate(Math.Abs(yPercent));
+            //}
+            if (Math.Sin(Rotation) > 0)
                 Accelerate(Math.Abs(yPercent));
-            }
 
             if (Math.Sin(Rotation) < 0)
-                Decelerate(Math.Abs(yPercent));            
+                Decelerate(Math.Abs(yPercent));      
+      
+            // Wind resistance
+            if (accelerant > 1f)
+            {
+                accelerant -= 0.0125f;
+                if (accelerant < 1f)
+                     accelerant = 1f;
+            }
+
+
 
             Velocity = new Vector2(initialVelocity.X * xPercent * accelerant * (float)faceDirection,
                 initialVelocity.Y * yPercent * accelerant);
@@ -526,7 +548,7 @@ namespace Spitfire
             bullet.Texture = bulletSprite;
             bullets.Add(bullet);
             // NickSound
-            bulletSound.Play();
+            //bulletSound.Play();
         }
 
         /// <summary>
