@@ -11,7 +11,7 @@ namespace Spitfire
     {
 
         private float distanceTravelled;
-        private float maxBulletDistance = 4000f; // max distance bullet travels before disappearing
+        private float maxBulletDistance = 700f; // max distance bullet travels before disappearing
         
         /*
         public int bulletDamage

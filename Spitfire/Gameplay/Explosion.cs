@@ -10,7 +10,7 @@ namespace Spitfire
     class Explosion : Sprite
     {
         TimeSpan creationTime;
-        int delay = 1500;
+        int delay = 500;
         int damage = 10;
         bool isActive;
 
@@ -25,9 +25,9 @@ namespace Spitfire
         {
             this.Velocity = playerVelocity;
             if ((gameTime.TotalGameTime - creationTime).TotalMilliseconds > delay)
-                this.Position -= this.Velocity;
-            else
                 isActive = false;
+            else
+               this.Position -= this.Velocity; 
         }
         
         

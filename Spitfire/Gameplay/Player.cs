@@ -243,9 +243,11 @@ namespace Spitfire
             else
             {
                 // determine controlIsRight value
-                if (Math.Cos(Rotation) > 0)
+                //if (Math.Cos(Rotation) > 0)
+                 if (!flip)
                     controlIsRight = true;
-                else if (Math.Cos(Rotation) < 0)
+                //else if (Math.Cos(Rotation) < 0)
+                 else
                     controlIsRight = false;
 
             }
