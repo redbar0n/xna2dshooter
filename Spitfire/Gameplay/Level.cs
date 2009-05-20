@@ -284,6 +284,13 @@ namespace Spitfire
                 hfighter.StartHP = 20;
                 hfighter.WorthScore = 150;
                 enemies.Add(hfighter);
+
+                LightTank superTank = new LightTank(this, Enemy.Difficulty.Hard, "lighttankspritemapfinal", true);
+                superTank.Velocity = new Vector2(-2, 0);
+                superTank.Position = new Vector2(1400, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float) (superTank.Size.Height * 0.3));
+                enemies.Add(superTank);
+
+
                 addEnemies = false;
             }
             else if (positionInLevel == 3 && addEnemies)
@@ -296,6 +303,10 @@ namespace Spitfire
                 ltank.StartHP = 10;
                 enemies.Add(ltank);
 
+                Mig migMedium = new Mig(this, Enemy.Difficulty.Hard, "mig", false);
+                migMedium.Position = new Vector2(1440, 300);
+                migMedium.Velocity = new Vector2(-4, 0);
+                enemies.Add(migMedium);
 
                 Enemy ltank2 = new Enemy(this, Enemy.Type.Exploding, "lighttankspritemapfinal", true);
                 ltank2.Position = new Vector2(1500, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(ltank.Size.Height * 0.3));
@@ -341,6 +352,7 @@ namespace Spitfire
                 mig2.WorthScore = 100;
                 mig2.StartHP = 10;
                 enemies.Add(mig2);
+                
 
 
                 Enemy zeppelin = new Enemy(this, Enemy.Type.Exploding, "zeppelin2sized", false);

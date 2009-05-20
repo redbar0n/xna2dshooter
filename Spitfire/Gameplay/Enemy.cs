@@ -119,6 +119,16 @@ namespace Spitfire
         }
         private Type type;
 
+        /// <summary>
+        /// Enemy falling to ground or exploding. NB: may be redundant.
+        /// </summary>
+        public enum Difficulty
+        {
+            Easy,Medium,Hard
+        }
+        private Difficulty difficulty;
+
+
         // Sounds
 
         private SoundEffect hitSound;
@@ -182,6 +192,14 @@ namespace Spitfire
             this.type = type;
             animate = new AnimationPlayer();
             LoadContent(spriteSet, looping);
+        }
+
+        public Enemy(Level level, Difficulty difficulty, String spriteSet, bool looping)
+        {
+            this.level = level;            
+            animate = new AnimationPlayer();
+            LoadContent(spriteSet, looping);
+            this.difficulty = difficulty;
         }
 
         /// <summary>
@@ -268,14 +286,14 @@ namespace Spitfire
             currentHP -= damage;
             if (currentHP <= 0)
             {
-                if (type == Type.ShotDown)
-                {
-                    ShotDown();
-                }
-                else
-                {
+                //if (type == Type.ShotDown)
+                //{
+                //    ShotDown();
+                //}
+                //else
+                //{
                     Explode(); // will pass the exploding down to animateExplosion, which will pass it up to level which finally removes enemy
-                }
+                //}
             }
             // NickSound
             //hitSound.Play(0.4f); // magic number, put to top eventually

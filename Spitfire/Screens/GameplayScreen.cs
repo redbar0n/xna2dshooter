@@ -122,7 +122,7 @@ namespace Spitfire
 
             if (IsActive)
             {
-                player.Update();
+                player.Update(gameTime);
                 playersVelocity = player.Velocity;
                 level.Velocity = player.Velocity;
                 level.Update(gameTime); // includes updating enemies
@@ -160,8 +160,9 @@ namespace Spitfire
                     {
                         if (CollisionDetection.Collision(enemy, bomb))
                         {
-                            bomb.BombSoundInst.Stop(true);
-                            bomb.PlayExplosionSound();
+                            //NickSound
+                            //bomb.BombSoundInst.Stop(true);
+                            //bomb.PlayExplosionSound();
                             Explosion explosion = new Explosion(bomb.Position, gameTime);
                             explosion.Texture = content.Load<Texture2D>("Sprites/Enemies/zeppelin2sizedExplode");
                             explosions.Add(explosion);
@@ -202,8 +203,9 @@ namespace Spitfire
                     if ((CollisionDetection.Collision(level.levelGround, bomb)) ||
                         (CollisionDetection.Collision(level.levelGroundTwo, bomb)))
                     {
-                        bomb.BombSoundInst.Stop(true);
-                        bomb.PlayExplosionSound();
+                        //NickSound
+                       // bomb.BombSoundInst.Stop(true);
+                        //bomb.PlayExplosionSound();
                         Explosion explosion = new Explosion(new Vector2(bomb.Position.X, bomb.Position.Y - 50f), gameTime);
                         explosion.Texture = content.Load<Texture2D>("Sprites/Enemies/zeppelin2sizedExplode");
                         explosions.Add(explosion);

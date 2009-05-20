@@ -288,13 +288,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Menus\gamemenu.png">
-      <Name>gamemenu</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Menus\story-screen1.png">
       <Name>story-screen1</Name>
       <Importer>TextureImporter</Importer>
@@ -302,6 +295,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Menus\gamemenu.png">
+      <Name>gamemenu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="Menus\story-screen2.png">
       <Name>story-screen2</Name>
       <Importer>TextureImporter</Importer>

@@ -120,10 +120,12 @@ namespace Spitfire
 
 
         //private int burstTime;
-        private int burstAmmount = 3; //Number of shots per burst
-        private int burstCount; // Countdown of the no shots remaining in a burst. Vale set in constructor
-        private int burstDelay = 7; // The Delay between each shot
-        private int burstDelayCount; // The countdown of the delay. decrements each up date
+        private int burstAmmount = 5; //Number of shots per burst
+        private int burstCount; // Countdown of the no shots remaining in a burst. Value set in constructor
+        private int burstDelay = 70; // The Delay in miliseconds between each shot        
+        TimeSpan bulletCreationTime;
+        
+
         private bool isShooting = false;
 
 
@@ -209,6 +211,54 @@ namespace Spitfire
         public void GetInput()
         {
             KeyboardState keyboardState = Keyboard.GetState();
+            GamePadState gamePad = GamePad.GetState(PlayerIndex.One);
+            
+            float movement = gamePad.ThumbSticks.Left.Y * 1.0f; //MoveStickScale;
+            float xMovement = gamePad.ThumbSticks.Right.X * 1.0f;
+            // Ignore small movements to prevent running in place.
+            if (Math.Abs(movement) < 0.1f){
+                movement = 0.0f;
+                if (!flip)
+                    controlIsRight = true;                
+                 else
+                    controlIsRight = false;
+            } else {
+                if (movement > 0)
+                {
+                    if (controlIsRight)
+                        minusRotation(1.5f * movement);
+                    else
+                        plusRotation(1.5f* movement);
+                }
+                else if (movement < 0) {
+                    if (controlIsRight)
+                        minusRotation(1.5f * movement);
+                    else
+                        plusRotation(1.5f * movement);
+                }
+            
+            }
+
+            if (Math.Abs(xMovement) < 0.2f)
+                xMovement = 0.0f;
+            else
+            {
+                if (xMovement > 0)
+                {
+                    setFlip(FaceDirection.Right);
+                    if (faceDirection == FaceDirection.Right)
+                        AutoAdjustRotation();
+                }
+                else if (xMovement < 0)
+                {
+                    setFlip(FaceDirection.Left);
+                    if (faceDirection == FaceDirection.Left)
+                        AutoAdjustRotation();
+                }
+
+            }
+
+
 
             // future: optimize the following if-sentences
             if (keyboardState.IsKeyDown(Keys.Left))
@@ -252,7 +302,13 @@ namespace Spitfire
 
             }
 
-            if (keyboardState.IsKeyDown(Keys.Space) && !spaceKeyWasPressed)
+
+
+
+
+
+
+            if (keyboardState.IsKeyDown(Keys.Space)  && !spaceKeyWasPressed)
             {
                 if (!isShooting)
                 {
@@ -260,18 +316,31 @@ namespace Spitfire
                     spaceKeyWasPressed = true;
                 }
             }
-            else if (!keyboardState.IsKeyDown(Keys.Space))
+            else if (gamePad.IsButtonDown(Buttons.A) && !spaceKeyWasPressed) {
+                if (!isShooting)
+                {
+                    setIsShooting();
+                    spaceKeyWasPressed = true;
+                }
+            }
+
+            else if (!keyboardState.IsKeyDown(Keys.Space) && !gamePad.IsButtonDown(Buttons.A))
             {
                 spaceKeyWasPressed = false;
             }
 
             ///Drop bomb ///
-            if (keyboardState.IsKeyDown(Keys.D) && !dKeyWasPressed)
+            if (keyboardState.IsKeyDown(Keys.D)  && !dKeyWasPressed)
             {
                 DropBomb();
                 dKeyWasPressed = true;
             }
-            else if (!keyboardState.IsKeyDown(Keys.D))
+            else if (gamePad.IsButtonDown(Buttons.X) && !dKeyWasPressed)
+            {
+                DropBomb();
+                dKeyWasPressed = true;
+            }
+            else if (!keyboardState.IsKeyDown(Keys.D) && !gamePad.IsButtonDown(Buttons.X))
             {
                 dKeyWasPressed = false;
             }
@@ -297,7 +366,7 @@ namespace Spitfire
                 flip = true;
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             // TODO: update player logic
 
@@ -311,21 +380,27 @@ namespace Spitfire
 
             if (isShooting)
             {
-                if (burstDelayCount <= 0)
+                if ((gameTime.TotalGameTime - bulletCreationTime).TotalMilliseconds > burstDelay)
                 {
-                    Shoot();
-                    burstCount--;
-                    burstDelayCount = burstDelay;
-                }
-                else
-                    burstDelayCount--;
+                    if (burstCount != 0)
+                    {
+                        Shoot();
+                        burstCount -= 1;
+                        if (burstCount > 0)
+                            bulletCreationTime = gameTime.TotalGameTime;
+                        else
+                        {
+                            bulletCreationTime = gameTime.TotalGameTime;
+                            burstDelay = 500;
+                        }
+                    }
+                    else {
+                        isShooting = false;
+                        burstDelay = 50;
+                        burstCount = burstAmmount;
 
-                if (burstCount < 1)
-                {
-                    burstCount = burstAmmount;
-                    setIsShooting();
+                    }
                 }
-
             }
 
             foreach (Bullet bullet in bullets.ToArray())
