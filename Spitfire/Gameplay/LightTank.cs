@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace Spitfire
 {
-    class LightTank: Enemy
+    class LightTank: EnemyTank
     {
 
         public LightTank(Level level, Difficulty difficulty, String spriteSet, bool looping)

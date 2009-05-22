@@ -69,6 +69,11 @@ namespace Spitfire
         private Animation currentAni; // current animation
         private AnimationPlayer animate;
 
+        //public method to allow subclasses findout if the animation is finished or not
+        public bool getAnimationFinish(){
+            return animate.Animation.IsFinished;
+        }
+
 
         /// <summary>
         /// Returns the animation texture if one is present (instead of default Sprite texture)
@@ -202,7 +207,10 @@ namespace Spitfire
             this.difficulty = difficulty;
         }
 
-        /// <summary>
+<<<<<<< .mine
+        }
+
+=======>>>>>>> .theirs        /// <summary>
         /// Loads a particular enemy sprite sheet
         /// future: and sounds.
         /// </summary>
@@ -337,25 +345,31 @@ namespace Spitfire
         /// </summary>
         /// <param name="playersVelocity">Players velocity to determine location on screen</param>
         /// <param name="playersPosition">Players location on screen. Used to determine behaviour</param>
-        public void Update(Vector2 playersVelocity, Vector2 playersPosition) {
+        public virtual void Update(Vector2 playersVelocity, Vector2 playersPosition, GameTime gameTime)
+        {
             base.Position += (base.Velocity - playersVelocity);
 
-            foreach (Bullet bullet in bullets.ToArray())
+            if (exploding && animate.Animation.IsFinished)
             {
-                
-                if (bullet.HasExceededDistance())                
-                    bullets.Remove(bullet);                
-                else                
-                    bullet.Update(this.Velocity);                
+                hasExploded = true;
             }
 
-            foreach (Bomb bombN in bombs.ToArray())
-            {
-                if (bombN.Position.Y > 3000f)           
-                    bombs.Remove(bombN);                
-                else
-                    bombN.Update(this.Velocity);
-            }
+            //foreach (Bullet bullet in bullets.ToArray())
+            //{
+                
+            //    if (bullet.HasExceededDistance())                
+            //        bullets.Remove(bullet);                
+            //    else                
+            //        bullet.Update(this.Velocity);                
+            //}
+
+            //foreach (Bomb bombN in bombs.ToArray())
+            //{
+            //    if (bombN.Position.Y > 3000f)           
+            //        bombs.Remove(bombN);                
+            //    else
+            //        bombN.Update(this.Velocity);
+            //}
         }
 
 

@@ -77,6 +77,7 @@ namespace Spitfire
 
             level.LoadContent(content, "Sprites/Backgrounds/mountainFlat", 2);
             player.NormalAni = new Animation(content.Load<Texture2D>("Sprites/Player/Spitfireresized"), 1, true);
+
             player.bulletTexture = content.Load<Texture2D>("Sprites/Player/heroammosize");
             player.bombTexture = content.Load<Texture2D>("Sprites/Player/herobomb");
             hud.LoadContent(content);
@@ -125,7 +126,10 @@ namespace Spitfire
                 player.Update(gameTime);
                 playersVelocity = player.Velocity;
                 level.Velocity = player.Velocity;
+                level.playersPosition = player.Position;
                 level.Update(gameTime); // includes updating enemies
+                player.DistanceFromGround = (level.levelGround.Position.Y - player.Position.Y);
+                //Console.WriteLine(level.levelGround.Position.Y - player.Position.Y); 
 
                 foreach (Explosion kaboom in explosions.ToArray())
                 {

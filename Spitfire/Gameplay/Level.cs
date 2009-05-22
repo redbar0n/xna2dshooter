@@ -58,6 +58,13 @@ namespace Spitfire
         }
         private Vector2 velocity;
 
+
+        public Vector2 playersPosition {
+            get { return playerPosition; }
+            set { playerPosition = value; }
+        }
+        private Vector2 playerPosition;
+
         /// <summary>
         /// Will make sure enemies are added only once after each LevelProgress change.
         /// </summary>
@@ -274,7 +281,18 @@ namespace Spitfire
                 mig2.WorthScore = 100;
                 mig2.StartHP = 10;
                 enemies.Add(mig2);
+
+                Mig migMedium = new Mig(this, Enemy.Difficulty.Hard, "mig", false);
+                migMedium.Position = new Vector2(1440, 300);
+                migMedium.Velocity = new Vector2(-4, 0);
+                enemies.Add(migMedium);
+
+
                 addEnemies = false;
+
+
+
+
             }
             else if (positionInLevel == 2 && addEnemies)
             {
@@ -457,7 +475,7 @@ namespace Spitfire
         /// <summary>
         /// Update enemy speed relative to player speed, and remove exploded enemies.
         /// </summary>
-        private void UpdateEnemies()
+        private void UpdateEnemies(GameTime gameTime)
         {
             foreach (Enemy enemy in enemies.ToArray())
             {
@@ -467,8 +485,9 @@ namespace Spitfire
                 }
                 else
                 {
-                    enemy.Position += -1 * velocity;
-                    enemy.Update();
+                    //enemy.Position += -1 * velocity;
+                    //enemy.Update();
+                    enemy.Update(velocity,playerPosition, gameTime);
                 }
             }
         }
@@ -483,7 +502,7 @@ namespace Spitfire
 
             LoadNewEnemies();
 
-            UpdateEnemies();
+            UpdateEnemies(gameTime);
 
         }
 

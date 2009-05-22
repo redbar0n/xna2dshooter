@@ -13,14 +13,21 @@ namespace Spitfire
     public class Player : Sprite
     {
 
-        private bool isSwooping;
-        //private bool isTurning = false; // Determines if you are in the middle of a turn
+        /// <summary>
+        /// The amount of damage one bullet will do.
+        /// </summary>
+        public float DistanceFromGround
+        {
+            get { return bulletDamage; }
+            set { distanceFromGround = value; }
+        }
+        private float distanceFromGround;
+        public static float MAXHEIGHT = 770f;
+        // Prevents the player from flying upwards when true
+        private bool disableRightUpwardMovement = false;
+        private bool disableLeftUpwardMovement = false;
         
-        //private bool isDodging;
-        //private int dodgeTime;
-
-
-
+        
         /// <summary>
         /// Bullets that the player has fired.
         /// </summary>
@@ -211,6 +218,10 @@ namespace Spitfire
         public void GetInput()
         {
             KeyboardState keyboardState = Keyboard.GetState();
+<<<<<<< .mine
+            GamePadState gamePad = GamePad.GetState(PlayerIndex.One);
+            
+=======
             GamePadState gamePad = GamePad.GetState(PlayerIndex.One);
             
             float movement = gamePad.ThumbSticks.Left.Y * 1.0f; //MoveStickScale;
@@ -238,7 +249,64 @@ namespace Spitfire
                 }
             
             }
+>>>>>>> .r84
 
+<<<<<<< .mine
+            //XBOX CONTROLS
+
+            float movement = gamePad.ThumbSticks.Left.Y * 1.0f; //MoveStickScale;
+            float xMovement = gamePad.ThumbSticks.Left.X * 1.0f;
+            // Ignore small movements to prevent running in place.
+            if (Math.Abs(movement) < 0.1f)
+            {
+                movement = 0.0f;
+
+                // determine controlIsRight value                
+                if (!flip)
+                    controlIsRight = true;
+                else
+                    controlIsRight = false;
+            }
+            if (Math.Abs(xMovement) < 0.2f)
+                xMovement = 0.0f;
+
+
+
+            if (xMovement > 0 && faceDirection == FaceDirection.Right)
+            {
+                setFlip(FaceDirection.Right);                
+                AutoAdjustRotation();
+            }
+            else if (xMovement < 0 && faceDirection == FaceDirection.Left)
+            {
+                setFlip(FaceDirection.Left);                
+                AutoAdjustRotation();
+            }
+            else if (movement > 0)
+            {
+                if (controlIsRight && !disableRightUpwardMovement)
+                    minusRotation(1.5f * movement);
+                else if (!controlIsRight && !disableLeftUpwardMovement)
+                    plusRotation(1.5f * movement);
+                else
+                    AutoHeightCorrect();
+            }
+            else if (movement < 0)
+            {
+                if (controlIsRight && !disableLeftUpwardMovement)
+                    minusRotation(1.5f * movement);
+                else if (!controlIsRight && !disableRightUpwardMovement)
+                    plusRotation(1.5f * movement);
+                else
+                    AutoHeightCorrect();
+
+            }
+
+
+
+            /// PC CONTROLS
+
+=======
             if (Math.Abs(xMovement) < 0.2f)
                 xMovement = 0.0f;
             else
@@ -260,43 +328,66 @@ namespace Spitfire
 
 
 
+>>>>>>> .r84
             // future: optimize the following if-sentences
-            if (keyboardState.IsKeyDown(Keys.Left))
+            if (keyboardState.IsKeyDown(Keys.Left) && (Math.Cos(Rotation) < 0))
             {
-                setFlip(FaceDirection.Left);
-                if (faceDirection == FaceDirection.Left)
+                              
+               setFlip(FaceDirection.Left);
+               if (faceDirection == FaceDirection.Left)
                     AutoAdjustRotation();
+                        
+                
             }
-            else if (keyboardState.IsKeyDown(Keys.Right))
+            else if (keyboardState.IsKeyDown(Keys.Right) && (Math.Cos(Rotation) > 0))
             {
                 setFlip(FaceDirection.Right);
                 if (faceDirection == FaceDirection.Right)
                     AutoAdjustRotation();
             }
 
-            if (keyboardState.IsKeyDown(Keys.Up))
+            else if (keyboardState.IsKeyDown(Keys.Up))
             {
-                if (controlIsRight)
-                     minusRotation(1.5f);
-                else
-                    plusRotation(1.5f);
+                    if (controlIsRight && !disableRightUpwardMovement)
+                        minusRotation(1.5f);
+                    else if (!controlIsRight && !disableLeftUpwardMovement)
+                        plusRotation(1.5f);
+                    else
+                        AutoHeightCorrect();
+
                                
             }
             else if (keyboardState.IsKeyDown(Keys.Down))
             {
-                if (controlIsRight)
-                    plusRotation(1.5f);
-                else                    
-                minusRotation(1.5f);
+                               
+              if (controlIsRight && !disableLeftUpwardMovement)
+                  plusRotation(1.5f);
+              else if (!controlIsRight && !disableRightUpwardMovement)
+                  minusRotation(1.5f);
+              else
+                  AutoHeightCorrect();                
+
                 
             }
             else
             {
-                // determine controlIsRight value
-                //if (Math.Cos(Rotation) > 0)
+                if (distanceFromGround > MAXHEIGHT)
+                {
+                    AutoHeightCorrect();
+                    if (faceDirection == FaceDirection.Right)
+                        disableRightUpwardMovement = true;
+                    else
+                        disableLeftUpwardMovement = true;
+
+                }
+                else {
+                    disableLeftUpwardMovement = false;
+                    disableRightUpwardMovement = false;
+                }
+                
+                // determine controlIsRight value                
                  if (!flip)
-                    controlIsRight = true;
-                //else if (Math.Cos(Rotation) < 0)
+                    controlIsRight = true;                
                  else
                     controlIsRight = false;
 
@@ -372,7 +463,7 @@ namespace Spitfire
 
             GetInput();
 
-            determineVelocity();
+            determineVelocity();  
 
             // Uncomment this code to make it that the player can move up and down the screen
             //base.Position += new Vector2(0, Velocity.Y);
@@ -477,11 +568,10 @@ namespace Spitfire
                 if (accelerant < 1f)
                      accelerant = 1f;
             }
-
-
-
+                                    
             Velocity = new Vector2(initialVelocity.X * xPercent * accelerant * (float)faceDirection,
                 initialVelocity.Y * yPercent * accelerant);
+             
         }
 
         
@@ -492,7 +582,7 @@ namespace Spitfire
         {
 
             if (Math.Cos(Rotation) > 0f)
-                faceDirection = FaceDirection.Right;
+                faceDirection = FaceDirection.Right; 
             else if (Math.Cos(Rotation) < 0f)
                 faceDirection = FaceDirection.Left;
         }  
@@ -530,6 +620,31 @@ namespace Spitfire
                     if (Math.Sin(Rotation) < 0f)
                         Rotation = 0;
                 }
+        }
+        
+        /// <summary>
+        /// Adjusts the player's rotation when they reach maximum height
+        /// </summary>
+        private void AutoHeightCorrect() {
+            if (faceDirection == FaceDirection.Left)
+            {
+                if (Math.Sin(Rotation) < 0f)
+                {
+                    minusRotation(1f);
+                    if (Math.Sin(Rotation) > 0f)
+                        Rotation = pi;
+                }
+            }
+            else if (faceDirection == FaceDirection.Right) {
+
+                if (Math.Sin(Rotation) < 0f)
+                {
+                    plusRotation(1f);
+                    if (Math.Sin(Rotation) > 0f)
+                        Rotation = 0;
+                }
+            }
+
         }
 
         
@@ -569,7 +684,7 @@ namespace Spitfire
                 if (Math.Cos(Rotation) < 0)
                     Rotation = (0.5f * pi);
             }
-            isSwooping = true;
+            //isSwooping = true;
         }
 
         /*

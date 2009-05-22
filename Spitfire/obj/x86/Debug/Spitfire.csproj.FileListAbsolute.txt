@@ -47,3 +47,101 @@ C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfir
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\story-screen2.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\story-screen3.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\story-screen4.xnb
+I:\Spitfire\Spitfire\obj\x86\Debug\Spitfire.exe
+I:\Spitfire\Spitfire\obj\x86\Debug\Spitfire.pdb
+I:\Spitfire\Spitfire\obj\x86\Debug\ResolveAssemblyReference.cache
+I:\Spitfire\Spitfire\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\mountainFlat1.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\Spitfireresized.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\tank map.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\HUD\healthBar.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zeppelin2sizedExplode.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\herobomb.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\sky.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\skyfinal.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\heroammosize.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\expspritemap.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\mig.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\heavyfighter.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\lighttankspritemapfinal.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zeppelin2sized.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\finalheavytanksprite.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\earth[1].xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\blank.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\gradient.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\gamemenu.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\story-screen1.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\story-screen2.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\story-screen3.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\story-screen4.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\HUD\Pericles.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\gamefont.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\menufont.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\213663_SOUNDDOGS__ba.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Player\Single_shot1.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\explode_large.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Engine5.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Player\whistle.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Player\ricochet_soft.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Player\explode_light1.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Player\Engine1.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Heavyfighter\Engine3.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Lightfighter\Engine1.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Tank\Tank.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\ricochet_hard.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\ricochet_soft.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Zeppelin\Engine2.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\explode_light1.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\explode_light2.xnb
+I:\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\213663_SOUNDDOGS__ba.wma
+I:\Spitfire\Spitfire\bin\x86\Debug\Spitfire.exe
+I:\Spitfire\Spitfire\bin\x86\Debug\Spitfire.pdb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\mountainFlat1.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Player\Spitfireresized.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\tank map.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\HUD\healthBar.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zeppelin2sizedExplode.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Player\herobomb.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\sky.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\skyfinal.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Player\heroammosize.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\expspritemap.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\mig.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\heavyfighter.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\lighttankspritemapfinal.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zeppelin2sized.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\finalheavytanksprite.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\earth[1].xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\blank.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\gradient.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Menus\story-screen1.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Menus\gamemenu.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Menus\story-screen2.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Menus\story-screen3.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Menus\story-screen4.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\HUD\Pericles.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\gamefont.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\menufont.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\213663_SOUNDDOGS__ba.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Player\Single_shot1.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\explode_large.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Engine5.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Player\whistle.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Player\ricochet_soft.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Player\explode_light1.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Player\Engine1.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Heavyfighter\Engine3.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Lightfighter\Engine1.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Tank\Tank.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\ricochet_hard.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\ricochet_soft.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Zeppelin\Engine2.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\explode_light1.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\explode_light2.xnb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\213663_SOUNDDOGS__ba.wma
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Spitfire.exe
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Spitfire.pdb
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\obj\x86\Debug\Spitfire.exe
+C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\obj\x86\Debug\Spitfire.pdb
