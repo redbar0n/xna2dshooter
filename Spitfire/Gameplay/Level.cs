@@ -83,6 +83,17 @@ namespace Spitfire
         }
         List<Enemy> enemies;
 
+
+
+        //public List<Pickup> Pickups
+        //{
+        //    get { return pickups; }
+        //    set { pickups = value; }
+
+        //}
+        List<Pickup> pickups;
+
+
         /// <summary>
         /// How much background should be scaled. Redundant if background texture images are scaled.
         /// </summary>
@@ -92,6 +103,7 @@ namespace Spitfire
         {
             backgrounds = new List<Sprite>();
             enemies = new List<Enemy>();
+            pickups = new List<Pickup>();
             sky = new Sprite();
             skyTwo = new Sprite();
             levelGround = new Sprite();
@@ -282,10 +294,15 @@ namespace Spitfire
                 mig2.StartHP = 10;
                 enemies.Add(mig2);
 
-                Mig migMedium = new Mig(this, Enemy.Difficulty.Hard, "mig", false);
-                migMedium.Position = new Vector2(1440, 300);
+
+                Mig migMedium = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium.Position = new Vector2(1440, levelGround.Position.Y - 200f);
                 migMedium.Velocity = new Vector2(-4, 0);
                 enemies.Add(migMedium);
+
+                Pickup pickupA = new Pickup(new Vector2(1000f, 100f), Pickup.Effect.HP);
+                pickupA.Texture = this.content.Load<Texture2D>("Sprites/Player/drop"); 
+                pickups.Add(pickupA);
 
 
                 addEnemies = false;
@@ -321,10 +338,10 @@ namespace Spitfire
                 ltank.StartHP = 10;
                 enemies.Add(ltank);
 
-                Mig migMedium = new Mig(this, Enemy.Difficulty.Hard, "mig", false);
-                migMedium.Position = new Vector2(1440, 300);
-                migMedium.Velocity = new Vector2(-4, 0);
-                enemies.Add(migMedium);
+
+
+
+
 
                 Enemy ltank2 = new Enemy(this, Enemy.Type.Exploding, "lighttankspritemapfinal", true);
                 ltank2.Position = new Vector2(1500, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(ltank.Size.Height * 0.3));
@@ -475,21 +492,42 @@ namespace Spitfire
         /// <summary>
         /// Update enemy speed relative to player speed, and remove exploded enemies.
         /// </summary>
+        private void UpdateEnemies()
         private void UpdateEnemies(GameTime gameTime)
         {
             foreach (Enemy enemy in enemies.ToArray())
             {
                 if (enemy.HasExploded)
                 {
+                    //Create an item pickup
+                    Pickup item = new Pickup(enemy.Position, Pickup.Effect.HP);
+                    item.Texture = this.content.Load<Texture2D>("Sprites/Player/drop");
+                    pickups.Add(item);
                     enemies.Remove(enemy);
+                    
+
                 }
                 else
                 {
+                    enemy.Position += -1 * velocity;
+                    enemy.Update();
                     //enemy.Position += -1 * velocity;
                     //enemy.Update();
                     enemy.Update(velocity,playerPosition, gameTime);
                 }
             }
+        }
+
+        private void UpdatePickUps() { 
+            foreach (Pickup pickup in pickups.ToArray())
+                if (pickup.HasCollided)
+                {
+                    pickups.Remove(pickup);
+                }
+                else {
+                    pickup.Update(velocity);
+                }
+        
         }
 
         public void Update(GameTime gameTime)
@@ -503,6 +541,8 @@ namespace Spitfire
             LoadNewEnemies();
 
             UpdateEnemies(gameTime);
+
+            UpdatePickUps();
 
         }
 
@@ -529,6 +569,11 @@ namespace Spitfire
             {
                 enemy.Draw(gameTime, spriteBatch);
             }
+            //Draw pickups
+            foreach (Pickup pickup in pickups) {
+                pickup.Draw(spriteBatch);
+            }
+
         }
     }
 }

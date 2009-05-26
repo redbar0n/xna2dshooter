@@ -193,6 +193,16 @@ namespace Spitfire
                         player.TakeDamage(20);
                     }
 
+                    //Problem here with null reference bullets
+
+                    //foreach (Bullet bullet in enemy.Bullets.ToArray()) { 
+                    //    if ((CollisionDetection.Collision(bullet, player))){
+                    //        player.TakeDamage(5); // Need to change to reflect power of bullet
+                    //        enemy.Bullets.Remove(bullet);
+                    //    }
+
+                    //}
+
 
                 }
                 if ((CollisionDetection.Collision(level.levelGround, player)) ||

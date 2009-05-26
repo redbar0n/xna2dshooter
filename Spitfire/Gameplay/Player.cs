@@ -98,6 +98,11 @@ namespace Spitfire
         }
         private int currentHP;
 
+        /// <summary>
+        /// Detertines if the player can be damaged or not.
+        /// </summary>
+        private bool isImmortal = false; 
+
         //private Vector2 maxVelocity;
         private float pi = (float)Math.PI;
         private Vector2 initialVelocity = new Vector2(8f, 8f);
@@ -127,6 +132,10 @@ namespace Spitfire
 
 
         //private int burstTime;
+        private int burstAmmount = 3; //Number of shots per burst
+        private int burstCount; // Countdown of the no shots remaining in a burst. Vale set in constructor
+        private int burstDelay = 7; // The Delay between each shot
+        private int burstDelayCount; // The countdown of the delay. decrements each up date
         private int burstAmmount = 5; //Number of shots per burst
         private int burstCount; // Countdown of the no shots remaining in a burst. Value set in constructor
         private int burstDelay = 70; // The Delay in miliseconds between each shot        
@@ -218,40 +227,9 @@ namespace Spitfire
         public void GetInput()
         {
             KeyboardState keyboardState = Keyboard.GetState();
-<<<<<<< .mine
             GamePadState gamePad = GamePad.GetState(PlayerIndex.One);
             
-=======
-            GamePadState gamePad = GamePad.GetState(PlayerIndex.One);
-            
-            float movement = gamePad.ThumbSticks.Left.Y * 1.0f; //MoveStickScale;
-            float xMovement = gamePad.ThumbSticks.Right.X * 1.0f;
-            // Ignore small movements to prevent running in place.
-            if (Math.Abs(movement) < 0.1f){
-                movement = 0.0f;
-                if (!flip)
-                    controlIsRight = true;                
-                 else
-                    controlIsRight = false;
-            } else {
-                if (movement > 0)
-                {
-                    if (controlIsRight)
-                        minusRotation(1.5f * movement);
-                    else
-                        plusRotation(1.5f* movement);
-                }
-                else if (movement < 0) {
-                    if (controlIsRight)
-                        minusRotation(1.5f * movement);
-                    else
-                        plusRotation(1.5f * movement);
-                }
-            
-            }
->>>>>>> .r84
 
-<<<<<<< .mine
             //XBOX CONTROLS
 
             float movement = gamePad.ThumbSticks.Left.Y * 1.0f; //MoveStickScale;
@@ -306,32 +284,11 @@ namespace Spitfire
 
             /// PC CONTROLS
 
-=======
-            if (Math.Abs(xMovement) < 0.2f)
-                xMovement = 0.0f;
-            else
-            {
-                if (xMovement > 0)
-                {
-                    setFlip(FaceDirection.Right);
-                    if (faceDirection == FaceDirection.Right)
-                        AutoAdjustRotation();
-                }
-                else if (xMovement < 0)
-                {
-                    setFlip(FaceDirection.Left);
-                    if (faceDirection == FaceDirection.Left)
-                        AutoAdjustRotation();
-                }
-
-            }
-
-
-
->>>>>>> .r84
             // future: optimize the following if-sentences
             if (keyboardState.IsKeyDown(Keys.Left) && (Math.Cos(Rotation) < 0))
             {
+                setFlip(FaceDirection.Left);
+                if (faceDirection == FaceDirection.Left)
                               
                setFlip(FaceDirection.Left);
                if (faceDirection == FaceDirection.Left)
@@ -393,8 +350,25 @@ namespace Spitfire
 
             }
 
+            if (keyboardState.IsKeyDown(Keys.Space) && !spaceKeyWasPressed)
 
 
+            ///Make plane speed across the screen. Player is invincible 
+            ///while button is pressed
+            if (keyboardState.IsKeyDown(Keys.L))
+            {
+                if (Math.Sin(Rotation) == 0)
+                {
+                    isImmortal = true;
+                    accelerant += 0.125f;
+                    if (accelerant > 7f) {
+                        accelerant = 7f;
+                    }
+                }
+            }
+            else {
+                isImmortal = false;
+            }
 
 
 
@@ -407,6 +381,7 @@ namespace Spitfire
                     spaceKeyWasPressed = true;
                 }
             }
+            else if (!keyboardState.IsKeyDown(Keys.Space))
             else if (gamePad.IsButtonDown(Buttons.A) && !spaceKeyWasPressed) {
                 if (!isShooting)
                 {
@@ -536,12 +511,28 @@ namespace Spitfire
 
         public void TakeDamage(int damage)
         {
-            currentHP -= damage;
-            if (currentHP < 0)
+            if (!isImmortal)
             {
-                Die();
+                currentHP -= damage;
+                if (currentHP < 0)
+                {
+                    Die();
+                }
             }
         }
+
+        /// <summary>
+        /// Recovers the plane HP. 
+        /// NOTE: Might to set max HP at some point
+        /// </summary>
+        /// <param name="damage"></param>
+        public void Recover(int damage) {
+            currentHP += damage;
+            if (currentHP > 100)
+                currentHP = 100;
+        
+        }
+
         
         /// <summary>
         /// Will determine velocity based on rotation. More velocity if flying down, less if up.

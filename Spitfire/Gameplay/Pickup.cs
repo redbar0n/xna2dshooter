@@ -39,22 +39,27 @@ namespace Spitfire {
         }
         private Effect effect;
 
+        /// <summary>
+        /// Creates a pickup object. NOTE, - effect parametre may be unncessary
+        /// </summary>
+        /// <param name="initialPosition"></param>
+        /// <param name="pickupEffect"></param>
         public Pickup(Vector2 initialPosition, Effect pickupEffect) {
             effect = pickupEffect;
             base.Position = initialPosition;
             hasCollided = false;
-            base.Velocity = new Vector2(0f, 3f);
+            base.Velocity = new Vector2(0f, 1f);
             
         }
 
         public void Update(Vector2 velocity){
             if (!hasCollided) {
-                base.Position += base.Velocity;
+                base.Position += (base.Velocity - velocity);
             }
         
         }
 
-
+        
 
     }
 }
