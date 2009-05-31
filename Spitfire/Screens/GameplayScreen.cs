@@ -34,16 +34,14 @@ namespace Spitfire
         ContentManager content;
         SpriteFont gameFont;
 
-        Vector2 playerPosition = new Vector2(100, 100);
-        Vector2 enemyPosition = new Vector2(100, 100);
-
-        Random random = new Random();
-
         Level level;
         Player player;
         HUD hud;
-        Vector2 playersVelocity;
-        ArrayList explosions;   // STORAGE FOR BOMB EXPLOSIONS
+
+        /// <summary>
+        /// Storage for bomb explosions
+        /// </summary>
+        ArrayList explosions;   
 
         #endregion
 
@@ -57,6 +55,7 @@ namespace Spitfire
         {
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
+
         }
 
 
@@ -69,16 +68,16 @@ namespace Spitfire
                 content = new ContentManager(ScreenManager.Game.Services, "Content");
 
             gameFont = content.Load<SpriteFont>("gamefont");
-
-            level = new Level();
+            level = new Level(this);
             player = new Player(ScreenManager, content);
             hud = new HUD(player);
+            player.setHud(hud);
             explosions = new ArrayList();
 
-            level.LoadContent(content, "Sprites/Backgrounds/mountainFlat", 2);
-            player.NormalAni = new Animation(content.Load<Texture2D>("Sprites/Player/Spitfireresized"), 1, true);
-
-            player.bulletTexture = content.Load<Texture2D>("Sprites/Player/heroammosize");
+            //level.LoadContent(content, "Sprites/Backgrounds/Mountain/mountainfinal", 4);
+            level.LoadContent(content, "Sprites/Backgrounds/City/cityback1_0", "Sprites/Backgrounds/groundtwo_final_tmp", 3);
+            player.NormalAni = new Animation(content.Load<Texture2D>("Sprites/Player/spitfirestill_tmp_flipped"), 0.08f, 1f, true);
+            player.bulletTexture = content.Load<Texture2D>("Sprites/Player/heroammo");
             player.bombTexture = content.Load<Texture2D>("Sprites/Player/herobomb");
             hud.LoadContent(content);
 
@@ -124,12 +123,10 @@ namespace Spitfire
             if (IsActive)
             {
                 player.Update(gameTime);
-                playersVelocity = player.Velocity;
                 level.Velocity = player.Velocity;
                 level.playersPosition = player.Position;
                 level.Update(gameTime); // includes updating enemies
-                player.DistanceFromGround = (level.levelGround.Position.Y - player.Position.Y);
-                //Console.WriteLine(level.levelGround.Position.Y - player.Position.Y); 
+                player.DistanceFromGround = (level.grounds[0].Position.Y - player.Position.Y);
 
                 foreach (Explosion kaboom in explosions.ToArray())
                 {
@@ -139,13 +136,14 @@ namespace Spitfire
 
                     }
                     else
-                        kaboom.update(gameTime, playersVelocity);
+                        kaboom.update(gameTime, player.Velocity);
 
                 }
 
-                // Collision detection
+
                 foreach (Enemy enemy in level.Enemies.ToArray())
                 {
+                    // ENEMY/BULLET Collision detection
                     foreach (Bullet bullet in player.Bullets.ToArray())
                     {
                         if (CollisionDetection.Collision(enemy, bullet))
@@ -160,21 +158,22 @@ namespace Spitfire
                         }
                     }
 
+                    // ENEMY/BOMB Collision detection
                     foreach (Bomb bomb in player.bombs.ToArray())
                     {
                         if (CollisionDetection.Collision(enemy, bomb))
                         {
                             //NickSound
-                            //bomb.BombSoundInst.Stop(true);
-                            //bomb.PlayExplosionSound();
+                            bomb.BombSoundInst.Stop(true);
+                            bomb.PlayExplosionSound();
                             Explosion explosion = new Explosion(bomb.Position, gameTime);
-                            explosion.Texture = content.Load<Texture2D>("Sprites/Enemies/zeppelin2sizedExplode");
+                            explosion.Texture = content.Load<Texture2D>("Sprites/Enemies/expllarge_final");
                             explosions.Add(explosion);
                             player.bombs.Remove(bomb);
                         }
-
                     }
 
+                    // ENEMY/BOMB EXPLOSION Collision detection
                     foreach (Explosion kaboom in explosions.ToArray())
                     {
                         if (CollisionDetection.Collision(enemy, kaboom) && !enemy.Exploding)
@@ -183,10 +182,9 @@ namespace Spitfire
                             if (enemy.Exploding)
                                 hud.Score += enemy.WorthScore;
                         }
-
-
                     }
 
+                    // ENEMY/PLAYER Collision detection
                     if (CollisionDetection.Collision(enemy, player) && !enemy.Exploding)
                     {
                         enemy.Explode();
@@ -195,35 +193,57 @@ namespace Spitfire
 
                     //Problem here with null reference bullets
 
-                    //foreach (Bullet bullet in enemy.Bullets.ToArray()) { 
-                    //    if ((CollisionDetection.Collision(bullet, player))){
-                    //        player.TakeDamage(5); // Need to change to reflect power of bullet
-                    //        enemy.Bullets.Remove(bullet);
-                    //    }
+                    foreach (Bullet bullet in enemy.Bullets.ToArray()) { 
+                        if ((CollisionDetection.Collision(bullet, player))){
+                            player.TakeDamage(50); // Need to change to reflect power of bullet
+                            enemy.Bullets.Remove(bullet);
+                        }
 
-                    //}
+                    }
 
 
                 }
-                if ((CollisionDetection.Collision(level.levelGround, player)) ||
-                    (CollisionDetection.Collision(level.levelGroundTwo, player)))
-                {
-                    player.TakeDamage(100);
-                    player.Die();
-                }
+                // GROUND/PLAYER collision detection
+                foreach (Sprite ground in level.grounds)
+	            {
+                    if (CollisionDetection.Collision(ground, player))
+                    {
+                        player.TakeDamage(100);
+                        player.Die();
+                    }
+	            }
 
+
+                // BOMB/GROUND collision detection
                 foreach (Bomb bomb in player.bombs.ToArray())
                 {
-                    if ((CollisionDetection.Collision(level.levelGround, bomb)) ||
-                        (CollisionDetection.Collision(level.levelGroundTwo, bomb)))
+                    foreach (Sprite ground in level.grounds)
                     {
-                        //NickSound
-                       // bomb.BombSoundInst.Stop(true);
-                        //bomb.PlayExplosionSound();
-                        Explosion explosion = new Explosion(new Vector2(bomb.Position.X, bomb.Position.Y - 50f), gameTime);
-                        explosion.Texture = content.Load<Texture2D>("Sprites/Enemies/zeppelin2sizedExplode");
-                        explosions.Add(explosion);
-                        player.bombs.Remove(bomb);
+                        if (CollisionDetection.Collision(ground, bomb))
+                        {
+                            //NickSound
+                            bomb.BombSoundInst.Stop(true);
+                            bomb.PlayExplosionSound();
+                            Explosion explosion = new Explosion(new Vector2(bomb.Position.X, bomb.Position.Y - 50f), gameTime);
+                            explosion.Texture = content.Load<Texture2D>("Sprites/Enemies/expllarge_final");
+                            explosions.Add(explosion);
+                            player.bombs.Remove(bomb);
+                        }
+                    }
+                }
+
+                // GROUND/BULLET collision detection
+                foreach (Bullet bullet in player.Bullets.ToArray())
+                {
+                    foreach (Sprite ground in level.grounds)
+                    {
+                        if (CollisionDetection.Collision(ground, bullet))
+                        {
+                            Explosion spatter = new Explosion(new Vector2(bullet.Position.X, bullet.Position.Y), gameTime);
+                            spatter.Texture = content.Load<Texture2D>("Sprites/Player/spatterground");
+                            explosions.Add(spatter);
+                            player.Bullets.Remove(bullet);
+                        }
                     }
                 }
             }
@@ -239,49 +259,9 @@ namespace Spitfire
             if (input == null)
                 throw new ArgumentNullException("input");
 
-            // Look up inputs for the active player profile.
-            int playerIndex = (int)ControllingPlayer.Value;
-
-            KeyboardState keyboardState = input.CurrentKeyboardStates[playerIndex];
-            GamePadState gamePadState = input.CurrentGamePadStates[playerIndex];
-
-            // The game pauses either if the user presses the pause button, or if
-            // they unplug the active gamepad. This requires us to keep track of
-            // whether a gamepad was ever plugged in, because we don't want to pause
-            // on PC if they are playing with a keyboard and have no gamepad at all!
-            bool gamePadDisconnected = !gamePadState.IsConnected &&
-                                       input.GamePadWasConnected[playerIndex];
-
-            if (input.IsPauseGame(ControllingPlayer) || gamePadDisconnected)
+            if (input.IsPauseGame(ControllingPlayer))
             {
-                ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
-            }
-            else
-            {
-                // Otherwise move the player position.
-                Vector2 movement = Vector2.Zero;
-
-                if (keyboardState.IsKeyDown(Keys.Left))
-                    movement.X--;
-
-                if (keyboardState.IsKeyDown(Keys.Right))
-                    movement.X++;
-
-                if (keyboardState.IsKeyDown(Keys.Up))
-                    movement.Y--;
-
-                if (keyboardState.IsKeyDown(Keys.Down))
-                    movement.Y++;
-
-                Vector2 thumbstick = gamePadState.ThumbSticks.Left;
-
-                movement.X += thumbstick.X;
-                movement.Y -= thumbstick.Y;
-
-                if (movement.Length() > 1)
-                    movement.Normalize();
-
-                playerPosition += movement * 2;
+                ScreenManager.AddScreen(new PauseMenuScreen(level), ControllingPlayer);
             }
         }
 

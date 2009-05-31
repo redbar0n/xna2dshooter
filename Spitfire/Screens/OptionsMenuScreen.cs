@@ -52,7 +52,7 @@ namespace Spitfire
         /// Constructor.
         /// </summary>
         public OptionsMenuScreen()
-            : base("Options")
+            : base("Options", new Vector2(100, 150))
         {
             // Create our menu entries.
             ungulateMenuEntry = new MenuEntry(string.Empty);

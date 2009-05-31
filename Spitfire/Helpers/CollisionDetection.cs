@@ -37,6 +37,12 @@ namespace Spitfire
             return false;
         }
 
+        /// <summary>
+        /// To get the intersection rectangle.
+        /// </summary>
+        /// <param name="rectangle1"></param>
+        /// <param name="rectangle2"></param>
+        /// <returns></returns>
         public static Rectangle Intersection(Rectangle rectangle1, Rectangle rectangle2)
         {
             int x1 = Math.Max(rectangle1.Left, rectangle2.Left);
@@ -51,6 +57,12 @@ namespace Spitfire
             return Rectangle.Empty;
         }
 
+        /// <summary>
+        /// Translate coordinates from the intersection rectangle into the bounding box rectangle coordinates.
+        /// </summary>
+        /// <param name="reference"></param>
+        /// <param name="rectangle"></param>
+        /// <returns></returns>
         public static Rectangle Normalize(Rectangle reference, Rectangle rectangle)
         {
             return new Rectangle(

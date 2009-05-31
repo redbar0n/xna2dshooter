@@ -25,8 +25,8 @@ namespace Spitfire
         /// <summary>
         /// Constructor fills in the menu contents.
         /// </summary>
-        public MainMenuScreen() :base("Main Menu")
-            //: base("Main Menu", new Vector2(100, 150))
+        public MainMenuScreen()
+            : base("Main Menu", new Vector2(100, 150))
         {
             // Create our menu entries.
             MenuEntry playGameMenuEntry = new MenuEntry("Play Game");

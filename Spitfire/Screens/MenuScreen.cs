@@ -28,6 +28,8 @@ namespace Spitfire
         int selectedEntry = 0;
         string menuTitle;
 
+        Vector2? position;
+
         #endregion
 
         #region Properties
@@ -51,9 +53,11 @@ namespace Spitfire
         /// <summary>
         /// Constructor.
         /// </summary>
-        public MenuScreen(string menuTitle)
+        public MenuScreen(string menuTitle, Vector2? position)
         {
             this.menuTitle = menuTitle;
+            
+            this.position = position;
 
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
@@ -165,7 +169,14 @@ namespace Spitfire
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
             SpriteFont font = ScreenManager.Font;
 
-            Vector2 position = new Vector2(100, 150);
+            // if no position specified, just center in game window
+            if (position == null)
+            {
+                Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
+                position = new Vector2(viewport.Width/2 - 100, viewport.Height/2 + 100); // magic constants, to make the pausemenu align in center of game window
+            }
+            
+            Vector2 currentPos = (Vector2) position;
 
             // Make the menu slide into place during transitions, using a
             // power curve to make things look more interesting (this makes
@@ -173,9 +184,9 @@ namespace Spitfire
             float transitionOffset = (float)Math.Pow(TransitionPosition, 2);
 
             if (ScreenState == ScreenState.TransitionOn)
-                position.X -= transitionOffset * 256;
+                currentPos.X -= transitionOffset * 256;
             else
-                position.X += transitionOffset * 512;
+                currentPos.X += transitionOffset * 512;
 
             spriteBatch.Begin();
 
@@ -186,9 +197,9 @@ namespace Spitfire
 
                 bool isSelected = IsActive && (i == selectedEntry);
 
-                menuEntry.Draw(this, position, isSelected, gameTime);
+                menuEntry.Draw(this, currentPos, isSelected, gameTime);
 
-                position.Y += menuEntry.GetHeight(this);
+                currentPos.Y += menuEntry.GetHeight(this);
             }
 
             spriteBatch.End();

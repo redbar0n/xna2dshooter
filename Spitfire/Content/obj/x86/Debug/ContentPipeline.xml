@@ -2,211 +2,13 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>Sprites\Backgrounds\mountainFlat1.png</Source>
-      <Name>Sprites\Backgrounds\mountainFlat1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\mountainFlat1.xnb</Output>
-      <Time>2009-05-15T16:17:14+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Player\Spitfireresized.png</Source>
-      <Name>Sprites\Player\Spitfireresized</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Player\Spitfireresized.xnb</Output>
-      <Time>2009-05-15T16:17:24+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\tank map.PNG</Source>
-      <Name>Sprites\tank map</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\tank map.xnb</Output>
-      <Time>2009-05-15T16:17:26+10:00</Time>
-    </Item>
-    <Item>
       <Source>HUD\healthBar.png</Source>
       <Name>HUD\healthBar</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\HUD\healthBar.xnb</Output>
-      <Time>2009-05-15T16:17:04+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Enemies\zeppelin2sizedExplode.png</Source>
-      <Name>Sprites\Enemies\zeppelin2sizedExplode</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zeppelin2sizedExplode.xnb</Output>
-      <Time>2009-05-15T16:17:24+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Player\herobomb.png</Source>
-      <Name>Sprites\Player\herobomb</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Player\herobomb.xnb</Output>
-      <Time>2009-05-15T16:17:24+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Backgrounds\sky.png</Source>
-      <Name>Sprites\Backgrounds\sky</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\sky.xnb</Output>
-      <Time>2009-05-15T16:17:14+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Backgrounds\skyfinal.png</Source>
-      <Name>Sprites\Backgrounds\skyfinal</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\skyfinal.xnb</Output>
-      <Time>2009-05-15T16:17:14+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Player\heroammosize.png</Source>
-      <Name>Sprites\Player\heroammosize</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Player\heroammosize.xnb</Output>
-      <Time>2009-05-15T16:17:24+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Enemies\expspritemap.png</Source>
-      <Name>Sprites\Enemies\expspritemap</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\expspritemap.xnb</Output>
-      <Time>2009-05-15T16:17:24+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Enemies\mig.png</Source>
-      <Name>Sprites\Enemies\mig</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\mig.xnb</Output>
-      <Time>2009-05-15T16:17:24+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Enemies\heavyfighter.png</Source>
-      <Name>Sprites\Enemies\heavyfighter</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\heavyfighter.xnb</Output>
-      <Time>2009-05-15T16:17:24+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Enemies\lighttankspritemapfinal.png</Source>
-      <Name>Sprites\Enemies\lighttankspritemapfinal</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\lighttankspritemapfinal.xnb</Output>
-      <Time>2009-05-15T16:17:24+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Enemies\zeppelin2sized.PNG</Source>
-      <Name>Sprites\Enemies\zeppelin2sized</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zeppelin2sized.xnb</Output>
-      <Time>2009-05-15T16:17:24+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Enemies\finalheavytanksprite.png</Source>
-      <Name>Sprites\Enemies\finalheavytanksprite</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\finalheavytanksprite.xnb</Output>
-      <Time>2009-05-15T16:17:24+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Backgrounds\earth[1].png</Source>
-      <Name>Sprites\Backgrounds\earth[1]</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\earth[1].xnb</Output>
-      <Time>2009-05-15T16:17:14+10:00</Time>
-    </Item>
-    <Item>
-      <Source>blank.png</Source>
-      <Name>blank</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\blank.xnb</Output>
-      <Time>2009-05-15T16:17:46+10:00</Time>
-    </Item>
-    <Item>
-      <Source>gradient.png</Source>
-      <Name>gradient</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\gradient.xnb</Output>
-      <Time>2009-05-15T16:17:46+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Menus\story-screen1.png</Source>
-      <Name>Menus\story-screen1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Menus\story-screen1.xnb</Output>
-      <Time>2009-05-15T16:17:06+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Menus\gamemenu.png</Source>
-      <Name>Menus\gamemenu</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Menus\gamemenu.xnb</Output>
-      <Time>2009-05-15T18:30:48+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Menus\story-screen2.png</Source>
-      <Name>Menus\story-screen2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Menus\story-screen2.xnb</Output>
-      <Time>2009-05-15T16:17:06+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Menus\story-screen3.png</Source>
-      <Name>Menus\story-screen3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Menus\story-screen3.xnb</Output>
-      <Time>2009-05-15T16:17:06+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Menus\story-screen4.png</Source>
-      <Name>Menus\story-screen4</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Menus\story-screen4.xnb</Output>
-      <Time>2009-05-15T16:17:06+10:00</Time>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\HUD\healthBar.xnb</Output>
+      <Time>2009-05-01T08:36:25.4440848+10:00</Time>
     </Item>
     <Item>
       <Source>HUD\Pericles.spritefont</Source>
@@ -214,26 +16,53 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\HUD\Pericles.xnb</Output>
-      <Time>2009-05-15T16:17:04+10:00</Time>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\HUD\Pericles.xnb</Output>
+      <Time>2009-05-01T08:36:46.9450016+10:00</Time>
     </Item>
     <Item>
-      <Source>gamefont.spritefont</Source>
-      <Name>gamefont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
+      <Source>Sprites\Player\herobomb.png</Source>
+      <Name>Sprites\Player\herobomb</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\gamefont.xnb</Output>
-      <Time>2009-05-15T16:17:46+10:00</Time>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\herobomb.xnb</Output>
+      <Time>2009-05-22T16:49:46.9791712+10:00</Time>
     </Item>
     <Item>
-      <Source>menufont.spritefont</Source>
-      <Name>menufont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
+      <Source>Sprites\Enemies\mig.png</Source>
+      <Name>Sprites\Enemies\mig</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\menufont.xnb</Output>
-      <Time>2009-05-15T16:17:46+10:00</Time>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\mig.xnb</Output>
+      <Time>2009-05-27T13:44:06.5925168+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Enemies\heavyfighter.png</Source>
+      <Name>Sprites\Enemies\heavyfighter</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\heavyfighter.xnb</Output>
+      <Time>2009-05-28T21:56:10.393616+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Enemies\lighttankspritemapfinal.png</Source>
+      <Name>Sprites\Enemies\lighttankspritemapfinal</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\lighttankspritemapfinal.xnb</Output>
+      <Time>2009-05-28T21:56:39.9060528+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Enemies\finalheavytanksprite.png</Source>
+      <Name>Sprites\Enemies\finalheavytanksprite</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\finalheavytanksprite.xnb</Output>
+      <Time>2009-05-27T14:17:15.031752+10:00</Time>
     </Item>
     <Item>
       <Source>Sounds\213663_SOUNDDOGS__ba.mp3</Source>
@@ -241,36 +70,9 @@
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\213663_SOUNDDOGS__ba.xnb</Output>
-      <Extra>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\213663_SOUNDDOGS__ba.wma</Extra>
-      <Time>2009-05-15T16:17:46+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sounds\Player\Single_shot1.mp3</Source>
-      <Name>Sounds\Player\Single_shot1</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Player\Single_shot1.xnb</Output>
-      <Time>2009-05-15T16:17:36+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sounds\Enemy\explode_large.mp3</Source>
-      <Name>Sounds\Enemy\explode_large</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\explode_large.xnb</Output>
-      <Time>2009-05-15T16:17:44+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sounds\Engine5.wav</Source>
-      <Name>Sounds\Engine5</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Engine5.xnb</Output>
-      <Time>2009-05-15T16:17:46+10:00</Time>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\213663_SOUNDDOGS__ba.xnb</Output>
+      <Extra>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\213663_SOUNDDOGS__ba.wma</Extra>
+      <Time>2009-05-06T22:29:22.112896+10:00</Time>
     </Item>
     <Item>
       <Source>Sounds\Player\whistle.wav</Source>
@@ -278,8 +80,35 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Player\whistle.xnb</Output>
-      <Time>2009-05-15T16:17:36+10:00</Time>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Player\whistle.xnb</Output>
+      <Time>2009-05-07T20:45:45.6384032+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Player\Single_shot1.mp3</Source>
+      <Name>Sounds\Player\Single_shot1</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Player\Single_shot1.xnb</Output>
+      <Time>2009-05-11T14:48:04.3061424+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Enemy\explode_large.mp3</Source>
+      <Name>Sounds\Enemy\explode_large</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\explode_large.xnb</Output>
+      <Time>2009-05-11T19:49:35.1161536+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Engine5.wav</Source>
+      <Name>Sounds\Engine5</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Engine5.xnb</Output>
+      <Time>2009-05-11T13:39:30.2604352+10:00</Time>
     </Item>
     <Item>
       <Source>Sounds\Player\ricochet_soft.wav</Source>
@@ -287,8 +116,8 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Player\ricochet_soft.xnb</Output>
-      <Time>2009-05-15T16:17:36+10:00</Time>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Player\ricochet_soft.xnb</Output>
+      <Time>2009-05-11T13:42:21.4866464+10:00</Time>
     </Item>
     <Item>
       <Source>Sounds\Player\explode_light1.wav</Source>
@@ -296,8 +125,8 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Player\explode_light1.xnb</Output>
-      <Time>2009-05-15T16:17:36+10:00</Time>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Player\explode_light1.xnb</Output>
+      <Time>2009-05-11T14:42:09.385792+10:00</Time>
     </Item>
     <Item>
       <Source>Sounds\Player\Engine1.wav</Source>
@@ -305,8 +134,8 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Player\Engine1.xnb</Output>
-      <Time>2009-05-15T16:17:36+10:00</Time>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Player\Engine1.xnb</Output>
+      <Time>2009-05-11T19:21:47.428136+10:00</Time>
     </Item>
     <Item>
       <Source>Sounds\Enemy\Heavyfighter\Engine3.wav</Source>
@@ -314,8 +143,8 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Heavyfighter\Engine3.xnb</Output>
-      <Time>2009-05-15T16:17:42+10:00</Time>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Heavyfighter\Engine3.xnb</Output>
+      <Time>2009-05-11T19:30:07.9678768+10:00</Time>
     </Item>
     <Item>
       <Source>Sounds\Enemy\Lightfighter\Engine1.wav</Source>
@@ -323,8 +152,8 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Lightfighter\Engine1.xnb</Output>
-      <Time>2009-05-15T16:17:40+10:00</Time>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Lightfighter\Engine1.xnb</Output>
+      <Time>2009-05-11T19:30:15.25836+10:00</Time>
     </Item>
     <Item>
       <Source>Sounds\Enemy\Tank\Tank.wav</Source>
@@ -332,8 +161,8 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Tank\Tank.xnb</Output>
-      <Time>2009-05-15T16:17:44+10:00</Time>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Tank\Tank.xnb</Output>
+      <Time>2009-05-11T19:39:38.968936+10:00</Time>
     </Item>
     <Item>
       <Source>Sounds\Enemy\ricochet_hard.wav</Source>
@@ -341,8 +170,8 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\ricochet_hard.xnb</Output>
-      <Time>2009-05-15T16:17:46+10:00</Time>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\ricochet_hard.xnb</Output>
+      <Time>2009-05-11T19:43:19.4559808+10:00</Time>
     </Item>
     <Item>
       <Source>Sounds\Enemy\ricochet_soft.wav</Source>
@@ -350,8 +179,8 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\ricochet_soft.xnb</Output>
-      <Time>2009-05-15T16:17:44+10:00</Time>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\ricochet_soft.xnb</Output>
+      <Time>2009-05-11T19:43:27.3272992+10:00</Time>
     </Item>
     <Item>
       <Source>Sounds\Enemy\Zeppelin\Engine2.wav</Source>
@@ -359,8 +188,8 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Zeppelin\Engine2.xnb</Output>
-      <Time>2009-05-15T16:17:42+10:00</Time>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Zeppelin\Engine2.xnb</Output>
+      <Time>2009-05-11T19:48:21.7506592+10:00</Time>
     </Item>
     <Item>
       <Source>Sounds\Enemy\explode_light1.wav</Source>
@@ -368,8 +197,8 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\explode_light1.xnb</Output>
-      <Time>2009-05-15T16:17:44+10:00</Time>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\explode_light1.xnb</Output>
+      <Time>2009-05-11T19:49:31.1604656+10:00</Time>
     </Item>
     <Item>
       <Source>Sounds\explode_light2.wav</Source>
@@ -377,43 +206,331 @@
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\Sounds\explode_light2.xnb</Output>
-      <Time>2009-05-15T16:17:46+10:00</Time>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\explode_light2.xnb</Output>
+      <Time>2009-05-11T21:26:30.5483344+10:00</Time>
+    </Item>
+    <Item>
+      <Source>blank.png</Source>
+      <Name>blank</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\blank.xnb</Output>
+      <Time>2009-05-12T23:49:22.8703872+10:00</Time>
+    </Item>
+    <Item>
+      <Source>gradient.png</Source>
+      <Name>gradient</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\gradient.xnb</Output>
+      <Time>2009-05-12T23:49:22.8804016+10:00</Time>
+    </Item>
+    <Item>
+      <Source>gamefont.spritefont</Source>
+      <Name>gamefont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\gamefont.xnb</Output>
+      <Time>2009-05-12T23:49:22.8703872+10:00</Time>
+    </Item>
+    <Item>
+      <Source>menufont.spritefont</Source>
+      <Name>menufont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\menufont.xnb</Output>
+      <Time>2009-05-12T23:49:22.840344+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Menus\gamemenu.png</Source>
+      <Name>Menus\gamemenu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\gamemenu.xnb</Output>
+      <Time>2009-05-27T13:08:53.9647072+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Menus\gameover.png</Source>
+      <Name>Menus\gameover</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\gameover.xnb</Output>
+      <Time>2009-05-13T19:00:15.4251712+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\earth[1].png</Source>
+      <Name>Sprites\Backgrounds\earth[1]</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\earth[1].xnb</Output>
+      <Time>2009-05-07T23:18:31.1177152+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Menus\pausescreen.png</Source>
+      <Name>Menus\pausescreen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\pausescreen.xnb</Output>
+      <Time>2009-05-15T09:18:56.3224352+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\City\cityback1_01.png</Source>
+      <Name>Sprites\Backgrounds\City\cityback1_01</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\City\cityback1_01.xnb</Output>
+      <Time>2009-05-22T15:18:09.2338016+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\City\cityback1_02.png</Source>
+      <Name>Sprites\Backgrounds\City\cityback1_02</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\City\cityback1_02.xnb</Output>
+      <Time>2009-05-19T17:29:00.7174704+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\City\cityback1_03.png</Source>
+      <Name>Sprites\Backgrounds\City\cityback1_03</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\City\cityback1_03.xnb</Output>
+      <Time>2009-05-19T17:29:00.6974416+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\mountainfinal1.png</Source>
+      <Name>Sprites\Backgrounds\mountainfinal1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\mountainfinal1.xnb</Output>
+      <Time>2009-05-22T12:50:18.688584+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\finalsky.png</Source>
+      <Name>Sprites\Backgrounds\finalsky</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\finalsky.xnb</Output>
+      <Time>2009-05-22T12:52:00.5550608+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Enemies\finalboss.PNG</Source>
+      <Name>Sprites\Enemies\finalboss</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\finalboss.xnb</Output>
+      <Time>2009-05-27T14:12:52.6644864+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Player\heroammo.png</Source>
+      <Name>Sprites\Player\heroammo</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\heroammo.xnb</Output>
+      <Time>2009-05-22T16:51:21.485064+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Player\spatterground.png</Source>
+      <Name>Sprites\Player\spatterground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\spatterground.xnb</Output>
+      <Time>2009-05-22T16:53:20.9268128+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Menus\controls.png</Source>
+      <Name>Menus\controls</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\controls.xnb</Output>
+      <Time>2009-05-31T20:20:38.9013664+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Enemies\enemyammo.png</Source>
+      <Name>Sprites\Enemies\enemyammo</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\enemyammo.xnb</Output>
+      <Time>2009-05-27T13:32:42.6991264+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\healthcrate.png</Source>
+      <Name>Sprites\healthcrate</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\healthcrate.xnb</Output>
+      <Time>2009-05-27T13:34:07.5511376+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Enemies\tankammo.png</Source>
+      <Name>Sprites\Enemies\tankammo</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\tankammo.xnb</Output>
+      <Time>2009-05-27T13:34:47.0379168+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\Mountain\mountainfinal1.png</Source>
+      <Name>Sprites\Backgrounds\Mountain\mountainfinal1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountainfinal1.xnb</Output>
+      <Time>2009-05-27T13:48:35.1987536+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Enemies\expllarge_final.png</Source>
+      <Name>Sprites\Enemies\expllarge_final</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\expllarge_final.xnb</Output>
+      <Time>2009-05-27T14:13:45.8409504+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Player\turnintoscreenmap.png</Source>
+      <Name>Sprites\Player\turnintoscreenmap</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\turnintoscreenmap.xnb</Output>
+      <Time>2009-05-27T14:28:47.0568352+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Player\turnawayfromscreenmap.png</Source>
+      <Name>Sprites\Player\turnawayfromscreenmap</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\turnawayfromscreenmap.xnb</Output>
+      <Time>2009-05-27T14:30:36.7445584+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Player\spitfirestill_tmp_flipped.png</Source>
+      <Name>Sprites\Player\spitfirestill_tmp_flipped</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\spitfirestill_tmp_flipped.xnb</Output>
+      <Time>2009-05-28T22:28:45.3647264+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\ground_final.PNG</Source>
+      <Name>Sprites\Backgrounds\ground_final</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\ground_final.xnb</Output>
+      <Time>2009-05-27T16:58:40.5888992+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\groundtwo_final_tmp.PNG</Source>
+      <Name>Sprites\Backgrounds\groundtwo_final_tmp</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\groundtwo_final_tmp.xnb</Output>
+      <Time>2009-05-28T22:32:15.5870112+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Enemies\zeppelin2sized_tmp_flipped.png</Source>
+      <Name>Sprites\Enemies\zeppelin2sized_tmp_flipped</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zeppelin2sized_tmp_flipped.xnb</Output>
+      <Time>2009-05-28T22:33:44.6250416+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Enemies\zepplinexpl_final1_tmp_flipped.png</Source>
+      <Name>Sprites\Enemies\zepplinexpl_final1_tmp_flipped</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zepplinexpl_final1_tmp_flipped.xnb</Output>
+      <Time>2009-05-28T22:33:44.635056+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\Mountain\mountainfinal2.png</Source>
+      <Name>Sprites\Backgrounds\Mountain\mountainfinal2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountainfinal2.xnb</Output>
+      <Time>2009-05-28T23:28:08.8988368+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\Mountain\mountainfinal3.png</Source>
+      <Name>Sprites\Backgrounds\Mountain\mountainfinal3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountainfinal3.xnb</Output>
+      <Time>2009-05-28T23:28:08.9088512+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\Mountain\mountainfinal4.png</Source>
+      <Name>Sprites\Backgrounds\Mountain\mountainfinal4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountainfinal4.xnb</Output>
+      <Time>2009-05-28T23:28:08.8888224+10:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\Content\</RootDirectory>
-      <LoggerRootDirectory>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\Content\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\Content\</RootDirectory>
+      <LoggerRootDirectory>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\Content\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
-        <Value>2008-10-10T17:42:32+10:00</Value>
+        <Value>2008-10-11T11:42:32+10:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
-        <Value>2008-10-10T17:43:28+10:00</Value>
+        <Value>2008-10-11T11:43:28+10:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
-        <Value>2008-10-10T17:43:18+10:00</Value>
+        <Value>2008-10-11T11:43:18+10:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
-        <Value>2008-10-10T17:48:18+10:00</Value>
+        <Value>2008-10-11T11:48:18+10:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
-        <Value>2008-10-10T17:48:50+10:00</Value>
+        <Value>2008-10-11T11:48:50+10:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\WINDOWS\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\3.0.0.0__6d5c3888ef60e27d\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2009-03-14T11:06:22.515625+10:00</Value>
+        <Value>2009-02-13T09:36:42.0926288+10:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

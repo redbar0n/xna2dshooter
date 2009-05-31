@@ -12,7 +12,7 @@ namespace Spitfire
         public static int storyScreenNr = 2;
 
         public IntroScreen()
-            : base("Background Story")
+            : base("Background Story", new Vector2(500, 680))
         {
             MenuEntry continueMenuEntry = new MenuEntry("Press space to continue...");
             continueMenuEntry.Selected += ContinueMenuEntrySelected;
@@ -23,7 +23,7 @@ namespace Spitfire
 
         void ContinueMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            if (storyScreenNr <= 4)
+            if (storyScreenNr <= 1)
             {
                 LoadingScreen.Load(ScreenManager, false, e.PlayerIndex, new BackgroundScreen(("Menus/story-screen" + storyScreenNr)), new IntroScreen());
                 //ScreenManager.AddScreen(new BackgroundScreen(("Menus/story-screen" + storyScreenNr)), e.PlayerIndex);

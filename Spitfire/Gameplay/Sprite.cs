@@ -43,7 +43,7 @@ namespace Spitfire
             }
         }
 
-        public float Scale
+        public virtual float Scale
         {
             get { return scale; }
             set { scale = value; }

@@ -56,7 +56,7 @@ namespace Spitfire
         public void PlayDropSound()
         {
             //NickSound
-            //bombSoundInst = bombSound.Play(0.5f, 0.0f, 0.0f, false);
+            bombSoundInst = bombSound.Play(0.5f, 0.0f, 0.0f, false);
         }
 
         public void PlayExplosionSound()

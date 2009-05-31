@@ -24,6 +24,7 @@ namespace Spitfire
         public void update(GameTime gameTime, Vector2 playerVelocity)
         {
             this.Velocity = playerVelocity;
+
             if ((gameTime.TotalGameTime - creationTime).TotalMilliseconds > delay)
                 isActive = false;
             else

@@ -73,11 +73,18 @@ namespace Spitfire
             get { return texture.Height; }
         }
 
+        public float Scale
+        {
+            get { return scale; }
+            set { scale = value; }
+        }
+        private float scale;
 
-        public Animation(Texture2D texture, float frameTime, bool isLooping)
+        public Animation(Texture2D texture, float frameTime, float scale, bool isLooping)
         {
             this.texture = texture;
             this.frameTime = frameTime;
+            this.scale = scale;
             this.isLooping = isLooping;
         }
 

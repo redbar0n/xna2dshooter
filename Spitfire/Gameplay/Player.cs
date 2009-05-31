@@ -134,11 +134,8 @@ namespace Spitfire
         //private int burstTime;
         private int burstAmmount = 3; //Number of shots per burst
         private int burstCount; // Countdown of the no shots remaining in a burst. Vale set in constructor
-        private int burstDelay = 7; // The Delay between each shot
-        private int burstDelayCount; // The countdown of the delay. decrements each up date
-        private int burstAmmount = 5; //Number of shots per burst
-        private int burstCount; // Countdown of the no shots remaining in a burst. Value set in constructor
-        private int burstDelay = 70; // The Delay in miliseconds between each shot        
+        private int burstDelay = 70; // The Delay between each shot
+        private int burstDelayCount; // The countdown of the delay. decrements each up date      
         TimeSpan bulletCreationTime;
         
 
@@ -157,7 +154,7 @@ namespace Spitfire
         }
         private Animation normalAni;
         private Animation currentAni;
-        private bool flip; // A variable to determine is the plane is to be flipped or not.
+        private bool flip = false; // A variable to determine is the plane is to be flipped or not.
         
         /// <summary>
         /// A variable to determine how the up/down keys rotate the plane in the getinput method
@@ -198,6 +195,7 @@ namespace Spitfire
         }
 
         ScreenManager screenManager;
+        HUD hud; // to pass to GameOverScreen so that it can get the score
 
         // future: method to fly to end of screen when reached level end.
 
@@ -217,11 +215,11 @@ namespace Spitfire
             burstCount = burstAmmount; //The default for burstAmmount is 3
 
             // NickSound
-            //bulletSound = content.Load<SoundEffect>("Sounds/Player/Single_shot1");
-            //engineSound = content.Load<SoundEffect>("Sounds/Player/Engine1");
-            //Bomb.BombSound = content.Load<SoundEffect>("Sounds/Player/whistle");
-            //Bomb.ExplosionSound = content.Load<SoundEffect>("Sounds/explode_light2");
-            //engineSound.Play(0.1f, 0.0f, 0.0f, true);
+            bulletSound = content.Load<SoundEffect>("Sounds/Player/Single_shot1");
+            engineSound = content.Load<SoundEffect>("Sounds/Player/Engine1");
+            Bomb.BombSound = content.Load<SoundEffect>("Sounds/Player/whistle");
+            Bomb.ExplosionSound = content.Load<SoundEffect>("Sounds/explode_light2");
+            engineSound.Play(0.1f, 0.0f, 0.0f, true);
         }
 
         public void GetInput()
@@ -283,7 +281,6 @@ namespace Spitfire
 
 
             /// PC CONTROLS
-
             // future: optimize the following if-sentences
             if (keyboardState.IsKeyDown(Keys.Left) && (Math.Cos(Rotation) < 0))
             {
@@ -302,7 +299,6 @@ namespace Spitfire
                 if (faceDirection == FaceDirection.Right)
                     AutoAdjustRotation();
             }
-
             else if (keyboardState.IsKeyDown(Keys.Up))
             {
                     if (controlIsRight && !disableRightUpwardMovement)
@@ -310,9 +306,7 @@ namespace Spitfire
                     else if (!controlIsRight && !disableLeftUpwardMovement)
                         plusRotation(1.5f);
                     else
-                        AutoHeightCorrect();
-
-                               
+                        AutoHeightCorrect();                
             }
             else if (keyboardState.IsKeyDown(Keys.Down))
             {
@@ -323,8 +317,6 @@ namespace Spitfire
                   minusRotation(1.5f);
               else
                   AutoHeightCorrect();                
-
-                
             }
             else
             {
@@ -349,10 +341,6 @@ namespace Spitfire
                     controlIsRight = false;
 
             }
-
-            if (keyboardState.IsKeyDown(Keys.Space) && !spaceKeyWasPressed)
-
-
             ///Make plane speed across the screen. Player is invincible 
             ///while button is pressed
             if (keyboardState.IsKeyDown(Keys.L))
@@ -370,9 +358,6 @@ namespace Spitfire
                 isImmortal = false;
             }
 
-
-
-
             if (keyboardState.IsKeyDown(Keys.Space)  && !spaceKeyWasPressed)
             {
                 if (!isShooting)
@@ -381,15 +366,6 @@ namespace Spitfire
                     spaceKeyWasPressed = true;
                 }
             }
-            else if (!keyboardState.IsKeyDown(Keys.Space))
-            else if (gamePad.IsButtonDown(Buttons.A) && !spaceKeyWasPressed) {
-                if (!isShooting)
-                {
-                    setIsShooting();
-                    spaceKeyWasPressed = true;
-                }
-            }
-
             else if (!keyboardState.IsKeyDown(Keys.Space) && !gamePad.IsButtonDown(Buttons.A))
             {
                 spaceKeyWasPressed = false;
@@ -411,6 +387,11 @@ namespace Spitfire
                 dKeyWasPressed = false;
             }
             
+        }
+
+        public void setHud(HUD hud)
+        {
+            this.hud = hud;
         }
 
         public void setAnimation(Animation ani)
@@ -687,13 +668,9 @@ namespace Spitfire
 
         public void Die()
         {
-            const string message = "GAME OVER";
+            GameOverScreen gameOverScreen = new GameOverScreen(hud);
 
-            MessageBoxScreen gameOverMessageBox = new MessageBoxScreen(message);
-
-            gameOverMessageBox.Accepted += GameOverMessageBoxAccepted;
-
-            this.screenManager.AddScreen(gameOverMessageBox, null);
+            this.screenManager.AddScreen(gameOverScreen, null);
         }
 
         /// <summary>
@@ -731,7 +708,7 @@ namespace Spitfire
             bullet.Texture = bulletSprite;
             bullets.Add(bullet);
             // NickSound
-            //bulletSound.Play();
+            bulletSound.Play();
         }
 
         /// <summary>
@@ -757,6 +734,7 @@ namespace Spitfire
             {
                 Bomb bombX = new Bomb(this.Rotation, this.Position, this.Velocity, this.faceDirection);
                 bombX.Texture = bombSprite;
+                //NickSound
                 bombX.PlayDropSound();
                 bombs.Add(bombX);
                 bombCount--;

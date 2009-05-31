@@ -38,8 +38,6 @@ namespace Spitfire
         }
         private float time;
 
-
-
         /// <summary>
         /// Gets a texture origin at the center of each frame.
         /// Used in rotation.
@@ -105,7 +103,7 @@ namespace Spitfire
             Rectangle source = new Rectangle(FrameIndex * Animation.Texture.Height, 0, Animation.Texture.Height, Animation.Texture.Height);
 
             // Draw the current frame.
-            spriteBatch.Draw(Animation.Texture, position, source, Color.White, rotation, Origin, 1.0f, spriteEffects, 0.0f);
+            spriteBatch.Draw(Animation.Texture, position, source, Color.White, rotation, Origin, Animation.Scale, spriteEffects, 0.0f);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Spitfire
             get { return score; }
             set { score = value; }
         }
-        private int score;      // future: score is stored here for now. may want to put in own class later, with highscore.
+        private int score = 0;      // future: score is stored here for now. may want to put in own class later, with highscore.
         
         private Player player;
 
@@ -30,7 +30,7 @@ namespace Spitfire
         SpriteFont spriteFont; // gui text font
 
         private static Vector2 vBombsTextLoc = new Vector2(30, 30);
-        private static Vector2 vScoreTextLoc = new Vector2(1100, 30);
+        private static Vector2 vScoreTextLoc;
 
         public HUD(Player player)
         {
@@ -59,6 +59,8 @@ namespace Spitfire
                   30, healthBar.Width, 22), new Rectangle(0, 0, healthBar.Width, 44), Color.White);
 
             spriteBatch.DrawString(spriteFont, "Bombs: " + player.BombCount.ToString(), vBombsTextLoc, Color.White);
+
+             vScoreTextLoc = new Vector2(windowWidth-180, 30);
 
             spriteBatch.DrawString(spriteFont, "Score: " + score.ToString(), vScoreTextLoc, Color.White);
 

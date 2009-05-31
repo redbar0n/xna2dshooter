@@ -24,8 +24,8 @@ namespace Spitfire
         public SpitfireGame()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
+            graphics.PreferredBackBufferWidth = 1024; //1280;
+            graphics.PreferredBackBufferHeight = 768; //720;
             Content.RootDirectory = "Content";
 
             // Create the screen manager component.

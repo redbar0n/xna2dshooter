@@ -146,7 +146,6 @@ namespace Spitfire
         /// </summary>
         public override void Update(GameTime gameTime)
         {
-            Console.WriteLine("111");
 
             // Read the keyboard and gamepad.
             input.Update();
