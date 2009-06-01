@@ -142,6 +142,30 @@ namespace Spitfire
             }
         }
 
+        /// <summary>
+        /// Resets the position of skys, backgrounds, grounds and enemies
+        /// </summary>
+        public void resetPositions()
+        {
+            sky.Position = new Vector2(sky.Position.X, 0);
+            skyTwo.Position = new Vector2(skyTwo.Position.X, 0);
+
+            foreach (Sprite frame in backgrounds)
+            {
+                frame.Position += new Vector2(0, 300);
+            }
+
+            foreach (Sprite frame in grounds)
+            {
+                frame.Position += new Vector2(0, 300);
+            }
+
+            foreach (Enemy enemy in enemies)
+            {
+                enemy.Position += new Vector2(0, 300);
+            }
+        }
+
         // future: Optimize background loading to remove slight lag. Load smaller backgrounds.
         public void LoadContent(ContentManager content, String backgroundName, String groundName, int nrOfBackgrounds)
         {
@@ -388,6 +412,11 @@ namespace Spitfire
                 migMedium.Position = new Vector2(1440, grounds[0].Position.Y - 200f);
                 migMedium.Velocity = new Vector2(-4, 0);
                 enemies.Add(migMedium);
+
+                Mig migMedium2 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium2.Position = new Vector2(1500, grounds[0].Position.Y - 200f);
+                migMedium2.Velocity = new Vector2(-4, 0);
+                enemies.Add(migMedium2);
 
                 Pickup pickupA = new Pickup(new Vector2(1000f, 100f), Pickup.Effect.HP);
                 pickupA.Texture = this.content.Load<Texture2D>("Sprites/healthcrate");

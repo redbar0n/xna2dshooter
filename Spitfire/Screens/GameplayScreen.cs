@@ -69,16 +69,14 @@ namespace Spitfire
 
             gameFont = content.Load<SpriteFont>("gamefont");
             level = new Level(this);
-            player = new Player(ScreenManager, content);
+            player = new Player(ScreenManager, content, level);
             hud = new HUD(player);
             player.setHud(hud);
             explosions = new ArrayList();
 
             //level.LoadContent(content, "Sprites/Backgrounds/Mountain/mountainfinal", 4);
             level.LoadContent(content, "Sprites/Backgrounds/City/cityback1_0", "Sprites/Backgrounds/groundtwo_final_tmp", 3);
-            player.NormalAni = new Animation(content.Load<Texture2D>("Sprites/Player/spitfirestill_tmp_flipped"), 0.08f, 1f, true);
-            player.bulletTexture = content.Load<Texture2D>("Sprites/Player/heroammo");
-            player.bombTexture = content.Load<Texture2D>("Sprites/Player/herobomb");
+            player.LoadContent(content);
             hud.LoadContent(content);
 
             player.setAnimation(player.NormalAni);
@@ -152,6 +150,7 @@ namespace Spitfire
                             {
                                 player.Bullets.Remove(bullet);
                                 enemy.TakeDamage(player.BulletDamage);
+                                enemy.playHitSound();
                                 if (enemy.Exploding)
                                     hud.Score += enemy.WorthScore;
                             }
@@ -185,7 +184,7 @@ namespace Spitfire
                     }
 
                     // ENEMY/PLAYER Collision detection
-                    if (CollisionDetection.Collision(enemy, player) && !enemy.Exploding)
+                    if (!player.IsImmortal && CollisionDetection.Collision(enemy, player) && !enemy.Exploding)
                     {
                         enemy.Explode();
                         player.TakeDamage(20);
@@ -193,8 +192,9 @@ namespace Spitfire
 
                     //Problem here with null reference bullets
 
-                    foreach (Bullet bullet in enemy.Bullets.ToArray()) { 
-                        if ((CollisionDetection.Collision(bullet, player))){
+                    foreach (Bullet bullet in enemy.Bullets.ToArray()) {
+                        if (!player.IsImmortal && (CollisionDetection.Collision(bullet, player)))
+                        {
                             player.TakeDamage(50); // Need to change to reflect power of bullet
                             enemy.Bullets.Remove(bullet);
                         }
@@ -206,10 +206,10 @@ namespace Spitfire
                 // GROUND/PLAYER collision detection
                 foreach (Sprite ground in level.grounds)
 	            {
-                    if (CollisionDetection.Collision(ground, player))
+                    if (!player.IsImmortal && CollisionDetection.Collision(ground, player))
                     {
-                        player.TakeDamage(100);
-                        player.Die();
+                        player.TakeDamage(30);
+                        player.Die(true);
                     }
 	            }
 

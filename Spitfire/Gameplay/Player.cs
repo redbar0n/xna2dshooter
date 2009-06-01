@@ -38,6 +38,7 @@ namespace Spitfire
         }
         private ArrayList bullets;
 
+        private bool crashGround;
 
         /// <summary>
         /// The amount of damage one bullet will do.
@@ -99,9 +100,18 @@ namespace Spitfire
         private int currentHP;
 
         /// <summary>
-        /// Detertines if the player can be damaged or not.
+        /// Detertines if collision detection should be performed with player.
         /// </summary>
+        public bool IsImmortal
+        {
+            get
+            {
+                return isImmortal;
+            }
+        }
         private bool isImmortal = false; 
+
+        private bool isAlive = true;
 
         //private Vector2 maxVelocity;
         private float pi = (float)Math.PI;
@@ -127,6 +137,7 @@ namespace Spitfire
         /// player sounds
         private SoundEffect bulletSound;
         private SoundEffect engineSound;
+        private SoundEffect hitSound;
 
         //private SoundEffect playerExplosion;
 
@@ -153,9 +164,12 @@ namespace Spitfire
             }
         }
         private Animation normalAni;
+        private Animation explodeAni;
         private Animation currentAni;
         private bool flip = false; // A variable to determine is the plane is to be flipped or not.
-        
+
+        private Level level;
+
         /// <summary>
         /// A variable to determine how the up/down keys rotate the plane in the getinput method
         /// </summary>
@@ -184,8 +198,11 @@ namespace Spitfire
             {
                 if (currentAni == null)
                 {
-
                     return base.Texture;
+                }
+                else if (currentAni == explodeAni)
+                {
+                    return explodeAni.Texture;
                 }
                 else
                 {
@@ -199,8 +216,9 @@ namespace Spitfire
 
         // future: method to fly to end of screen when reached level end.
 
-        public Player(ScreenManager screenManager, ContentManager content)
+        public Player(ScreenManager screenManager, ContentManager content, Level level)
         {
+            this.level = level;
             this.screenManager = screenManager;
             base.Position = new Vector2(this.screenManager.GraphicsDevice.Viewport.Width / 2, this.screenManager.GraphicsDevice.Viewport.Height / 2);
             base.Velocity = initialVelocity;
@@ -213,13 +231,24 @@ namespace Spitfire
             bombCount = 50;
             animate = new AnimationPlayer();
             burstCount = burstAmmount; //The default for burstAmmount is 3
+        }
+
+        public void LoadContent(ContentManager content)
+        {
+            NormalAni = new Animation(content.Load<Texture2D>("Sprites/Player/spitfirestill_tmp_flipped"), 0.08f, 1f, true);
+            explodeAni = new Animation(content.Load<Texture2D>("Sprites/Enemies/expllarge_final"), 2f, 1f, false);
+            bulletTexture = content.Load<Texture2D>("Sprites/Player/heroammo");
+            bombTexture = content.Load<Texture2D>("Sprites/Player/herobomb");
 
             // NickSound
             bulletSound = content.Load<SoundEffect>("Sounds/Player/Single_shot1");
             engineSound = content.Load<SoundEffect>("Sounds/Player/Engine1");
             Bomb.BombSound = content.Load<SoundEffect>("Sounds/Player/whistle");
             Bomb.ExplosionSound = content.Load<SoundEffect>("Sounds/explode_light2");
-            engineSound.Play(0.1f, 0.0f, 0.0f, true);
+            engineSound.Play(0.3f, 0.0f, 0.0f, true);
+            hitSound = content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
+
+            
         }
 
         public void GetInput()
@@ -415,37 +444,57 @@ namespace Spitfire
 
         public void Update(GameTime gameTime)
         {
-            // TODO: update player logic
-
-            GetInput();
-
-            determineVelocity();  
-
-            // Uncomment this code to make it that the player can move up and down the screen
-            //base.Position += new Vector2(0, Velocity.Y);
-            //base.Velocity = new Vector2(Velocity.X, 0f);
-
-            if (isShooting)
+            if (currentAni == explodeAni && explodeAni.IsFinished)
             {
-                if ((gameTime.TotalGameTime - bulletCreationTime).TotalMilliseconds > burstDelay)
+                if (crashGround && currentHP > 0)
                 {
-                    if (burstCount != 0)
+                    isAlive = true;
+                    level.resetPositions();
+                    setAnimation(normalAni);
+                    crashGround = false;
+                    explodeAni.IsFinished = false;
+                    Rotation = 0;
+                    flip = false;
+                }
+                else
+                {
+                    GameOverScreen gameOverScreen = new GameOverScreen(hud);
+                    this.screenManager.AddScreen(gameOverScreen, null);
+                }
+            }
+
+            if (isAlive)
+            {
+                GetInput();
+                determineVelocity();
+
+                // Uncomment this code to make it that the player can move up and down the screen
+                //base.Position += new Vector2(0, Velocity.Y);
+                //base.Velocity = new Vector2(Velocity.X, 0f);
+
+                if (isShooting)
+                {
+                    if ((gameTime.TotalGameTime - bulletCreationTime).TotalMilliseconds > burstDelay)
                     {
-                        Shoot();
-                        burstCount -= 1;
-                        if (burstCount > 0)
-                            bulletCreationTime = gameTime.TotalGameTime;
+                        if (burstCount != 0)
+                        {
+                            Shoot();
+                            burstCount -= 1;
+                            if (burstCount > 0)
+                                bulletCreationTime = gameTime.TotalGameTime;
+                            else
+                            {
+                                bulletCreationTime = gameTime.TotalGameTime;
+                                burstDelay = 500;
+                            }
+                        }
                         else
                         {
-                            bulletCreationTime = gameTime.TotalGameTime;
-                            burstDelay = 500;
-                        }
-                    }
-                    else {
-                        isShooting = false;
-                        burstDelay = 50;
-                        burstCount = burstAmmount;
+                            isShooting = false;
+                            burstDelay = 50;
+                            burstCount = burstAmmount;
 
+                        }
                     }
                 }
             }
@@ -492,13 +541,11 @@ namespace Spitfire
 
         public void TakeDamage(int damage)
         {
-            if (!isImmortal)
+            hitSound.Play();
+            currentHP -= damage;
+            if (currentHP < 0)
             {
-                currentHP -= damage;
-                if (currentHP < 0)
-                {
-                    Die();
-                }
+                Die(false);
             }
         }
 
@@ -666,11 +713,14 @@ namespace Spitfire
         }
         */
 
-        public void Die()
+        public void Die(bool crashGround)
         {
-            GameOverScreen gameOverScreen = new GameOverScreen(hud);
-
-            this.screenManager.AddScreen(gameOverScreen, null);
+            base.Velocity = new Vector2(0, 0);
+            this.crashGround = crashGround;
+            isAlive = false;
+            // play explosion animation
+            setAnimation(explodeAni);
+            isImmortal = true;
         }
 
         /// <summary>

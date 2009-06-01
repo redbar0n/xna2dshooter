@@ -11,7 +11,6 @@ namespace Spitfire
 {
     public class Enemy : Sprite
     {
-
         /// <summary>
         /// The number of HP an enemy starts off with
         /// </summary>
@@ -275,7 +274,7 @@ namespace Spitfire
             {
                 // NickSound
                 engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Lightfighter/Engine1");
-                engineSoundInst = engineSound.Play(0.2f, 0.0f, 0.0f, true);
+                engineSoundInst = engineSound.Play(0.0f, 0.0f, 0.0f, true);
                 hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_soft");
                 explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_light1");
                 bulletTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/enemyammo");
@@ -284,7 +283,7 @@ namespace Spitfire
             {
                 // NickSound
                 engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Heavyfighter/Engine3");
-                engineSoundInst = engineSound.Play(0.2f, 0.0f, 0.0f, true);
+                engineSoundInst = engineSound.Play(0.0f, 0.0f, 0.0f, true);
                 hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_soft");
                 explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_light1");
                 bulletTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/enemyammo");
@@ -354,6 +353,10 @@ namespace Spitfire
                     Explode(); // will pass the exploding down to animateExplosion, which will pass it up to level which finally removes enemy
                 //}
             }
+        }
+
+        public void playHitSound()
+        {
             // NickSound
             hitSound.Play(0.4f); // magic number, put to top eventually
         }
@@ -373,23 +376,6 @@ namespace Spitfire
             engineSoundInst.Stop();
         }
 
-        public void Update()
-        {
-            base.Position += base.Velocity;
-
-            if (exploding && animate.Animation.IsFinished)
-            {
-                hasExploded = true;
-            }
-
-        }
-
-        public void Update(Vector2 playersVelocity)
-        {
-            base.Position += (base.Velocity - playersVelocity);
-        }
-
-        
         /// <summary>
         /// Updates enemy position and its bullets and bomb onscreen. Method is overloaded in each
         /// subsequent derived enemy class.
@@ -404,6 +390,12 @@ namespace Spitfire
             {
                 hasExploded = true;
             }
+
+            engineSoundInst.Volume = 100 / Math.Abs(playersPosition.X - Position.X);
+            if (engineSoundInst.Volume < 0.05f)
+                engineSoundInst.Volume = 0;
+            else if (engineSoundInst.Volume > 10f)
+                engineSoundInst.Volume = 10.0f;
 
             //foreach (Bullet bullet in bullets.ToArray())
             //{

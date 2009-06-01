@@ -104,12 +104,6 @@ namespace Spitfire
 
         public override void Update(Vector2 playersVelocity, Vector2 playersPosition, GameTime gameTime)
         {
-
-            if (Exploding && getAnimationFinish())
-            {
-                HasExploded = true;
-            }
-
             if (Exploding)
             {
                 Rotation = 0f;
@@ -151,10 +145,7 @@ namespace Spitfire
                     }
                 }
             }
-               
-                        
-            
-            base.Position += (base.Velocity - playersVelocity);
+
             //barrelLocation += (base.Velocity - playersVelocity);
             foreach (Bullet bullet in Bullets.ToArray())
             {
@@ -168,6 +159,8 @@ namespace Spitfire
                     bullet.Update(playersVelocity);
                 }
             }
+
+            base.Update(playersVelocity, playersPosition, gameTime);
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

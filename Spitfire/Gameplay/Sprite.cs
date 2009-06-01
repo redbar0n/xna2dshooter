@@ -62,7 +62,7 @@ namespace Spitfire
         public FaceDirection faceDirection = FaceDirection.Left; // Left because of enemies
 
         /// <summary>
-        /// // future: to be used for rotating sprite
+        /// Rotates the sprite
         /// </summary>
         public float Rotation
         {
