@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Spitfire
 {
@@ -10,32 +11,74 @@ namespace Spitfire
     {
         // TODO: make proper implementation of IntroScreen
         public static int storyScreenNr = 2;
+        int pagecounter = 0;
+        string currentpage;
+        string[] pages = new string[4];
+
 
         public IntroScreen()
-            : base("Background Story", new Vector2(500, 680))
+            : base("Background Story", new Vector2(300, 680))
         {
             MenuEntry continueMenuEntry = new MenuEntry("Press space to continue...");
             continueMenuEntry.Selected += ContinueMenuEntrySelected;
             MenuEntries.Add(continueMenuEntry);
 
+            pages[0] =
+                " These are desperate times soldier, our forces are few \n and thin, "
+            + "spread around the borders of England. Ever \n since the soviets and nazis "
+            + "joined forces in the 40's,\n nothing has been going right; it's a miracle how "
+            + "we\n even survived for two decades. To say the war has not\n been going well for "
+            + "us would be a severe understatement.\n Our men are demoralised as the allied "
+            + "nations\n fall one by one, and the recent rumours do not help\n either.";
+
+            pages[1] =
+                " Supposedly Stalin and Hitler are developing a super\n weapon that would be capable "
+            + "of destroying England\n in hours. Whether this information is real or not, it\n doesn't "
+            + "matter, we will not sit idly by after hearing\n this. Your main objective is to confirm "
+            + "whether or not\n this weapon exists, and if so, to destroy it.\n England needs this victory.";
+
+            pages[2] =
+              " However, a more immediate threat exists. Reports from a\n nearby city indicate our "
+            + "forces have been crushed,\n and that the nazis began setting up base there. It's only \n "
+            + "a matter of time until they march right in. We must\n strike now, before their "
+            + "preparations are finished. Your\n mission will not be easy; you must fly to the "
+            + "port town\n and eliminate all occupying forces, by yourself, until\n reinforcements arrive.";
+
+            pages[3] =
+                "Good Luck";
+
+            currentpage = pages[pagecounter];
         }
 
 
         void ContinueMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
+
+            if (pagecounter < 3)
+            {
+                pagecounter++;
+                currentpage = pages[pagecounter];
+            }
+            else
+            {
+                BackgroundScreen briefScreen = new BackgroundScreen(("Menus/level_summary"));
+                LoadingScreen.Load(ScreenManager, false, e.PlayerIndex, briefScreen, new MissionBriefScreen(1, new GameplayScreen()));
+            }
+
+            /*
             if (storyScreenNr <= 1)
             {
-                LoadingScreen.Load(ScreenManager, false, e.PlayerIndex, new BackgroundScreen(("Menus/story-screen" + storyScreenNr)), new IntroScreen());
+                LoadingScreen.Load(ScreenManager, false, e.PlayerIndex, new BackgroundScreen(("Menus/story_screen_final")), new IntroScreen());
                 //ScreenManager.AddScreen(new BackgroundScreen(("Menus/story-screen" + storyScreenNr)), e.PlayerIndex);
                 //ScreenManager.AddScreen(new IntroScreen(), e.PlayerIndex);
                 storyScreenNr++;
             }
             else
             {
-                storyScreenNr = 2;
+                //storyScreenNr = 2;
                 LoadingScreen.Load(ScreenManager, true, e.PlayerIndex, new GameplayScreen());
             }
-
+             */
         }
 
 
@@ -52,6 +95,28 @@ namespace Spitfire
             ScreenManager.Game.Exit();
         }
 
+        public override void Draw(GameTime gameTime)
+        {
+            SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
+            SpriteFont font = ScreenManager.Font;
+            Color color = Color.Black;
+            color = new Color(color.R, color.G, color.B, TransitionAlpha);
+            Vector2 origin = new Vector2(0, font.LineSpacing / 2);
+            float scale = 0.8f;
+            Vector2 position = new Vector2(210, 300);
+
+            if (currentpage == pages[3])
+            {
+                scale = 2.0f;
+                position = new Vector2(400, 400);
+            }
+
+            spriteBatch.Begin();
+            spriteBatch.DrawString(font, currentpage, position, color, 0,
+                                   origin, scale, SpriteEffects.None, 0);
+            spriteBatch.End();
+            base.Draw(gameTime);
+        }
 
     }
 }

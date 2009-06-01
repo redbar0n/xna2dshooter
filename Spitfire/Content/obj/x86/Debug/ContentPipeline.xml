@@ -497,6 +497,33 @@
       <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountainfinal4.xnb</Output>
       <Time>2009-05-28T23:28:08.8888224+10:00</Time>
     </Item>
+    <Item>
+      <Source>Menus\story_screen_final.png</Source>
+      <Name>Menus\story_screen_final</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\story_screen_final.xnb</Output>
+      <Time>2009-06-01T20:10:13.9194784+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Menus\story-screen1.png</Source>
+      <Name>Menus\story-screen1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\story-screen1.xnb</Output>
+      <Time>2009-06-01T20:33:47.7825136+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Menus\level_summary.PNG</Source>
+      <Name>Menus\level_summary</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\level_summary.xnb</Output>
+      <Time>2009-06-01T21:07:54.2652112+10:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

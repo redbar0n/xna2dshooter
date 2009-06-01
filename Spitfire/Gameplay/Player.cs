@@ -136,8 +136,10 @@ namespace Spitfire
 
         /// player sounds
         private SoundEffect bulletSound;
-        private SoundEffect engineSound;
         private SoundEffect hitSound;
+        private SoundEffect engineSound;
+        public SoundEffectInstance engineSoundInst;
+        public const float engineSoundVolume = 0.3f;
 
         //private SoundEffect playerExplosion;
 
@@ -236,19 +238,17 @@ namespace Spitfire
         public void LoadContent(ContentManager content)
         {
             NormalAni = new Animation(content.Load<Texture2D>("Sprites/Player/spitfirestill_tmp_flipped"), 0.08f, 1f, true);
-            explodeAni = new Animation(content.Load<Texture2D>("Sprites/Enemies/expllarge_final"), 2f, 1f, false);
+            explodeAni = new Animation(content.Load<Texture2D>("Sprites/Enemies/expllarge_final"), 1f, 1f, false);
             bulletTexture = content.Load<Texture2D>("Sprites/Player/heroammo");
             bombTexture = content.Load<Texture2D>("Sprites/Player/herobomb");
 
-            // NickSound
             bulletSound = content.Load<SoundEffect>("Sounds/Player/Single_shot1");
             engineSound = content.Load<SoundEffect>("Sounds/Player/Engine1");
             Bomb.BombSound = content.Load<SoundEffect>("Sounds/Player/whistle");
-            Bomb.ExplosionSound = content.Load<SoundEffect>("Sounds/explode_light2");
-            engineSound.Play(0.3f, 0.0f, 0.0f, true);
+            Bomb.explosionSound = content.Load<SoundEffect>("Sounds/explode_light2");
+            // NickSound
+            engineSoundInst = engineSound.Play(engineSoundVolume, 0.0f, 0.0f, true);
             hitSound = content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
-
-            
         }
 
         public void GetInput()
@@ -455,6 +455,8 @@ namespace Spitfire
                     explodeAni.IsFinished = false;
                     Rotation = 0;
                     flip = false;
+                    if (!GameplayScreen.muted)
+                        engineSoundInst.Resume();
                 }
                 else
                 {
@@ -541,7 +543,8 @@ namespace Spitfire
 
         public void TakeDamage(int damage)
         {
-            hitSound.Play();
+            if (!GameplayScreen.muted)
+                hitSound.Play();
             currentHP -= damage;
             if (currentHP < 0)
             {
@@ -718,7 +721,7 @@ namespace Spitfire
             base.Velocity = new Vector2(0, 0);
             this.crashGround = crashGround;
             isAlive = false;
-            // play explosion animation
+            engineSoundInst.Stop();
             setAnimation(explodeAni);
             isImmortal = true;
         }
@@ -758,7 +761,8 @@ namespace Spitfire
             bullet.Texture = bulletSprite;
             bullets.Add(bullet);
             // NickSound
-            bulletSound.Play();
+            if (!GameplayScreen.muted)
+                bulletSound.Play();
         }
 
         /// <summary>

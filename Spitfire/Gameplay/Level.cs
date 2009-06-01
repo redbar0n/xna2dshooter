@@ -111,7 +111,7 @@ namespace Spitfire
 
         public Level(GameScreen gameplayScreen)
         {
-            levelNumber = 2;
+            levelNumber = 1;
             backgrounds = new List<Sprite>();
             enemies = new List<Enemy>();
             pickups = new List<Pickup>();
@@ -929,11 +929,12 @@ namespace Spitfire
             else if (positionInLevel == 26 && addEnemies)
             {
                 // END LEVEL
+                MediaPlayer.Stop();
+
+                BackgroundScreen briefScreen = new BackgroundScreen(("Menus/level_summary"));
+                LoadingScreen.Load(gameplayScreen.ScreenManager, false, PlayerIndex.One, briefScreen, new MissionBriefScreen(2, gameplayScreen));
+                
                 changeLevel(2);
-                //MediaPlayer.Stop();
-                // TODO: kill all sounds
-                //gameplayScreen.ExitScreen();
-                // TODO: Add level summary screen
             }
         }
 
@@ -941,6 +942,9 @@ namespace Spitfire
         {
             if (positionInLevel == 1 && addEnemies)
             {
+                // resume playing music after stopped during level change
+                MediaPlayer.Resume();
+
                 // 1 heavy fighter responds to distress calls from the scouts
 
                 Enemy hfighter = new Enemy(this, Enemy.Type.Exploding, "heavyfighter", false);
@@ -967,6 +971,16 @@ namespace Spitfire
                 enemies.Add(finalboss);
 
                 addEnemies = false;
+            }
+            else if (positionInLevel == 30 && addEnemies)
+            {
+                // END LEVEL
+                MediaPlayer.Pause();
+
+                BackgroundScreen briefBackground = new BackgroundScreen(("Menus/level_summary"));
+                LoadingScreen.Load(gameplayScreen.ScreenManager, false, PlayerIndex.One, briefBackground, new LevelSummaryScreen(2, (GameplayScreen) gameplayScreen));
+
+                changeLevel(3);
             }
         }
 

@@ -55,10 +55,10 @@ namespace Spitfire
         /// </summary>
         void PlayGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            //LoadingScreen.Load(ScreenManager, false, e.PlayerIndex, new BackgroundScreen(("Menus/story-screen1")), new IntroScreen());
+            LoadingScreen.Load(ScreenManager, false, e.PlayerIndex, new BackgroundScreen(("Menus/story_screen_final")), new IntroScreen());
             
-            LoadingScreen.Load(ScreenManager, true, e.PlayerIndex,
-                               new GameplayScreen());
+            //LoadingScreen.Load(ScreenManager, true, e.PlayerIndex,
+            //                   new GameplayScreen());
             
         }
 

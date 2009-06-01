@@ -19,61 +19,36 @@ namespace Spitfire
     /// The pause menu comes up over the top of the game,
     /// giving the player options to resume or quit.
     /// </summary>
-    class PauseMenuScreen : MenuScreen
+    class GameOverScreen : MenuScreen
     {
         
         Texture2D texture;
-        Texture2D controlsTex;
-        Level level;
-        GameplayScreen gameplayScreen;
-
-        MenuEntry muteGameMenuEntry;
+        HUD hud;
 
         #region Initialization
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public PauseMenuScreen(Level level, GameplayScreen gameplayScreen)
-            : base("Paused", null)
+        public GameOverScreen(HUD hud)
+            : base("Game Over", null)
         {
-            this.level = level;
-            this.gameplayScreen = gameplayScreen;
+            this.hud = hud;
 
             // Flag that there is no need for the game to transition
             // off when the pause menu is on top of it.
             IsPopup = true;
 
             // Create our menu entries.
-            MenuEntry resumeGameMenuEntry = new MenuEntry("Resume Game");
-            
-            if (!GameplayScreen.muted)
-            {
-                muteGameMenuEntry = new MenuEntry("Mute all sound");
-            }
-            else
-            {
-                muteGameMenuEntry = new MenuEntry("Unmute all sound");
-            }
-            MenuEntry lvl1GameMenuEntry = new MenuEntry("Go to level 1");
-            MenuEntry lvl2GameMenuEntry = new MenuEntry("Go to level 2");
-            MenuEntry finalbossGameMenuEntry = new MenuEntry("Go to final boss");
-            MenuEntry quitGameMenuEntry = new MenuEntry("Quit Game");
+            MenuEntry restartGameMenuEntry = new MenuEntry("Restart game");
+            MenuEntry quitGameMenuEntry = new MenuEntry("Quit to Main Menu");
             
             // Hook up menu event handlers.
-            resumeGameMenuEntry.Selected += OnCancel;
-            muteGameMenuEntry.Selected += MuteGameMenuEntrySelected;
-            lvl1GameMenuEntry.Selected += lvl1GameMenuEntrySelected;
-            lvl2GameMenuEntry.Selected += lvl2GameMenuEntrySelected;
-            finalbossGameMenuEntry.Selected += GotoFinalBossMenuEntrySelected;
+            restartGameMenuEntry.Selected += OnCancel;
             quitGameMenuEntry.Selected += QuitGameMenuEntrySelected;
 
             // Add entries to the menu.
-            MenuEntries.Add(resumeGameMenuEntry);
-            MenuEntries.Add(muteGameMenuEntry);
-            MenuEntries.Add(lvl1GameMenuEntry);
-            MenuEntries.Add(lvl2GameMenuEntry);
-            MenuEntries.Add(finalbossGameMenuEntry);
+            MenuEntries.Add(restartGameMenuEntry);
             MenuEntries.Add(quitGameMenuEntry);
         }
 
@@ -81,51 +56,20 @@ namespace Spitfire
         override public void LoadContent()
         {
             ContentManager content = ScreenManager.Game.Content;
-            texture = content.Load<Texture2D>("Menus/pausescreen");
-            controlsTex = content.Load<Texture2D>("Menus/controls");
+
+            texture = content.Load<Texture2D>("Menus/gameover");
         }
 
         #endregion
 
         #region Handle Input
 
-
-        void MuteGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        /// <summary>
+        /// Handler for when the user has cancelled the menu.
+        /// </summary>
+        protected override void OnCancel(PlayerIndex playerIndex)
         {
-            if (!GameplayScreen.muted)
-            {
-                GameplayScreen.muted = true;
-                gameplayScreen.muteSounds();
-                muteGameMenuEntry.Text = "Unmute all sound";
-            }
-            else
-            {
-                GameplayScreen.muted = false;
-                gameplayScreen.unMuteSounds();
-                muteGameMenuEntry.Text = "Mute all sound";
-            }
-            
-
-        }
-
-        void GotoFinalBossMenuEntrySelected(object sender, PlayerIndexEventArgs e)
-        {
-            level.changeLevel(2);
-            level.setLevelProgress(24);
-            ExitScreen();
-
-        }
-
-        void lvl1GameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
-        {
-            level.changeLevel(1);
-            ExitScreen();
-        }
-
-        void lvl2GameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
-        {
-            level.changeLevel(2);
-            ExitScreen();
+            LoadingScreen.Load(ScreenManager, true, playerIndex, new GameplayScreen());
         }
 
         /// <summary>
@@ -133,7 +77,7 @@ namespace Spitfire
         /// </summary>
         void QuitGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            const string message = "Are you sure you want to quit this game?";
+            const string message = "Are you sure you want to quit to the Main Menu?";
 
             MessageBoxScreen confirmQuitMessageBox = new MessageBoxScreen(message);
 
@@ -161,7 +105,7 @@ namespace Spitfire
 
 
         /// <summary>
-        /// Draws the pause menu screen. This darkens down the gameplay screen
+        /// Draws the game over menu screen. This darkens down the gameplay screen
         /// that is underneath us, and then chains to the base MenuScreen.Draw.
         /// </summary>
         public override void Draw(GameTime gameTime)
@@ -170,9 +114,11 @@ namespace Spitfire
             ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2 / 3);
 
             Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
-            Vector2 texturePos = new Vector2(viewport.Width - texture.Width, viewport.Height - texture.Height) / 2;
 
-            Vector2 controlsPos = new Vector2((viewport.Width - controlsTex.Width) / 2, 60);
+            Vector2 texturePos = new Vector2(viewport.Width - texture.Width, viewport.Height - texture.Height) / 2;
+            string scoreText = "SCORE: " + hud.Score;
+            Vector2 scoreTextSize = ScreenManager.Font.MeasureString(scoreText);
+            Vector2 scorePos = texturePos + new Vector2((texture.Width-scoreTextSize.X)/2, 50);
 
             // Fade the popup alpha during transitions.
             Color color = new Color(255, 255, 255, TransitionAlpha);
@@ -182,7 +128,8 @@ namespace Spitfire
             spriteBatch.Begin();
 
             spriteBatch.Draw(texture, texturePos, color);
-            spriteBatch.Draw(controlsTex, controlsPos, color);
+
+            spriteBatch.DrawString(ScreenManager.Font, "SCORE: " + hud.Score, scorePos, Color.White);
 
             spriteBatch.End();
 

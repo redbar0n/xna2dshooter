@@ -38,6 +38,15 @@ namespace Spitfire
         Player player;
         HUD hud;
 
+        public HUD Hud
+        {
+            get
+            { return hud; }
+        }
+
+
+        public static bool muted = false;
+
         /// <summary>
         /// Storage for bomb explosions
         /// </summary>
@@ -58,6 +67,29 @@ namespace Spitfire
 
         }
 
+        public void muteSounds()
+        {
+            muted = true;
+
+            MediaPlayer.Stop();
+            player.engineSoundInst.Stop();
+            
+            foreach (Enemy enemy in level.Enemies)
+            {
+                enemy.engineSoundInst.Stop(); ;
+            }
+        }
+
+        public void unMuteSounds()
+        {
+            muted = false;
+            MediaPlayer.Resume();
+            player.engineSoundInst.Resume();
+            foreach (Enemy enemy in level.Enemies)
+            {
+                enemy.engineSoundInst.Resume();
+            }
+        }
 
         /// <summary>
         /// Load graphics content for the game.
@@ -75,7 +107,7 @@ namespace Spitfire
             explosions = new ArrayList();
 
             //level.LoadContent(content, "Sprites/Backgrounds/Mountain/mountainfinal", 4);
-            level.LoadContent(content, "Sprites/Backgrounds/City/cityback1_0", "Sprites/Backgrounds/groundtwo_final_tmp", 3);
+            level.LoadContent(content, "Sprites/Backgrounds/Mountain/mountainfinal", "Sprites/Backgrounds/ground_final", 4);
             player.LoadContent(content);
             hud.LoadContent(content);
 
@@ -99,6 +131,7 @@ namespace Spitfire
         /// </summary>
         public override void UnloadContent()
         {
+            MediaPlayer.Stop();
             content.Unload();
         }
 
@@ -163,8 +196,9 @@ namespace Spitfire
                         if (CollisionDetection.Collision(enemy, bomb))
                         {
                             //NickSound
-                            bomb.BombSoundInst.Stop(true);
-                            bomb.PlayExplosionSound();
+                            bomb.BombSoundInst.Stop();
+                            if (!GameplayScreen.muted)
+                                Bomb.explosionSound.Play();
                             Explosion explosion = new Explosion(bomb.Position, gameTime);
                             explosion.Texture = content.Load<Texture2D>("Sprites/Enemies/expllarge_final");
                             explosions.Add(explosion);
@@ -222,8 +256,9 @@ namespace Spitfire
                         if (CollisionDetection.Collision(ground, bomb))
                         {
                             //NickSound
-                            bomb.BombSoundInst.Stop(true);
-                            bomb.PlayExplosionSound();
+                            bomb.BombSoundInst.Stop();
+                            if (!GameplayScreen.muted)
+                                Bomb.explosionSound.Play();
                             Explosion explosion = new Explosion(new Vector2(bomb.Position.X, bomb.Position.Y - 50f), gameTime);
                             explosion.Texture = content.Load<Texture2D>("Sprites/Enemies/expllarge_final");
                             explosions.Add(explosion);
@@ -261,7 +296,7 @@ namespace Spitfire
 
             if (input.IsPauseGame(ControllingPlayer))
             {
-                ScreenManager.AddScreen(new PauseMenuScreen(level), ControllingPlayer);
+                ScreenManager.AddScreen(new PauseMenuScreen(level, this), ControllingPlayer);
             }
         }
 
