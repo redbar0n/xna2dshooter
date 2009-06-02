@@ -109,10 +109,9 @@ namespace Spitfire
         /// </summary>
         private float scale = 2.1f; // NB: may cause error since scale is in sprite as well
 
-        public Level(GameScreen gameplayScreen, ContentManager content)
+        public Level(GameScreen gameplayScreen)
         {
-            this.content = content;
-            levelNumber = 1;
+            levelNumber = 2;
             backgrounds = new List<Sprite>();
             enemies = new List<Enemy>();
             pickups = new List<Pickup>();
@@ -122,7 +121,7 @@ namespace Spitfire
             this.gameplayScreen = gameplayScreen;
         }
 
-        public void changeLevel()
+        public void changeLevel(int levelnr)
         {
             backgroundBufferWidth = 0;
             groundsBufferWidth = 0;
@@ -132,53 +131,22 @@ namespace Spitfire
             enemies.Clear();
             pickups.Clear();
 
-            if (levelNumber == 1)
+            levelNumber = levelnr;
+            if (levelnr == 1)
             {
-                loadLevel(1);
+                LoadContent(content, "Sprites/Backgrounds/Mountain/mountainfinal", "Sprites/Backgrounds/ground_final", 4);
             }
-            else if (levelNumber == 2)
+            else if (levelnr == 2)
             {
-                loadLevel(2);
-            }
-        }
-
-        /// <summary>
-        /// Resets the position of skys, backgrounds, grounds and enemies
-        /// </summary>
-        public void resetPositions()
-        {
-            sky.Position = new Vector2(sky.Position.X, 0);
-            skyTwo.Position = new Vector2(skyTwo.Position.X, 0);
-
-            foreach (Sprite frame in backgrounds)
-            {
-                frame.Position += new Vector2(0, 300);
-            }
-
-            foreach (Sprite frame in grounds)
-            {
-                frame.Position += new Vector2(0, 300);
-            }
-
-            foreach (Enemy enemy in enemies)
-            {
-                enemy.Position += new Vector2(0, 300);
+                LoadContent(content, "Sprites/Backgrounds/City/cityback1_0", "Sprites/Backgrounds/groundtwo_final_tmp", 3);
             }
         }
 
-        public void loadLevel(int levelNr)
+        // future: Optimize background loading to remove slight lag. Load smaller backgrounds.
+        public void LoadContent(ContentManager content, String backgroundName, String groundName, int nrOfBackgrounds)
         {
-            String backgroundName = "Sprites/Backgrounds/Mountain/mountainfinal";
-            String groundName = "Sprites/Backgrounds/ground_final";
-            int nrOfBackgrounds = 4;
+            this.content = content;
             
-            if (levelNr == 2)
-            {
-                backgroundName = "Sprites/Backgrounds/City/cityback1_0";
-                groundName = "Sprites/Backgrounds/groundtwo_final_tmp";
-                nrOfBackgrounds = 3;
-            }
-
             // Load sky
             sky.Texture = this.content.Load<Texture2D>("Sprites/backgrounds/finalsky");
             sky.Position = new Vector2(0, 0);
@@ -196,23 +164,6 @@ namespace Spitfire
                 backgrounds.Add(frame);
                 backgroundBufferWidth += frame.Size.Width; // increase width of buffer
             }
-            
-            // Load Ground
-            for (int i = 0; i < 6; i++)
-            {
-                Sprite frame = new Sprite();
-                frame.Texture = this.content.Load<Texture2D>(groundName);
-                frame.Position = new Vector2(groundsBufferWidth, backgrounds[0].Size.Height);
-                frame.Velocity = velocity;
-                grounds.Add(frame);
-                groundsBufferWidth += frame.Size.Width;
-            }
-        }
-
-        // future: Optimize background loading to remove slight lag. Load smaller backgrounds.
-        public void LoadContent()
-        {
-            changeLevel();
 
             /*
             // load an extra background buffer
@@ -229,7 +180,18 @@ namespace Spitfire
 
              */
             
+            // Load Ground
+            for (int i = 0; i < 6; i++)
+            {
+                Sprite frame = new Sprite();
+                frame.Texture = this.content.Load<Texture2D>(groundName);
+                frame.Position = new Vector2(groundsBufferWidth, backgrounds[0].Size.Height);
+                frame.Velocity = velocity;
+                grounds.Add(frame);
+                groundsBufferWidth += frame.Size.Width;
+            }
 
+            // TODO: Load music and sounds
         }
 
         /// <summary>
@@ -803,12 +765,11 @@ namespace Spitfire
             else if (positionInLevel == 26 && addEnemies)
             {
                 // END LEVEL
-                MediaPlayer.Stop();
-
-                BackgroundScreen briefScreen = new BackgroundScreen(("Menus/level_summary"));
-                LoadingScreen.Load(gameplayScreen.ScreenManager, false, PlayerIndex.One, briefScreen, new LevelSummaryScreen(1, (GameplayScreen)gameplayScreen));
-
-                levelNumber = 2;
+                changeLevel(2);
+                //MediaPlayer.Stop();
+                // TODO: kill all sounds
+                //gameplayScreen.ExitScreen();
+                // TODO: Add level summary screen
             }
         }
 
@@ -816,9 +777,6 @@ namespace Spitfire
         {
             if (positionInLevel == 1 && addEnemies)
             {
-                // resume playing music after stopped during level change
-                MediaPlayer.Resume();
-
                 // 1 heavy fighter responds to distress calls from the scouts
 
                 Enemy hfighter = new Enemy(this, Enemy.Type.Exploding, "heavyfighter", false);
@@ -835,15 +793,6 @@ namespace Spitfire
 
                 addEnemies = false;
             }
-            else if (positionInLevel == 2 && addEnemies) { 
-                Zeppelin testZeppelin = new Zeppelin(this,Enemy.Difficulty.Medium,"zeppelin2sized_tmp_flipped", false);
-                testZeppelin.Position = new Vector2(1200f, this.grounds[0].Position.Y - 600f);
-                enemies.Add(testZeppelin);
-                addEnemies = false;
-            
-            }
-
-
             else if (positionInLevel == 25 && addEnemies)
             {
                 Enemy finalboss = new Enemy(this, Enemy.Type.Exploding, "finalboss", true);
@@ -854,16 +803,6 @@ namespace Spitfire
                 enemies.Add(finalboss);
 
                 addEnemies = false;
-            }
-            else if (positionInLevel == 30 && addEnemies)
-            {
-                // END LEVEL
-                MediaPlayer.Pause();
-
-                BackgroundScreen briefBackground = new BackgroundScreen(("Menus/level_summary"));
-                LoadingScreen.Load(gameplayScreen.ScreenManager, false, PlayerIndex.One, briefBackground, new LevelSummaryScreen(2, (GameplayScreen)gameplayScreen));
-
-                levelNumber = 1;
             }
         }
 

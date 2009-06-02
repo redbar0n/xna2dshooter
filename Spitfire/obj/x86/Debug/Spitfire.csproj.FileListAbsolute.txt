@@ -129,3 +129,4 @@ C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire
 C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\SpitfireProject\Spitfire\obj\x86\Debug\Spitfire.exe
 C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\SpitfireProject\Spitfire\obj\x86\Debug\Spitfire.pdb
 C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\arrow.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\arrow.xnb

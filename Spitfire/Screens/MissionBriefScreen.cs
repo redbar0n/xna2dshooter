@@ -12,6 +12,7 @@ namespace Spitfire
         string brief;
         string brief1;
         string brief2;
+        string gameover;
         int level;
         GameScreen gameplayScreen;
 
@@ -33,16 +34,24 @@ namespace Spitfire
             + "Destroy as many enemies as you can,\n"
             + "and destroy Hitler and Stalin's super weapon!";
 
+            gameover = " Congratulations, you completed the game!\n"
+            + " You should be proud of yourself!\n\n\n\n\n This game was made by:\n Brian Lam (Game design),\n Nicole McMahon (Artwork),\n Nick Maunder (Code),\n Magne Gasland (Code).\n\n It was made the first semester of 2009\n at QUT, Brisbane in Peta Wyeths unit:\n INB281 Adv. game design";
+
             if (level == 1)
                 brief = brief1;
             else if (level == 2)
                 brief = brief2;
+            else if (level == 3)
+                brief = gameover;
         }
 
 
         void ContinueMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            LoadingScreen.Load(ScreenManager, true, e.PlayerIndex, gameplayScreen);
+            if (level != 3)
+                LoadingScreen.Load(ScreenManager, true, e.PlayerIndex, gameplayScreen);
+            else
+                LoadingScreen.Load(ScreenManager, false, e.PlayerIndex, new BackgroundScreen("Menus/gamemenu"), new MainMenuScreen());
         }
 
 
@@ -67,13 +76,18 @@ namespace Spitfire
             color = new Color(color.R, color.G, color.B, TransitionAlpha);
             Vector2 origin = new Vector2(0, font.LineSpacing / 2);
             float scale = 1f;
+
+            
             Vector2 position = new Vector2(250, 300);
+            if (level == 3)
+                position = new Vector2(250, 100);
 
             spriteBatch.Begin();
             spriteBatch.DrawString(font, brief, position, color, 0,
                                    origin, scale, SpriteEffects.None, 0);
             spriteBatch.End();
-            base.Draw(gameTime);
+            if (level != 3)
+                base.Draw(gameTime);
         }
 
     }

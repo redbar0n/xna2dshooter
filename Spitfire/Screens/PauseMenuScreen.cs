@@ -114,7 +114,7 @@ namespace Spitfire
 
         void GotoFinalBossMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            level.changeLevel(2);
+            level.levelNumber = 2;
             level.setLevelProgress(24);
             ExitScreen();
 
@@ -122,13 +122,13 @@ namespace Spitfire
 
         void lvl1GameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            level.changeLevel(1);
+            level.levelNumber = 1;
             ExitScreen();
         }
 
         void lvl2GameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
-            level.changeLevel(2);
+            level.levelNumber = 2;
             ExitScreen();
         }
 

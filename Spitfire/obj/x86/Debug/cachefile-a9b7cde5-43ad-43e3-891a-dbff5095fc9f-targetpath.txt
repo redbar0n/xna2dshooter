@@ -37,6 +37,7 @@ Content\Menus\controls.xnb
 Content\Menus\story_screen_final.xnb
 Content\Menus\story-screen1.xnb
 Content\Menus\level_summary.xnb
+Content\Sprites\Enemies\arrow.xnb
 Content\HUD\Pericles.xnb
 Content\gamefont.xnb
 Content\menufont.xnb
@@ -57,4 +58,3 @@ Content\Sounds\Enemy\ricochet_soft.xnb
 Content\Sounds\Enemy\Zeppelin\Engine2.xnb
 Content\Sounds\Enemy\explode_light1.xnb
 Content\Sounds\explode_light2.xnb
-Content\Sprites\Enemies\arrow.xnb

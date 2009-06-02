@@ -261,13 +261,13 @@ namespace Spitfire
             bombTexture = content.Load<Texture2D>("Sprites/Player/herobomb");
             
             // NickSound
-            //bulletSound = content.Load<SoundEffect>("Sounds/Player/Single_shot1");
-            //engineSound = content.Load<SoundEffect>("Sounds/Player/Engine1");
-            //Bomb.BombSound = content.Load<SoundEffect>("Sounds/Player/whistle");
-            //Bomb.explosionSound = content.Load<SoundEffect>("Sounds/explode_light2");
+            bulletSound = content.Load<SoundEffect>("Sounds/Player/Single_shot1");
+            engineSound = content.Load<SoundEffect>("Sounds/Player/Engine1");
+            Bomb.BombSound = content.Load<SoundEffect>("Sounds/Player/whistle");
+            Bomb.explosionSound = content.Load<SoundEffect>("Sounds/explode_light2");
             
-            //engineSoundInst = engineSound.Play(engineSoundVolume, 0.0f, 0.0f, true);
-            //hitSound = content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
+            engineSoundInst = engineSound.Play(engineSoundVolume, 0.0f, 0.0f, true);
+            hitSound = content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
         }
 
         public void GetInput()
@@ -516,8 +516,8 @@ namespace Spitfire
                     Rotation = 0;
                     flip = false;
                     //NickSound
-                    //if (!GameplayScreen.muted)
-                    //    engineSoundInst.Resume();
+                    if (!GameplayScreen.muted)
+                        engineSoundInst.Resume();
                 }
                 else
                 {
@@ -622,8 +622,8 @@ namespace Spitfire
         public void TakeDamage(int damage)
         {
             //NickSound
-            //if (!GameplayScreen.muted)
-            //    hitSound.Play();
+            if (!GameplayScreen.muted)
+                hitSound.Play();
             currentHP -= damage;
             wasDamaged = true; // Activates rumble feature
             if (currentHP < 0)
@@ -860,8 +860,8 @@ namespace Spitfire
             bullet.Texture = bulletSprite;
             bullets.Add(bullet);
             // NickSound
-            //if (!GameplayScreen.muted)
-            //    bulletSound.Play();
+            if (!GameplayScreen.muted)
+                bulletSound.Play();
         }
 
         /// <summary>

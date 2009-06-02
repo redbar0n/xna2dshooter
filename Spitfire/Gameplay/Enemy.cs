@@ -278,47 +278,47 @@ namespace Spitfire
             if (spriteSet.Equals("Sprites/Enemies/mig"))
             {
                 // NickSound
-                //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Lightfighter/Engine1");
-                //engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
-                //hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_soft");
-                //explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_light1");
+                engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Lightfighter/Engine1");
+                engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
+                hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_soft");
+                explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_light1");
                 bulletTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/enemyammo");
             }
             else if (spriteSet.Equals("Sprites/Enemies/heavyfighter"))
             {
                 // NickSound
-                //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Heavyfighter/Engine3");
-                //engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
-                //hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_soft");
-                //explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_light1");
+                engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Heavyfighter/Engine3");
+                engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
+                hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_soft");
+                explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_light1");
                 bulletTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/enemyammo");
             }
             else if (spriteSet.Equals("Sprites/Enemies/lighttankspritemapfinal") || spriteSet.Equals("Sprites/Enemies/finalheavytanksprite"))
             {
                 // NickSound
-                //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Tank/Tank");
-                //hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
-                //explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
-                //engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
+                engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Tank/Tank");
+                hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
+                explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
+                engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
                 bulletTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/tankammo");
             }
             else if (spriteSet.Equals("Sprites/Enemies/zeppelin2sized_tmp_flipped"))
             {
                 bulletTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/tankammo");
                 //NickSound
-               //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Zeppelin/Engine2");
-               //engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
-               //hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
-               //explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
+               engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Zeppelin/Engine2");
+               engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
+               hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
+               explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
                explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/zepplinexpl_final1_tmp_flipped"), 0.2f, 1f, false);
             }
             else if (spriteSet.Equals("Sprites/Enemies/finalboss"))
             {
                 //NickSound
-                //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Zeppelin/Engine2");
-                //engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
-                //hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
-                //explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
+                engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Zeppelin/Engine2");
+                engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
+                hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
+                explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
                 explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/expllarge_final"), 0.2f, 1f, false);
             }
         }
@@ -364,8 +364,8 @@ namespace Spitfire
         public void playHitSound()
         {
             // NickSound
-            //if (!GameplayScreen.muted)
-            //    hitSound.Play(hitSoundVolume);
+            if (!GameplayScreen.muted)
+                hitSound.Play(hitSoundVolume);
         }
 
         public void ShotDown()
@@ -415,9 +415,9 @@ namespace Spitfire
             setAnimation(explodeAni);
             Velocity = Vector2.Zero;
             // NickSound
-            //if (!GameplayScreen.muted)
-             //   explodeSound.Play();
-            //engineSoundInst.Stop();
+            if (!GameplayScreen.muted)
+                explodeSound.Play();
+            engineSoundInst.Stop();
         }
 
         /// <summary>
