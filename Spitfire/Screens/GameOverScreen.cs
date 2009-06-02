@@ -11,6 +11,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 #endregion
 
 namespace Spitfire
@@ -34,6 +35,8 @@ namespace Spitfire
             : base("Game Over", null)
         {
             this.hud = hud;
+
+            GamePad.SetVibration(PlayerIndex.One, 0.0f, 0.0f); // Stop the rumble feature
 
             // Flag that there is no need for the game to transition
             // off when the pause menu is on top of it.

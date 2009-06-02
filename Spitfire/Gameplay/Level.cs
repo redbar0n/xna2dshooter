@@ -961,6 +961,15 @@ namespace Spitfire
 
                 addEnemies = false;
             }
+            else if (positionInLevel == 2 && addEnemies) { 
+                Zeppelin testZeppelin = new Zeppelin(this,Enemy.Difficulty.Medium,"zeppelin2sized_tmp_flipped", false);
+                testZeppelin.Position = new Vector2(1200f, this.grounds[0].Position.Y - 600f);
+                enemies.Add(testZeppelin);
+                addEnemies = false;
+            
+            }
+
+
             else if (positionInLevel == 25 && addEnemies)
             {
                 Enemy finalboss = new Enemy(this, Enemy.Type.Exploding, "finalboss", true);
@@ -978,7 +987,7 @@ namespace Spitfire
                 MediaPlayer.Pause();
 
                 BackgroundScreen briefBackground = new BackgroundScreen(("Menus/level_summary"));
-                LoadingScreen.Load(gameplayScreen.ScreenManager, false, PlayerIndex.One, briefBackground, new LevelSummaryScreen(2, (GameplayScreen) gameplayScreen));
+                LoadingScreen.Load(gameplayScreen.ScreenManager, false, PlayerIndex.One, briefBackground, new LevelSummaryScreen(2, (GameplayScreen)gameplayScreen));
 
                 changeLevel(3);
             }

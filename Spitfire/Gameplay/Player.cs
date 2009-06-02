@@ -118,10 +118,28 @@ namespace Spitfire
         private Vector2 initialVelocity = new Vector2(8f, 8f);
         private const float maxRotation = 0.78f; // how much the plane can rotate either up/down
         //private float rotateDistance = 0.02f;
+        
+        
         private float accelerant = 1.0f; // future: change to using dv/dt
+        private float minAcceleration = 1.0f;
+        private float maxAcceleraion = 2.0f;
+
+        /// <summary>
+        /// Determines if the player is slowing the plane down.
+        /// </summary>
+        private bool isSlowing = false;
         private float accelerationConstant = 0.125f; //0.25f;
         private static float maxAccelerant = 2.0f; //2.5f;
+        private static float minAccelerant = 0.5f;
+        private static float maxSlowedAccelerant = 1.0f;
+        
         private float decelerationConstant = 0.25f;
+
+        /// Variables to determine rumble feature
+        TimeSpan rumbleStartTime;
+        private int rumbleDuration = 200;
+        private bool wasDamaged = false;
+
 
         /// <summary>
         /// The players current number of bombs.
@@ -241,14 +259,15 @@ namespace Spitfire
             explodeAni = new Animation(content.Load<Texture2D>("Sprites/Enemies/expllarge_final"), 1f, 1f, false);
             bulletTexture = content.Load<Texture2D>("Sprites/Player/heroammo");
             bombTexture = content.Load<Texture2D>("Sprites/Player/herobomb");
-
-            bulletSound = content.Load<SoundEffect>("Sounds/Player/Single_shot1");
-            engineSound = content.Load<SoundEffect>("Sounds/Player/Engine1");
-            Bomb.BombSound = content.Load<SoundEffect>("Sounds/Player/whistle");
-            Bomb.explosionSound = content.Load<SoundEffect>("Sounds/explode_light2");
+            
             // NickSound
-            engineSoundInst = engineSound.Play(engineSoundVolume, 0.0f, 0.0f, true);
-            hitSound = content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
+            //bulletSound = content.Load<SoundEffect>("Sounds/Player/Single_shot1");
+            //engineSound = content.Load<SoundEffect>("Sounds/Player/Engine1");
+            //Bomb.BombSound = content.Load<SoundEffect>("Sounds/Player/whistle");
+            //Bomb.explosionSound = content.Load<SoundEffect>("Sounds/explode_light2");
+            
+            //engineSoundInst = engineSound.Play(engineSoundVolume, 0.0f, 0.0f, true);
+            //hitSound = content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
         }
 
         public void GetInput()
@@ -261,6 +280,7 @@ namespace Spitfire
 
             float movement = gamePad.ThumbSticks.Left.Y * 1.0f; //MoveStickScale;
             float xMovement = gamePad.ThumbSticks.Left.X * 1.0f;
+            float lTrigger = gamePad.Triggers.Left * 1.0f;
             // Ignore small movements to prevent running in place.
             if (Math.Abs(movement) < 0.1f)
             {
@@ -295,6 +315,11 @@ namespace Spitfire
                     plusRotation(1.5f * movement);
                 else
                     AutoHeightCorrect();
+                if ((distanceFromGround < MAXHEIGHT))
+                {
+                    disableLeftUpwardMovement = false;
+                    disableRightUpwardMovement = false;
+                }
             }
             else if (movement < 0)
             {
@@ -304,6 +329,11 @@ namespace Spitfire
                     plusRotation(1.5f * movement);
                 else
                     AutoHeightCorrect();
+                if ((distanceFromGround < MAXHEIGHT))
+                {
+                    disableLeftUpwardMovement = false;
+                    disableRightUpwardMovement = false;
+                }
 
             }
 
@@ -335,7 +365,12 @@ namespace Spitfire
                     else if (!controlIsRight && !disableLeftUpwardMovement)
                         plusRotation(1.5f);
                     else
-                        AutoHeightCorrect();                
+                        AutoHeightCorrect();
+                    if ((distanceFromGround < MAXHEIGHT))
+                    {
+                        disableLeftUpwardMovement = false;
+                        disableRightUpwardMovement = false;
+                    }
             }
             else if (keyboardState.IsKeyDown(Keys.Down))
             {
@@ -345,7 +380,12 @@ namespace Spitfire
               else if (!controlIsRight && !disableRightUpwardMovement)
                   minusRotation(1.5f);
               else
-                  AutoHeightCorrect();                
+                  AutoHeightCorrect();
+              if ((distanceFromGround < MAXHEIGHT))
+              {
+                  disableLeftUpwardMovement = false;
+                  disableRightUpwardMovement = false;
+              }
             }
             else
             {
@@ -387,7 +427,26 @@ namespace Spitfire
                 isImmortal = false;
             }
 
+            //Decellerates the plane
+            if (keyboardState.IsKeyDown(Keys.Left) && faceDirection == FaceDirection.Right)
+                isSlowing = true;
+            else if (keyboardState.IsKeyDown(Keys.Right) && faceDirection == FaceDirection.Left)
+                isSlowing = true;
+            else if (lTrigger > 0.2f)
+                isSlowing = true;
+            else
+                isSlowing = false;
+
+
             if (keyboardState.IsKeyDown(Keys.Space)  && !spaceKeyWasPressed)
+            {
+                if (!isShooting)
+                {
+                    setIsShooting();
+                    spaceKeyWasPressed = true;
+                }
+            }
+            else if (gamePad.IsButtonDown(Buttons.A) && !spaceKeyWasPressed)
             {
                 if (!isShooting)
                 {
@@ -453,10 +512,12 @@ namespace Spitfire
                     setAnimation(normalAni);
                     crashGround = false;
                     explodeAni.IsFinished = false;
+                    accelerant =  minAcceleration; //Resets acceleration
                     Rotation = 0;
                     flip = false;
-                    if (!GameplayScreen.muted)
-                        engineSoundInst.Resume();
+                    //NickSound
+                    //if (!GameplayScreen.muted)
+                    //    engineSoundInst.Resume();
                 }
                 else
                 {
@@ -468,11 +529,28 @@ namespace Spitfire
             if (isAlive)
             {
                 GetInput();
+                SlowDown();// Slows the plane down if they press decelerate
                 determineVelocity();
 
                 // Uncomment this code to make it that the player can move up and down the screen
                 //base.Position += new Vector2(0, Velocity.Y);
                 //base.Velocity = new Vector2(Velocity.X, 0f);
+
+                if (wasDamaged)
+                {
+                    rumbleStartTime = gameTime.TotalGameTime;
+                    wasDamaged = false;
+                }
+
+                if ((gameTime.TotalGameTime - rumbleStartTime).TotalMilliseconds < rumbleDuration)
+                {
+                    GamePad.SetVibration(PlayerIndex.One, 1.0f, 1.0f);
+                }
+                else
+                {
+                    GamePad.SetVibration(PlayerIndex.One, 0.0f, 0.0f);
+                }
+
 
                 if (isShooting)
                 {
@@ -543,9 +621,11 @@ namespace Spitfire
 
         public void TakeDamage(int damage)
         {
-            if (!GameplayScreen.muted)
-                hitSound.Play();
+            //NickSound
+            //if (!GameplayScreen.muted)
+            //    hitSound.Play();
             currentHP -= damage;
+            wasDamaged = true; // Activates rumble feature
             if (currentHP < 0)
             {
                 Die(false);
@@ -581,14 +661,18 @@ namespace Spitfire
                 Accelerate(Math.Abs(yPercent));
 
             if (Math.Sin(Rotation) < 0)
-                Decelerate(Math.Abs(yPercent));      
-      
+                Decelerate(Math.Abs(yPercent));
+
             // Wind resistance
-            if (accelerant > 1f)
+            if (accelerant > minAcceleration)
             {
                 accelerant -= 0.0125f;
-                if (accelerant < 1f)
-                     accelerant = 1f;
+                if (accelerant < minAcceleration)
+                    accelerant = minAcceleration;
+            }
+            else if (accelerant < minAcceleration)
+            {
+                accelerant += (0.0125f / 2);
             }
                                     
             Velocity = new Vector2(initialVelocity.X * xPercent * accelerant * (float)faceDirection,
@@ -721,7 +805,7 @@ namespace Spitfire
             base.Velocity = new Vector2(0, 0);
             this.crashGround = crashGround;
             isAlive = false;
-            engineSoundInst.Stop();
+            //engineSoundInst.Stop();
             setAnimation(explodeAni);
             isImmortal = true;
         }
@@ -732,26 +816,41 @@ namespace Spitfire
         /// </summary>
         void GameOverMessageBoxAccepted(object sender, PlayerIndexEventArgs e)
         {
+            GamePad.SetVibration(PlayerIndex.One, 0.0f, 0.0f);// Stop controller from rumbling
             LoadingScreen.Load(screenManager, false, null, new BackgroundScreen("Menus/gamemenu"), new MainMenuScreen());
         }
 
         public void Accelerate(float yPercent)
         {
-            if (accelerant < maxAccelerant)
-                //if (Rotation < 1.0f)
-                //    accelerant += accelerationBigConstant * yPercent;
-                //else
+ 
+            if (accelerant < maxAcceleraion)
                 accelerant += accelerationConstant * yPercent;
-            if (accelerant > maxAccelerant)
-                accelerant = maxAccelerant;
+            if (accelerant > maxAcceleraion)
+                accelerant = maxAcceleraion;
+
         }
 
         public void Decelerate(float yPercent)
         {
-            if (accelerant > 1.0f)
+            if (accelerant > minAcceleration)
                 accelerant -= (decelerationConstant * yPercent / 4);
-            else if (accelerant < 1.0f)
-                accelerant = 1.0f;
+            if (accelerant < minAcceleration)
+                accelerant = minAcceleration;
+
+        }
+
+        public void SlowDown()
+        {
+            if (isSlowing)
+            {
+                maxAcceleraion = maxSlowedAccelerant;
+                minAcceleration = minAccelerant;
+            }
+            else
+            {
+                maxAcceleraion = maxAccelerant;
+                minAcceleration = maxSlowedAccelerant;
+            }
 
         }
 
@@ -761,8 +860,8 @@ namespace Spitfire
             bullet.Texture = bulletSprite;
             bullets.Add(bullet);
             // NickSound
-            if (!GameplayScreen.muted)
-                bulletSound.Play();
+            //if (!GameplayScreen.muted)
+            //    bulletSound.Play();
         }
 
         /// <summary>

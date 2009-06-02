@@ -78,6 +78,11 @@ namespace Spitfire
 
 
         /// <summary>
+        /// A sprite which appears when the enemy appears offscreen. Use to indicate general direction.
+        /// </summary>
+        public Sprite arrowPointer = new Sprite();
+
+        /// <summary>
         /// Returns the animation texture if one is present (instead of default Sprite texture).
         /// Returns the explode texture if it is exploding.
         /// </summary>
@@ -265,52 +270,55 @@ namespace Spitfire
             ///TODO This animation makes the program crash. I have replaced it with the above statement
             //explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/zepplinexplspritemap"), 1f, false);
 
+            arrowPointer.Texture = Level.Content.Load<Texture2D>("Sprites/Enemies/arrow");
+
             setAnimation(normalAni);
 
             // Load sounds
             if (spriteSet.Equals("Sprites/Enemies/mig"))
             {
                 // NickSound
-                engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Lightfighter/Engine1");
-                engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
-                hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_soft");
-                explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_light1");
+                //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Lightfighter/Engine1");
+                //engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
+                //hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_soft");
+                //explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_light1");
                 bulletTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/enemyammo");
             }
             else if (spriteSet.Equals("Sprites/Enemies/heavyfighter"))
             {
                 // NickSound
-                engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Heavyfighter/Engine3");
-                engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
-                hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_soft");
-                explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_light1");
+                //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Heavyfighter/Engine3");
+                //engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
+                //hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_soft");
+                //explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_light1");
                 bulletTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/enemyammo");
             }
             else if (spriteSet.Equals("Sprites/Enemies/lighttankspritemapfinal") || spriteSet.Equals("Sprites/Enemies/finalheavytanksprite"))
             {
                 // NickSound
-                engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Tank/Tank");
-                hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
-                explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
-                engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
+                //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Tank/Tank");
+                //hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
+                //explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
+                //engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
                 bulletTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/tankammo");
             }
             else if (spriteSet.Equals("Sprites/Enemies/zeppelin2sized_tmp_flipped"))
             {
-               //NickSound
-               engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Zeppelin/Engine2");
-               engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
-               hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
-               explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
+                bulletTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/tankammo");
+                //NickSound
+               //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Zeppelin/Engine2");
+               //engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
+               //hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
+               //explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
                explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/zepplinexpl_final1_tmp_flipped"), 0.2f, 1f, false);
             }
             else if (spriteSet.Equals("Sprites/Enemies/finalboss"))
             {
                 //NickSound
-                engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Zeppelin/Engine2");
-                engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
-                hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
-                explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
+                //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Zeppelin/Engine2");
+                //engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
+                //hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
+                //explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
                 explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/expllarge_final"), 0.2f, 1f, false);
             }
         }
@@ -356,8 +364,8 @@ namespace Spitfire
         public void playHitSound()
         {
             // NickSound
-            if (!GameplayScreen.muted)
-                hitSound.Play(hitSoundVolume);
+            //if (!GameplayScreen.muted)
+            //    hitSound.Play(hitSoundVolume);
         }
 
         public void ShotDown()
@@ -365,15 +373,51 @@ namespace Spitfire
             //future: animate.PlayAnimation(shotDownAni);
         }
 
+
+        /// <summary>
+        /// Turns around the enemy when method is called.
+        /// </summary>
+        public void turnAround()
+        {
+            if (faceDirection == FaceDirection.Left)
+            {
+                faceDirection = FaceDirection.Right;
+                Rotation = (float)Math.PI;
+                flip = true;
+            }
+            else
+            {
+                faceDirection = FaceDirection.Left;
+                Rotation = 0;
+                flip = false;
+            }
+
+        }
+
+        /// <summary>
+        /// Checks whether or not the enemy should turn around depending on the location of its target.
+        /// </summary>
+        /// <param name="position"></param>
+        public void checkToTurn(Vector2 position)
+        {
+            if (this.faceDirection == FaceDirection.Left && Position.X < position.X - 1500f)
+                turnAround();
+            else if ((this.faceDirection == FaceDirection.Right && Position.X > position.X + 1500f))
+                turnAround();
+
+        }
+        
+        
+        
         public void Explode()
         {
             exploding = true;
             setAnimation(explodeAni);
             Velocity = Vector2.Zero;
             // NickSound
-            if (!GameplayScreen.muted)
-                explodeSound.Play();
-            engineSoundInst.Stop();
+            //if (!GameplayScreen.muted)
+             //   explodeSound.Play();
+            //engineSoundInst.Stop();
         }
 
         /// <summary>
@@ -393,11 +437,11 @@ namespace Spitfire
 
             if (!GameplayScreen.muted)
             {
-                engineSoundInst.Volume = 100 / Math.Abs(playersPosition.X - Position.X);
-                if (engineSoundInst.Volume < 0.05f)
-                    engineSoundInst.Volume = 0;
-                else if (engineSoundInst.Volume > 10f)
-                    engineSoundInst.Volume = 10.0f;
+                //engineSoundInst.Volume = 100 / Math.Abs(playersPosition.X - Position.X);
+                //if (engineSoundInst.Volume < 0.05f)
+                //    engineSoundInst.Volume = 0;
+                //else if (engineSoundInst.Volume > 10f)
+                //    engineSoundInst.Volume = 10.0f;
             }
 
             //foreach (Bullet bullet in bullets.ToArray())
@@ -427,8 +471,45 @@ namespace Spitfire
 
             //animate.Draw(gameTime, spriteBatch, base.Position, base.Rotation, flip);
             // draw in direction player is facing
+            float preferredWidth = 1024f;//1280
+            float preferredHeight = 768f;//720
+
+
+            if (this.Position.X + Texture.Height > preferredWidth)
+            {
+                arrowPointer.Position = new Vector2(preferredWidth - 40f, Position.Y);
+                arrowPointer.Rotation = 0;
+                arrowPointer.Draw(spriteBatch);
+            }
+            else if (this.Position.X - (float)Texture.Height < 0)
+            {
+                arrowPointer.Position = new Vector2(40f, Position.Y);
+                arrowPointer.Rotation = (float)Math.PI;
+                arrowPointer.Draw(spriteBatch);
+            }
+            else if (this.Position.Y - Texture.Height < 0)
+            {
+                arrowPointer.Position = new Vector2(Position.X, 40f);
+                arrowPointer.Rotation = (float)(1.5 * Math.PI);
+                arrowPointer.Draw(spriteBatch);
+            }
+            else if (this.Position.Y > preferredHeight)
+            {
+                arrowPointer.Position = new Vector2(Position.X, preferredHeight - 40f);
+                arrowPointer.Rotation = (float)(0.5 * Math.PI);
+                arrowPointer.Draw(spriteBatch);
+            }
+            
+            
+            
             SpriteEffects flipSprite = flip == true ? SpriteEffects.FlipVertically : SpriteEffects.None;
             animate.Draw(gameTime, spriteBatch, Position, Rotation, flipSprite);
+
+
+
+
+
+
         }
 
 

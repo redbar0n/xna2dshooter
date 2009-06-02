@@ -9,6 +9,7 @@
 
 #region Using Statements
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 #endregion
@@ -39,6 +40,9 @@ namespace Spitfire
         {
             this.level = level;
             this.gameplayScreen = gameplayScreen;
+
+            
+            GamePad.SetVibration(PlayerIndex.One, 0.0f, 0.0f); // Stop the rumble feature
 
             // Flag that there is no need for the game to transition
             // off when the pause menu is on top of it.

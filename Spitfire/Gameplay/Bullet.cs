@@ -61,11 +61,11 @@ namespace Spitfire
                 faceDirection = FaceDirection.Left;
             else if (Math.Cos(Rotation) > 0f)
                 faceDirection = FaceDirection.Right;
-        } 
+        }
 
 
 
-        public void Update(Vector2 playerVelocity)
+        public virtual void Update(Vector2 playerVelocity)
         {
             base.Position += (Velocity - playerVelocity);
             distanceTravelled += (float)Math.Sqrt(Math.Pow(Math.Abs(Velocity.X), 2) +

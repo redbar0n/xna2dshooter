@@ -159,7 +159,18 @@ namespace Spitfire
                 -initialVelocity.Y * yPercent * accelerant);
         }
 
+        public void checkToShoot(Vector2 targetPosition)
+        {
+            /// Make enemy shoot
+            if (targetPosition.Y > this.Position.Y - 50f && targetPosition.Y < this.Position.Y + 50f)
+            {
+                if (!isShooting && targetPosition.X < this.Position.X && faceDirection == FaceDirection.Left)
+                    isShooting = true;
+                else if (!isShooting && targetPosition.X > this.Position.X && faceDirection == FaceDirection.Right)
+                    isShooting = true;
+            }
 
+        }
 
 
         public override void Update(Vector2 playersVelocity, Vector2 playersPosition, GameTime gameTime)
@@ -177,30 +188,35 @@ namespace Spitfire
             }
             else
             {
-                determineVelocity();           
+                determineVelocity();
 
 
                 if (playersPosition.Y < this.Position.Y - 50f && playersPosition.X < this.Position.X)
                 {
-                    if (Math.Sin(Rotation) < 0.8f)
-                        plusRotation(1.5f);
+
+                    if (Math.Sin(Rotation) < 0.8f && faceDirection == FaceDirection.Left)
+                        plusRotation(1.0f);
+                    else if (Math.Sin(Rotation) > -0.8f && faceDirection == FaceDirection.Right)
+                        minusRotation(1.0f);
                 }
                 else if (playersPosition.Y > this.Position.Y + 50f && playersPosition.X < this.Position.X)
                 {
-                    if (Math.Sin(Rotation) > -0.8f)
-                        minusRotation(1.5f);
+                    if (Math.Sin(Rotation) > -0.8f && faceDirection == FaceDirection.Left)
+                        minusRotation(1.0f);
+                    else if (Math.Sin(Rotation) < 0.8f && faceDirection == FaceDirection.Right)
+                        plusRotation(1.0f);
                 }
                 else
                 {
                     AutoAdjustRotation();
-                    
+
                 }
 
-                /// Make enemy shoot
-                if (playersPosition.Y < this.Position.Y - 50f || playersPosition.Y > this.Position.Y + 50f) {
-                    if (!isShooting && playersPosition.X < this.Position.X)
-                        isShooting = true;
-                }
+                // Check if the plane should shoot or not
+                checkToShoot(playersPosition);
+
+                // Turn Enemy around if required.
+                checkToTurn(playersPosition);
 
 
                 if (isShooting)

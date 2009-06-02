@@ -76,10 +76,21 @@ namespace Spitfire
 
         public void Shoot()
         {
-            barrelLocation = barrelLocation = new Vector2(base.Position.X + 5f, base.Position.Y);
-            barrelRotation = (1.05f * pi);
+            if (faceDirection == FaceDirection.Left)
+            {
+                barrelLocation = new Vector2(base.Position.X + 5f, base.Position.Y);
+                barrelRotation = (1.05f * pi);
+            }
+            else
+            {
+                barrelLocation = new Vector2(base.Position.X + 20f, base.Position.Y);
+                barrelRotation = ((1.05f * pi - pi) * -1);
+            }
 
-            Bullet bullet = new Bullet(barrelRotation, barrelLocation, this.faceDirection);
+            //Bullet bullet = new Bullet(barrelRotation, barrelLocation, this.faceDirection);
+
+            Bullet bullet = new TankBullet(barrelRotation, barrelLocation, this.faceDirection);
+
             bullet.Texture = bulletTexture;
             Bullets.Add(bullet);
 
@@ -102,6 +113,14 @@ namespace Spitfire
             }
         }
 
+        public void checkToShoot(Vector2 targetPosition)
+        {
+            if (!isShooting && targetPosition.X < this.Position.X && faceDirection == FaceDirection.Left)
+                isShooting = true;
+            else if (!isShooting && targetPosition.X > this.Position.X && faceDirection == FaceDirection.Right)
+                isShooting = true;
+        }
+
         public override void Update(Vector2 playersVelocity, Vector2 playersPosition, GameTime gameTime)
         {
             if (Exploding)
@@ -113,37 +132,36 @@ namespace Spitfire
             {
                 determineVelocity();
                 // determine when tank shoots
+                // determine when tank shoots
+                checkToShoot(playersPosition);
+                // determine if the tank should turnaround
+                checkToTurn(playersPosition);            
                 
-               if (!isShooting && playersPosition.X < this.Position.X)
-                    isShooting = true;
-                 
+               if (isShooting)
+               {
+                   if ((gameTime.TotalGameTime - bulletCreationTime).TotalMilliseconds > burstDelay)
+                   {
+                       if (burstCount != 0)
+                       {
+                           Shoot();
+                           burstCount -= 1;
+                           if (burstCount > 0)
+                               bulletCreationTime = gameTime.TotalGameTime;
+                           else
+                           {
+                               bulletCreationTime = gameTime.TotalGameTime;
+                               burstDelay = 500;
+                           }
+                       }
+                       else
+                       {
+                           isShooting = false;
+                           burstDelay = 300;
+                           burstCount = burstAmmount;
 
-                
-                if (isShooting)
-                {
-                    if ((gameTime.TotalGameTime - bulletCreationTime).TotalMilliseconds > burstDelay)
-                    {
-                        if (burstCount != 0)
-                        {
-                            Shoot();
-                            burstCount -= 1;
-                            if (burstCount > 0)
-                                bulletCreationTime = gameTime.TotalGameTime;
-                            else
-                            {
-                                bulletCreationTime = gameTime.TotalGameTime;
-                                burstDelay = 500;
-                            }
-                        }
-                        else
-                        {
-                            isShooting = false;
-                            burstDelay = 300;
-                            burstCount = burstAmmount;
-
-                        }
-                    }
-                }
+                       }
+                   }
+               }
             }
 
             //barrelLocation += (base.Velocity - playersVelocity);

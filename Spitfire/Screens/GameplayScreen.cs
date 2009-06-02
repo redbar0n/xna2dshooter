@@ -72,6 +72,7 @@ namespace Spitfire
             muted = true;
 
             MediaPlayer.Stop();
+            //NickSound
             player.engineSoundInst.Stop();
             
             foreach (Enemy enemy in level.Enemies)
@@ -196,9 +197,9 @@ namespace Spitfire
                         if (CollisionDetection.Collision(enemy, bomb))
                         {
                             //NickSound
-                            bomb.BombSoundInst.Stop();
-                            if (!GameplayScreen.muted)
-                                Bomb.explosionSound.Play();
+                            //bomb.BombSoundInst.Stop();
+                            //if (!GameplayScreen.muted)
+                            //    Bomb.explosionSound.Play();
                             Explosion explosion = new Explosion(bomb.Position, gameTime);
                             explosion.Texture = content.Load<Texture2D>("Sprites/Enemies/expllarge_final");
                             explosions.Add(explosion);
@@ -224,17 +225,32 @@ namespace Spitfire
                         player.TakeDamage(20);
                     }
 
-                    //Problem here with null reference bullets
 
+                    //ENEMY BULLET/PLAYER Collision detection 
                     foreach (Bullet bullet in enemy.Bullets.ToArray()) {
                         if (!player.IsImmortal && (CollisionDetection.Collision(bullet, player)))
                         {
-                            player.TakeDamage(50); // Need to change to reflect power of bullet
+                            player.TakeDamage(enemy.BulletDamage);
                             enemy.Bullets.Remove(bullet);
-                        }
+                        } 
 
                     }
 
+                    //ENEMY BULLET/PLAYER Collision detection 
+                    foreach (Bullet bullet in enemy.Bullets.ToArray()) {
+                        foreach (Sprite ground in level.grounds) {
+                            if (CollisionDetection.Collision(ground, bullet)) {
+                                Explosion spatter = new Explosion(new Vector2(bullet.Position.X, bullet.Position.Y), gameTime);
+                                spatter.Texture = content.Load<Texture2D>("Sprites/Player/spatterground");                                
+                                explosions.Add(spatter);
+                                enemy.Bullets.Remove(bullet);
+                            }
+                        }                    
+                    
+                    }
+
+                    
+                    
 
                 }
                 // GROUND/PLAYER collision detection
@@ -245,6 +261,7 @@ namespace Spitfire
                         player.TakeDamage(30);
                         player.Die(true);
                     }
+
 	            }
 
 
@@ -256,9 +273,9 @@ namespace Spitfire
                         if (CollisionDetection.Collision(ground, bomb))
                         {
                             //NickSound
-                            bomb.BombSoundInst.Stop();
-                            if (!GameplayScreen.muted)
-                                Bomb.explosionSound.Play();
+                            //bomb.BombSoundInst.Stop();
+                            //if (!GameplayScreen.muted)
+                            //    Bomb.explosionSound.Play();
                             Explosion explosion = new Explosion(new Vector2(bomb.Position.X, bomb.Position.Y - 50f), gameTime);
                             explosion.Texture = content.Load<Texture2D>("Sprites/Enemies/expllarge_final");
                             explosions.Add(explosion);
