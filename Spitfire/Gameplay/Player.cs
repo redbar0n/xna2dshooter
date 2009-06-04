@@ -186,6 +186,9 @@ namespace Spitfire
         private Animation normalAni;
         private Animation explodeAni;
         private Animation currentAni;
+        private Animation flipAwayRight;
+        private Animation flipAwayLeft;
+        //private Animation flipInto;
         private bool flip = false; // A variable to determine is the plane is to be flipped or not.
 
         private Level level;
@@ -224,6 +227,10 @@ namespace Spitfire
                 {
                     return explodeAni.Texture;
                 }
+                else if (currentAni == flipAwayRight)
+                {
+                    return flipAwayRight.Texture;
+                }
                 else
                 {
                     return normalAni.Texture;
@@ -255,10 +262,23 @@ namespace Spitfire
 
         public void LoadContent(ContentManager content)
         {
-            NormalAni = new Animation(content.Load<Texture2D>("Sprites/Player/spitfirestill_tmp_flipped"), 0.08f, 1f, true);
+            NormalAni = new Animation(content.Load<Texture2D>("Sprites/Player/stillspitfire_final"), 0.08f, 1f, false);
+            //NormalAni = new Animation(content.Load<Texture2D>("Sprites/Player/turnawayfromscreenmap"), 0.08f, 1f, false);
+            //normalAni.IsLoopingBackwards = true;
+
             explodeAni = new Animation(content.Load<Texture2D>("Sprites/Enemies/expllarge_final"), 1f, 1f, false);
+
+            flipAwayRight = new Animation(content.Load<Texture2D>("Sprites/Player/turnawayfromscreenmap_right"), 0.08f, 1f, false);
+            flipAwayRight.IsGoingRightToLeft = true;
+
+            flipAwayLeft = new Animation(content.Load<Texture2D>("Sprites/Player/turnawayfromscreenmap_right_upsidedown"), 0.08f, 1f, false);
+            flipAwayLeft.IsGoingRightToLeft = true;
+
+            //flipInto = new Animation(content.Load<Texture2D>("Sprites/Player/turnintoscreenmap"), 0.08f, 1f, false);
+            //flipInto.IsGoingRightToLeft = true;
+
             bulletTexture = content.Load<Texture2D>("Sprites/Player/heroammo");
-            bombTexture = content.Load<Texture2D>("Sprites/Player/herobomb");
+            bombTexture = content.Load<Texture2D>("Sprites/Player/herobomb_final");
             
             // NickSound
             bulletSound = content.Load<SoundEffect>("Sounds/Player/Single_shot1");
@@ -281,6 +301,7 @@ namespace Spitfire
             float movement = gamePad.ThumbSticks.Left.Y * 1.0f; //MoveStickScale;
             float xMovement = gamePad.ThumbSticks.Left.X * 1.0f;
             float lTrigger = gamePad.Triggers.Left * 1.0f;
+            
             // Ignore small movements to prevent running in place.
             if (Math.Abs(movement) < 0.1f)
             {
@@ -294,8 +315,6 @@ namespace Spitfire
             }
             if (Math.Abs(xMovement) < 0.2f)
                 xMovement = 0.0f;
-
-
 
             if (xMovement > 0 && faceDirection == FaceDirection.Right)
             {
@@ -496,9 +515,16 @@ namespace Spitfire
         public void setFlip(FaceDirection direction)
         {
             if (direction == FaceDirection.Right)
+            {
+                setAnimation(flipAwayLeft);
                 flip = false;
+            }
             else if (direction == FaceDirection.Left)
+            {
+                setAnimation(flipAwayRight);
                 flip = true;
+            }
+            
         }
 
         public void Update(GameTime gameTime)
@@ -608,7 +634,8 @@ namespace Spitfire
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             // draw in direction player is facing
-            SpriteEffects flipSprite = flip == true ? SpriteEffects.FlipVertically : SpriteEffects.None;            
+            //SpriteEffects flipSprite = flip == true ? SpriteEffects.FlipVertically : SpriteEffects.None;            
+            SpriteEffects flipSprite = SpriteEffects.None;
             animate.Draw(gameTime, spriteBatch, Position, Rotation, flipSprite);
 
             foreach (Bullet bullet in bullets.ToArray())
@@ -817,7 +844,7 @@ namespace Spitfire
         void GameOverMessageBoxAccepted(object sender, PlayerIndexEventArgs e)
         {
             GamePad.SetVibration(PlayerIndex.One, 0.0f, 0.0f);// Stop controller from rumbling
-            LoadingScreen.Load(screenManager, false, null, new BackgroundScreen("Menus/gamemenu"), new MainMenuScreen());
+            LoadingScreen.Load(screenManager, false, null, new BackgroundScreen("Menus/gamemenu_final"), new MainMenuScreen());
         }
 
         public void Accelerate(float yPercent)

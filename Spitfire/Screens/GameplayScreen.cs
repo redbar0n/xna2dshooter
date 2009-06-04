@@ -54,6 +54,13 @@ namespace Spitfire
 
         #endregion
 
+        #region CONSTANTS
+        public const int PLAYER_CRASH_INTO_GROUND_DAMAGE = 10;
+        public const int PLAYER_CRASH_INTO_ENEMY_DAMAGE = 5;
+        public const int PLAYER_EXTRA_HEALTH_ON_CRATE_PICKUP = 30;
+        public const int PLAYER_EXTRA_BOMBS_ON_CRATE_PICKUP = 30;
+        #endregion
+
         #region Initialization
 
 
@@ -108,7 +115,7 @@ namespace Spitfire
             player.setHud(hud);
             explosions = new ArrayList();
 
-            //level.LoadContent(content, "Sprites/Backgrounds/Mountain/mountainfinal", 4);
+            //level.LoadContent(content, "Sprites/Backgrounds/Mountain/mountain_final_", 4);
             level.LoadContent();
             player.LoadContent(content);
             hud.LoadContent(content);
@@ -223,7 +230,7 @@ namespace Spitfire
                     if (!player.IsImmortal && CollisionDetection.Collision(enemy, player) && !enemy.Exploding)
                     {
                         enemy.Explode();
-                        player.TakeDamage(20);
+                        player.TakeDamage(PLAYER_CRASH_INTO_ENEMY_DAMAGE);
                     }
 
 
@@ -243,11 +250,9 @@ namespace Spitfire
                             if (CollisionDetection.Collision(ground, bullet)) {
                                 Explosion spatter = new Explosion(new Vector2(bullet.Position.X, bullet.Position.Y), gameTime);
                                 spatter.Texture = content.Load<Texture2D>("Sprites/Player/spatterground");                                
-                                explosions.Add(spatter);
                                 enemy.Bullets.Remove(bullet);
                             }
                         }                    
-                    
                     }
 
                     
@@ -259,7 +264,7 @@ namespace Spitfire
 	            {
                     if (!player.IsImmortal && CollisionDetection.Collision(ground, player))
                     {
-                        player.TakeDamage(30);
+                        player.TakeDamage(PLAYER_CRASH_INTO_GROUND_DAMAGE);
                         player.Die(true);
                     }
 
@@ -297,6 +302,17 @@ namespace Spitfire
                             explosions.Add(spatter);
                             player.Bullets.Remove(bullet);
                         }
+                    }
+                }
+
+                // CRATES/PLAYER
+                foreach (Pickup pickup in level.Pickups.ToArray())
+                {
+                    if (CollisionDetection.Collision(pickup, player))
+                    {
+                        player.BombCount += PLAYER_EXTRA_BOMBS_ON_CRATE_PICKUP;
+                        player.CurrentHP += PLAYER_EXTRA_HEALTH_ON_CRATE_PICKUP;
+                        level.Pickups.Remove(pickup);
                     }
                 }
             }

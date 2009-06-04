@@ -9,7 +9,7 @@ namespace Spitfire
     /// <summary>
     /// Controls playback of an Animation.
     /// </summary>
-    struct AnimationPlayer
+    class AnimationPlayer
     {
         /// <summary>
         /// Gets the animation which is currently playing.
@@ -39,6 +39,13 @@ namespace Spitfire
         private float time;
 
         /// <summary>
+        /// If animation frame is iterating towards the first direction its supposed to.
+        /// </summary>
+        bool goingFirst;
+
+        bool flipSprite;
+
+        /// <summary>
         /// Gets a texture origin at the center of each frame.
         /// Used in rotation.
         /// Texture will be drawn around this origin.
@@ -61,8 +68,12 @@ namespace Spitfire
                 return;
 
             // Start the new animation.
+            goingFirst = true;
+            flipSprite = false;
             this.animation = animation;
             this.frameIndex = 0;
+            if (animation.IsGoingRightToLeft)
+                this.frameIndex = animation.FrameCount - 1;
             this.time = 0.0f;
         }
 
@@ -88,6 +99,46 @@ namespace Spitfire
                 {
                     frameIndex = (frameIndex + 1) % Animation.FrameCount;
                 }
+                else if (Animation.IsGoingLeftToRight)
+                {
+                    if (goingFirst)
+                    {
+                        frameIndex++;
+                        if (frameIndex == Animation.FrameCount - 1)
+                        {
+                            goingFirst = false;
+                        }
+                    }
+                    else
+                    {
+                        if (frameIndex == 0)
+                        {
+                            Animation.IsFinished = true;
+                        }
+                        flipSprite = true;
+                        frameIndex = Math.Max(--frameIndex, 0);
+                    }
+                }
+                else if (Animation.IsGoingRightToLeft)
+                {
+                    if (goingFirst)
+                    {
+                        if (frameIndex == 0)
+                        {
+                            goingFirst = false;
+                        }
+                        frameIndex = Math.Max(--frameIndex, 0);
+                    }
+                    else
+                    {
+                        frameIndex = Math.Min(frameIndex + 1, animation.FrameCount - 1);
+                        flipSprite = true;
+                        if (frameIndex == Animation.FrameCount - 1)
+                        {
+                            Animation.IsFinished = true;
+                        }
+                    }
+                }
                 else
                 {
                     if (frameIndex == (animation.FrameCount - 1))
@@ -98,6 +149,9 @@ namespace Spitfire
                     frameIndex = Math.Min(frameIndex + 1, Animation.FrameCount - 1);
                 }
             }
+
+            if (flipSprite)
+                spriteEffects = SpriteEffects.FlipVertically;
 
             // Calculate the source rectangle of the current frame.
             Rectangle source = new Rectangle(FrameIndex * Animation.Texture.Height, 0, Animation.Texture.Height, Animation.Texture.Height);

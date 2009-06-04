@@ -83,9 +83,6 @@ namespace Spitfire
         /// <summary>
         /// Holds all enemies in level
         /// </summary>
-        /// <remarks>
-        /// future: update so that it only holds enemies in part of level surrounding player
-        /// </remarks>
         public List<Enemy> Enemies
         {
             get { return enemies; }
@@ -95,13 +92,11 @@ namespace Spitfire
 
 
 
-        //public List<Pickup> Pickups
-        //{
-        //    get { return pickups; }
-        //    set { pickups = value; }
-
-        //}
-        List<Pickup> pickups;
+        public List<Pickup> Pickups
+        {
+            get { return pickups; }
+        }
+        public List<Pickup> pickups;
 
 
         /// <summary>
@@ -168,22 +163,24 @@ namespace Spitfire
 
         public void loadLevel(int levelNr)
         {
-            String backgroundName = "Sprites/Backgrounds/Mountain/mountainfinal";
-            String groundName = "Sprites/Backgrounds/ground_final";
+            String backgroundName = "Sprites/Backgrounds/Mountain/mountain_final_";
+            String groundName = "Sprites/Backgrounds/groundone_final1";
             int nrOfBackgrounds = 4;
             
             if (levelNr == 2)
             {
                 backgroundName = "Sprites/Backgrounds/City/cityback1_0";
-                groundName = "Sprites/Backgrounds/groundtwo_final_tmp";
+                groundName = "Sprites/Backgrounds/groundtwo_final2";
                 nrOfBackgrounds = 3;
             }
 
             // Load sky
-            sky.Texture = this.content.Load<Texture2D>("Sprites/backgrounds/finalsky");
+            sky.Texture = this.content.Load<Texture2D>("Sprites/backgrounds/sky_final");
             sky.Position = new Vector2(0, 0);
+            sky.Scale = 2.0f;
             skyTwo.Texture = sky.Texture;
-            skyTwo.Position = new Vector2(sky.Position.X + sky.Size.Width, 0);
+            skyTwo.Scale = 2.0f;
+            skyTwo.Position = new Vector2(sky.Position.X + sky.Size.Width - 5, 0); // magic constant because of weird gap when scaling
 
             // Load backgrounds
             for (int i = 1; i <= nrOfBackgrounds; i++)
@@ -239,20 +236,20 @@ namespace Spitfire
         {
             if (sky.Position.X < -sky.Size.Width)
             {
-                sky.Position = new Vector2(skyTwo.Position.X + skyTwo.Size.Width, 0);
+                sky.Position = new Vector2(skyTwo.Position.X + skyTwo.Size.Width - 5, 0);
             }
             else if (skyTwo.Position.X < -skyTwo.Size.Width)
             {
-                skyTwo.Position = new Vector2(sky.Position.X + sky.Size.Width, 0);
+                skyTwo.Position = new Vector2(sky.Position.X + sky.Size.Width - 5, 0);
             }
             else if (sky.Position.X > sky.Size.Width) // plane is going left
             {
                 // can use sky.Size.Width in the check since only two sprites. otherwise would have needed a bufferwidth like with backgrounds
-                sky.Position = new Vector2(skyTwo.Position.X - sky.Size.Width, 0);
+                sky.Position = new Vector2(skyTwo.Position.X - sky.Size.Width + 5, 0);
             }
             else if (skyTwo.Position.X > skyTwo.Size.Width)
             {
-                skyTwo.Position = new Vector2(sky.Position.X - skyTwo.Size.Width, 0);
+                skyTwo.Position = new Vector2(sky.Position.X - skyTwo.Size.Width + 5, 0);
             }
 
 
@@ -417,8 +414,7 @@ namespace Spitfire
                 enemies.Add(migMedium2);
 
                 Pickup pickupA = new Pickup(new Vector2(1000f, 100f), Pickup.Effect.HP);
-                pickupA.Texture = this.content.Load<Texture2D>("Sprites/healthcrate");
-                pickupA.Scale = 0.2f;
+                pickupA.Texture = this.content.Load<Texture2D>("Sprites/special_drops_final copy");
                 pickups.Add(pickupA);
 
                 addEnemies = false;
@@ -456,22 +452,17 @@ namespace Spitfire
             {
                 // 2 heavy tanks opening up a path
 
-                Enemy htank = new Enemy(this, Enemy.Type.Exploding, "finalheavytanksprite", true);
-                htank.Position = new Vector2(1400, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank.Size.Height * 0.3));
-                // Y-calculation is to align it with the background
-                htank.Velocity = new Vector2(-1, 0);
-                htank.WorthScore = 100;
-                htank.StartHP = 50;
-                enemies.Add(htank);
+                // CORRECT HEAVYTANK CONSTRUCTOR
+                HeavyTank htank1 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank1.Position = new Vector2(1400, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank1.Size.Height * 0.3));
+                htank1.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank1);
 
-
-                Enemy htank2 = new Enemy(this, Enemy.Type.Exploding, "finalheavytanksprite", true);
-                htank2.Position = new Vector2(1550, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank.Size.Height * 0.3));
-                // Y-calculation is to align it with the background
+                HeavyTank htank2 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank2.Position = new Vector2(1500, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank2.Size.Height * 0.3));
                 htank2.Velocity = new Vector2(-1, 0);
-                htank2.WorthScore = 100;
-                htank2.StartHP = 50;
                 enemies.Add(htank2);
+
                 addEnemies = false;
             }
             else if (positionInLevel == 6 && addEnemies)
@@ -498,11 +489,10 @@ namespace Spitfire
                 migMedium4.Velocity = new Vector2(-1, 0);
                 enemies.Add(migMedium4);
 
-                Enemy zeppelin = new Enemy(this, Enemy.Type.Exploding, "zeppelin2sized_tmp_flipped", true);
+                // CORRECT ZEPPELIN CONSTRUCTOR
+                Zeppelin zeppelin = new Zeppelin(this, Enemy.Difficulty.Easy, "zepplinarmoured_final", true);
                 zeppelin.Position = new Vector2(1450, 200);
                 zeppelin.Velocity = new Vector2(-1, 0);
-                zeppelin.WorthScore = 100;
-                zeppelin.StartHP = 100;
                 enemies.Add(zeppelin);
 
                 addEnemies = false;
@@ -618,13 +608,13 @@ namespace Spitfire
                 enemies.Add(superTank2);
 
                 LightTank superTank3 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
-                superTank1.Velocity = new Vector2(-2, 0);
-                superTank1.Position = new Vector2(1700, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(superTank3.Size.Height * 0.3));
+                superTank3.Velocity = new Vector2(-2, 0);
+                superTank3.Position = new Vector2(1700, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(superTank3.Size.Height * 0.3));
                 enemies.Add(superTank3);
 
                 LightTank superTank4 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
-                superTank2.Velocity = new Vector2(-2, 0);
-                superTank2.Position = new Vector2(1900, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(superTank4.Size.Height * 0.3));
+                superTank4.Velocity = new Vector2(-2, 0);
+                superTank4.Position = new Vector2(1900, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(superTank4.Size.Height * 0.3));
                 enemies.Add(superTank4);
 
                 addEnemies = false;
@@ -633,55 +623,40 @@ namespace Spitfire
             {
                 // 2 heavy tanks, more forces.
 
-                Enemy htank = new Enemy(this, Enemy.Type.Exploding, "finalheavytanksprite", true);
-                htank.Position = new Vector2(1400, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank.Size.Height * 0.3));
-                // Y-calculation is to align it with the background
-                htank.Velocity = new Vector2(-1, 0);
-                htank.WorthScore = 100;
-                htank.StartHP = 50;
-                enemies.Add(htank);
+                HeavyTank htank1 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank1.Position = new Vector2(1400, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank1.Size.Height * 0.3));
+                htank1.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank1);
 
-
-                Enemy htank2 = new Enemy(this, Enemy.Type.Exploding, "finalheavytanksprite", true);
-                htank2.Position = new Vector2(1550, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank.Size.Height * 0.3));
-                // Y-calculation is to align it with the background
+                HeavyTank htank2 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank2.Position = new Vector2(1550, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank2.Size.Height * 0.3));
                 htank2.Velocity = new Vector2(-1, 0);
-                htank2.WorthScore = 100;
-                htank2.StartHP = 50;
                 enemies.Add(htank2);
+ 
                 addEnemies = false;
             }
             else if (positionInLevel == 15 && addEnemies)
             {
                 // 4 heavy tanks, even more forces.
 
-                Enemy htank = new Enemy(this, Enemy.Type.Exploding, "finalheavytanksprite", true);
-                htank.Position = new Vector2(1400, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank.Size.Height * 0.3));
-                htank.Velocity = new Vector2(-1, 0);
-                htank.WorthScore = 100;
-                htank.StartHP = 50;
-                enemies.Add(htank);
+                HeavyTank htank1 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank1.Position = new Vector2(1400, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank1.Size.Height * 0.3));
+                htank1.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank1);
 
-
-                Enemy htank2 = new Enemy(this, Enemy.Type.Exploding, "finalheavytanksprite", true);
-                htank2.Position = new Vector2(1550, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank.Size.Height * 0.3));
+                HeavyTank htank2 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank2.Position = new Vector2(1550, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank2.Size.Height * 0.3));
                 htank2.Velocity = new Vector2(-1, 0);
-                htank2.WorthScore = 100;
-                htank2.StartHP = 50;
                 enemies.Add(htank2);
 
-                Enemy htank3 = new Enemy(this, Enemy.Type.Exploding, "finalheavytanksprite", true);
+                HeavyTank htank3 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
                 htank3.Position = new Vector2(1700, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank3.Size.Height * 0.3));
                 htank3.Velocity = new Vector2(-1, 0);
-                htank3.WorthScore = 100;
-                htank3.StartHP = 50;
                 enemies.Add(htank3);
 
-                Enemy htank4 = new Enemy(this, Enemy.Type.Exploding, "finalheavytanksprite", true);
+                HeavyTank htank4 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
                 htank4.Position = new Vector2(1850, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank4.Size.Height * 0.3));
                 htank4.Velocity = new Vector2(-1, 0);
-                htank4.WorthScore = 100;
-                htank4.StartHP = 50;
                 enemies.Add(htank4);
 
                 addEnemies = false;
@@ -690,26 +665,19 @@ namespace Spitfire
             {
                 // A Zeppelin and 2 heavy fighter, the other half of the major strike force.
 
-                Enemy hfighter = new Enemy(this, Enemy.Type.Exploding, "heavyfighter", false);
-                hfighter.Position = new Vector2(1300, 250);
-                hfighter.Velocity = new Vector2(-1, 0);
-                hfighter.StartHP = 20;
-                hfighter.WorthScore = 150;
-                enemies.Add(hfighter);
+                HeavyFighter hfighter1 = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", true);
+                hfighter1.Position = new Vector2(1300, 250);
+                hfighter1.Velocity = new Vector2(-1, 0);
+                enemies.Add(hfighter1);
 
-                Enemy zeppelin = new Enemy(this, Enemy.Type.Exploding, "zeppelin2sized_tmp_flipped", false);
+                Zeppelin zeppelin = new Zeppelin(this, Enemy.Difficulty.Easy, "zepplinarmoured_final", true);
                 zeppelin.Position = new Vector2(1550, 250);
                 zeppelin.Velocity = new Vector2(-1, 0);
-                zeppelin.WorthScore = 100;
-                zeppelin.StartHP = 100;
                 enemies.Add(zeppelin);
 
-
-                Enemy hfighter2 = new Enemy(this, Enemy.Type.Exploding, "heavyfighter", false);
+                HeavyFighter hfighter2 = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", true);
                 hfighter2.Position = new Vector2(1850, 250);
                 hfighter2.Velocity = new Vector2(-1, 0);
-                hfighter2.StartHP = 20;
-                hfighter2.WorthScore = 150;
                 enemies.Add(hfighter2);
 
                 addEnemies = false;
@@ -729,13 +697,13 @@ namespace Spitfire
                 enemies.Add(superTank2);
 
                 LightTank superTank3 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
-                superTank1.Velocity = new Vector2(-2, 0);
-                superTank1.Position = new Vector2(1600, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(superTank3.Size.Height * 0.3));
+                superTank3.Velocity = new Vector2(-2, 0);
+                superTank3.Position = new Vector2(1600, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(superTank3.Size.Height * 0.3));
                 enemies.Add(superTank3);
 
                 LightTank superTank4 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
-                superTank2.Velocity = new Vector2(-2, 0);
-                superTank2.Position = new Vector2(1750, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(superTank4.Size.Height * 0.3));
+                superTank4.Velocity = new Vector2(-2, 0);
+                superTank4.Position = new Vector2(1750, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(superTank4.Size.Height * 0.3));
                 enemies.Add(superTank4);
 
                 LightTank supertank5 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
@@ -819,34 +787,604 @@ namespace Spitfire
                 // resume playing music after stopped during level change
                 MediaPlayer.Resume();
 
-                // 1 heavy fighter responds to distress calls from the scouts
+                LightTank superTank1 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                superTank1.Velocity = new Vector2(-2, 0);
+                superTank1.Position = new Vector2(1300, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(superTank1.Size.Height * 0.3));
+                enemies.Add(superTank1);
 
-                Enemy hfighter = new Enemy(this, Enemy.Type.Exploding, "heavyfighter", false);
-                hfighter.Position = new Vector2(1410, 250);
-                hfighter.Velocity = new Vector2(-2, 0);
-                hfighter.StartHP = 20;
-                hfighter.WorthScore = 150;
-                enemies.Add(hfighter);
+                LightTank superTank2 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                superTank2.Velocity = new Vector2(-2, 0);
+                superTank2.Position = new Vector2(1450, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(superTank2.Size.Height * 0.3));
+                enemies.Add(superTank2);
 
-                LightTank superTank = new LightTank(this, Enemy.Difficulty.Hard, "lighttankspritemapfinal", true);
-                superTank.Velocity = new Vector2(-2, 0);
-                superTank.Position = new Vector2(1400, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(superTank.Size.Height * 0.3));
-                enemies.Add(superTank);
+                LightTank superTank3 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                superTank3.Velocity = new Vector2(-2, 0);
+                superTank3.Position = new Vector2(1600, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(superTank3.Size.Height * 0.3));
+                enemies.Add(superTank3);
+
+                LightTank superTank4 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                superTank4.Velocity = new Vector2(-2, 0);
+                superTank4.Position = new Vector2(1750, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(superTank4.Size.Height * 0.3));
+                enemies.Add(superTank4);
 
                 addEnemies = false;
             }
-            else if (positionInLevel == 2 && addEnemies) { 
-                Zeppelin testZeppelin = new Zeppelin(this,Enemy.Difficulty.Medium,"zeppelin2sized_tmp_flipped", false);
-                testZeppelin.Position = new Vector2(1200f, this.grounds[0].Position.Y - 600f);
-                enemies.Add(testZeppelin);
+            else if (positionInLevel == 2 && addEnemies) {
+                HeavyFighter hfighter1 = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", true);
+                hfighter1.Position = new Vector2(1300, 250);
+                hfighter1.Velocity = new Vector2(-1, 0);
+                enemies.Add(hfighter1);
+
+                HeavyFighter hfighter2 = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", true);
+                hfighter2.Position = new Vector2(1700, 250);
+                hfighter2.Velocity = new Vector2(-1, 0);
+                enemies.Add(hfighter2);
+
+                HeavyTank htank1 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank1.Position = new Vector2(1400, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank1.Size.Height * 0.3));
+                htank1.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank1);
+
+                HeavyTank htank2 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank2.Position = new Vector2(1600, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank2.Size.Height * 0.3));
+                htank2.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank2);
+
                 addEnemies = false;
-            
             }
+            else if (positionInLevel == 3 && addEnemies)
+            {
+                Mig migMedium1 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium1.Position = new Vector2(1300, grounds[0].Position.Y - 200f);
+                migMedium1.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium1);
+
+                Mig migMedium2 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium2.Position = new Vector2(1300, grounds[0].Position.Y - 300f);
+                migMedium2.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium2);
+
+                Mig migMedium3 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium3.Position = new Vector2(1400, grounds[0].Position.Y - 200f);
+                migMedium3.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium3);
+
+                Mig migMedium4 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium4.Position = new Vector2(1400, grounds[0].Position.Y - 300f);
+                migMedium4.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium4);
+
+                Mig migMedium5 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium5.Position = new Vector2(1500, grounds[0].Position.Y - 200f);
+                migMedium5.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium5);
+
+                Mig migMedium6 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium6.Position = new Vector2(1500, grounds[0].Position.Y - 300f);
+                migMedium6.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium6);
+
+                Mig migMedium7 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium7.Position = new Vector2(1600, grounds[0].Position.Y - 200f);
+                migMedium7.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium7);
+
+                Mig migMedium8 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium8.Position = new Vector2(1600, grounds[0].Position.Y - 300f);
+                migMedium8.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium8);
+
+                addEnemies = false;
+            }
+            else if (positionInLevel == 4 && addEnemies)
+            {
+                LightTank superTank1 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                superTank1.Velocity = new Vector2(-2, 0);
+                superTank1.Position = new Vector2(1300, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(superTank1.Size.Height * 0.3));
+                enemies.Add(superTank1);
+
+                LightTank superTank2 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                superTank2.Velocity = new Vector2(-2, 0);
+                superTank2.Position = new Vector2(1450, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(superTank2.Size.Height * 0.3));
+                enemies.Add(superTank2);
+
+                LightTank superTank3 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                superTank3.Velocity = new Vector2(-2, 0);
+                superTank3.Position = new Vector2(1600, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(superTank3.Size.Height * 0.3));
+                enemies.Add(superTank3);
+
+                LightTank superTank4 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                superTank4.Velocity = new Vector2(-2, 0);
+                superTank4.Position = new Vector2(1750, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(superTank4.Size.Height * 0.3));
+                enemies.Add(superTank4);
+
+                LightTank supertank5 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                supertank5.Velocity = new Vector2(-2, 0);
+                supertank5.Position = new Vector2(1900, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(supertank5.Size.Height * 0.3));
+                enemies.Add(supertank5);
+
+                LightTank supertank6 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                supertank6.Velocity = new Vector2(-2, 0);
+                supertank6.Position = new Vector2(2050, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(supertank6.Size.Height * 0.3));
+                enemies.Add(supertank6);
+
+                LightTank supertank7 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                supertank7.Velocity = new Vector2(-2, 0);
+                supertank7.Position = new Vector2(2200, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(supertank7.Size.Height * 0.3));
+                enemies.Add(supertank7);
+
+                LightTank supertank8 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                supertank8.Velocity = new Vector2(-2, 0);
+                supertank8.Position = new Vector2(2350, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(supertank8.Size.Height * 0.3));
+                enemies.Add(supertank8);
+
+                LightTank supertank9 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                supertank9.Velocity = new Vector2(-2, 0);
+                supertank9.Position = new Vector2(2500, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(supertank9.Size.Height * 0.3));
+                enemies.Add(supertank9);
+
+                LightTank supertank10 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                supertank10.Velocity = new Vector2(-2, 0);
+                supertank10.Position = new Vector2(2650, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(supertank10.Size.Height * 0.3));
+                enemies.Add(supertank10);
+
+                LightTank supertank11 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                supertank11.Velocity = new Vector2(-2, 0);
+                supertank11.Position = new Vector2(2800, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(supertank11.Size.Height * 0.3));
+                enemies.Add(supertank11);
+
+                LightTank supertank12 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                supertank12.Velocity = new Vector2(-2, 0);
+                supertank12.Position = new Vector2(2950, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(supertank12.Size.Height * 0.3));
+                enemies.Add(supertank12);
+
+                addEnemies = false;
+            }
+            else if (positionInLevel == 5 && addEnemies)
+            {
+                Zeppelin zeppelin1 = new Zeppelin(this, Enemy.Difficulty.Easy, "zepplinarmoured_final", true);
+                zeppelin1.Position = new Vector2(1400, 200);
+                zeppelin1.Velocity = new Vector2(-1, 0);
+                enemies.Add(zeppelin1);
+
+                Zeppelin zeppelin2 = new Zeppelin(this, Enemy.Difficulty.Easy, "zepplinarmoured_final", true);
+                zeppelin2.Position = new Vector2(1600, 200);
+                zeppelin2.Velocity = new Vector2(-1, 0);
+                enemies.Add(zeppelin2);
+
+                HeavyTank htank1 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank1.Position = new Vector2(1300, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank1.Size.Height * 0.3));
+                htank1.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank1);
+
+                HeavyTank htank2 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank2.Position = new Vector2(1500, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank2.Size.Height * 0.3));
+                htank2.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank2);
+
+                HeavyTank htank3 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank3.Position = new Vector2(1600, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank3.Size.Height * 0.3));
+                htank3.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank3);
+
+                HeavyTank htank4 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank4.Position = new Vector2(1700, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank4.Size.Height * 0.3));
+                htank4.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank4);
+
+                addEnemies = false;
+            }
+            else if (positionInLevel == 6 && addEnemies)
+            {
+                Mig migMedium1 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium1.Position = new Vector2(1300, grounds[0].Position.Y - 200f);
+                migMedium1.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium1);
+
+                Mig migMedium2 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium2.Position = new Vector2(1300, grounds[0].Position.Y - 300f);
+                migMedium2.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium2);
+
+                Mig migMedium3 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium3.Position = new Vector2(1450, grounds[0].Position.Y - 200f);
+                migMedium3.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium3);
+
+                Mig migMedium4 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium4.Position = new Vector2(1450, grounds[0].Position.Y - 300f);
+                migMedium4.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium4);
+
+                Mig migMedium5 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium5.Position = new Vector2(1600, grounds[0].Position.Y - 200f);
+                migMedium5.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium5);
+
+                Mig migMedium6 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium6.Position = new Vector2(1600, grounds[0].Position.Y - 300f);
+                migMedium6.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium6);
+
+                Mig migMedium7 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium7.Position = new Vector2(1750, grounds[0].Position.Y - 200f);
+                migMedium7.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium7);
+
+                Mig migMedium8 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium8.Position = new Vector2(1750, grounds[0].Position.Y - 300f);
+                migMedium8.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium8);
+
+                HeavyFighter hfighter1 = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", true);
+                hfighter1.Position = new Vector2(1300, 250);
+                hfighter1.Velocity = new Vector2(-1, 0);
+                enemies.Add(hfighter1);
+
+                HeavyFighter hfighter2 = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", true);
+                hfighter2.Position = new Vector2(1450, 250);
+                hfighter2.Velocity = new Vector2(-1, 0);
+                enemies.Add(hfighter2);
+
+                HeavyFighter hfighter3 = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", true);
+                hfighter3.Position = new Vector2(1600, 250);
+                hfighter3.Velocity = new Vector2(-1, 0);
+                enemies.Add(hfighter3);
+
+                HeavyFighter hfighter4 = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", true);
+                hfighter4.Position = new Vector2(1750, 250);
+                hfighter4.Velocity = new Vector2(-1, 0);
+                enemies.Add(hfighter4);
+
+                addEnemies = false;
+            }
+            else if (positionInLevel == 8 && addEnemies)
+            {
+                Zeppelin zeppelin1 = new Zeppelin(this, Enemy.Difficulty.Easy, "zepplinarmoured_final", true);
+                zeppelin1.Position = new Vector2(1400, 200);
+                zeppelin1.Velocity = new Vector2(-1, 0);
+                enemies.Add(zeppelin1);
+
+                Zeppelin zeppelin2 = new Zeppelin(this, Enemy.Difficulty.Easy, "zepplinarmoured_final", true);
+                zeppelin2.Position = new Vector2(1600, 200);
+                zeppelin2.Velocity = new Vector2(-1, 0);
+                enemies.Add(zeppelin2);
+
+                Zeppelin zeppelin3 = new Zeppelin(this, Enemy.Difficulty.Easy, "zepplinarmoured_final", true);
+                zeppelin3.Position = new Vector2(1400, 300);
+                zeppelin3.Velocity = new Vector2(-1, 0);
+                enemies.Add(zeppelin3);
+
+                Zeppelin zeppelin4 = new Zeppelin(this, Enemy.Difficulty.Easy, "zepplinarmoured_final", true);
+                zeppelin4.Position = new Vector2(1600, 300);
+                zeppelin4.Velocity = new Vector2(-1, 0);
+                enemies.Add(zeppelin4);
+
+                addEnemies = false;
+            }    
+            else if (positionInLevel == 10 && addEnemies)
+            {
+                HeavyFighter hfighter1 = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", true);
+                hfighter1.Position = new Vector2(1300, 250);
+                hfighter1.Velocity = new Vector2(-1, 0);
+                enemies.Add(hfighter1);
+
+                HeavyFighter hfighter2 = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", true);
+                hfighter2.Position = new Vector2(1450, 250);
+                hfighter2.Velocity = new Vector2(-1, 0);
+                enemies.Add(hfighter2);
+
+                HeavyFighter hfighter3 = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", true);
+                hfighter3.Position = new Vector2(1600, 250);
+                hfighter3.Velocity = new Vector2(-1, 0);
+                enemies.Add(hfighter3);
+
+                HeavyFighter hfighter4 = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", true);
+                hfighter4.Position = new Vector2(1750, 250);
+                hfighter4.Velocity = new Vector2(-1, 0);
+                enemies.Add(hfighter4);
+
+                HeavyFighter hfighter5 = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", true);
+                hfighter5.Position = new Vector2(1300, 350);
+                hfighter5.Velocity = new Vector2(-1, 0);
+                enemies.Add(hfighter5);
+
+                HeavyFighter hfighter6 = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", true);
+                hfighter6.Position = new Vector2(1450, 350);
+                hfighter6.Velocity = new Vector2(-1, 0);
+                enemies.Add(hfighter6);
+
+                HeavyFighter hfighter7 = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", true);
+                hfighter7.Position = new Vector2(1600, 350);
+                hfighter7.Velocity = new Vector2(-1, 0);
+                enemies.Add(hfighter7);
+
+                HeavyFighter hfighter8 = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", true);
+                hfighter8.Position = new Vector2(1750, 350);
+                hfighter8.Velocity = new Vector2(-1, 0);
+                enemies.Add(hfighter8);
+
+                addEnemies = false;
+            }   
+            else if (positionInLevel == 12 && addEnemies)
+            {
+                LightTank superTank1 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                superTank1.Velocity = new Vector2(-2, 0);
+                superTank1.Position = new Vector2(1300, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(superTank1.Size.Height * 0.3));
+                enemies.Add(superTank1);
+
+                LightTank superTank2 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                superTank2.Velocity = new Vector2(-2, 0);
+                superTank2.Position = new Vector2(1400, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(superTank2.Size.Height * 0.3));
+                enemies.Add(superTank2);
+
+                LightTank superTank3 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                superTank3.Velocity = new Vector2(-2, 0);
+                superTank3.Position = new Vector2(1500, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(superTank3.Size.Height * 0.3));
+                enemies.Add(superTank3);
+
+                LightTank superTank4 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                superTank4.Velocity = new Vector2(-2, 0);
+                superTank4.Position = new Vector2(1600, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(superTank4.Size.Height * 0.3));
+                enemies.Add(superTank4);
+
+                LightTank supertank5 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                supertank5.Velocity = new Vector2(-2, 0);
+                supertank5.Position = new Vector2(1800, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(supertank5.Size.Height * 0.3));
+                enemies.Add(supertank5);
+
+                LightTank supertank6 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                supertank6.Velocity = new Vector2(-2, 0);
+                supertank6.Position = new Vector2(1900, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(supertank6.Size.Height * 0.3));
+                enemies.Add(supertank6);
+
+                LightTank supertank7 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                supertank7.Velocity = new Vector2(-2, 0);
+                supertank7.Position = new Vector2(2000, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(supertank7.Size.Height * 0.3));
+                enemies.Add(supertank7);
+
+                LightTank supertank8 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                supertank8.Velocity = new Vector2(-2, 0);
+                supertank8.Position = new Vector2(2100, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(supertank8.Size.Height * 0.3));
+                enemies.Add(supertank8);
+
+                LightTank supertank9 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                supertank9.Velocity = new Vector2(-2, 0);
+                supertank9.Position = new Vector2(2300, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(supertank9.Size.Height * 0.3));
+                enemies.Add(supertank9);
+
+                LightTank supertank10 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                supertank10.Velocity = new Vector2(-2, 0);
+                supertank10.Position = new Vector2(2400, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(supertank10.Size.Height * 0.3));
+                enemies.Add(supertank10);
+
+                LightTank supertank11 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                supertank11.Velocity = new Vector2(-2, 0);
+                supertank11.Position = new Vector2(2500, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(supertank11.Size.Height * 0.3));
+                enemies.Add(supertank11);
+
+                LightTank supertank12 = new LightTank(this, Enemy.Difficulty.Easy, "lighttankspritemapfinal", true);
+                supertank12.Velocity = new Vector2(-2, 0);
+                supertank12.Position = new Vector2(2600, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(supertank12.Size.Height * 0.3));
+                enemies.Add(supertank12);
+
+                HeavyTank htank1 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank1.Position = new Vector2(1200, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank1.Size.Height * 0.3));
+                htank1.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank1);
+
+                HeavyTank htank2 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank2.Position = new Vector2(1700, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank2.Size.Height * 0.3));
+                htank2.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank2);
+
+                HeavyTank htank3 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank3.Position = new Vector2(2200, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank3.Size.Height * 0.3));
+                htank3.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank3);
+
+                HeavyTank htank4 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank4.Position = new Vector2(2700, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank4.Size.Height * 0.3));
+                htank4.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank4);
 
 
+                addEnemies = false;
+            }
+            else if (positionInLevel == 14 && addEnemies)
+            {
+                HeavyTank htank1 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank1.Position = new Vector2(1200, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank1.Size.Height * 0.3));
+                htank1.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank1);
+
+                HeavyTank htank2 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank2.Position = new Vector2(1400, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank2.Size.Height * 0.3));
+                htank2.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank2);
+
+                HeavyTank htank3 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank3.Position = new Vector2(1600, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank3.Size.Height * 0.3));
+                htank3.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank3);
+
+                HeavyTank htank4 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank4.Position = new Vector2(1800, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank4.Size.Height * 0.3));
+                htank4.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank4);
+
+                HeavyTank htank5 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank5.Position = new Vector2(2000, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank5.Size.Height * 0.3));
+                htank5.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank5);
+
+                HeavyTank htank6 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank6.Position = new Vector2(2200, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank6.Size.Height * 0.3));
+                htank6.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank6);
+
+                HeavyTank htank7 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank7.Position = new Vector2(2400, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank7.Size.Height * 0.3));
+                htank7.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank7);
+
+                HeavyTank htank8 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank8.Position = new Vector2(2600, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank8.Size.Height * 0.3));
+                htank8.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank8);
+                addEnemies = false;
+            }
+            else if (positionInLevel == 16 && addEnemies)
+            {
+                Mig migMedium1 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium1.Position = new Vector2(1400, grounds[0].Position.Y - 100f);
+                migMedium1.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium1);
+
+                Mig migMedium2 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium2.Position = new Vector2(1400, grounds[0].Position.Y - 200f);
+                migMedium2.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium2);
+
+                Mig migMedium3 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium3.Position = new Vector2(1400, grounds[0].Position.Y - 300f);
+                migMedium3.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium3);
+
+                Mig migMedium4 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium4.Position = new Vector2(1400, grounds[0].Position.Y - 400f);
+                migMedium4.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium4);
+
+                Mig migMedium5 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium5.Position = new Vector2(1500, grounds[0].Position.Y - 100f);
+                migMedium5.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium5);
+
+                Mig migMedium6 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium6.Position = new Vector2(1500, grounds[0].Position.Y - 200f);
+                migMedium6.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium6);
+
+                Mig migMedium7 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium7.Position = new Vector2(1500, grounds[0].Position.Y - 300f);
+                migMedium7.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium7);
+
+                Mig migMedium8 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium8.Position = new Vector2(1500, grounds[0].Position.Y - 400f);
+                migMedium8.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium8);
+
+                Mig migMedium9 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium9.Position = new Vector2(1600, grounds[0].Position.Y - 100f);
+                migMedium9.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium9);
+
+                Mig migMedium10 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium10.Position = new Vector2(1600, grounds[0].Position.Y - 200f);
+                migMedium10.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium10);
+
+                Mig migMedium11 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium11.Position = new Vector2(1600, grounds[0].Position.Y - 300f);
+                migMedium11.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium11);
+
+                Mig migMedium12 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium12.Position = new Vector2(1600, grounds[0].Position.Y - 400f);
+                migMedium12.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium12);
+
+                Mig migMedium13 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium13.Position = new Vector2(1700, grounds[0].Position.Y - 100f);
+                migMedium13.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium13);
+
+                Mig migMedium14 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium14.Position = new Vector2(1700, grounds[0].Position.Y - 200f);
+                migMedium14.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium14);
+
+                Mig migMedium15 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium15.Position = new Vector2(1700, grounds[0].Position.Y - 300f);
+                migMedium15.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium15);
+
+                Mig migMedium16 = new Mig(this, Enemy.Difficulty.Easy, "mig", false);
+                migMedium16.Position = new Vector2(1700, grounds[0].Position.Y - 400f);
+                migMedium16.Velocity = new Vector2(-1, 0);
+                enemies.Add(migMedium16);
+
+                addEnemies = false;
+            }
+            else if (positionInLevel == 18 && addEnemies)
+            {
+                HeavyTank htank1 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank1.Position = new Vector2(1200, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank1.Size.Height * 0.3));
+                htank1.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank1);
+
+                HeavyTank htank2 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank2.Position = new Vector2(1300, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank2.Size.Height * 0.3));
+                htank2.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank2);
+
+                HeavyTank htank3 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank3.Position = new Vector2(1400, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank3.Size.Height * 0.3));
+                htank3.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank3);
+
+                HeavyTank htank4 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank4.Position = new Vector2(1500, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank4.Size.Height * 0.3));
+                htank4.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank4);
+
+                HeavyTank htank5 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank5.Position = new Vector2(1600, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank5.Size.Height * 0.3));
+                htank5.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank5);
+
+                HeavyTank htank6 = new HeavyTank(this, Enemy.Difficulty.Easy, "finalheavytanksprite", true);
+                htank6.Position = new Vector2(1700, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank6.Size.Height * 0.3));
+                htank6.Velocity = new Vector2(-1, 0);
+                enemies.Add(htank6);
+
+                HeavyFighter hfighter1 = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", true);
+                hfighter1.Position = new Vector2(1200, 200);
+                hfighter1.Velocity = new Vector2(-1, 0);
+                enemies.Add(hfighter1);
+
+                HeavyFighter hfighter2 = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", true);
+                hfighter2.Position = new Vector2(1300, 200);
+                hfighter2.Velocity = new Vector2(-1, 0);
+                enemies.Add(hfighter2);
+
+                HeavyFighter hfighter3 = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", true);
+                hfighter3.Position = new Vector2(1400, 200);
+                hfighter3.Velocity = new Vector2(-1, 0);
+                enemies.Add(hfighter3);
+
+                HeavyFighter hfighter4 = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", true);
+                hfighter4.Position = new Vector2(1500, 200);
+                hfighter4.Velocity = new Vector2(-1, 0);
+                enemies.Add(hfighter4);
+
+                HeavyFighter hfighter5 = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", true);
+                hfighter5.Position = new Vector2(1600, 200);
+                hfighter5.Velocity = new Vector2(-1, 0);
+                enemies.Add(hfighter5);
+
+                HeavyFighter hfighter6 = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", true);
+                hfighter6.Position = new Vector2(1700, 200);
+                hfighter6.Velocity = new Vector2(-1, 0);
+                enemies.Add(hfighter6);
+
+                addEnemies = false;
+            }
             else if (positionInLevel == 25 && addEnemies)
             {
-                Enemy finalboss = new Enemy(this, Enemy.Type.Exploding, "finalboss", true);
+                Enemy finalboss = new Enemy(this, Enemy.Type.Exploding, "ulimateweaponspritemap_final", true);
                 finalboss.Position = new Vector2(1450, 200);
                 finalboss.Velocity = new Vector2(-1, 0);
                 finalboss.WorthScore = 1000;
@@ -878,8 +1416,7 @@ namespace Spitfire
                 {
                     //Create an item pickup
                     Pickup item = new Pickup(enemy.Position, Pickup.Effect.HP);
-                    item.Texture = this.content.Load<Texture2D>("Sprites/healthcrate");
-                    item.Scale = 0.2f;
+                    item.Texture = this.content.Load<Texture2D>("Sprites/special_drops_final copy");
                     pickups.Add(item);
                     enemies.Remove(enemy);
                 }
@@ -935,16 +1472,17 @@ namespace Spitfire
             sky.Draw(spriteBatch);
             skyTwo.Draw(spriteBatch);
 
-            foreach (Sprite frame in grounds)
-            {
-                frame.Draw(spriteBatch);
-            }
-
             // Draw the background
             foreach (Sprite frame in backgrounds)
             {
                 frame.Draw(spriteBatch);
                 //Console.WriteLine("3: " + frame.Position);
+            }
+            
+            // Draw the ground
+            foreach (Sprite frame in grounds)
+            {
+                frame.Draw(spriteBatch);
             }
 
             // Draw enemies

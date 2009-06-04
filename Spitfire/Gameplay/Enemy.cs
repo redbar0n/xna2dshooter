@@ -302,7 +302,7 @@ namespace Spitfire
                 engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
                 bulletTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/tankammo");
             }
-            else if (spriteSet.Equals("Sprites/Enemies/zeppelin2sized_tmp_flipped"))
+            else if (spriteSet.Equals("Sprites/Enemies/zepplinarmoured_final"))
             {
                 bulletTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/tankammo");
                 //NickSound
@@ -310,9 +310,9 @@ namespace Spitfire
                engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
                hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
                explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
-               explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/zepplinexpl_final1_tmp_flipped"), 0.2f, 1f, false);
+               explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/zepplinexpl_final1"), 0.2f, 1f, false);
             }
-            else if (spriteSet.Equals("Sprites/Enemies/finalboss"))
+            else if (spriteSet.Equals("Sprites/Enemies/ulimateweaponspritemap_final"))
             {
                 //NickSound
                 engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Zeppelin/Engine2");
@@ -437,11 +437,12 @@ namespace Spitfire
 
             if (!GameplayScreen.muted)
             {
-                //engineSoundInst.Volume = 100 / Math.Abs(playersPosition.X - Position.X);
-                //if (engineSoundInst.Volume < 0.05f)
-                //    engineSoundInst.Volume = 0;
-                //else if (engineSoundInst.Volume > 10f)
-                //    engineSoundInst.Volume = 10.0f;
+                // NickSound
+                engineSoundInst.Volume = 100 / Math.Abs(playersPosition.X - Position.X);
+                if (engineSoundInst.Volume < 0.05f)
+                    engineSoundInst.Volume = 0;
+                else if (engineSoundInst.Volume > 10f)
+                    engineSoundInst.Volume = 10.0f;
             }
 
             //foreach (Bullet bullet in bullets.ToArray())

@@ -27,10 +27,10 @@ namespace Spitfire
         void ContinueMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             level++;
-            if (level <= 2)
-                LoadingScreen.Load(ScreenManager, false, e.PlayerIndex, new BackgroundScreen("Menus/level_summary"), new MissionBriefScreen(level, gameplayScreen));
-            else
-                LoadingScreen.Load(ScreenManager, false, e.PlayerIndex, new BackgroundScreen("Menus/level_summary"), new MissionBriefScreen(level, gameplayScreen));
+            if (level == 2)
+                LoadingScreen.Load(ScreenManager, false, e.PlayerIndex, new BackgroundScreen("Menus/missionbrief_final"), new MissionBriefScreen(level, gameplayScreen));
+            else if (level == 3)
+                LoadingScreen.Load(ScreenManager, false, e.PlayerIndex, new BackgroundScreen("Menus/level_summary"), new CreditsScreen(level, gameplayScreen));
         }
 
 

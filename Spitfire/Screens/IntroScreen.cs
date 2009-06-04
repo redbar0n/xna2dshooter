@@ -61,7 +61,7 @@ namespace Spitfire
             }
             else
             {
-                BackgroundScreen briefScreen = new BackgroundScreen(("Menus/level_summary"));
+                BackgroundScreen briefScreen = new BackgroundScreen(("Menus/missionbrief_final"));
                 LoadingScreen.Load(ScreenManager, false, e.PlayerIndex, briefScreen, new MissionBriefScreen(1, new GameplayScreen()));
             }
 

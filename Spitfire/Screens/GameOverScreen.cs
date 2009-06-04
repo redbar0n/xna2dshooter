@@ -97,7 +97,7 @@ namespace Spitfire
         /// </summary>
         void ConfirmQuitMessageBoxAccepted(object sender, PlayerIndexEventArgs e)
         {
-            LoadingScreen.Load(ScreenManager, false, null, new BackgroundScreen("Menus/gamemenu"),
+            LoadingScreen.Load(ScreenManager, false, null, new BackgroundScreen("Menus/gamemenu_final"),
                                                            new MainMenuScreen());
         }
 

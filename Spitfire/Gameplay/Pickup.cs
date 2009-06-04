@@ -13,7 +13,7 @@ namespace Spitfire {
     /// <summary>
     /// The base class for pickups like extra bombs, extra HP in the game.
     /// </summary>
-    class Pickup:Sprite {
+    public class Pickup : Sprite {
 
 
        /// <summary>

@@ -46,6 +46,20 @@ namespace Spitfire
         }
         private bool isFinished = false;
 
+        public bool IsGoingRightToLeft
+        {
+            get { return isGoingRightToLeft; }
+            set { isGoingRightToLeft = value; }
+        }
+        private bool isGoingRightToLeft = false;
+
+        public bool IsGoingLeftToRight
+        {
+            get { return isGoingLeftToRight; }
+            set { isGoingLeftToRight = value; }
+        }
+        private bool isGoingLeftToRight = false;
+
         /// <summary>
         /// Gets the number of frames in the animation.
         /// </summary>

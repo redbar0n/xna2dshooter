@@ -11,15 +11,6 @@
       <Time>2009-05-01T08:36:25.4440848+10:00</Time>
     </Item>
     <Item>
-      <Source>Sprites\Backgrounds\earth[1].png</Source>
-      <Name>Sprites\Backgrounds\earth[1]</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\earth[1].xnb</Output>
-      <Time>2009-05-07T23:18:31.1177152+10:00</Time>
-    </Item>
-    <Item>
       <Source>blank.png</Source>
       <Name>blank</Name>
       <Importer>TextureImporter</Importer>
@@ -36,15 +27,6 @@
       <Options>None</Options>
       <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\gradient.xnb</Output>
       <Time>2009-05-12T23:49:22.8804016+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Menus\gamemenu.png</Source>
-      <Name>Menus\gamemenu</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\gamemenu.xnb</Output>
-      <Time>2009-05-27T13:08:53.9647072+10:00</Time>
     </Item>
     <Item>
       <Source>Menus\gameover.png</Source>
@@ -92,33 +74,6 @@
       <Time>2009-05-19T17:29:00.6974416+10:00</Time>
     </Item>
     <Item>
-      <Source>Sprites\Backgrounds\mountainfinal1.png</Source>
-      <Name>Sprites\Backgrounds\mountainfinal1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\mountainfinal1.xnb</Output>
-      <Time>2009-05-22T12:50:18.688584+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Backgrounds\finalsky.png</Source>
-      <Name>Sprites\Backgrounds\finalsky</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\finalsky.xnb</Output>
-      <Time>2009-05-22T12:52:00.5550608+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Player\herobomb.png</Source>
-      <Name>Sprites\Player\herobomb</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\herobomb.xnb</Output>
-      <Time>2009-05-22T16:49:46.9791712+10:00</Time>
-    </Item>
-    <Item>
       <Source>Sprites\Player\heroammo.png</Source>
       <Name>Sprites\Player\heroammo</Name>
       <Importer>TextureImporter</Importer>
@@ -146,15 +101,6 @@
       <Time>2009-05-27T13:32:42.6991264+10:00</Time>
     </Item>
     <Item>
-      <Source>Sprites\healthcrate.png</Source>
-      <Name>Sprites\healthcrate</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\healthcrate.xnb</Output>
-      <Time>2009-05-27T13:34:07.5511376+10:00</Time>
-    </Item>
-    <Item>
       <Source>Sprites\Enemies\tankammo.png</Source>
       <Name>Sprites\Enemies\tankammo</Name>
       <Importer>TextureImporter</Importer>
@@ -171,24 +117,6 @@
       <Options>None</Options>
       <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\mig.xnb</Output>
       <Time>2009-05-27T13:44:06.5925168+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Backgrounds\Mountain\mountainfinal1.png</Source>
-      <Name>Sprites\Backgrounds\Mountain\mountainfinal1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountainfinal1.xnb</Output>
-      <Time>2009-05-27T13:48:35.1987536+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Enemies\finalboss.png</Source>
-      <Name>Sprites\Enemies\finalboss</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\finalboss.xnb</Output>
-      <Time>2009-05-27T14:12:52.6644864+10:00</Time>
     </Item>
     <Item>
       <Source>Sprites\Enemies\expllarge_final.png</Source>
@@ -218,24 +146,6 @@
       <Time>2009-05-27T14:28:47.0568352+10:00</Time>
     </Item>
     <Item>
-      <Source>Sprites\Player\turnawayfromscreenmap.png</Source>
-      <Name>Sprites\Player\turnawayfromscreenmap</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\turnawayfromscreenmap.xnb</Output>
-      <Time>2009-05-27T14:30:36.7445584+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Backgrounds\ground_final.PNG</Source>
-      <Name>Sprites\Backgrounds\ground_final</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\ground_final.xnb</Output>
-      <Time>2009-05-27T16:58:40.5888992+10:00</Time>
-    </Item>
-    <Item>
       <Source>Sprites\Enemies\heavyfighter.png</Source>
       <Name>Sprites\Enemies\heavyfighter</Name>
       <Importer>TextureImporter</Importer>
@@ -254,78 +164,6 @@
       <Time>2009-05-28T21:56:39.9060528+10:00</Time>
     </Item>
     <Item>
-      <Source>Sprites\Player\spitfirestill_tmp_flipped.png</Source>
-      <Name>Sprites\Player\spitfirestill_tmp_flipped</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\spitfirestill_tmp_flipped.xnb</Output>
-      <Time>2009-05-28T22:28:45.3647264+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Backgrounds\groundtwo_final_tmp.PNG</Source>
-      <Name>Sprites\Backgrounds\groundtwo_final_tmp</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\groundtwo_final_tmp.xnb</Output>
-      <Time>2009-05-28T22:32:15.5870112+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Enemies\zeppelin2sized_tmp_flipped.png</Source>
-      <Name>Sprites\Enemies\zeppelin2sized_tmp_flipped</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zeppelin2sized_tmp_flipped.xnb</Output>
-      <Time>2009-05-28T22:33:44.6250416+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Enemies\zepplinexpl_final1_tmp_flipped.png</Source>
-      <Name>Sprites\Enemies\zepplinexpl_final1_tmp_flipped</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zepplinexpl_final1_tmp_flipped.xnb</Output>
-      <Time>2009-05-28T22:33:44.635056+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Backgrounds\Mountain\mountainfinal2.png</Source>
-      <Name>Sprites\Backgrounds\Mountain\mountainfinal2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountainfinal2.xnb</Output>
-      <Time>2009-05-28T23:28:08.8988368+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Backgrounds\Mountain\mountainfinal3.png</Source>
-      <Name>Sprites\Backgrounds\Mountain\mountainfinal3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountainfinal3.xnb</Output>
-      <Time>2009-05-28T23:28:08.9088512+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Sprites\Backgrounds\Mountain\mountainfinal4.png</Source>
-      <Name>Sprites\Backgrounds\Mountain\mountainfinal4</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountainfinal4.xnb</Output>
-      <Time>2009-05-28T23:28:08.8888224+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Menus\controls.png</Source>
-      <Name>Menus\controls</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\controls.xnb</Output>
-      <Time>2009-05-31T20:20:38.9013664+10:00</Time>
-    </Item>
-    <Item>
       <Source>Menus\story_screen_final.png</Source>
       <Name>Menus\story_screen_final</Name>
       <Importer>TextureImporter</Importer>
@@ -333,15 +171,6 @@
       <Options>None</Options>
       <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\story_screen_final.xnb</Output>
       <Time>2009-06-01T20:10:13.9194784+10:00</Time>
-    </Item>
-    <Item>
-      <Source>Menus\story-screen1.png</Source>
-      <Name>Menus\story-screen1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\story-screen1.xnb</Output>
-      <Time>2009-06-01T20:33:47.7825136+10:00</Time>
     </Item>
     <Item>
       <Source>Menus\level_summary.PNG</Source>
@@ -360,6 +189,15 @@
       <Options>None</Options>
       <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\arrow.xnb</Output>
       <Time>2009-06-02T21:32:01.5881984+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Menus\gamemenu_final.png</Source>
+      <Name>Menus\gamemenu_final</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\gamemenu_final.xnb</Output>
+      <Time>2009-06-02T23:04:19.6214992+10:00</Time>
     </Item>
     <Item>
       <Source>HUD\Pericles.spritefont</Source>
@@ -532,6 +370,159 @@
       <Options>None</Options>
       <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\explode_light2.xnb</Output>
       <Time>2009-05-11T21:26:30.5483344+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\sky_final.png</Source>
+      <Name>Sprites\Backgrounds\sky_final</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\sky_final.xnb</Output>
+      <Time>2009-06-02T23:11:50.2294416+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\Mountain\mountain_final_1.png</Source>
+      <Name>Sprites\Backgrounds\Mountain\mountain_final_1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountain_final_1.xnb</Output>
+      <Time>2009-06-04T08:15:56.8386256+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\Mountain\mountain_final_2.png</Source>
+      <Name>Sprites\Backgrounds\Mountain\mountain_final_2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountain_final_2.xnb</Output>
+      <Time>2009-06-04T08:15:56.84864+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\Mountain\mountain_final_3.png</Source>
+      <Name>Sprites\Backgrounds\Mountain\mountain_final_3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountain_final_3.xnb</Output>
+      <Time>2009-06-04T08:15:56.8586544+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\Mountain\mountain_final_4.png</Source>
+      <Name>Sprites\Backgrounds\Mountain\mountain_final_4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountain_final_4.xnb</Output>
+      <Time>2009-06-04T08:15:56.8686688+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Enemies\ulimateweaponspritemap_final.png</Source>
+      <Name>Sprites\Enemies\ulimateweaponspritemap_final</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\ulimateweaponspritemap_final.xnb</Output>
+      <Time>2009-06-04T08:07:01.6891184+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\special_drops_final copy.png</Source>
+      <Name>Sprites\special_drops_final copy</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\special_drops_final copy.xnb</Output>
+      <Time>2009-06-04T08:09:29.2513024+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Menus\missionbrief_final.png</Source>
+      <Name>Menus\missionbrief_final</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\missionbrief_final.xnb</Output>
+      <Time>2009-06-04T10:37:12.1455184+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Player\turnawayfromscreenmap_right.png</Source>
+      <Name>Sprites\Player\turnawayfromscreenmap_right</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\turnawayfromscreenmap_right.xnb</Output>
+      <Time>2009-06-04T08:12:28.599192+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Player\turnawayfromscreenmap_right_upsidedown.png</Source>
+      <Name>Sprites\Player\turnawayfromscreenmap_right_upsidedown</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\turnawayfromscreenmap_right_upsidedown.xnb</Output>
+      <Time>2009-06-04T08:14:44.3844416+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Player\herobomb_final.png</Source>
+      <Name>Sprites\Player\herobomb_final</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\herobomb_final.xnb</Output>
+      <Time>2009-06-04T08:21:50.8176224+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\groundtwo_final2.png</Source>
+      <Name>Sprites\Backgrounds\groundtwo_final2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\groundtwo_final2.xnb</Output>
+      <Time>2009-06-04T08:30:55.590968+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\groundone_final1.png</Source>
+      <Name>Sprites\Backgrounds\groundone_final1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\groundone_final1.xnb</Output>
+      <Time>2009-06-04T08:31:38.8431616+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Enemies\zepplinexpl_final1.png</Source>
+      <Name>Sprites\Enemies\zepplinexpl_final1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zepplinexpl_final1.xnb</Output>
+      <Time>2009-06-04T08:34:05.614208+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Enemies\zepplinarmoured_final.png</Source>
+      <Name>Sprites\Enemies\zepplinarmoured_final</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zepplinarmoured_final.xnb</Output>
+      <Time>2009-06-04T08:34:37.009352+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Player\stillspitfire_final.png</Source>
+      <Name>Sprites\Player\stillspitfire_final</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\stillspitfire_final.xnb</Output>
+      <Time>2009-06-04T08:37:47.4131392+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Menus\controls3.png</Source>
+      <Name>Menus\controls3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\controls3.xnb</Output>
+      <Time>2009-06-04T10:19:21.8865616+10:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

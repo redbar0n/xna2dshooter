@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 
 namespace Spitfire
 {
@@ -15,6 +16,7 @@ namespace Spitfire
         string gameover;
         int level;
         GameScreen gameplayScreen;
+        Texture2D controlsTex;
 
         public MissionBriefScreen(int level, GameScreen gameplayScreen)
             : base("Background Story", new Vector2(300, 680))
@@ -45,13 +47,19 @@ namespace Spitfire
                 brief = gameover;
         }
 
+        override public void LoadContent()
+        {
+            ContentManager content = ScreenManager.Game.Content;
+            controlsTex = content.Load<Texture2D>("Menus/controls3");
+        }
+
 
         void ContinueMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             if (level != 3)
                 LoadingScreen.Load(ScreenManager, true, e.PlayerIndex, gameplayScreen);
             else
-                LoadingScreen.Load(ScreenManager, false, e.PlayerIndex, new BackgroundScreen("Menus/gamemenu"), new MainMenuScreen());
+                LoadingScreen.Load(ScreenManager, false, e.PlayerIndex, new BackgroundScreen("Menus/gamemenu_final"), new MainMenuScreen());
         }
 
 
@@ -82,9 +90,14 @@ namespace Spitfire
             if (level == 3)
                 position = new Vector2(250, 100);
 
+            Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
+            Vector2 controlsPos = new Vector2((viewport.Width - controlsTex.Width) / 2, 60);
+            Color texColor = Color.White;
+
             spriteBatch.Begin();
             spriteBatch.DrawString(font, brief, position, color, 0,
                                    origin, scale, SpriteEffects.None, 0);
+            spriteBatch.Draw(controlsTex, controlsPos, texColor);
             spriteBatch.End();
             if (level != 3)
                 base.Draw(gameTime);

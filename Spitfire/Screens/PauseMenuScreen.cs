@@ -86,7 +86,7 @@ namespace Spitfire
         {
             ContentManager content = ScreenManager.Game.Content;
             texture = content.Load<Texture2D>("Menus/pausescreen");
-            controlsTex = content.Load<Texture2D>("Menus/controls");
+            controlsTex = content.Load<Texture2D>("Menus/controls3");
         }
 
         #endregion
@@ -154,7 +154,7 @@ namespace Spitfire
         /// </summary>
         void ConfirmQuitMessageBoxAccepted(object sender, PlayerIndexEventArgs e)
         {
-            LoadingScreen.Load(ScreenManager, false, null, new BackgroundScreen("Menus/gamemenu"),
+            LoadingScreen.Load(ScreenManager, false, null, new BackgroundScreen("Menus/gamemenu_final"),
                                                            new MainMenuScreen());
         }
 

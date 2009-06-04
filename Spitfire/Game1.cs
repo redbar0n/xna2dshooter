@@ -34,7 +34,7 @@ namespace Spitfire
             Components.Add(screenManager);
 
             // Activate the first screens.
-            screenManager.AddScreen(new BackgroundScreen("Menus/gamemenu"), null);
+            screenManager.AddScreen(new BackgroundScreen("Menus/gamemenu_final"), null);
             screenManager.AddScreen(new MainMenuScreen(), null);
         }
 
