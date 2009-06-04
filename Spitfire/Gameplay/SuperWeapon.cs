@@ -109,12 +109,12 @@ namespace Spitfire
         {
             if (faceDirection == FaceDirection.Left)
             {
-                cannonLocation = new Vector2(base.Position.X - 200f, base.Position.Y + 18f);
+                cannonLocation = new Vector2(base.Position.X - 300f, base.Position.Y + 18f);
 
             }
             else
             {
-                cannonLocation = new Vector2(base.Position.X + 200f , base.Position.Y + 12f);
+                cannonLocation = new Vector2(base.Position.X + 300f , base.Position.Y);
             }
 
 

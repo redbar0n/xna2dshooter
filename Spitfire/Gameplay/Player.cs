@@ -22,7 +22,7 @@ namespace Spitfire
             set { distanceFromGround = value; }
         }
         private float distanceFromGround;
-        public static float MAXHEIGHT = 770f;
+        public static float MAXHEIGHT = 850f;
         // Prevents the player from flying upwards when true
         private bool disableRightUpwardMovement = false;
         private bool disableLeftUpwardMovement = false;
@@ -172,6 +172,11 @@ namespace Spitfire
 
         private bool isShooting = false;
 
+        /// <summary>
+        /// When a player taps up or down, they won't rotate as far
+        /// </summary>
+        float rotateMultiplyer = 1.0f;
+
 
         private AnimationPlayer animate;
 
@@ -294,14 +299,11 @@ namespace Spitfire
         {
             KeyboardState keyboardState = Keyboard.GetState();
             GamePadState gamePad = GamePad.GetState(PlayerIndex.One);
-            
 
-            //XBOX CONTROLS
 
             float movement = gamePad.ThumbSticks.Left.Y * 1.0f; //MoveStickScale;
             float xMovement = gamePad.ThumbSticks.Left.X * 1.0f;
-            float lTrigger = gamePad.Triggers.Left * 1.0f;
-            
+
             // Ignore small movements to prevent running in place.
             if (Math.Abs(movement) < 0.1f)
             {
@@ -316,14 +318,17 @@ namespace Spitfire
             if (Math.Abs(xMovement) < 0.2f)
                 xMovement = 0.0f;
 
+
+            /// Movement Controls
+
             if (xMovement > 0 && faceDirection == FaceDirection.Right)
             {
-                setFlip(FaceDirection.Right);                
+                setFlip(FaceDirection.Right);
                 AutoAdjustRotation();
             }
             else if (xMovement < 0 && faceDirection == FaceDirection.Left)
             {
-                setFlip(FaceDirection.Left);                
+                setFlip(FaceDirection.Left);
                 AutoAdjustRotation();
             }
             else if (movement > 0)
@@ -355,59 +360,61 @@ namespace Spitfire
                 }
 
             }
-
-
-
-            /// PC CONTROLS
-            // future: optimize the following if-sentences
-            if (keyboardState.IsKeyDown(Keys.Left) && (Math.Cos(Rotation) < 0))
-            {
+            else if (keyboardState.IsKeyDown(Keys.Left) && faceDirection == FaceDirection.Left) {
                 setFlip(FaceDirection.Left);
                 if (faceDirection == FaceDirection.Left)
-                              
-               setFlip(FaceDirection.Left);
-               if (faceDirection == FaceDirection.Left)
                     AutoAdjustRotation();
-                        
-                
+
             }
-            else if (keyboardState.IsKeyDown(Keys.Right) && (Math.Cos(Rotation) > 0))
-            {
+            else if (keyboardState.IsKeyDown(Keys.Right) && faceDirection == FaceDirection.Right) {
                 setFlip(FaceDirection.Right);
                 if (faceDirection == FaceDirection.Right)
                     AutoAdjustRotation();
+
             }
             else if (keyboardState.IsKeyDown(Keys.Up))
             {
-                    if (controlIsRight && !disableRightUpwardMovement)
-                        minusRotation(1.5f);
-                    else if (!controlIsRight && !disableLeftUpwardMovement)
-                        plusRotation(1.5f);
-                    else
-                        AutoHeightCorrect();
-                    if ((distanceFromGround < MAXHEIGHT))
-                    {
-                        disableLeftUpwardMovement = false;
-                        disableRightUpwardMovement = false;
-                    }
+                rotateMultiplyer += 0.5f;
+                if (rotateMultiplyer >= 1.5f) {
+                    rotateMultiplyer = 1.5f;
+                }
+                
+                if (controlIsRight && !disableRightUpwardMovement)
+                    minusRotation(rotateMultiplyer);
+                else if (!controlIsRight && !disableLeftUpwardMovement)
+                    plusRotation(rotateMultiplyer);
+                else
+                    AutoHeightCorrect();
+                if ((distanceFromGround < MAXHEIGHT))
+                {
+                    disableLeftUpwardMovement = false;
+                    disableRightUpwardMovement = false;
+                }
             }
             else if (keyboardState.IsKeyDown(Keys.Down))
             {
-                               
-              if (controlIsRight && !disableLeftUpwardMovement)
-                  plusRotation(1.5f);
-              else if (!controlIsRight && !disableRightUpwardMovement)
-                  minusRotation(1.5f);
-              else
-                  AutoHeightCorrect();
-              if ((distanceFromGround < MAXHEIGHT))
-              {
-                  disableLeftUpwardMovement = false;
-                  disableRightUpwardMovement = false;
-              }
-            }
+                rotateMultiplyer += 0.5f;
+                if (rotateMultiplyer >= 1.5f)
+                {
+                    rotateMultiplyer = 1.5f;
+                }
+                
+                if (controlIsRight && !disableLeftUpwardMovement)
+                    plusRotation(rotateMultiplyer);
+                else if (!controlIsRight && !disableRightUpwardMovement)
+                    minusRotation(rotateMultiplyer);
+                else
+                    AutoHeightCorrect();
+                if ((distanceFromGround < MAXHEIGHT))
+                {
+                    disableLeftUpwardMovement = false;
+                    disableRightUpwardMovement = false;
+                }
+            }// No movement controls are pressed
             else
             {
+                rotateMultiplyer = 1.0f;
+                
                 if (distanceFromGround > MAXHEIGHT)
                 {
                     AutoHeightCorrect();
@@ -417,47 +424,54 @@ namespace Spitfire
                         disableLeftUpwardMovement = true;
 
                 }
-                else {
+                else
+                {
                     disableLeftUpwardMovement = false;
                     disableRightUpwardMovement = false;
                 }
-                
+
                 // determine controlIsRight value                
-                 if (!flip)
-                    controlIsRight = true;                
-                 else
+                if (!flip)
+                    controlIsRight = true;
+                else
                     controlIsRight = false;
 
             }
-            ///Make plane speed across the screen. Player is invincible 
-            ///while button is pressed
+
+            //Make plane speed across the screen. Player is invincible 
+            //while button is pressed
             if (keyboardState.IsKeyDown(Keys.L))
             {
                 if (Math.Sin(Rotation) == 0)
                 {
                     isImmortal = true;
                     accelerant += 0.125f;
-                    if (accelerant > 7f) {
+                    if (accelerant > 7f)
+                    {
                         accelerant = 7f;
                     }
                 }
             }
-            else {
+            else
+            {
                 isImmortal = false;
             }
+
 
             //Decellerates the plane
             if (keyboardState.IsKeyDown(Keys.Left) && faceDirection == FaceDirection.Right)
                 isSlowing = true;
             else if (keyboardState.IsKeyDown(Keys.Right) && faceDirection == FaceDirection.Left)
                 isSlowing = true;
-            else if (lTrigger > 0.2f)
+            else if (xMovement < -0.2f && faceDirection == FaceDirection.Right)
+                isSlowing = true;
+            else if (xMovement > 0.2f && faceDirection == FaceDirection.Left)
                 isSlowing = true;
             else
                 isSlowing = false;
 
 
-            if (keyboardState.IsKeyDown(Keys.Space)  && !spaceKeyWasPressed)
+            if (keyboardState.IsKeyDown(Keys.Space) && !spaceKeyWasPressed)
             {
                 if (!isShooting)
                 {
@@ -479,7 +493,7 @@ namespace Spitfire
             }
 
             ///Drop bomb ///
-            if (keyboardState.IsKeyDown(Keys.D)  && !dKeyWasPressed)
+            if (keyboardState.IsKeyDown(Keys.D) && !dKeyWasPressed)
             {
                 DropBomb();
                 dKeyWasPressed = true;
@@ -493,6 +507,7 @@ namespace Spitfire
             {
                 dKeyWasPressed = false;
             }
+
             
         }
 
@@ -533,6 +548,7 @@ namespace Spitfire
             {
                 if (crashGround && currentHP > 0)
                 {
+                    isImmortal = false;
                     isAlive = true;
                     level.resetPositions();
                     setAnimation(normalAni);

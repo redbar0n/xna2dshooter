@@ -11,7 +11,7 @@ namespace Spitfire
    /// <summary>
    /// The bomb used by the Zepplin boss
    /// </summary>
-    class EnergyBomb: Bomb
+    public class EnergyBomb: Bomb
     {
 
         public new static Vector2 Origin = new Vector2(5f, 5f);

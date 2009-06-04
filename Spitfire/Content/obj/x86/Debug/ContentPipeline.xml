@@ -596,6 +596,65 @@
       <Output>I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\deadly_gas_copy.xnb</Output>
       <Time>2009-06-04T14:28:42+10:00</Time>
     </Item>
+    <Item>
+      <Source>Sprites\Enemies\boss_level2_final.png</Source>
+      <Name>Sprites\Enemies\boss_level2_final</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\boss_level2_final.xnb</Output>
+      <Time>2009-06-04T18:00:40+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\474459_SOUNDDOGS__th.mp3</Source>
+      <Name>Sounds\474459_SOUNDDOGS__th</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\474459_SOUNDDOGS__th.xnb</Output>
+      <Extra>I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\474459_SOUNDDOGS__th.wma</Extra>
+      <Time>2009-06-04T19:53:06+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\616814_SOUNDDOGS__ra.mp3</Source>
+      <Name>Sounds\616814_SOUNDDOGS__ra</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\616814_SOUNDDOGS__ra.xnb</Output>
+      <Extra>I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\616814_SOUNDDOGS__ra.wma</Extra>
+      <Time>2009-06-04T19:52:22+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\471647_SOUNDDOGS__ar.mp3</Source>
+      <Name>Sounds\471647_SOUNDDOGS__ar</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\471647_SOUNDDOGS__ar.xnb</Output>
+      <Extra>I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\471647_SOUNDDOGS__ar.wma</Extra>
+      <Time>2009-06-04T20:11:08+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\Victory.wma</Source>
+      <Name>Sounds\Victory</Name>
+      <Importer>WmaImporter</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\Victory.xnb</Output>
+      <Extra>I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\Victory.wma</Extra>
+      <Time>2009-06-04T20:24:04+10:00</Time>
+    </Item>
+    <Item>
+      <Source>Sounds\344279_SOUNDDOGS__ba.mp3</Source>
+      <Name>Sounds\344279_SOUNDDOGS__ba</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\344279_SOUNDDOGS__ba.xnb</Output>
+      <Extra>I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\344279_SOUNDDOGS__ba.wma</Extra>
+      <Time>2009-06-04T20:59:56+10:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

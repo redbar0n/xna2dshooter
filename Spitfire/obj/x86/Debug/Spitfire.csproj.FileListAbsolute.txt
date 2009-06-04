@@ -202,3 +202,14 @@ I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\City\Build
 I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\City\Buildings\building_3_final.xnb
 I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\City\Buildings\tower_final.xnb
 I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\deadly_gas_copy.xnb
+I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\boss_level2_final.xnb
+I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\474459_SOUNDDOGS__th.xnb
+I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\616814_SOUNDDOGS__ra.xnb
+I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\474459_SOUNDDOGS__th.wma
+I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\616814_SOUNDDOGS__ra.wma
+I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\471647_SOUNDDOGS__ar.xnb
+I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\Victory.xnb
+I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\471647_SOUNDDOGS__ar.wma
+I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\Victory.wma
+I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\344279_SOUNDDOGS__ba.xnb
+I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\344279_SOUNDDOGS__ba.wma

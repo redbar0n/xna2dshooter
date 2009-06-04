@@ -229,14 +229,15 @@ namespace Spitfire
         /// <param name="scale">Scale size of sprite up or down.</param>
         /// <param name="maxHP">The starting hp of unit.</param>
         /// <param name="crashDamage">The damage the unit will do if crash or explode into other unit.</param>
-        public Enemy(Level level, Type type, String spriteSet, bool looping)
-        {
-            this.level = level;
-            this.type = type;
-            bullets = new List<Bullet>();
-            animate = new AnimationPlayer();
-            LoadContent(spriteSet, looping);
-        }
+        //public Enemy(Level level, Type type, String spriteSet, bool looping)
+        //{
+        //    this.level = level;
+        //    this.type = type;
+        //    bullets = new List<Bullet>();
+        //    animate = new AnimationPlayer();
+        //    LoadContent(spriteSet, looping);
+        //    bombs = new ArrayList();
+        //}
 
         /// <summary>
 
@@ -326,7 +327,7 @@ namespace Spitfire
             }
             else if (spriteSet.Equals("Sprites/Enemies/ulimateweaponspritemap_final"))
             {
-                bulletTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/tankammo");
+                bulletTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/boss_level2_final");
                 bombTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/enemybomb");
                 //NickSound
                 //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Zeppelin/Engine2");
@@ -442,7 +443,11 @@ namespace Spitfire
         /// <param name="playersPosition">Players location on screen. Used to determine behaviour</param>
         public virtual void Update(Vector2 playersVelocity, Vector2 playersPosition, GameTime gameTime)
         {
-            base.Position += (base.Velocity - playersVelocity);
+
+            checkToTurn(playersPosition);
+  
+            
+            base.Position += (base.Velocity * (float)faceDirection * -1 - playersVelocity );
 
             if (exploding && animate.Animation.IsFinished)
             {

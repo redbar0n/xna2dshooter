@@ -124,7 +124,10 @@ namespace Spitfire
 
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Volume = 0.4f; // magic constant
-            MediaPlayer.Play(content.Load<Song>("Sounds/213663_SOUNDDOGS__ba"));
+            if (level.levelNumber == 1)
+                MediaPlayer.Play(content.Load<Song>("Sounds/213663_SOUNDDOGS__ba"));
+            else if (level.levelNumber == 2)
+                MediaPlayer.Play(content.Load<Song>("Sounds/616814_SOUNDDOGS__ra"));
             
             // load and add all animations?
 
@@ -162,6 +165,7 @@ namespace Spitfire
 
             if (IsActive)
             {
+               
                 player.Update(gameTime);
                 level.Velocity = player.Velocity;
                 level.playersPosition = player.Position;
