@@ -13,6 +13,7 @@ namespace Spitfire
     {
         private float pi = (float)Math.PI;
         private Vector2 initialVelocity = new Vector2(4f, 0f);
+        
 
         /// <summary>
         /// The rotation of the tank's barrel to determine the direction of shooting.
@@ -35,8 +36,8 @@ namespace Spitfire
         public EnemyTank(Level level, Difficulty difficulty, String spriteSet, bool looping)
             : base(level, difficulty, spriteSet, looping)
         {
-
-
+            Random randomNumber = new System.Random();
+            burstDelay = randomNumber.Next(500, 5000);
             //TODO Fill in details about statistics
             this.faceDirection = FaceDirection.Left;
             barrelRotation = (0 + pi);
@@ -156,7 +157,10 @@ namespace Spitfire
                        else
                        {
                            isShooting = false;
-                           burstDelay = 300;
+                           Random randomNumber = new System.Random();
+
+                           burstDelay = randomNumber.Next(500, 5000);
+
                            burstCount = burstAmmount;
 
                        }

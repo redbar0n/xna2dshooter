@@ -84,6 +84,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Gameplay\Building.cs" />
     <Compile Include="Gameplay\EnemyPlane.cs" />
     <Compile Include="Gameplay\EnemyTank.cs" />
     <Compile Include="Gameplay\EnergyBomb.cs" />
@@ -93,8 +94,10 @@
     <Compile Include="Gameplay\LightTank.cs" />
     <Compile Include="Gameplay\Mig.cs" />
     <Compile Include="Gameplay\Pickup.cs" />
+    <Compile Include="Gameplay\SuperWeapon.cs" />
     <Compile Include="Gameplay\TankBullet.cs" />
     <Compile Include="Gameplay\Zeppelin.cs" />
+    <Compile Include="Gameplay\ZeppelinBoss.cs" />
     <Compile Include="Helpers\Animation.cs" />
     <Compile Include="Helpers\AnimationPlayer.cs" />
     <Compile Include="Gameplay\Level.cs" />

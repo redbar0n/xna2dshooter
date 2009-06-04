@@ -4,3 +4,4 @@ I:\Spitfire\Spitfire\Content\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire19.5.09\Spitfire\Content\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\SpitfireProject\Spitfire\Content\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\Content\obj\x86\Debug\ResolveAssemblyReference.cache
+I:\SpitfireProject\Spitfire\Content\obj\x86\Debug\ResolveAssemblyReference.cache

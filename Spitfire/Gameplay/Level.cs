@@ -36,6 +36,9 @@ namespace Spitfire
         public List<Sprite> grounds; // The ground within the level. Made public for collision detection
         private float groundsBufferWidth = 0;
 
+        public List<Sprite> clouds; // Clouds to stop the player from flying up to high
+        private float cloudsBufferWidth = 0;
+
         /// <summary>
         /// Indicates position in the level. Updated when frames loop.
         /// </summary>
@@ -98,6 +101,13 @@ namespace Spitfire
         }
         public List<Pickup> pickups;
 
+        public List<Building> Buildings
+        {
+            get { return buildings; }
+
+        }
+        public List<Building> buildings;
+
 
         /// <summary>
         /// How much background should be scaled. Redundant if background texture images are scaled.
@@ -114,6 +124,8 @@ namespace Spitfire
             sky = new Sprite();
             skyTwo = new Sprite();
             grounds = new List<Sprite>();
+            clouds = new List<Sprite>();
+            buildings = new List<Building>();
             this.gameplayScreen = gameplayScreen;
         }
 
@@ -126,6 +138,8 @@ namespace Spitfire
             grounds.Clear();
             enemies.Clear();
             pickups.Clear();
+            clouds.Clear();
+            buildings.Clear();
 
             if (levelNumber == 1)
             {
@@ -155,9 +169,19 @@ namespace Spitfire
                 frame.Position += new Vector2(0, 300);
             }
 
+            foreach (Sprite cloud in clouds)
+            {
+                cloud.Position += new Vector2(0, 300);
+            }
+
             foreach (Enemy enemy in enemies)
             {
                 enemy.Position += new Vector2(0, 300);
+            }
+
+            foreach (Building building in buildings)
+            {
+                building.Position += new Vector2(0, 300);
             }
         }
 
@@ -203,6 +227,17 @@ namespace Spitfire
                 frame.Velocity = velocity;
                 grounds.Add(frame);
                 groundsBufferWidth += frame.Size.Width;
+            }
+
+            //Load clouds
+            for (int i = 0; i < 6; i++)
+            {
+                Sprite frame = new Sprite();
+                frame.Texture = this.content.Load<Texture2D>("Sprites/backgrounds/deadly_gas_copy");
+                frame.Position = new Vector2(cloudsBufferWidth, backgrounds[0].Position.Y - 300);
+                frame.Velocity = velocity;
+                clouds.Add(frame);
+                cloudsBufferWidth += frame.Size.Width; ;
             }
         }
 
@@ -390,6 +425,64 @@ namespace Spitfire
                 }
             }
         }
+
+        public void UpdateClouds()
+        {
+            if (clouds.Count == 0)
+                throw new NotSupportedException("No cloud loaded.");
+
+            Object[] bg = clouds.ToArray();
+            Sprite firstCloud = (Sprite)bg[0];
+            Sprite lastCloud = (Sprite)bg[bg.Length - 1];
+
+            // update the frames position
+            for (int i = 0; i < bg.Length; i++)
+            {
+                Sprite frame = (Sprite)clouds[i];
+                frame.Position += -1 * velocity;
+            }
+
+            // make the frames loop continuously when going either right or left
+            for (int i = 0; i < bg.Length; i++)
+            {
+                Sprite frame = (Sprite)clouds[i];
+
+                if (frame.Position.X < -frame.Size.Width)
+                {
+                    // plane is going to the right
+                    if (i == 0)
+                    {
+                        // only called when background nr 0 goes completely outside LEFT side of screen
+                        frame.Position = new Vector2(lastCloud.Position.X + lastCloud.Size.Width, lastCloud.Position.Y);
+                    }
+                    else
+                    {
+                        Sprite prevFrame = (Sprite)clouds[i - 1];
+                        frame.Position = new Vector2(prevFrame.Position.X + prevFrame.Size.Width,
+                                                                prevFrame.Position.Y);
+                    }
+                }
+                else if (frame.Position.X > (cloudsBufferWidth - frame.Size.Width))
+                {
+                    // plane is going to the left
+
+                    // only because backgrounds stored in array. relates them to each other in a loop.
+                    if (i == (bg.Length - 1))
+                    {
+                        // only called when the last background goes completely outside RIGHT side of screen
+                        frame.Position = new Vector2(firstCloud.Position.X - frame.Size.Width, firstCloud.Position.Y);
+                    }
+                    else
+                    {
+                        // since i != (bg.Length - 1) we are sure that the array has more backgrounds
+                        Sprite nextFrame = (Sprite)clouds[i + 1];
+                        frame.Position = new Vector2(nextFrame.Position.X - frame.Size.Width, nextFrame.Position.Y);
+                    }
+                }
+            }
+
+        }
+
 
         /// <summary>
         /// Based on level progress
@@ -829,6 +922,14 @@ namespace Spitfire
                 htank2.Position = new Vector2(1600, backgrounds[0].Position.Y + backgrounds[0].Size.Height - (float)(htank2.Size.Height * 0.3));
                 htank2.Velocity = new Vector2(-1, 0);
                 enemies.Add(htank2);
+
+                Building building1 = new Building(this, "bigben_final");
+                building1.Position = new Vector2(1400f, grounds[0].Position.Y - (float)building1.Texture.Height);
+                buildings.Add(building1);
+
+                Building building2 = new Building(this, "building_1_final");
+                building2.Position = new Vector2(1550f, grounds[0].Position.Y - (float)building2.Texture.Height);
+                buildings.Add(building2);
 
                 addEnemies = false;
             }
@@ -1384,12 +1485,13 @@ namespace Spitfire
             }
             else if (positionInLevel == 25 && addEnemies)
             {
-                Enemy finalboss = new Enemy(this, Enemy.Type.Exploding, "ulimateweaponspritemap_final", true);
-                finalboss.Position = new Vector2(1450, 200);
-                finalboss.Velocity = new Vector2(-1, 0);
-                finalboss.WorthScore = 1000;
-                finalboss.StartHP = 1000;
-                enemies.Add(finalboss);
+                SuperWeapon finalboss = new SuperWeapon(this, Enemy.Difficulty.Easy, "ulimateweaponspritemap_final", true);
+                finalboss.Position = new Vector2(1450, 200); 
+                //enemies.Add(finalboss);
+
+                ZeppelinBoss boss = new ZeppelinBoss(this, Enemy.Difficulty.Easy, "level_1_boss", false);
+                boss.Position = new Vector2(1300f, this.grounds[0].Position.Y - 600f);
+                enemies.Add(boss);
 
                 addEnemies = false;
             }
@@ -1441,13 +1543,25 @@ namespace Spitfire
         
         }
 
+        private void UpdateBuildings()
+        {
+            foreach (Building building in buildings.ToArray())
+            {
+                building.Update(velocity);
+            }
+        }
+
         public void Update(GameTime gameTime)
         {
             UpdateSky();
 
             UpdateBackground();
 
+            UpdateClouds();
+
             UpdateGround();
+
+            UpdateBuildings();
 
             UpdateEnemies(gameTime); // important that this is called before LoadNewEnemies, because otherwise new enemies will get velocity updated twice
 
@@ -1478,11 +1592,23 @@ namespace Spitfire
                 frame.Draw(spriteBatch);
                 //Console.WriteLine("3: " + frame.Position);
             }
+
+            // Draw the clouds
+            foreach (Sprite frame in clouds)
+            {
+                frame.Draw(spriteBatch);
+            }
             
             // Draw the ground
             foreach (Sprite frame in grounds)
             {
                 frame.Draw(spriteBatch);
+            }
+
+            //Draw the buildings
+            foreach (Building building in buildings.ToArray())
+            {
+                building.Draw(spriteBatch);
             }
 
             // Draw enemies

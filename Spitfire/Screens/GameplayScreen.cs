@@ -80,11 +80,11 @@ namespace Spitfire
 
             MediaPlayer.Stop();
             //NickSound
-            player.engineSoundInst.Stop();
+            //player.engineSoundInst.Stop();
             
             foreach (Enemy enemy in level.Enemies)
             {
-                enemy.engineSoundInst.Stop(); ;
+                //enemy.engineSoundInst.Stop();
             }
         }
 
@@ -205,9 +205,9 @@ namespace Spitfire
                         if (CollisionDetection.Collision(enemy, bomb))
                         {
                             //NickSound
-                            bomb.BombSoundInst.Stop();
-                            if (!GameplayScreen.muted)
-                                Bomb.explosionSound.Play();
+                            //bomb.BombSoundInst.Stop();
+                            //if (!GameplayScreen.muted)
+                            //    Bomb.explosionSound.Play();
                             Explosion explosion = new Explosion(bomb.Position, gameTime);
                             explosion.Texture = content.Load<Texture2D>("Sprites/Enemies/expllarge_final");
                             explosions.Add(explosion);
@@ -255,6 +255,18 @@ namespace Spitfire
                         }                    
                     }
 
+                    //ENEMY BOMB/PLAYER Collision detection 
+                    foreach (Bomb bomb in enemy.bombs.ToArray())
+                    {
+                        if (CollisionDetection.Collision(player, bomb)) {
+                            player.TakeDamage(7);// 7 damage from a bomb
+                            Explosion explosion = new Explosion(bomb.Position, gameTime);
+                            explosion.Texture = content.Load<Texture2D>("Sprites/Enemies/expllarge_final");
+                            explosions.Add(explosion);
+                            enemy.bombs.Remove(bomb);
+
+                        }
+                    }
                     
                     
 
@@ -279,9 +291,9 @@ namespace Spitfire
                         if (CollisionDetection.Collision(ground, bomb))
                         {
                             //NickSound
-                            bomb.BombSoundInst.Stop();
-                            if (!GameplayScreen.muted)
-                                Bomb.explosionSound.Play();
+                            //bomb.BombSoundInst.Stop();
+                            //if (!GameplayScreen.muted)
+                            //    Bomb.explosionSound.Play();
                             Explosion explosion = new Explosion(new Vector2(bomb.Position.X, bomb.Position.Y - 50f), gameTime);
                             explosion.Texture = content.Load<Texture2D>("Sprites/Enemies/expllarge_final");
                             explosions.Add(explosion);
@@ -304,6 +316,15 @@ namespace Spitfire
                         }
                     }
                 }
+                // BUILDINGS / PLAYER
+                foreach (Building building in level.buildings.ToArray()) {
+                    if (!player.IsImmortal && CollisionDetection.Collision(building, player))
+                    {
+                        player.TakeDamage(PLAYER_CRASH_INTO_GROUND_DAMAGE);
+                        player.Die(true);
+                    }
+                }
+
 
                 // CRATES/PLAYER
                 foreach (Pickup pickup in level.Pickups.ToArray())
@@ -311,7 +332,7 @@ namespace Spitfire
                     if (CollisionDetection.Collision(pickup, player))
                     {
                         player.BombCount += PLAYER_EXTRA_BOMBS_ON_CRATE_PICKUP;
-                        player.CurrentHP += PLAYER_EXTRA_HEALTH_ON_CRATE_PICKUP;
+                        player.Recover(PLAYER_EXTRA_HEALTH_ON_CRATE_PICKUP);
                         level.Pickups.Remove(pickup);
                     }
                 }

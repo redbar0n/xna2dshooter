@@ -13,6 +13,16 @@ namespace Spitfire
         public static Vector2 Origin = new Vector2(5f, 5f);
         //private bool isRight = false;
 
+        public float DistanceTravelled
+        {
+            get { return distanceTravelled; }
+            set { distanceTravelled = value; }
+
+        }
+        private float distanceTravelled;
+
+        private float maxBombDistance = 1000f; // max distance bomb travels before disappearing
+
         /// <summary>
         /// Bomb falling whistle
         /// </summary>
@@ -44,30 +54,39 @@ namespace Spitfire
             this.faceDirection = direction;
         }
 
-        public void Update(Vector2 playerVelocity)
+        public virtual void Update(Vector2 playerVelocity)
         {
+            DistanceTravelled += (float)Math.Sqrt(Math.Pow(Math.Abs(Velocity.X), 2) +
+             Math.Pow(Math.Abs(Velocity.Y), 2));
+            
             base.Position += (base.Velocity - playerVelocity);
             rotate();
 
 
         }
 
+        public bool HasExceededDistance()
+        {
+            return (distanceTravelled >= maxBombDistance);
+        }
+
         public void PlayDropSound()
         {
             //NickSound
-            if (!GameplayScreen.muted)
-            {
-                bombSoundInst = bombSound.Play(0.5f, 0.0f, 0.0f, false);
-            }
-            else
-            {
-                bombSoundInst = bombSound.Play(0.0f, 0, 0, false);
-            }
+            //if (!GameplayScreen.muted)
+            //{
+            //    bombSoundInst = bombSound.Play(0.5f, 0.0f, 0.0f, false);
+            //}
+            //else
+            //{
+            //    bombSoundInst = bombSound.Play(0.0f, 0, 0, false);
+            //}
         }
 
         public void PlayExplosionSound()
         {
-            explosionSound.Play();
+            //NickSound
+            //explosionSound.Play();
         }
 
 
@@ -79,13 +98,13 @@ namespace Spitfire
                 Rotation -= 0.02f;
         }
 
-        new public void Draw(SpriteBatch spriteBatch)
-        {
-            SpriteEffects flip = base.faceDirection < 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            {
-                spriteBatch.Draw(base.Texture, Position, null, Color.White, Rotation,
-                    Origin, Scale, flip, 0);
-            }
-        }
+        //new public void Draw(SpriteBatch spriteBatch)
+        //{
+        //    SpriteEffects flip = base.faceDirection < 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+        //    {
+        //        spriteBatch.Draw(base.Texture, Position, null, Color.White, Rotation,
+        //            Origin, Scale, flip, 0);
+        //    }
+        //}
     }
 }

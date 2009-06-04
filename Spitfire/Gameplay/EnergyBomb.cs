@@ -14,20 +14,49 @@ namespace Spitfire
     class EnergyBomb: Bomb
     {
 
-        public static Vector2 Origin = new Vector2(5f, 5f);
+        public new static Vector2 Origin = new Vector2(5f, 5f);
+        public Vector2 initialVelocity = new Vector2(5f, 2f);
+
+
+
 
 
         // TODO - possibly questionable constructor
-        public EnergyBomb(float rotation, Vector2 bombersPosition, Vector2 bombersVelocity, FaceDirection direction)
-            : base(rotation,bombersPosition,bombersVelocity,direction)
+        public EnergyBomb(float rotation, Vector2 bombersPosition, Vector2 targetPosition, FaceDirection direction)
+            : base(rotation, bombersPosition, targetPosition, direction)
         {
             base.Rotation = rotation;
             base.Position = bombersPosition + new Vector2(0, 10);
-            base.Velocity = new Vector2(2f, 2f);
-            this.faceDirection = direction;
+
+            if (targetPosition.X < bombersPosition.X)
+                this.faceDirection = FaceDirection.Left;
+            else
+                this.faceDirection = FaceDirection.Right;
+            base.Velocity = new Vector2(initialVelocity.X * (float)faceDirection, initialVelocity.Y);
+
+            DistanceTravelled = 0;
         }
 
         // TODO - Complete other update, rotation and other methods
+
+        private void determineVelocity(Vector2 targetsPosition)
+        {
+            if (targetsPosition.Y < this.Position.Y)
+                base.Velocity = new Vector2(Velocity.X, initialVelocity.Y * -1);
+            else if (targetsPosition.Y > this.Position.Y)
+            {
+                base.Velocity = new Vector2(Velocity.X, initialVelocity.Y);
+            }
+        }
+
+
+        public void Update(Vector2 playerVelocity, Vector2 targetsPosition)
+        {
+
+
+            determineVelocity(targetsPosition);
+            base.Update(playerVelocity);
+        }
 
 
 
