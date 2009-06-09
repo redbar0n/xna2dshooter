@@ -42,9 +42,9 @@ namespace Spitfire
                 //bulletTexture = bulletImage;
                 if (difficulty == Difficulty.Easy)
                 {
-                    StartHP = 1000;
+                    StartHP = 2000;
                     WorthScore = 25000;
-                    BulletDamage = 5;
+                    BulletDamage = 10;
                 }
                 else if (difficulty == Difficulty.Medium)
                 {
@@ -138,7 +138,8 @@ namespace Spitfire
       }
 
 
-      public void DropBomb(Vector2 targetPosition) {
+      public void DropBomb(Vector2 targetPosition)
+      {
           if (faceDirection == FaceDirection.Left)
           {
               cannonLocation = new Vector2(base.Position.X + 5f, base.Position.Y + 100f);
@@ -152,8 +153,8 @@ namespace Spitfire
           EnergyBomb bomb = new EnergyBomb(Rotation, cannonLocation, targetPosition, faceDirection);
           bomb.Texture = bombTexture;
           bombs.Add(bomb);
-      
-      
+          if (!GameplayScreen.muted)
+              Enemy.BombSound.Play();
       }
 
       public void checkToShoot(Vector2 targetPosition)
@@ -175,6 +176,16 @@ namespace Spitfire
           if (Exploding && getAnimationFinish())
           {
               HasExploded = true;
+          }
+
+          if (!GameplayScreen.muted)
+          {
+              // NickSound
+              engineSoundInst.Volume = 100 / Math.Abs(playersPosition.X - Position.X);
+              if (engineSoundInst.Volume < 0.05f)
+                  engineSoundInst.Volume = 0;
+              else if (engineSoundInst.Volume > 20f)
+                  engineSoundInst.Volume = 20.0f;
           }
 
           if (Exploding)
@@ -283,7 +294,5 @@ namespace Spitfire
           foreach (Bomb bomb in bombs.ToArray())
               bomb.Draw(spriteBatch);
       }
-
-
     }
 }

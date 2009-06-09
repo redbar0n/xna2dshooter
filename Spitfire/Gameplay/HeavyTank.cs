@@ -20,7 +20,7 @@ namespace Spitfire
             {
                 StartHP = 500;
                 WorthScore = 1000;
-                BulletDamage = 15;
+                BulletDamage = 8;
             }
             else /// Difficulty is medium or Hard
             {

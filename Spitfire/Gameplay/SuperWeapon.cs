@@ -60,9 +60,9 @@ namespace Spitfire
                 faceDirection = FaceDirection.Left;
             if (difficulty == Difficulty.Easy)
                 {
-                    StartHP = 1000;
-                    WorthScore = 25000;
-                    BulletDamage = 5;
+                    StartHP = 3000;
+                    WorthScore = 30000;
+                    BulletDamage = 10;
                 }
                 else if (difficulty == Difficulty.Medium)
                 {
@@ -141,8 +141,8 @@ namespace Spitfire
             EnergyBomb bomb = new EnergyBomb(Rotation, cannonLocation, targetPosition, faceDirection);
             bomb.Texture = bombTexture;
             bombs.Add(bomb);
-
-
+            if (!GameplayScreen.muted)
+                Enemy.BombSound.Play();
         }
 
 
@@ -171,8 +171,16 @@ namespace Spitfire
                 isHovering = true;
                 hasGotInitialTime = true;
             }
-            
-            
+
+            if (!GameplayScreen.muted)
+            {
+                // NickSound
+                engineSoundInst.Volume = 100 / Math.Abs(playersPosition.X - Position.X);
+                if (engineSoundInst.Volume < 0.05f)
+                    engineSoundInst.Volume = 0;
+                else if (engineSoundInst.Volume > 20f)
+                    engineSoundInst.Volume = 20.0f;
+            }
             
             if (Exploding && getAnimationFinish())
             {
@@ -276,14 +284,6 @@ namespace Spitfire
                 
                 
                 determineVelocity();
-
-
-
-
-
-
-
-
             }
             base.Position += (base.Velocity - playersVelocity);
             //barrelLocation += (base.Velocity - playersVelocity);

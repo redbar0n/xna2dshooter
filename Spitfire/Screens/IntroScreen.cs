@@ -35,14 +35,18 @@ namespace Spitfire
                 " Supposedly Stalin and Hitler are developing a super\n weapon that would be capable "
             + "of destroying England\n in hours. Whether this information is real or not, it\n doesn't "
             + "matter, we will not sit idly by after hearing\n this. Your main objective is to confirm "
-            + "whether or not\n this weapon exists, and if so, to destroy it.\n England needs this victory.";
+            + "whether or not\n this weapon exists, and if so, to destroy it.\n England needs this victory!";
 
             pages[2] =
-              " However, a more immediate threat exists. Reports from a\n nearby city indicate our "
-            + "forces have been crushed,\n and that the nazis began setting up base there. It's only \n "
-            + "a matter of time until they march right in. We must\n strike now, before their "
-            + "preparations are finished. Your\n mission will not be easy; you must fly to the "
-            + "port town\n and eliminate all occupying forces, by yourself, until\n reinforcements arrive.";
+              " However, a more immediate threat exists. Reports\n from a nearby city indicate our "
+            + "forces have been overrun,\n and that the nazis have begun setting up base there. \n "
+            + "Their nazi commander seems to be overlooking the battlefield \n "
+            + "from an enormous aircraft, "
+            + "giving them a great tactical\n advantage. It's only "
+            + "a matter of time until they advance\n further. We must strike now, before their "
+            + "preparations\n are finished, and take out their commander. Your\n mission will not be easy; you must fly out in the "
+            + "field\n and eliminate all occupying forces, by yourself, until\n reinforcements arrive.";
+
 
             pages[3] =
                 "Good Luck";
@@ -103,7 +107,7 @@ namespace Spitfire
             color = new Color(color.R, color.G, color.B, TransitionAlpha);
             Vector2 origin = new Vector2(0, font.LineSpacing / 2);
             float scale = 0.8f;
-            Vector2 position = new Vector2(210, 300);
+            Vector2 position = new Vector2(190, 300);
 
             if (currentpage == pages[3])
             {

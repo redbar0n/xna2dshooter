@@ -13,6 +13,11 @@ namespace Spitfire
     public class Player : Sprite
     {
 
+        #region CONSTANTS
+        public int PLAYER_BULLET_DAMAGE_START = 10;
+        public int PLAYER_BOMB_START = 30;
+        #endregion
+
         /// <summary>
         /// The amount of damage one bullet will do.
         /// </summary>
@@ -26,7 +31,8 @@ namespace Spitfire
         // Prevents the player from flying upwards when true
         private bool disableRightUpwardMovement = false;
         private bool disableLeftUpwardMovement = false;
-        
+
+        Random random = new Random();
         
         /// <summary>
         /// Bullets that the player has fired.
@@ -95,7 +101,9 @@ namespace Spitfire
         public int CurrentHP
         {
             get { return currentHP; }
-            set { currentHP = value; }
+            set { 
+                currentHP = Math.Min(value, 100);
+            }
         }
         private int currentHP;
 
@@ -111,7 +119,7 @@ namespace Spitfire
         }
         private bool isImmortal = false; 
 
-        private bool isAlive = true;
+        public bool isAlive = true;
 
         //private Vector2 maxVelocity;
         private float pi = (float)Math.PI;
@@ -172,6 +180,8 @@ namespace Spitfire
 
         private bool isShooting = false;
 
+        public bool avoidFirstFlipRight;
+        public bool avoidFirstFlipLeft;
         /// <summary>
         /// When a player taps up or down, they won't rotate as far
         /// </summary>
@@ -191,9 +201,15 @@ namespace Spitfire
         private Animation normalAni;
         private Animation explodeAni;
         private Animation currentAni;
+
         private Animation flipAwayRight;
         private Animation flipAwayLeft;
-        //private Animation flipInto;
+
+        private Animation flipIntoRight;
+        private Animation flipIntoLeft;
+
+        private bool useAwayFlip = true;
+
         private bool flip = false; // A variable to determine is the plane is to be flipped or not.
 
         private Level level;
@@ -244,24 +260,46 @@ namespace Spitfire
         }
 
         ScreenManager screenManager;
-        HUD hud; // to pass to GameOverScreen so that it can get the score
-
-        // future: method to fly to end of screen when reached level end.
+        public HUD hud;
 
         public Player(ScreenManager screenManager, ContentManager content, Level level)
         {
             this.level = level;
+            level.setPlayer(this);
             this.screenManager = screenManager;
             base.Position = new Vector2(this.screenManager.GraphicsDevice.Viewport.Width / 2, this.screenManager.GraphicsDevice.Viewport.Height / 2);
             base.Velocity = initialVelocity;
             determineVelocity();
             currentHP = 100;
             faceDirection = FaceDirection.Right;
+            avoidFirstFlipRight = true;
+            avoidFirstFlipLeft = false;
             bullets = new ArrayList();
             bombs = new ArrayList();
-            bulletDamage = 10;
-            bombCount = 50;
+            bulletDamage = PLAYER_BULLET_DAMAGE_START;
+            bombCount = PLAYER_BOMB_START;
             animate = new AnimationPlayer();
+            burstCount = burstAmmount; //The default for burstAmmount is 3
+        }
+
+        public void resetStats()
+        {
+            isAlive = true;
+            base.Velocity = initialVelocity;
+            Rotation = 0;
+            accelerant = 1;
+            faceDirection = FaceDirection.Right;
+            avoidFirstFlipRight = true;
+            avoidFirstFlipLeft = false;
+            currentHP = 100;
+            bulletDamage = PLAYER_BULLET_DAMAGE_START;
+            bombCount = PLAYER_BOMB_START;
+            animate = new AnimationPlayer();
+            currentAni = normalAni;
+            animate.PlayAnimation(normalAni);
+
+            bullets = new ArrayList();
+            bombs = new ArrayList();
             burstCount = burstAmmount; //The default for burstAmmount is 3
         }
 
@@ -279,20 +317,27 @@ namespace Spitfire
             flipAwayLeft = new Animation(content.Load<Texture2D>("Sprites/Player/turnawayfromscreenmap_right_upsidedown"), 0.08f, 1f, false);
             flipAwayLeft.IsGoingRightToLeft = true;
 
+            flipIntoRight = new Animation(content.Load<Texture2D>("Sprites/Player/turnintoscreenmap_right"), 0.08f, 1f, false);
+            flipIntoRight.IsGoingRightToLeft = true;
+
+            flipIntoLeft = new Animation(content.Load<Texture2D>("Sprites/Player/turnintoscreenmap_right_upsidedown"), 0.08f, 1f, false);
+            flipIntoLeft.IsGoingRightToLeft = true;
+
             //flipInto = new Animation(content.Load<Texture2D>("Sprites/Player/turnintoscreenmap"), 0.08f, 1f, false);
             //flipInto.IsGoingRightToLeft = true;
 
-            bulletTexture = content.Load<Texture2D>("Sprites/Player/heroammo");
+            bulletTexture = content.Load<Texture2D>("Sprites/Player/hero_ammo_final");
             bombTexture = content.Load<Texture2D>("Sprites/Player/herobomb_final");
             
             // NickSound
-            //bulletSound = content.Load<SoundEffect>("Sounds/Player/Single_shot1");
-            //engineSound = content.Load<SoundEffect>("Sounds/Player/Engine1");
-            //Bomb.BombSound = content.Load<SoundEffect>("Sounds/Player/whistle");
-            //Bomb.explosionSound = content.Load<SoundEffect>("Sounds/explode_light2");
+            bulletSound = content.Load<SoundEffect>("Sounds/Player/Single_shot1");
+            engineSound = content.Load<SoundEffect>("Sounds/Player/Engine1");
+            Bomb.BombSound = content.Load<SoundEffect>("Sounds/Player/whistle");
+            Pickup.PickupSound = content.Load<SoundEffect>("Sounds/Chime");
+            Bomb.explosionSound = content.Load<SoundEffect>("Sounds/explode_light2");
             
-            ////engineSoundInst = engineSound.Play(engineSoundVolume, 0.0f, 0.0f, true);
-            //hitSound = content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
+            engineSoundInst = engineSound.Play(engineSoundVolume, 0.0f, 0.0f, true);
+            hitSound = content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
         }
 
         public void GetInput()
@@ -452,9 +497,21 @@ namespace Spitfire
                     }
                 }
             }
-            else
+
+            if (keyboardState.IsKeyDown(Keys.I))
             {
-                isImmortal = false;
+                if (!isImmortal)
+                {
+                    hud.drawImmortal = true;
+                    Console.WriteLine("immortal");
+                    isImmortal = true;
+                }
+                else
+                {
+                    hud.drawImmortal = false;
+                    Console.WriteLine("not immortal");
+                    isImmortal = false;
+                }
             }
 
 
@@ -513,6 +570,7 @@ namespace Spitfire
 
         public void setHud(HUD hud)
         {
+            hud.setPlayer(this);
             this.hud = hud;
         }
 
@@ -531,12 +589,39 @@ namespace Spitfire
         {
             if (direction == FaceDirection.Right)
             {
-                setAnimation(flipAwayLeft);
+                avoidFirstFlipLeft = false;
+                if (!avoidFirstFlipRight)
+                {
+                    avoidFirstFlipRight = true;
+                    if (random.Next(1,3) < 2)
+                    {
+                        setAnimation(flipAwayLeft);
+                        useAwayFlip = false;
+                    }
+                    else
+                    {
+                        setAnimation(flipIntoLeft);
+                    }
+                }
                 flip = false;
             }
             else if (direction == FaceDirection.Left)
             {
-                setAnimation(flipAwayRight);
+                avoidFirstFlipRight = false;
+                if (!avoidFirstFlipLeft)
+                {
+                    avoidFirstFlipLeft = true;
+                    if (random.Next(1, 3) < 2)
+                    {
+                        setAnimation(flipAwayRight);
+                        useAwayFlip = false;
+                    }
+                    else
+                    {
+                        setAnimation(flipIntoRight);
+                        useAwayFlip = true;
+                    }
+                }
                 flip = true;
             }
             
@@ -558,12 +643,12 @@ namespace Spitfire
                     Rotation = 0;
                     flip = false;
                     //NickSound
-                    //if (!GameplayScreen.muted)
-                    //    engineSoundInst.Resume();
+                    if (!GameplayScreen.muted)
+                        engineSoundInst.Resume();
                 }
                 else
                 {
-                    GameOverScreen gameOverScreen = new GameOverScreen(hud);
+                    GameOverScreen gameOverScreen = new GameOverScreen(level, hud);
                     this.screenManager.AddScreen(gameOverScreen, null);
                 }
             }
@@ -665,8 +750,8 @@ namespace Spitfire
         public void TakeDamage(int damage)
         {
             //NickSound
-            //if (!GameplayScreen.muted)
-            //    hitSound.Play();
+            if (!GameplayScreen.muted)
+                hitSound.Play();
             currentHP -= damage;
             wasDamaged = true; // Activates rumble feature
             if (currentHP < 0)
@@ -850,7 +935,6 @@ namespace Spitfire
             isAlive = false;
             //engineSoundInst.Stop();
             setAnimation(explodeAni);
-            isImmortal = true;
         }
 
         /// <summary>
@@ -903,8 +987,8 @@ namespace Spitfire
             bullet.Texture = bulletSprite;
             bullets.Add(bullet);
             // NickSound
-            //if (!GameplayScreen.muted)
-            //    bulletSound.Play();
+            if (!GameplayScreen.muted)
+                bulletSound.Play();
         }
 
         /// <summary>
@@ -931,7 +1015,7 @@ namespace Spitfire
                 Bomb bombX = new Bomb(this.Rotation, this.Position, this.Velocity, this.faceDirection);
                 bombX.Texture = bombSprite;
                 //NickSound
-                //bombX.PlayDropSound();
+                bombX.PlayDropSound();
                 bombs.Add(bombX);
                 bombCount--;
             }

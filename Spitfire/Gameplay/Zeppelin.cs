@@ -35,7 +35,7 @@ namespace Spitfire
                 {
                     StartHP = 1000;
                     WorthScore = 5000;
-                    BulletDamage = 5;
+                    BulletDamage = 10;
                 }
                 else if (difficulty == Difficulty.Medium)
                 {

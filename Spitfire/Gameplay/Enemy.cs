@@ -49,6 +49,13 @@ namespace Spitfire
         private int explodeDamage;
 
 
+        public static SoundEffect BombSound
+        {
+            get { return bombDropSound; }
+            set { bombDropSound = value; }
+        }
+        private static SoundEffect bombDropSound;
+
         /// <summary>
         /// The associated level
         /// </summary>
@@ -67,7 +74,6 @@ namespace Spitfire
         private Animation explodeAni;
         private Animation currentAni; // current animation
         private AnimationPlayer animate;
-
 
         private bool flip = false; // A variable to determine is the enemy sprite is to be flipped or not.
 
@@ -212,7 +218,7 @@ namespace Spitfire
 
 
         // Bombs used by enemys NOTE: May not be used
-        public ArrayList bombs;
+        public List<EnergyBomb> bombs;
         // TODO: relocate to Bombs class
         private Texture2D bombSprite;
         public Texture2D bombTexture
@@ -221,30 +227,6 @@ namespace Spitfire
             set { bombSprite = value; }
         }
         
-        /// <summary>
-        /// TODO: DEPRECATED. USE OTHER CONSTRUCTOR
-        /// </summary>
-        /// <param name="position">Position on screen</param>
-        /// <param name="velocity">Velocity</param>
-        /// <param name="scale">Scale size of sprite up or down.</param>
-        /// <param name="maxHP">The starting hp of unit.</param>
-        /// <param name="crashDamage">The damage the unit will do if crash or explode into other unit.</param>
-        //public Enemy(Level level, Type type, String spriteSet, bool looping)
-        //{
-        //    this.level = level;
-        //    this.type = type;
-        //    bullets = new List<Bullet>();
-        //    animate = new AnimationPlayer();
-        //    LoadContent(spriteSet, looping);
-        //    bombs = new ArrayList();
-        //}
-
-        /// <summary>
-
-
-
-
-
         public Enemy(Level level, Difficulty difficulty, String spriteSet, bool looping)
         {
             this.level = level;            
@@ -252,7 +234,7 @@ namespace Spitfire
             LoadContent(spriteSet, looping);
             this.difficulty = difficulty;
             Bullets = new List<Bullet>();
-            bombs = new ArrayList();
+            bombs = new List<EnergyBomb>();
 
         }
 
@@ -268,9 +250,6 @@ namespace Spitfire
             normalAni = new Animation(Level.Content.Load<Texture2D>(spriteSet), 1f, 1f, looping);
             explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/expllarge_final"), 1f, 1f, false);
 
-            ///TODO This animation makes the program crash. I have replaced it with the above statement
-            //explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/zepplinexplspritemap"), 1f, false);
-
             arrowPointer.Texture = Level.Content.Load<Texture2D>("Sprites/Enemies/arrow");
 
             setAnimation(normalAni);
@@ -279,61 +258,66 @@ namespace Spitfire
             if (spriteSet.Equals("Sprites/Enemies/mig"))
             {
                 // NickSound
-                //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Lightfighter/Engine1");
-                //engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
-                //hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_soft");
-                //explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_light1");
+                engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Lightfighter/Engine1");
+                engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
+                hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_soft");
+                explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_light1");
                 bulletTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/enemyammo");
             }
             else if (spriteSet.Equals("Sprites/Enemies/heavyfighter"))
             {
                 // NickSound
-                //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Heavyfighter/Engine3");
-                //engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
-                //hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_soft");
-                //explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_light1");
+                engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Heavyfighter/Engine3");
+                engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
+                hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_soft");
+                explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_light1");
                 bulletTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/enemyammo");
             }
             else if (spriteSet.Equals("Sprites/Enemies/lighttankspritemapfinal") || spriteSet.Equals("Sprites/Enemies/finalheavytanksprite"))
             {
+                if (spriteSet.Equals("Sprites/Enemies/lighttankspritemapfinal"))
+                    explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/lighttank_burned_final"), 1f, 1f, false);
+                else if (spriteSet.Equals("Sprites/Enemies/finalheavytanksprite"))
+                    explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/heavytank_burned_final"), 1f, 1f, false);
+
                 // NickSound
-                //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Tank/Tank");
-                //hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
-                //explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
-                //engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
+                engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Tank/Tank");
+                hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
+                explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
+                engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
                 bulletTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/tankammo");
             }
             else if (spriteSet.Equals("Sprites/Enemies/zepplinarmoured_final"))
             {
                 bulletTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/tankammo");
                 //NickSound
-               //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Zeppelin/Engine2");
-               //engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
-               //hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
-               //explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
+               engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Zeppelin/Engine2");
+               engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
+               hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
+               explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
                explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/zepplinexpl_final1"), 0.2f, 1f, false);
             }
             else if (spriteSet.Equals("Sprites/Enemies/level_1_boss"))
             {
+                bombDropSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/219564_SOUNDDOGS_gu");
                 bulletTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/tankammo");
                 bombTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/enemybomb");
                 //NickSound
-                //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Zeppelin/Engine2");
-                //engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
-                //hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
-                //explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
-            
-            
+                engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Zeppelin/Engine2");
+                engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
+                hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
+                explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
             }
             else if (spriteSet.Equals("Sprites/Enemies/ulimateweaponspritemap_final"))
             {
+                bombDropSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/219564_SOUNDDOGS_gu");
                 bulletTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/boss_level2_final");
                 bombTexture = Level.Content.Load<Texture2D>("Sprites/Enemies/enemybomb");
                 //NickSound
-                //engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Zeppelin/Engine2");
-                //engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
-                //hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
-                //explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
+                engineSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/Hover");
+                engineSoundInst = engineSound.Play(0, 0.0f, 0.0f, true);
+                hitSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/ricochet_hard");
+                explodeSound = Level.Content.Load<SoundEffect>("Sounds/Enemy/explode_large");
                 explodeAni = new Animation(Level.Content.Load<Texture2D>("Sprites/Enemies/expllarge_final"), 0.2f, 1f, false);
             }
         }
@@ -365,22 +349,22 @@ namespace Spitfire
             currentHP -= damage;
             if (currentHP <= 0)
             {
-                //if (type == Type.ShotDown)
-                //{
-                //    ShotDown();
-                //}
-                //else
-                //{
+                if (type == Type.ShotDown)
+                {
+                    ShotDown();
+                }
+                else
+                {
                     Explode(); // will pass the exploding down to animateExplosion, which will pass it up to level which finally removes enemy
-                //}
+                }
             }
         }
 
         public void playHitSound()
         {
             // NickSound
-            //if (!GameplayScreen.muted)
-            //    hitSound.Play(hitSoundVolume);
+            if (!GameplayScreen.muted)
+                hitSound.Play(hitSoundVolume);
         }
 
         public void ShotDown()
@@ -419,7 +403,6 @@ namespace Spitfire
                 turnAround();
             else if ((this.faceDirection == FaceDirection.Right && Position.X > position.X + 1500f))
                 turnAround();
-
         }
         
         
@@ -430,9 +413,9 @@ namespace Spitfire
             setAnimation(explodeAni);
             Velocity = Vector2.Zero;
             // NickSound
-            //if (!GameplayScreen.muted)
-            //    explodeSound.Play();
-            //engineSoundInst.Stop();
+            if (!GameplayScreen.muted)
+                explodeSound.Play();
+            engineSoundInst.Stop();
         }
 
         /// <summary>
@@ -457,11 +440,11 @@ namespace Spitfire
             if (!GameplayScreen.muted)
             {
                 // NickSound
-                //engineSoundInst.Volume = 100 / Math.Abs(playersPosition.X - Position.X);
-                //if (engineSoundInst.Volume < 0.05f)
-                //    engineSoundInst.Volume = 0;
-                //else if (engineSoundInst.Volume > 10f)
-                //    engineSoundInst.Volume = 10.0f;
+                engineSoundInst.Volume = 100 / Math.Abs(playersPosition.X - Position.X);
+                if (engineSoundInst.Volume < 0.05f)
+                    engineSoundInst.Volume = 0;
+                else if (engineSoundInst.Volume > 10f)
+                    engineSoundInst.Volume = 10.0f;
             }
 
             //foreach (Bullet bullet in bullets.ToArray())
@@ -490,6 +473,11 @@ namespace Spitfire
             //SpriteEffects flip = base.faceDirection > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
             //animate.Draw(gameTime, spriteBatch, base.Position, base.Rotation, flip);
+
+            SpriteEffects flipSprite = (flip == true) ? SpriteEffects.FlipVertically : SpriteEffects.None;
+            animate.Draw(gameTime, spriteBatch, Position, Rotation, flipSprite);
+
+
             // draw in direction player is facing
             float preferredWidth = 1024f;//1280
             float preferredHeight = 768f;//720
@@ -519,20 +507,6 @@ namespace Spitfire
                 arrowPointer.Rotation = (float)(0.5 * Math.PI);
                 arrowPointer.Draw(spriteBatch);
             }
-            
-            
-            
-            SpriteEffects flipSprite = flip == true ? SpriteEffects.FlipVertically : SpriteEffects.None;
-            animate.Draw(gameTime, spriteBatch, Position, Rotation, flipSprite);
-
-
-
-
-
-
         }
-
-
-
     }
 }

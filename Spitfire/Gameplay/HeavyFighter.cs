@@ -19,7 +19,7 @@ namespace Spitfire
             if (difficulty == Difficulty.Easy) {
                 StartHP = 100;
                 WorthScore = 500;
-                BulletDamage = 5;
+                BulletDamage = 4;
             }
             else if (difficulty == Difficulty.Medium)
             {

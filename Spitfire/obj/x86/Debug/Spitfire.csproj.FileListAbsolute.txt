@@ -64,6 +64,16 @@ C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\Spitfire
 C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\SpitfireProject\Spitfire\obj\x86\Debug\Spitfire.exe
 C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\SpitfireProject\Spitfire\obj\x86\Debug\Spitfire.pdb
 C:\Documents and Settings\Nick\My Documents\Visual Studio 2008\Projects\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\arrow.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Spitfire.exe
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Spitfire.pdb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\obj\x86\Debug\Spitfire.exe
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\obj\x86\Debug\Spitfire.pdb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Spitfire.exe.manifest
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Spitfire.application
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\obj\x86\Debug\Spitfire.exe.manifest
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\obj\x86\Debug\Spitfire.application
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\HUD\healthBar.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\blank.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\gradient.xnb
@@ -72,7 +82,6 @@ C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfir
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\City\cityback1_01.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\City\cityback1_02.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\City\cityback1_03.xnb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\heroammo.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\spatterground.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\enemyammo.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\tankammo.xnb
@@ -86,13 +95,34 @@ C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfir
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\level_summary.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\arrow.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\gamemenu_final.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\sky_final.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\ulimateweaponspritemap_final.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\turnawayfromscreenmap_right.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\turnawayfromscreenmap_right_upsidedown.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountain_final_1.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountain_final_2.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountain_final_3.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountain_final_4.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\herobomb_final.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\groundone_final1.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zepplinexpl_final1.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zepplinarmoured_final.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\stillspitfire_final.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\controls3.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\missionbrief_final.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\deadly_gas_copy.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\enemybomb.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\level_1_boss.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\City\Buildings\bigben_final.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\City\Buildings\building_1_final.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\City\Buildings\building_2_final.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\City\Buildings\building_3_final.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\City\Buildings\tower_final.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\groundtwo_final2.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\boss_level2_final.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\HUD\Pericles.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\gamefont.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\menufont.xnb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\213663_SOUNDDOGS__ba.xnb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Player\Single_shot1.xnb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\explode_large.xnb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Engine5.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Player\whistle.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Player\ricochet_soft.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Player\explode_light1.xnb
@@ -104,112 +134,36 @@ C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfir
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\ricochet_soft.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Zeppelin\Engine2.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\explode_light1.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Player\Single_shot1.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\explode_large.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\474459_SOUNDDOGS__th.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\474459_SOUNDDOGS__th.wma
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Engine5.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\explode_light2.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\213663_SOUNDDOGS__ba.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\344279_SOUNDDOGS__ba.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\471647_SOUNDDOGS__ar.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\616814_SOUNDDOGS__ra.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Victory.xnb
 C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\213663_SOUNDDOGS__ba.wma
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Spitfire.exe
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Spitfire.pdb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\obj\x86\Debug\Spitfire.exe
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\obj\x86\Debug\Spitfire.pdb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\sky_final.xnb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountain_final_1.xnb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountain_final_2.xnb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountain_final_3.xnb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountain_final_4.xnb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\ulimateweaponspritemap_final.xnb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\special_drops_final copy.xnb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\missionbrief_final.xnb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\turnawayfromscreenmap_right.xnb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\turnawayfromscreenmap_right_upsidedown.xnb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\herobomb_final.xnb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\groundtwo_final2.xnb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\groundone_final1.xnb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zepplinexpl_final1.xnb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zepplinarmoured_final.xnb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\stillspitfire_final.xnb
-C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\controls3.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\HUD\healthBar.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\blank.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\gradient.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Menus\gameover.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Menus\pausescreen.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\City\cityback1_01.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\City\cityback1_02.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\City\cityback1_03.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Player\heroammo.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Player\spatterground.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\enemyammo.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\tankammo.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\mig.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\expllarge_final.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\finalheavytanksprite.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Player\turnintoscreenmap.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\heavyfighter.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\lighttankspritemapfinal.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Menus\story_screen_final.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Menus\level_summary.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\arrow.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Menus\gamemenu_final.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\sky_final.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\ulimateweaponspritemap_final.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\special_drops_final copy.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Player\turnawayfromscreenmap_right.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Player\turnawayfromscreenmap_right_upsidedown.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountain_final_1.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountain_final_2.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountain_final_3.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\Mountain\mountain_final_4.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Player\herobomb_final.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\groundtwo_final2.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\groundone_final1.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zepplinexpl_final1.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\zepplinarmoured_final.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Player\stillspitfire_final.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Menus\controls3.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Menus\missionbrief_final.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\HUD\Pericles.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\gamefont.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\menufont.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\213663_SOUNDDOGS__ba.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\Player\Single_shot1.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\explode_large.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\Engine5.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\Player\whistle.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\Player\ricochet_soft.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\Player\explode_light1.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\Player\Engine1.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Heavyfighter\Engine3.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Lightfighter\Engine1.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Tank\Tank.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\ricochet_hard.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\ricochet_soft.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Zeppelin\Engine2.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\explode_light1.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\explode_light2.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\213663_SOUNDDOGS__ba.wma
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Spitfire.exe
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Spitfire.pdb
-I:\SpitfireProject\Spitfire\obj\x86\Debug\ResolveAssemblyReference.cache
-I:\SpitfireProject\Spitfire\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-I:\SpitfireProject\Spitfire\obj\x86\Debug\Spitfire.exe
-I:\SpitfireProject\Spitfire\obj\x86\Debug\Spitfire.pdb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\level_1_boss.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\enemybomb.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\City\Buildings\bigben_final.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\City\Buildings\building_1_final.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\City\Buildings\building_2_final.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\City\Buildings\building_3_final.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\City\Buildings\tower_final.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Backgrounds\deadly_gas_copy.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\boss_level2_final.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\474459_SOUNDDOGS__th.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\616814_SOUNDDOGS__ra.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\474459_SOUNDDOGS__th.wma
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\616814_SOUNDDOGS__ra.wma
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\471647_SOUNDDOGS__ar.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\Victory.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\471647_SOUNDDOGS__ar.wma
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\Victory.wma
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\344279_SOUNDDOGS__ba.xnb
-I:\SpitfireProject\Spitfire\bin\x86\Debug\Content\Sounds\344279_SOUNDDOGS__ba.wma
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\344279_SOUNDDOGS__ba.wma
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\471647_SOUNDDOGS__ar.wma
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\616814_SOUNDDOGS__ra.wma
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Victory.wma
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\heroammo.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Menus\missionbrief_final_2.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\heavytank_burned_final.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Enemies\lighttank_burned_final.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\hero_ammo_final.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\turnintoscreenmap_right.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\Player\turnintoscreenmap_right_upsidedown.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\642939_SOUNDDOGS__pr.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\732695_SOUNDDOGS__ma.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Vera Lynn - Abide With Me.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\219564_SOUNDDOGS_gu.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Chime.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Enemy\Hover.xnb
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\642939_SOUNDDOGS__pr.wma
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\732695_SOUNDDOGS__ma.wma
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sounds\Vera Lynn - Abide With Me.wma
+C:\Documents and Settings\Magne\My Documents\Visual Studio 2008\Projects\Spitfire\Spitfire\bin\x86\Debug\Content\Sprites\special_drops_final.xnb

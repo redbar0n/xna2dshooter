@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Media;
 
 namespace Spitfire
 {
@@ -13,7 +14,6 @@ namespace Spitfire
         string brief;
         string brief1;
         string brief2;
-        string gameover;
         int level;
         GameScreen gameplayScreen;
         Texture2D controlsTex;
@@ -28,27 +28,31 @@ namespace Spitfire
             continueMenuEntry.Selected += ContinueMenuEntrySelected;
             MenuEntries.Add(continueMenuEntry);
 
-            brief1 = "MISSION 1:\n"
-            + "Destroy as many enemies as you can\n"
-            + "before reaching the end of the level.";
+            brief1 = "MISSION 1:\n\n"
+            + "Destroy as many\n"
+            + "enemies as you can,\n"
+            + "and defeat their commander!";
 
-            brief2 = "MISSION 2:\n"
-            + "Destroy as many enemies as you can,\n"
-            + "and destroy Hitler and Stalin's super weapon!";
-
-            gameover = " Congratulations, you completed the game!\n"
-            + " You should be proud of yourself!\n\n\n\n\n This game was made by:\n Brian Lam (Game design),\n Nicole McMahon (Artwork),\n Nick Maunder (Code),\n Magne Gasland (Code).\n\n It was made the first semester of 2009\n at QUT, Brisbane in Peta Wyeths unit:\n INB281 Adv. game design";
+            brief2 = "MISSION 2:\n\n"
+            + "Destroy as many\n"
+            + "enemies as you can,\n"
+            + "and destroy the\n"
+            + "mysterious super weapon!";
 
             if (level == 1)
                 brief = brief1;
             else if (level == 2)
                 brief = brief2;
-            else if (level == 3)
-                brief = gameover;
         }
 
         override public void LoadContent()
         {
+            if (level == 2)
+            {
+                MediaPlayer.IsRepeating = true;
+                MediaPlayer.Volume = 1f; // magic constant
+                MediaPlayer.Play(ScreenManager.Game.Content.Load<Song>("Sounds/474459_SOUNDDOGS__th"));
+            }
             ContentManager content = ScreenManager.Game.Content;
             controlsTex = content.Load<Texture2D>("Menus/controls3");
         }
@@ -56,6 +60,7 @@ namespace Spitfire
 
         void ContinueMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
+            MediaPlayer.Stop();
             if (level != 3)
                 LoadingScreen.Load(ScreenManager, true, e.PlayerIndex, gameplayScreen);
             else
@@ -84,14 +89,11 @@ namespace Spitfire
             color = new Color(color.R, color.G, color.B, TransitionAlpha);
             Vector2 origin = new Vector2(0, font.LineSpacing / 2);
             float scale = 1f;
-
             
-            Vector2 position = new Vector2(250, 300);
-            if (level == 3)
-                position = new Vector2(250, 100);
+            Vector2 position = new Vector2(330, 80);
 
             Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
-            Vector2 controlsPos = new Vector2((viewport.Width - controlsTex.Width) / 2, 60);
+            Vector2 controlsPos = new Vector2((viewport.Width - controlsTex.Width) / 2 + 50, 540);
             Color texColor = Color.White;
 
             spriteBatch.Begin();
@@ -99,8 +101,7 @@ namespace Spitfire
                                    origin, scale, SpriteEffects.None, 0);
             spriteBatch.Draw(controlsTex, controlsPos, texColor);
             spriteBatch.End();
-            if (level != 3)
-                base.Draw(gameTime);
+            base.Draw(gameTime);
         }
 
     }

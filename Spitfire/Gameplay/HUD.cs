@@ -12,8 +12,6 @@ namespace Spitfire
         // future: make HUD a static class
         // future: optimise hud according to Platformer1. store central hud location in vector. apply shadow to fonts.
 
-
-
         /// <summary>
         /// The players current score.
         /// </summary>
@@ -32,7 +30,15 @@ namespace Spitfire
         private static Vector2 vBombsTextLoc = new Vector2(30, 30);
         private static Vector2 vScoreTextLoc;
 
+        private string immortal = "Immortal";
+        public bool drawImmortal = false;
+
         public HUD(Player player)
+        {
+            this.player = player;
+        }
+
+        public void setPlayer(Player player)
         {
             this.player = player;
         }
@@ -64,6 +70,8 @@ namespace Spitfire
 
             spriteBatch.DrawString(spriteFont, "Score: " + score.ToString(), vScoreTextLoc, Color.White);
 
+            if (drawImmortal)
+                spriteBatch.DrawString(spriteFont, immortal, new Vector2(windowWidth / 2 - 20, 60), Color.White);
         }
     }
 }

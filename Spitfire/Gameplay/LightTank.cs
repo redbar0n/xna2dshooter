@@ -11,7 +11,6 @@ namespace Spitfire
 {
     class LightTank: EnemyTank
     {
-
         public LightTank(Level level, Difficulty difficulty, String spriteSet, bool looping)
             : base(level, difficulty, spriteSet, looping) {
                 //bulletTexture = bulletImage;
@@ -19,7 +18,7 @@ namespace Spitfire
                 {
                     StartHP = 100;
                     WorthScore = 250;
-                    BulletDamage = 10;
+                    BulletDamage = 6;
                 }
                 else /// Difficulty is medium or Hard
                 {
@@ -28,7 +27,6 @@ namespace Spitfire
                     BulletDamage = 30;
                 }
         
-        } 
-
+        }
     }
 }

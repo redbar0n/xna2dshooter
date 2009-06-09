@@ -72,21 +72,21 @@ namespace Spitfire
 
         public void PlayDropSound()
         {
-            //NickSound
-            //if (!GameplayScreen.muted)
-            //{
-            //    bombSoundInst = bombSound.Play(0.5f, 0.0f, 0.0f, false);
-            //}
-            //else
-            //{
-            //    bombSoundInst = bombSound.Play(0.0f, 0, 0, false);
-            //}
+            // NickSound
+            if (!GameplayScreen.muted)
+            {
+                bombSoundInst = bombSound.Play(0.5f, 0.0f, 0.0f, false);
+            }
+            else
+            {
+                bombSoundInst = bombSound.Play(0.0f, 0, 0, false);
+            }
         }
 
         public void PlayExplosionSound()
         {
-            //NickSound
-            //explosionSound.Play();
+            // NickSound
+            explosionSound.Play();
         }
 
 

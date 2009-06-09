@@ -16,6 +16,16 @@ namespace Spitfire {
     public class Pickup : Sprite {
 
 
+        Level level;
+
+        public static SoundEffect PickupSound
+        {
+            get { return pickupSound; }
+            set { pickupSound = value; }
+        }
+        private static SoundEffect pickupSound;
+
+
        /// <summary>
        /// Determines if the pickup has collided with the ground or with player
        /// </summary>           
@@ -49,7 +59,6 @@ namespace Spitfire {
             base.Position = initialPosition;
             hasCollided = false;
             base.Velocity = new Vector2(0f, 1f);
-            
         }
 
         public void Update(Vector2 velocity){

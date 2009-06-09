@@ -25,13 +25,15 @@ namespace Spitfire
         private ContentManager content;
 
         private GameScreen gameplayScreen;
-
+        public Player player;
         public int levelNumber;
 
         private Sprite sky;
         private Sprite skyTwo;
         private List<Sprite> backgrounds;
         private float backgroundBufferWidth = 0;
+
+        public int startOfLevelScore = 0;
 
         public List<Sprite> grounds; // The ground within the level. Made public for collision detection
         private float groundsBufferWidth = 0;
@@ -93,6 +95,7 @@ namespace Spitfire
         }
         List<Enemy> enemies;
 
+        Song bossMusic;
 
 
         public List<Pickup> Pickups
@@ -107,11 +110,6 @@ namespace Spitfire
 
         }
         public List<Building> buildings;
-
-        /// <summary>
-        /// Determines if the boss has appeared or not.
-        /// </summary>
-        public bool hasBossAppeared = false;
 
 
         /// <summary>
@@ -134,8 +132,16 @@ namespace Spitfire
             this.gameplayScreen = gameplayScreen;
         }
 
+        public void setPlayer(Player player)
+        {
+            this.player = player;
+        }
+
         public void changeLevel()
         {
+            killEnemyEngineSounds();
+            player.hud.Score = startOfLevelScore;
+            player.resetStats();
             backgroundBufferWidth = 0;
             groundsBufferWidth = 0;
             setLevelProgress(0);
@@ -145,23 +151,35 @@ namespace Spitfire
             pickups.Clear();
             clouds.Clear();
             buildings.Clear();
-            hasBossAppeared = false;
+
+            bossMusic = content.Load<Song>("Sounds/471647_SOUNDDOGS__ar");
 
             if (levelNumber == 1)
             {
                 loadLevel(1);
+                MediaPlayer.IsRepeating = true;
+                MediaPlayer.Volume = 1f; // magic constant
+                MediaPlayer.Play(content.Load<Song>("Sounds/642939_SOUNDDOGS__pr"));
             }
             else if (levelNumber == 2)
             {
                 loadLevel(2);
+                MediaPlayer.IsRepeating = true;
+                MediaPlayer.Volume = 1f; // magic constant
+                MediaPlayer.Play(content.Load<Song>("Sounds/616814_SOUNDDOGS__ra"));
             }
         }
 
         /// <summary>
+        /// RESPAWN FUNCTION.
+        /// Used when player crashes.
         /// Resets the position of skys, backgrounds, grounds and enemies
         /// </summary>
         public void resetPositions()
         {
+            player.avoidFirstFlipRight = true;
+            player.avoidFirstFlipLeft = false;
+
             sky.Position = new Vector2(sky.Position.X, 0);
             skyTwo.Position = new Vector2(skyTwo.Position.X, 0);
 
@@ -188,6 +206,11 @@ namespace Spitfire
             foreach (Building building in buildings)
             {
                 building.Position += new Vector2(0, 300);
+            }
+
+            foreach (Pickup pickup in pickups)
+            {
+                pickup.Position += new Vector2(0, 300);
             }
         }
 
@@ -251,23 +274,6 @@ namespace Spitfire
         public void LoadContent()
         {
             changeLevel();
-
-            /*
-            // load an extra background buffer
-            for (int i = 1; i <= nrOfBackgrounds; i++)
-            {
-                Sprite frame = new Sprite();
-                frame.Texture = this.content.Load<Texture2D>(backgroundName + i); // should be set to i if more than one background
-                frame.Scale = scale;
-                frame.Position = new Vector2(backgroundBufferWidth, 0); // buffer width indicates xpos to insert background
-                frame.Velocity = velocity;
-                backgrounds.Add(frame);
-                backgroundBufferWidth += frame.Size.Width; // increase width of buffer
-            }
-
-             */
-            
-
         }
 
         /// <summary>
@@ -517,7 +523,7 @@ namespace Spitfire
                 enemies.Add(migMedium2);
 
                 Pickup pickupA = new Pickup(new Vector2(1000f, 100f), Pickup.Effect.HP);
-                pickupA.Texture = this.content.Load<Texture2D>("Sprites/special_drops_final copy");
+                pickupA.Texture = this.content.Load<Texture2D>("Sprites/special_drops_final");
                 pickups.Add(pickupA);
 
                 addEnemies = false;
@@ -526,11 +532,9 @@ namespace Spitfire
             {
                 // 1 heavy fighter responds to distress calls from the scouts
 
-                Enemy hfighter = new Enemy(this, Enemy.Difficulty.Easy, "heavyfighter", false);
+                HeavyFighter hfighter = new HeavyFighter(this, Enemy.Difficulty.Easy, "heavyfighter", false);
                 hfighter.Position = new Vector2(1410, 250);
                 hfighter.Velocity = new Vector2(-2, 0);
-                hfighter.StartHP = 20;
-                hfighter.WorthScore = 150;
                 enemies.Add(hfighter);
 
                 addEnemies = false;
@@ -943,24 +947,34 @@ namespace Spitfire
 
                 addEnemies = false;
             }
+            else if (positionInLevel == 24 && addEnemies)
+            {
+                killEnemyEngineSounds();
+                enemies.Clear();
+
+                MediaPlayer.Stop();
+                MediaPlayer.IsRepeating = true;
+                MediaPlayer.Volume = 1f; // magic constant
+                MediaPlayer.Play(bossMusic);
+
+                addEnemies = false;
+            }
             else if (positionInLevel == 26 && addEnemies)
             {
-                // END LEVEL
-                foreach (Enemy enemy in enemies.ToArray()) {
-                    enemies.Remove(enemy);
-                }
-                
-                MediaPlayer.Play(content.Load<Song>("Sounds/471647_SOUNDDOGS__ar"));
                 ZeppelinBoss boss = new ZeppelinBoss(this, Enemy.Difficulty.Easy, "level_1_boss", false);
-                boss.Position = new Vector2(1500f, this.grounds[0].Position.Y - 600f);
+                boss.Position = new Vector2(1300f, this.grounds[0].Position.Y - 600f);
                 enemies.Add(boss);
-                hasBossAppeared = true;
+
                 addEnemies = false;
-                
             }
-            else if (hasBossAppeared && enemies.Count == 0) {
+            //else if (positionInLevel == 31 && addEnemies)
+            //else if (enemies.Count == 0 && positionInLevel > 28)
+            else if (enemies.Count == 0 && levelProgress > 25)
+            {
+                // END LEVEL
+
                 BackgroundScreen briefScreen = new BackgroundScreen(("Menus/level_summary"));
-                LoadingScreen.Load(gameplayScreen.ScreenManager, false, PlayerIndex.One, briefScreen, new LevelSummaryScreen(1, (GameplayScreen)gameplayScreen));
+                LoadingScreen.Load(gameplayScreen.ScreenManager, false, PlayerIndex.One, briefScreen, new LevelSummaryScreen(1, (GameplayScreen)gameplayScreen, this));
 
                 levelNumber = 2;
             }
@@ -1692,16 +1706,25 @@ namespace Spitfire
             }
             else if (positionInLevel == 22 && addEnemies) {
                 
+                killEnemyEngineSounds();
+                enemies.Clear();
+
+                MediaPlayer.Stop();
+                MediaPlayer.IsRepeating = true;
+                MediaPlayer.Volume = 1f; // magic constant
+                MediaPlayer.Play(bossMusic);
+
+                addEnemies = false;
                 Pickup pickupA = new Pickup(new Vector2(1300f, 100f), Pickup.Effect.HP);
-                pickupA.Texture = this.content.Load<Texture2D>("Sprites/special_drops_final copy");
+                pickupA.Texture = this.content.Load<Texture2D>("Sprites/special_drops_final");
                 pickups.Add(pickupA);
 
                 Pickup pickupB = new Pickup(new Vector2(1500f, 100f), Pickup.Effect.HP);
-                pickupB.Texture = this.content.Load<Texture2D>("Sprites/special_drops_final copy");
+                pickupB.Texture = this.content.Load<Texture2D>("Sprites/special_drops_final");
                 pickups.Add(pickupB);
 
                 Pickup pickupC = new Pickup(new Vector2(1700f, 300f), Pickup.Effect.HP);
-                pickupC.Texture = this.content.Load<Texture2D>("Sprites/special_drops_final copy");
+                pickupC.Texture = this.content.Load<Texture2D>("Sprites/special_drops_final");
                 pickups.Add(pickupC);
 
                 addEnemies = false;
@@ -1710,31 +1733,31 @@ namespace Spitfire
 
             else if (positionInLevel == 25 && addEnemies)
             {
-
-                foreach (Enemy enemy in enemies.ToArray())
-                {
-                    enemies.Remove(enemy);
-                }
-
-                hasBossAppeared = true;
-                MediaPlayer.Play(content.Load<Song>("Sounds/344279_SOUNDDOGS__ba"));
-                SuperWeapon finalboss = new SuperWeapon(this, Enemy.Difficulty.Medium, "ulimateweaponspritemap_final", true);
-                finalboss.Position = new Vector2(1650, 200);
+                SuperWeapon finalboss = new SuperWeapon(this, Enemy.Difficulty.Easy, "ulimateweaponspritemap_final", true);
+                finalboss.Position = new Vector2(1450, 200); 
                 enemies.Add(finalboss);
 
                 addEnemies = false;
             }
-
-            else if (hasBossAppeared && enemies.Count == 0)
+            //else if (positionInLevel == 30 && addEnemies)
+            //else if (enemies.Count == 0 && positionInLevel > 28)
+            else if (enemies.Count == 0 && levelProgress > 24)
             {
                 // END LEVEL
-                MediaPlayer.Pause();
-
 
                 BackgroundScreen briefBackground = new BackgroundScreen(("Menus/level_summary"));
-                LoadingScreen.Load(gameplayScreen.ScreenManager, false, PlayerIndex.One, briefBackground, new LevelSummaryScreen(2, (GameplayScreen)gameplayScreen));
+                LoadingScreen.Load(gameplayScreen.ScreenManager, false, PlayerIndex.One, briefBackground, new LevelSummaryScreen(2, (GameplayScreen)gameplayScreen, this));
 
-                levelNumber = 1;
+                levelNumber = 2;
+            }
+        }
+
+        public void killEnemyEngineSounds()
+        {
+            // mute all enemy enginesounds
+            foreach (Enemy enemy in enemies)
+            {
+                enemy.engineSoundInst.Stop();
             }
         }
 
@@ -1749,8 +1772,11 @@ namespace Spitfire
                 {
                     //Create an item pickup
                     Pickup item = new Pickup(enemy.Position, Pickup.Effect.HP);
-                    item.Texture = this.content.Load<Texture2D>("Sprites/special_drops_final copy");
-                    pickups.Add(item);
+                    item.Texture = this.content.Load<Texture2D>("Sprites/special_drops_final");
+                    
+                    if (!(enemy is LightTank) && !(enemy is HeavyTank))
+                        pickups.Add(item);
+                    
                     enemies.Remove(enemy);
                 }
                 else

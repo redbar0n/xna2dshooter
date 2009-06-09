@@ -49,7 +49,8 @@ namespace Spitfire
             IsPopup = true;
 
             // Create our menu entries.
-            MenuEntry resumeGameMenuEntry = new MenuEntry("Resume Game");
+            MenuEntry resumeEntry = new MenuEntry("Resume");
+            MenuEntry restartLevelMenuEntry = new MenuEntry("Restart Level");
             
             if (!GameplayScreen.muted)
             {
@@ -59,25 +60,27 @@ namespace Spitfire
             {
                 muteGameMenuEntry = new MenuEntry("Unmute all sound");
             }
-            MenuEntry lvl1GameMenuEntry = new MenuEntry("Go to level 1");
-            MenuEntry lvl2GameMenuEntry = new MenuEntry("Go to level 2");
-            MenuEntry finalbossGameMenuEntry = new MenuEntry("Go to final boss");
-            MenuEntry quitGameMenuEntry = new MenuEntry("Quit Game");
+            //MenuEntry lvl1GameMenuEntry = new MenuEntry("Go to level 1");
+            //MenuEntry lvl2GameMenuEntry = new MenuEntry("Go to level 2");
+            //MenuEntry finalbossGameMenuEntry = new MenuEntry("Go to final boss");
+            MenuEntry quitGameMenuEntry = new MenuEntry("Quit to Main Menu");
             
             // Hook up menu event handlers.
-            resumeGameMenuEntry.Selected += OnCancel;
+            resumeEntry.Selected += OnCancel;
+            restartLevelMenuEntry.Selected += RestartLevelMenuEntrySelected;
             muteGameMenuEntry.Selected += MuteGameMenuEntrySelected;
-            lvl1GameMenuEntry.Selected += lvl1GameMenuEntrySelected;
-            lvl2GameMenuEntry.Selected += lvl2GameMenuEntrySelected;
-            finalbossGameMenuEntry.Selected += GotoFinalBossMenuEntrySelected;
+            //lvl1GameMenuEntry.Selected += lvl1GameMenuEntrySelected;
+            //lvl2GameMenuEntry.Selected += lvl2GameMenuEntrySelected;
+            //finalbossGameMenuEntry.Selected += GotoFinalBossMenuEntrySelected;
             quitGameMenuEntry.Selected += QuitGameMenuEntrySelected;
 
             // Add entries to the menu.
-            MenuEntries.Add(resumeGameMenuEntry);
+            MenuEntries.Add(resumeEntry);
+            MenuEntries.Add(restartLevelMenuEntry);
             MenuEntries.Add(muteGameMenuEntry);
-            MenuEntries.Add(lvl1GameMenuEntry);
-            MenuEntries.Add(lvl2GameMenuEntry);
-            MenuEntries.Add(finalbossGameMenuEntry);
+            //MenuEntries.Add(lvl1GameMenuEntry);
+            //MenuEntries.Add(lvl2GameMenuEntry);
+            //MenuEntries.Add(finalbossGameMenuEntry);
             MenuEntries.Add(quitGameMenuEntry);
         }
 
@@ -93,6 +96,18 @@ namespace Spitfire
 
         #region Handle Input
 
+        new public void OnCancel(object sender, PlayerIndexEventArgs e)
+        {
+            ExitScreen();
+            gameplayScreen.unPauseSounds();
+        }
+
+        public void RestartLevelMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        {
+            level.player.resetStats();
+            level.changeLevel();
+            ExitScreen();
+        }
 
         void MuteGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
@@ -115,21 +130,27 @@ namespace Spitfire
         void GotoFinalBossMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             level.levelNumber = 2;
-            level.setLevelProgress(24);
+            level.changeLevel();
+            level.setLevelProgress(20);
             ExitScreen();
+            gameplayScreen.unPauseSounds();
 
         }
 
         void lvl1GameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             level.levelNumber = 1;
+            level.changeLevel();
             ExitScreen();
+            gameplayScreen.unPauseSounds();
         }
 
         void lvl2GameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             level.levelNumber = 2;
+            level.changeLevel();
             ExitScreen();
+            gameplayScreen.unPauseSounds();
         }
 
         /// <summary>

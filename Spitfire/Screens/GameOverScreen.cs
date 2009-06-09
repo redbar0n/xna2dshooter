@@ -25,16 +25,19 @@ namespace Spitfire
         
         Texture2D texture;
         HUD hud;
+        Level level;
 
         #region Initialization
 
         /// <summary>
         /// Constructor.
         /// </summary>
-        public GameOverScreen(HUD hud)
+        public GameOverScreen(Level level, HUD hud)
             : base("Game Over", null)
         {
+            this.level = level;
             this.hud = hud;
+
 
             GamePad.SetVibration(PlayerIndex.One, 0.0f, 0.0f); // Stop the rumble feature
 
@@ -43,18 +46,24 @@ namespace Spitfire
             IsPopup = true;
 
             // Create our menu entries.
-            MenuEntry restartGameMenuEntry = new MenuEntry("Restart game");
+            MenuEntry restartLevelMenuEntry = new MenuEntry("Restart level");
             MenuEntry quitGameMenuEntry = new MenuEntry("Quit to Main Menu");
             
             // Hook up menu event handlers.
-            restartGameMenuEntry.Selected += OnCancel;
+            restartLevelMenuEntry.Selected += RestartLevelMenuEntrySelected;
             quitGameMenuEntry.Selected += QuitGameMenuEntrySelected;
 
             // Add entries to the menu.
-            MenuEntries.Add(restartGameMenuEntry);
+            MenuEntries.Add(restartLevelMenuEntry);
             MenuEntries.Add(quitGameMenuEntry);
         }
 
+        public void RestartLevelMenuEntrySelected(object sender, PlayerIndexEventArgs e)
+        {
+            level.player.resetStats();
+            level.changeLevel();
+            ExitScreen();
+        }
 
         override public void LoadContent()
         {

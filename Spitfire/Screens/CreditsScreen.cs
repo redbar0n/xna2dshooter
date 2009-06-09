@@ -4,29 +4,32 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Content;
 
 namespace Spitfire
 {
     class CreditsScreen : MenuScreen
     {
         string gameover;
-        int level;
-        GameScreen gameplayScreen;
 
-        public CreditsScreen(int level, GameScreen gameplayScreen)
+        public CreditsScreen()
             : base("Background Story", new Vector2(300, 680))
         {
-            this.level = level;
-            this.gameplayScreen = gameplayScreen;
 
             MenuEntry continueMenuEntry = new MenuEntry("Press space to continue...");
             continueMenuEntry.Selected += ContinueMenuEntrySelected;
             MenuEntries.Add(continueMenuEntry);
 
-            gameover = " Congratulations, you completed the game!\n"
-            + " You should be proud of yourself!\n\n\n\n\n This game was made by:\n Brian Lam (Game design),\n Nicole McMahon (Artwork),\n Nick Maunder (Code),\n Magne Gasland (Code).\n\n It was made the first semester of 2009\n at QUT, Brisbane in Peta Wyeths unit:\n INB281 Adv. game design";
+            gameover = "CREDITS\n\nGame Design:\nBrian Lam\n\nArtwork:\nNicole McMahon\n\nCode:\nNick Maunder\nMagne Gasland\n\n\nContext:\nIt was made the first semester of 2009\nat QUT, Brisbane in Peta Wyeths unit:\nINB281 Adv. game design";
         }
 
+        override public void LoadContent()
+        {
+            MediaPlayer.IsRepeating = true;
+            MediaPlayer.Volume = 1f; // magic constant
+            MediaPlayer.Play(ScreenManager.Game.Content.Load<Song>("Sounds/Vera Lynn - Abide With Me"));
+        }
 
         void ContinueMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
@@ -51,22 +54,19 @@ namespace Spitfire
         {
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
             SpriteFont font = ScreenManager.Font;
-            Color color = Color.Black;
+            Color color = Color.White;
             color = new Color(color.R, color.G, color.B, TransitionAlpha);
             Vector2 origin = new Vector2(0, font.LineSpacing / 2);
             float scale = 1f;
 
             
-            Vector2 position = new Vector2(250, 300);
-            if (level == 3)
-                position = new Vector2(250, 100);
+            Vector2 position = new Vector2(50, 50);
+
 
             spriteBatch.Begin();
             spriteBatch.DrawString(font, gameover, position, color, 0,
                                    origin, scale, SpriteEffects.None, 0);
             spriteBatch.End();
-            if (level != 3)
-                base.Draw(gameTime);
         }
 
     }
